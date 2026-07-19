@@ -8,36 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type GetTasksButlerTask = {
-  /**
-   * A user-friendly description of the task
-   */
-  description?: string | undefined;
-  /**
-   * Whether this task is enabled or not
-   */
-  enabled?: boolean | undefined;
-  /**
-   * The interval (in days) of when this task is run.  A value of 1 is run every day, 7 is every week, etc.
-   */
-  interval?: number | undefined;
-  /**
-   * The name of the task
-   */
-  name?: string | undefined;
-  /**
-   * Indicates whether the timing of the task is randomized within the butler interval
-   */
-  scheduleRandomized?: boolean | undefined;
-  /**
-   * A user-friendly title of the task
-   */
-  title?: string | undefined;
-};
+import * as shared from "../shared/index.js";
 
 export type ButlerTasks = {
-  butlerTask?: Array<GetTasksButlerTask> | undefined;
+  butlerTask?: Array<shared.ButlerTask> | undefined;
 };
 
 /**
@@ -48,34 +22,9 @@ export type GetTasksResponse = {
 };
 
 /** @internal */
-export const GetTasksButlerTask$inboundSchema: z.ZodType<
-  GetTasksButlerTask,
-  unknown
-> = z.object({
-  description: types.optional(types.string()),
-  enabled: types.optional(types.boolean()),
-  interval: types.optional(types.number()),
-  name: types.optional(types.string()),
-  scheduleRandomized: types.optional(types.boolean()),
-  title: types.optional(types.string()),
-});
-
-export function getTasksButlerTaskFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTasksButlerTask, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTasksButlerTask$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTasksButlerTask' from JSON`,
-  );
-}
-
-/** @internal */
 export const ButlerTasks$inboundSchema: z.ZodType<ButlerTasks, unknown> = z
   .object({
-    ButlerTask: types.optional(
-      z.array(z.lazy(() => GetTasksButlerTask$inboundSchema)),
-    ),
+    ButlerTask: types.optional(z.array(shared.ButlerTask$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "ButlerTask": "butlerTask",

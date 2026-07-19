@@ -3,14 +3,87 @@
  */
 
 import { providerAddProvider } from "../funcs/providerAddProvider.js";
+import { providerAddToWatchlist } from "../funcs/providerAddToWatchlist.js";
 import { providerDeleteMediaProvider } from "../funcs/providerDeleteMediaProvider.js";
+import { providerGetWatchlist } from "../funcs/providerGetWatchlist.js";
 import { providerListProviders } from "../funcs/providerListProviders.js";
 import { providerRefreshProviders } from "../funcs/providerRefreshProviders.js";
+import { providerRemoveFromWatchlist } from "../funcs/providerRemoveFromWatchlist.js";
+import { providerSearchDiscover } from "../funcs/providerSearchDiscover.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Provider extends ClientSDK {
+  /**
+   * Add to Watchlist
+   *
+   * @remarks
+   * Add an item to the user's Plex Discover watchlist.
+   */
+  async addToWatchlist(
+    request: operations.AddToWatchlistRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(providerAddToWatchlist(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Remove from Watchlist
+   *
+   * @remarks
+   * Remove an item from the user's Plex Discover watchlist.
+   */
+  async removeFromWatchlist(
+    request: operations.RemoveFromWatchlistRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(providerRemoveFromWatchlist(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Search Discover
+   *
+   * @remarks
+   * Search movies and shows in Plex Discover.
+   */
+  async searchDiscover(
+    request: operations.SearchDiscoverRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(providerSearchDiscover(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Watchlist
+   *
+   * @remarks
+   * Get the user's Plex Discover watchlist.
+   */
+  async getWatchlist(
+    request: operations.GetWatchlistRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(providerGetWatchlist(
+      this,
+      request,
+      options,
+    ));
+  }
+
   /**
    * Get the list of available media providers
    *

@@ -2,13 +2,12 @@
 
 Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream
 
-
 ## Example Usage
 
 ```typescript
 import { MakeDecisionSubtitles } from "@parke.dev/plexjs/models/operations";
 
-let value: MakeDecisionSubtitles = MakeDecisionSubtitles.Auto;
+let value: MakeDecisionSubtitles = MakeDecisionSubtitles.Burn;
 ```
 
 ## Values

@@ -3,7 +3,13 @@
  */
 
 import * as z from "zod/v4";
+import * as b64$ from "../../lib/base64.js";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type StartTaskGlobals = {
@@ -132,6 +138,8 @@ export type StartTaskRequest = {
   butlerTask: StartTaskButlerTask;
 };
 
+export type StartTaskResponse = Uint8Array | string | string;
+
 /** @internal */
 export const StartTaskButlerTask$outboundSchema: z.ZodEnum<
   typeof StartTaskButlerTask
@@ -190,5 +198,21 @@ export function startTaskRequestToJSON(
 ): string {
   return JSON.stringify(
     StartTaskRequest$outboundSchema.parse(startTaskRequest),
+  );
+}
+
+/** @internal */
+export const StartTaskResponse$inboundSchema: z.ZodType<
+  StartTaskResponse,
+  unknown
+> = smartUnion([b64$.zodInbound, types.string()]);
+
+export function startTaskResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StartTaskResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartTaskResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartTaskResponse' from JSON`,
   );
 }

@@ -36,8 +36,6 @@ export type PlaylistTypeOpen = OpenEnum<typeof PlaylistType>;
 export type MediaContainerWithPlaylistMetadataGuid = {
   /**
    * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
-   *
-   * @remarks
    */
   id: string;
 };
@@ -95,6 +93,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    */
   duration?: number | undefined;
   /**
+   * Total duration in seconds (redundant but present in XML).
+   */
+  durationInSeconds?: number | undefined;
+  /**
    * The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
    */
   key: string;
@@ -106,6 +108,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    * The type of the playlist.
    */
   playlistType?: PlaylistTypeOpen | undefined;
+  /**
+   * Whether this is a generated radio playlist.
+   */
+  radio?: boolean | undefined;
   /**
    * Whether or not the playlist is smart.
    */
@@ -135,6 +141,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    */
   art?: string | undefined;
   /**
+   * Blur hash for background art.
+   */
+  artBlurHash?: string | undefined;
+  /**
    * Some rating systems separate reviewer ratings from audience ratings
    */
   audienceRating?: number | undefined;
@@ -161,6 +171,18 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
   contentRating?: string | undefined;
   country?: Array<Tag> | undefined;
   director?: Array<Tag> | undefined;
+  /**
+   * Levenshtein distance for voice search results.
+   */
+  distance?: number | undefined;
+  /**
+   * Edition string (e.g. "Director's Cut").
+   */
+  editionTitle?: string | undefined;
+  /**
+   * Whether credits marker generation is enabled for this item.
+   */
+  enableCreditsMarkerGeneration?: boolean | undefined;
   /**
    * Typically only seen in metadata at a library's top level
    */
@@ -212,8 +234,20 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    * When present, this represents the episode number for episodes, season number for seasons, or track number for audio tracks.
    */
   index?: number | undefined;
+  /**
+   * Per-item language override.
+   */
+  languageOverride?: string | undefined;
+  /**
+   * Timestamp of the last user rating.
+   */
+  lastRatedAt?: number | undefined;
   lastViewedAt?: number | undefined;
   media?: Array<Media> | undefined;
+  /**
+   * Analysis version for music items.
+   */
+  musicAnalysisVersion?: number | undefined;
   /**
    * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
    */
@@ -250,6 +284,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    * The `title` of the parent
    */
   parentTitle?: string | undefined;
+  /**
+   * Item ID within a playlist.
+   */
+  playlistItemID?: number | undefined;
   /**
    * Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
    */
@@ -292,6 +330,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
     | MediaContainerWithPlaylistMetadataSkipChildrenEnumOpen
     | undefined;
   /**
+   * Number of times this track has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
    * When present on an episode or track item, indicates parent should be skipped in favor of grandparent (show).
    */
   skipParent?:
@@ -299,9 +341,17 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
     | MediaContainerWithPlaylistMetadataSkipParentEnumOpen
     | undefined;
   /**
+   * URL-friendly slug for the item.
+   */
+  slug?: string | undefined;
+  /**
    * Typically only seen in metadata at a library's top level
    */
   sort?: Array<Sort> | undefined;
+  /**
+   * Remote or shared server item URI.
+   */
+  sourceURI?: string | undefined;
   /**
    * When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
    */
@@ -327,6 +377,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    */
   thumb?: string | undefined;
   /**
+   * Blur hash for thumbnail.
+   */
+  thumbBlurHash?: string | undefined;
+  /**
    * Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
    */
   titleSort?: string | undefined;
@@ -334,6 +388,10 @@ export type MediaContainerWithPlaylistMetadataMetadatum = {
    * In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
    */
   updatedAt?: number | undefined;
+  /**
+   * Whether to display the original title.
+   */
+  useOriginalTitle?: boolean | undefined;
   /**
    * When the user has rated an item, this contains the user rating
    */
@@ -369,15 +427,11 @@ export type MediaContainerWithPlaylistMetadataMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   metadata?: Array<MediaContainerWithPlaylistMetadataMetadatum> | undefined;
@@ -476,9 +530,11 @@ export const MediaContainerWithPlaylistMetadataMetadatum$inboundSchema:
         readOnly: types.optional(types.boolean()),
         composite: types.optional(types.string()),
         duration: types.optional(types.number()),
+        durationInSeconds: types.optional(types.number()),
         key: types.string(),
         leafCount: types.optional(types.number()),
         playlistType: types.optional(PlaylistType$inboundSchema),
+        radio: types.optional(types.boolean()),
         smart: types.optional(types.boolean()),
         specialPlaylistType: types.optional(types.string()),
         title: types.string(),
@@ -486,6 +542,7 @@ export const MediaContainerWithPlaylistMetadataMetadatum$inboundSchema:
         absoluteIndex: types.optional(types.number()),
         addedAt: types.number(),
         art: types.optional(types.string()),
+        artBlurHash: types.optional(types.string()),
         audienceRating: types.optional(types.number()),
         audienceRatingImage: types.optional(types.string()),
         Autotag: types.optional(z.array(Tag$inboundSchema)),
@@ -495,6 +552,9 @@ export const MediaContainerWithPlaylistMetadataMetadatum$inboundSchema:
         contentRating: types.optional(types.string()),
         Country: types.optional(z.array(Tag$inboundSchema)),
         Director: types.optional(z.array(Tag$inboundSchema)),
+        distance: types.optional(types.number()),
+        editionTitle: types.optional(types.string()),
+        enableCreditsMarkerGeneration: types.optional(types.boolean()),
         Filter: types.optional(z.array(Filter$inboundSchema)),
         Genre: types.optional(z.array(Tag$inboundSchema)),
         grandparentArt: types.optional(types.string()),
@@ -512,8 +572,11 @@ export const MediaContainerWithPlaylistMetadataMetadatum$inboundSchema:
         hero: types.optional(types.string()),
         Image: types.optional(z.array(Image$inboundSchema)),
         index: types.optional(types.number()),
+        languageOverride: types.optional(types.string()),
+        lastRatedAt: types.optional(types.number()),
         lastViewedAt: types.optional(types.number()),
         Media: types.optional(z.array(Media$inboundSchema)),
+        musicAnalysisVersion: types.optional(types.number()),
         originallyAvailableAt: types.optional(types.date()),
         originalTitle: types.optional(types.string()),
         parentGuid: types.optional(types.string()),
@@ -523,6 +586,7 @@ export const MediaContainerWithPlaylistMetadataMetadatum$inboundSchema:
         parentRatingKey: types.optional(types.string()),
         parentThumb: types.optional(types.string()),
         parentTitle: types.optional(types.string()),
+        playlistItemID: types.optional(types.number()),
         primaryExtraKey: types.optional(types.string()),
         prompt: types.optional(types.string()),
         rating: types.optional(types.number()),
@@ -539,21 +603,26 @@ export const MediaContainerWithPlaylistMetadataMetadatum$inboundSchema:
             MediaContainerWithPlaylistMetadataSkipChildrenEnum$inboundSchema,
           ]),
         ),
+        skipCount: types.optional(types.number()),
         skipParent: types.optional(
           smartUnion([
             types.boolean(),
             MediaContainerWithPlaylistMetadataSkipParentEnum$inboundSchema,
           ]),
         ),
+        slug: types.optional(types.string()),
         Sort: types.optional(z.array(Sort$inboundSchema)),
+        sourceURI: types.optional(types.string()),
         studio: types.optional(types.string()),
         subtype: types.optional(types.string()),
         summary: types.optional(types.string()),
         tagline: types.optional(types.string()),
         theme: types.optional(types.string()),
         thumb: types.optional(types.string()),
+        thumbBlurHash: types.optional(types.string()),
         titleSort: types.optional(types.string()),
         updatedAt: types.optional(types.number()),
+        useOriginalTitle: types.optional(types.boolean()),
         userRating: types.optional(types.number()),
         viewCount: types.optional(types.number()),
         viewedLeafCount: types.optional(types.number()),

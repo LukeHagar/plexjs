@@ -226,9 +226,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getAlbums
 
@@ -323,13 +324,15 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listContent
 
-Get the items in a section, potentially filtering them
+Get the items in a section, potentially filtering them.
+When `includeCollections=1` is passed, the response may also contain `Collection` items.
 
 ### Example Usage
 
@@ -357,12 +360,38 @@ async function run() {
   const result = await plexAPI.content.listContent({
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 813218,
     includeMeta: BoolInt.True,
     includeGuids: BoolInt.True,
-    sectionId: "<id>",
+    includeCollections: BoolInt.True,
+    includeExternalMedia: BoolInt.True,
+    includeAdvanced: BoolInt.True,
+    checkFiles: BoolInt.True,
+    includeRelated: BoolInt.True,
+    includeExtras: BoolInt.True,
+    includePopularLeaves: BoolInt.True,
+    includeConcerts: BoolInt.True,
+    includeOnDeck: BoolInt.True,
+    includeChapters: BoolInt.True,
+    includePreferences: BoolInt.True,
+    includeBandwidths: BoolInt.True,
+    includeLoudnessRamps: BoolInt.True,
+    includeStations: BoolInt.True,
+    includeExternalIds: BoolInt.True,
+    includeReviews: BoolInt.True,
+    includeCredits: BoolInt.True,
+    includeArt: BoolInt.True,
+    includeThumb: BoolInt.True,
+    includeBanner: BoolInt.True,
+    includeTheme: BoolInt.True,
+    asyncAugmentMetadata: BoolInt.True,
+    asyncRefreshLocalMediaAgent: BoolInt.True,
+    nocache: BoolInt.True,
+    skipRefresh: BoolInt.True,
+    unwatched: BoolInt.True,
   });
 
   console.log(result);
@@ -401,12 +430,38 @@ async function run() {
   const res = await contentListContent(plexAPI, {
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 452087,
     includeMeta: BoolInt.True,
     includeGuids: BoolInt.True,
-    sectionId: "<id>",
+    includeCollections: BoolInt.True,
+    includeExternalMedia: BoolInt.True,
+    includeAdvanced: BoolInt.True,
+    checkFiles: BoolInt.True,
+    includeRelated: BoolInt.True,
+    includeExtras: BoolInt.True,
+    includePopularLeaves: BoolInt.True,
+    includeConcerts: BoolInt.True,
+    includeOnDeck: BoolInt.True,
+    includeChapters: BoolInt.True,
+    includePreferences: BoolInt.True,
+    includeBandwidths: BoolInt.True,
+    includeLoudnessRamps: BoolInt.True,
+    includeStations: BoolInt.True,
+    includeExternalIds: BoolInt.True,
+    includeReviews: BoolInt.True,
+    includeCredits: BoolInt.True,
+    includeArt: BoolInt.True,
+    includeThumb: BoolInt.True,
+    includeBanner: BoolInt.True,
+    includeTheme: BoolInt.True,
+    asyncAugmentMetadata: BoolInt.True,
+    asyncRefreshLocalMediaAgent: BoolInt.True,
+    nocache: BoolInt.True,
+    skipRefresh: BoolInt.True,
+    unwatched: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -434,9 +489,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getAllLeaves
 
@@ -531,9 +587,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getArts
 
@@ -628,9 +685,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getCategories
 
@@ -725,9 +783,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getCluster
 
@@ -822,9 +881,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getSonicPath
 
@@ -923,9 +983,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getFolders
 
@@ -1020,9 +1081,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listMoments
 
@@ -1117,9 +1179,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getSonicallySimilar
 
@@ -1216,9 +1279,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getCollectionImage
 

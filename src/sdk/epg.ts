@@ -8,9 +8,11 @@ import { epgGetChannels } from "../funcs/epgGetChannels.js";
 import { epgGetCountries } from "../funcs/epgGetCountries.js";
 import { epgGetCountriesLineups } from "../funcs/epgGetCountriesLineups.js";
 import { epgGetCountryRegions } from "../funcs/epgGetCountryRegions.js";
+import { epgGetEPGGuide } from "../funcs/epgGetEPGGuide.js";
 import { epgGetLineup } from "../funcs/epgGetLineup.js";
 import { epgGetLineupChannels } from "../funcs/epgGetLineupChannels.js";
 import { epgListLineups } from "../funcs/epgListLineups.js";
+import { epgSearchEPG } from "../funcs/epgSearchEPG.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import * as shared from "../models/shared/index.js";
@@ -67,6 +69,21 @@ export class Epg extends ClientSDK {
   }
 
   /**
+   * Get EPG Guide
+   *
+   * @remarks
+   * Fetch the global electronic program guide.
+   */
+  async getEPGGuide(
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(epgGetEPGGuide(
+      this,
+      options,
+    ));
+  }
+
+  /**
    * Get all languages
    *
    * @remarks
@@ -90,7 +107,7 @@ export class Epg extends ClientSDK {
   async getLineup(
     request: operations.GetLineupRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetLineupResponse | undefined> {
+  ): Promise<operations.GetLineupResponse> {
     return unwrapAsync(epgGetLineup(
       this,
       request,
@@ -99,7 +116,7 @@ export class Epg extends ClientSDK {
   }
 
   /**
-   * Get the channels for mulitple lineups
+   * Get the channels for multiple lineups
    *
    * @remarks
    * Get the channels across multiple lineups
@@ -109,6 +126,23 @@ export class Epg extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetLineupChannelsResponse> {
     return unwrapAsync(epgGetLineupChannels(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Search EPG
+   *
+   * @remarks
+   * Search the electronic program guide for upcoming airings.
+   */
+  async searchEPG(
+    request: operations.SearchEPGRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(epgSearchEPG(
       this,
       request,
       options,

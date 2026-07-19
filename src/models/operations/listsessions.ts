@@ -19,8 +19,6 @@ import * as shared from "../shared/index.js";
 export type ListSessionsGuid = {
   /**
    * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
-   *
-   * @remarks
    */
   id: string;
 };
@@ -64,7 +62,7 @@ export type ListSessionsSkipParentUnion =
  *
  * Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, "leaves" refer to metadata items which has associated media (there is no media for a season nor show).  A show will have "children" in the form of seasons and a season will have "children" in the form of episodes and episodes have "parent" in the form of a season which has a "parent" in the form of a show.  Similarly, a show has "grandchildren" in the form of episodse and an episode has a "grandparent" in the form of a show.
  */
-export type ListSessionsMetadatum = {
+export type Metadatum = {
   /**
    * Information about the player being used for playback
    */
@@ -98,6 +96,10 @@ export type ListSessionsMetadatum = {
    */
   art?: string | undefined;
   /**
+   * Blur hash for background art.
+   */
+  artBlurHash?: string | undefined;
+  /**
    * Some rating systems separate reviewer ratings from audience ratings
    */
   audienceRating?: number | undefined;
@@ -129,9 +131,21 @@ export type ListSessionsMetadatum = {
   country?: Array<shared.Tag> | undefined;
   director?: Array<shared.Tag> | undefined;
   /**
+   * Levenshtein distance for voice search results.
+   */
+  distance?: number | undefined;
+  /**
    * When present, the duration for the item, in units of milliseconds.
    */
   duration?: number | undefined;
+  /**
+   * Edition string (e.g. "Director's Cut").
+   */
+  editionTitle?: string | undefined;
+  /**
+   * Whether credits marker generation is enabled for this item.
+   */
+  enableCreditsMarkerGeneration?: boolean | undefined;
   /**
    * Typically only seen in metadata at a library's top level
    */
@@ -187,12 +201,24 @@ export type ListSessionsMetadatum = {
    * The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
    */
   key: string;
+  /**
+   * Per-item language override.
+   */
+  languageOverride?: string | undefined;
+  /**
+   * Timestamp of the last user rating.
+   */
+  lastRatedAt?: number | undefined;
   lastViewedAt?: number | undefined;
   /**
    * For shows and seasons, contains the number of total episodes.
    */
   leafCount?: number | undefined;
   media?: Array<shared.Media> | undefined;
+  /**
+   * Analysis version for music items.
+   */
+  musicAnalysisVersion?: number | undefined;
   /**
    * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
    */
@@ -229,6 +255,10 @@ export type ListSessionsMetadatum = {
    * The `title` of the parent
    */
   parentTitle?: string | undefined;
+  /**
+   * Item ID within a playlist.
+   */
+  playlistItemID?: number | undefined;
   /**
    * Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
    */
@@ -268,13 +298,25 @@ export type ListSessionsMetadatum = {
    */
   skipChildren?: boolean | ListSessionsSkipChildrenEnumOpen | undefined;
   /**
+   * Number of times this track has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
    * When present on an episode or track item, indicates parent should be skipped in favor of grandparent (show).
    */
   skipParent?: boolean | ListSessionsSkipParentEnumOpen | undefined;
   /**
+   * URL-friendly slug for the item.
+   */
+  slug?: string | undefined;
+  /**
    * Typically only seen in metadata at a library's top level
    */
   sort?: Array<shared.Sort> | undefined;
+  /**
+   * Remote or shared server item URI.
+   */
+  sourceURI?: string | undefined;
   /**
    * When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
    */
@@ -300,6 +342,10 @@ export type ListSessionsMetadatum = {
    */
   thumb?: string | undefined;
   /**
+   * Blur hash for thumbnail.
+   */
+  thumbBlurHash?: string | undefined;
+  /**
    * Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
    */
   titleSort?: string | undefined;
@@ -307,6 +353,10 @@ export type ListSessionsMetadatum = {
    * In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
    */
   updatedAt?: number | undefined;
+  /**
+   * Whether to display the original title.
+   */
+  useOriginalTitle?: boolean | undefined;
   /**
    * When the user has rated an item, this contains the user rating
    */
@@ -342,18 +392,14 @@ export type ListSessionsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  metadata?: Array<ListSessionsMetadatum> | undefined;
+  metadata?: Array<Metadatum> | undefined;
 };
 
 /**
@@ -431,119 +477,135 @@ export function listSessionsSkipParentUnionFromJSON(
 }
 
 /** @internal */
-export const ListSessionsMetadatum$inboundSchema: z.ZodType<
-  ListSessionsMetadatum,
-  unknown
-> = collectExtraKeys$(
-  z.object({
-    Player: types.optional(shared.Player$inboundSchema),
-    Session: types.optional(shared.Session$inboundSchema),
-    User: types.optional(shared.User$inboundSchema),
-    title: types.string(),
-    type: types.string(),
-    absoluteIndex: types.optional(types.number()),
-    addedAt: types.number(),
-    art: types.optional(types.string()),
-    audienceRating: types.optional(types.number()),
-    audienceRatingImage: types.optional(types.string()),
-    Autotag: types.optional(z.array(shared.Tag$inboundSchema)),
-    banner: types.optional(types.string()),
-    chapterSource: types.optional(types.string()),
-    childCount: types.optional(types.number()),
-    composite: types.optional(types.string()),
-    contentRating: types.optional(types.string()),
-    Country: types.optional(z.array(shared.Tag$inboundSchema)),
-    Director: types.optional(z.array(shared.Tag$inboundSchema)),
-    duration: types.optional(types.number()),
-    Filter: types.optional(z.array(shared.Filter$inboundSchema)),
-    Genre: types.optional(z.array(shared.Tag$inboundSchema)),
-    grandparentArt: types.optional(types.string()),
-    grandparentGuid: types.optional(types.string()),
-    grandparentHero: types.optional(types.string()),
-    grandparentKey: types.optional(types.string()),
-    grandparentRatingKey: types.optional(types.string()),
-    grandparentTheme: types.optional(types.string()),
-    grandparentThumb: types.optional(types.string()),
-    grandparentTitle: types.optional(types.string()),
-    guid: types.optional(types.string()),
-    Guid: types.optional(z.array(z.lazy(() => ListSessionsGuid$inboundSchema))),
-    hero: types.optional(types.string()),
-    Image: types.optional(z.array(shared.Image$inboundSchema)),
-    index: types.optional(types.number()),
-    key: types.string(),
-    lastViewedAt: types.optional(types.number()),
-    leafCount: types.optional(types.number()),
-    Media: types.optional(z.array(shared.Media$inboundSchema)),
-    originallyAvailableAt: types.optional(types.date()),
-    originalTitle: types.optional(types.string()),
-    parentGuid: types.optional(types.string()),
-    parentHero: types.optional(types.string()),
-    parentIndex: types.optional(types.number()),
-    parentKey: types.optional(types.string()),
-    parentRatingKey: types.optional(types.string()),
-    parentThumb: types.optional(types.string()),
-    parentTitle: types.optional(types.string()),
-    primaryExtraKey: types.optional(types.string()),
-    prompt: types.optional(types.string()),
-    rating: types.optional(types.number()),
-    Rating: types.optional(z.array(shared.Tag$inboundSchema)),
-    ratingCount: types.optional(types.number()),
-    ratingImage: types.optional(types.string()),
-    ratingKey: types.optional(types.string()),
-    Role: types.optional(z.array(shared.Tag$inboundSchema)),
-    search: types.optional(types.boolean()),
-    secondary: types.optional(types.boolean()),
-    skipChildren: types.optional(
-      smartUnion([types.boolean(), ListSessionsSkipChildrenEnum$inboundSchema]),
-    ),
-    skipParent: types.optional(
-      smartUnion([types.boolean(), ListSessionsSkipParentEnum$inboundSchema]),
-    ),
-    Sort: types.optional(z.array(shared.Sort$inboundSchema)),
-    studio: types.optional(types.string()),
-    subtype: types.optional(types.string()),
-    summary: types.optional(types.string()),
-    tagline: types.optional(types.string()),
-    theme: types.optional(types.string()),
-    thumb: types.optional(types.string()),
-    titleSort: types.optional(types.string()),
-    updatedAt: types.optional(types.number()),
-    userRating: types.optional(types.number()),
-    viewCount: types.optional(types.number()),
-    viewedLeafCount: types.optional(types.number()),
-    viewOffset: types.optional(types.number()),
-    Writer: types.optional(z.array(shared.Tag$inboundSchema)),
-    year: types.optional(types.number()),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
-).transform((v) => {
-  return remap$(v, {
-    "Player": "player",
-    "Session": "session",
-    "User": "user",
-    "Autotag": "autotag",
-    "Country": "country",
-    "Director": "director",
-    "Filter": "filter",
-    "Genre": "genre",
-    "Guid": "guids",
-    "Image": "image",
-    "Media": "media",
-    "Rating": "ratingArray",
-    "Role": "role",
-    "Sort": "sort",
-    "Writer": "writer",
+export const Metadatum$inboundSchema: z.ZodType<Metadatum, unknown> =
+  collectExtraKeys$(
+    z.object({
+      Player: types.optional(shared.Player$inboundSchema),
+      Session: types.optional(shared.Session$inboundSchema),
+      User: types.optional(shared.User$inboundSchema),
+      title: types.string(),
+      type: types.string(),
+      absoluteIndex: types.optional(types.number()),
+      addedAt: types.number(),
+      art: types.optional(types.string()),
+      artBlurHash: types.optional(types.string()),
+      audienceRating: types.optional(types.number()),
+      audienceRatingImage: types.optional(types.string()),
+      Autotag: types.optional(z.array(shared.Tag$inboundSchema)),
+      banner: types.optional(types.string()),
+      chapterSource: types.optional(types.string()),
+      childCount: types.optional(types.number()),
+      composite: types.optional(types.string()),
+      contentRating: types.optional(types.string()),
+      Country: types.optional(z.array(shared.Tag$inboundSchema)),
+      Director: types.optional(z.array(shared.Tag$inboundSchema)),
+      distance: types.optional(types.number()),
+      duration: types.optional(types.number()),
+      editionTitle: types.optional(types.string()),
+      enableCreditsMarkerGeneration: types.optional(types.boolean()),
+      Filter: types.optional(z.array(shared.Filter$inboundSchema)),
+      Genre: types.optional(z.array(shared.Tag$inboundSchema)),
+      grandparentArt: types.optional(types.string()),
+      grandparentGuid: types.optional(types.string()),
+      grandparentHero: types.optional(types.string()),
+      grandparentKey: types.optional(types.string()),
+      grandparentRatingKey: types.optional(types.string()),
+      grandparentTheme: types.optional(types.string()),
+      grandparentThumb: types.optional(types.string()),
+      grandparentTitle: types.optional(types.string()),
+      guid: types.optional(types.string()),
+      Guid: types.optional(
+        z.array(z.lazy(() => ListSessionsGuid$inboundSchema)),
+      ),
+      hero: types.optional(types.string()),
+      Image: types.optional(z.array(shared.Image$inboundSchema)),
+      index: types.optional(types.number()),
+      key: types.string(),
+      languageOverride: types.optional(types.string()),
+      lastRatedAt: types.optional(types.number()),
+      lastViewedAt: types.optional(types.number()),
+      leafCount: types.optional(types.number()),
+      Media: types.optional(z.array(shared.Media$inboundSchema)),
+      musicAnalysisVersion: types.optional(types.number()),
+      originallyAvailableAt: types.optional(types.date()),
+      originalTitle: types.optional(types.string()),
+      parentGuid: types.optional(types.string()),
+      parentHero: types.optional(types.string()),
+      parentIndex: types.optional(types.number()),
+      parentKey: types.optional(types.string()),
+      parentRatingKey: types.optional(types.string()),
+      parentThumb: types.optional(types.string()),
+      parentTitle: types.optional(types.string()),
+      playlistItemID: types.optional(types.number()),
+      primaryExtraKey: types.optional(types.string()),
+      prompt: types.optional(types.string()),
+      rating: types.optional(types.number()),
+      Rating: types.optional(z.array(shared.Tag$inboundSchema)),
+      ratingCount: types.optional(types.number()),
+      ratingImage: types.optional(types.string()),
+      ratingKey: types.optional(types.string()),
+      Role: types.optional(z.array(shared.Tag$inboundSchema)),
+      search: types.optional(types.boolean()),
+      secondary: types.optional(types.boolean()),
+      skipChildren: types.optional(
+        smartUnion([
+          types.boolean(),
+          ListSessionsSkipChildrenEnum$inboundSchema,
+        ]),
+      ),
+      skipCount: types.optional(types.number()),
+      skipParent: types.optional(
+        smartUnion([types.boolean(), ListSessionsSkipParentEnum$inboundSchema]),
+      ),
+      slug: types.optional(types.string()),
+      Sort: types.optional(z.array(shared.Sort$inboundSchema)),
+      sourceURI: types.optional(types.string()),
+      studio: types.optional(types.string()),
+      subtype: types.optional(types.string()),
+      summary: types.optional(types.string()),
+      tagline: types.optional(types.string()),
+      theme: types.optional(types.string()),
+      thumb: types.optional(types.string()),
+      thumbBlurHash: types.optional(types.string()),
+      titleSort: types.optional(types.string()),
+      updatedAt: types.optional(types.number()),
+      useOriginalTitle: types.optional(types.boolean()),
+      userRating: types.optional(types.number()),
+      viewCount: types.optional(types.number()),
+      viewedLeafCount: types.optional(types.number()),
+      viewOffset: types.optional(types.number()),
+      Writer: types.optional(z.array(shared.Tag$inboundSchema)),
+      year: types.optional(types.number()),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
+    return remap$(v, {
+      "Player": "player",
+      "Session": "session",
+      "User": "user",
+      "Autotag": "autotag",
+      "Country": "country",
+      "Director": "director",
+      "Filter": "filter",
+      "Genre": "genre",
+      "Guid": "guids",
+      "Image": "image",
+      "Media": "media",
+      "Rating": "ratingArray",
+      "Role": "role",
+      "Sort": "sort",
+      "Writer": "writer",
+    });
   });
-});
 
-export function listSessionsMetadatumFromJSON(
+export function metadatumFromJSON(
   jsonString: string,
-): SafeParseResult<ListSessionsMetadatum, SDKValidationError> {
+): SafeParseResult<Metadatum, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListSessionsMetadatum$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListSessionsMetadatum' from JSON`,
+    (x) => Metadatum$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadatum' from JSON`,
   );
 }
 
@@ -556,9 +618,7 @@ export const ListSessionsMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Metadata: types.optional(
-    z.array(z.lazy(() => ListSessionsMetadatum$inboundSchema)),
-  ),
+  Metadata: types.optional(z.array(z.lazy(() => Metadatum$inboundSchema))),
 }).transform((v) => {
   return remap$(v, {
     "Metadata": "metadata",

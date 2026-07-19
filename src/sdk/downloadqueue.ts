@@ -121,7 +121,7 @@ export class DownloadQueue extends ClientSDK {
   async getDownloadQueueMedia(
     request: operations.GetDownloadQueueMediaRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetDownloadQueueMediaResponse | undefined> {
+  ): Promise<operations.GetDownloadQueueMediaResponse> {
     return unwrapAsync(downloadQueueGetDownloadQueueMedia(
       this,
       request,

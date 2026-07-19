@@ -7,7 +7,11 @@ The user playing the content
 ```typescript
 import { User } from "@parke.dev/plexjs/models/shared";
 
-let value: User = {};
+let value: User = {
+  title: "string value",
+  id: "string value",
+  thumb: "string value",
+};
 ```
 
 ## Fields

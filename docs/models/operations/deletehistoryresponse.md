@@ -12,13 +12,18 @@ let value: DeleteHistoryResponse = {
       "<value 1>",
     ],
   },
-  result: {},
+  result: {
+    identifier: "com.plexapp.plugins.library",
+    offset: 0,
+    size: 1,
+    totalSize: 100,
+  },
 };
 ```
 
 ## Fields
 
-| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `headers`                                                      | Record<string, *string*[]>                                     | :heavy_check_mark:                                             | N/A                                                            |
-| `result`                                                       | [shared.MediaContainer](../../models/shared/mediacontainer.md) | :heavy_check_mark:                                             | N/A                                                            |
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `headers`                                                                                 | Record<string, *string*[]>                                                                | :heavy_check_mark:                                                                        | N/A                                                                                       |                                                                                           |
+| `result`                                                                                  | [shared.MediaContainer](../../models/shared/mediacontainer.md)                            | :heavy_check_mark:                                                                        | N/A                                                                                       | {<br/>"identifier": "com.plexapp.plugins.library",<br/>"offset": 0,<br/>"size": 1,<br/>"totalSize": 100<br/>} |

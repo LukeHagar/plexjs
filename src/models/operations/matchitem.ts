@@ -98,9 +98,21 @@ export type MatchItemRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The guid
+   */
   guid?: string | undefined;
+  /**
+   * The name
+   */
   name?: string | undefined;
+  /**
+   * The year to filter by
+   */
   year?: number | undefined;
 };
 

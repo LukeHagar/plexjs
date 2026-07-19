@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v4";
+import * as b64$ from "../../lib/base64.js";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -109,6 +110,7 @@ export type ReloadGuideRequest = {
 
 export type ReloadGuideResponse = {
   headers: { [k: string]: Array<string> };
+  result: Uint8Array | string;
 };
 
 /** @internal */
@@ -173,9 +175,11 @@ export const ReloadGuideResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
+  Result: b64$.zodInbound,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
+    "Result": "result",
   });
 });
 

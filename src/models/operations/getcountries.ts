@@ -5,59 +5,10 @@
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import * as openEnums from "../../types/enums.js";
-import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * - `0`: The country is divided into regions, and following the key will lead to a list of regions.
- *
- * @remarks
- * - `1`: The county is divided by postal codes, and an example code is returned in `example`.
- * - `2`: The country has a single postal code, returned in `example`.
- */
-export enum Flavor {
-  Zero = 0,
-  One = 1,
-  Two = 2,
-}
-/**
- * - `0`: The country is divided into regions, and following the key will lead to a list of regions.
- *
- * @remarks
- * - `1`: The county is divided by postal codes, and an example code is returned in `example`.
- * - `2`: The country has a single postal code, returned in `example`.
- */
-export type FlavorOpen = OpenEnum<typeof Flavor>;
-
-export type GetCountriesCountry = {
-  /**
-   * Three letter code
-   */
-  code?: string | undefined;
-  example?: string | undefined;
-  /**
-   * - `0`: The country is divided into regions, and following the key will lead to a list of regions.
-   *
-   * @remarks
-   * - `1`: The county is divided by postal codes, and an example code is returned in `example`.
-   * - `2`: The country has a single postal code, returned in `example`.
-   */
-  flavor?: FlavorOpen | undefined;
-  key?: string | undefined;
-  /**
-   * Three letter language code
-   */
-  language?: string | undefined;
-  /**
-   * The title of the language
-   */
-  languageTitle?: string | undefined;
-  title?: string | undefined;
-  type?: string | undefined;
-};
+import * as shared from "../shared/index.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -70,18 +21,14 @@ export type GetCountriesMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  country?: Array<GetCountriesCountry> | undefined;
+  country?: Array<shared.EPGCountry> | undefined;
 };
 
 /**
@@ -97,35 +44,6 @@ export type GetCountriesResponse = {
 };
 
 /** @internal */
-export const Flavor$inboundSchema: z.ZodType<FlavorOpen, unknown> = openEnums
-  .inboundSchemaInt(Flavor);
-
-/** @internal */
-export const GetCountriesCountry$inboundSchema: z.ZodType<
-  GetCountriesCountry,
-  unknown
-> = z.object({
-  code: types.optional(types.string()),
-  example: types.optional(types.string()),
-  flavor: types.optional(Flavor$inboundSchema),
-  key: types.optional(types.string()),
-  language: types.optional(types.string()),
-  languageTitle: types.optional(types.string()),
-  title: types.optional(types.string()),
-  type: types.optional(types.string()),
-});
-
-export function getCountriesCountryFromJSON(
-  jsonString: string,
-): SafeParseResult<GetCountriesCountry, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetCountriesCountry$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetCountriesCountry' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetCountriesMediaContainer$inboundSchema: z.ZodType<
   GetCountriesMediaContainer,
   unknown
@@ -134,9 +52,7 @@ export const GetCountriesMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Country: types.optional(
-    z.array(z.lazy(() => GetCountriesCountry$inboundSchema)),
-  ),
+  Country: types.optional(z.array(shared.EPGCountry$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Country": "country",

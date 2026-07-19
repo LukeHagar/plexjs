@@ -107,9 +107,9 @@ export type MarkPlayedRequest = {
    */
   key?: string | undefined;
   /**
-   * The URI of the item to mark as played.  See intro for description of the URIs
+   * URI of the item to scrobble. Format is `library://<section-uuid>/item/<url-encoded-key>` or `plex://movie/<guid>` or `plex://episode/<guid>`.
    */
-  uri?: string | undefined;
+  uri: string;
 };
 
 /** @internal */
@@ -127,7 +127,7 @@ export type MarkPlayedRequest$Outbound = {
   Marketplace?: string | undefined;
   identifier: string;
   key?: string | undefined;
-  uri?: string | undefined;
+  uri: string;
 };
 
 /** @internal */
@@ -148,7 +148,7 @@ export const MarkPlayedRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   identifier: z.string(),
   key: z.string().optional(),
-  uri: z.string().optional(),
+  uri: z.string(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

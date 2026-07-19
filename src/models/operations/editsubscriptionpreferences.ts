@@ -53,6 +53,9 @@ export type EditSubscriptionPreferencesGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The preference key to retrieve or set
+ */
 export type EditSubscriptionPreferencesPrefs = {};
 
 export type EditSubscriptionPreferencesRequest = {
@@ -100,7 +103,13 @@ export type EditSubscriptionPreferencesRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * The unique identifier of the subscription
+   */
   subscriptionId: number;
+  /**
+   * The preference key to retrieve or set
+   */
   prefs?: EditSubscriptionPreferencesPrefs | undefined;
 };
 

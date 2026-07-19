@@ -4,7 +4,6 @@
 
 Subscriptions determine which media will be recorded and the criteria for selecting an airing when multiple are available
 
-
 ### Available Operations
 
 * [getAllSubscriptions](#getallsubscriptions) - Get all subscriptions
@@ -147,7 +146,7 @@ async function run() {
   const result = await plexAPI.subscriptions.createSubscription({
     targetLibrarySectionID: 1,
     targetSectionLocationID: 3,
-    type: 2,
+    mediaType: 2,
     hints: {},
     prefs: {},
     params: {},
@@ -189,7 +188,7 @@ async function run() {
   const res = await subscriptionsCreateSubscription(plexAPI, {
     targetLibrarySectionID: 1,
     targetSectionLocationID: 3,
-    type: 2,
+    mediaType: 2,
     hints: {},
     prefs: {},
     params: {},

@@ -5,7 +5,6 @@
 This describes the API for searching and applying updates to the Plex Media Server.
 Updates to the status can be observed via the Event API.
 
-
 ### Available Operations
 
 * [applyUpdates](#applyupdates) - Applying updates
@@ -39,12 +38,12 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.updater.applyUpdates({
+  const result = await plexAPI.updater.applyUpdates({
     tonight: BoolInt.True,
     skip: BoolInt.True,
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -83,7 +82,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("updaterApplyUpdates failed:", res.error);
   }
@@ -103,7 +102,7 @@ run();
 
 ### Response
 
-**Promise\<void\>**
+**Promise\<[Uint8Array](../../models/.md)\>**
 
 ### Errors
 
@@ -204,9 +203,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getUpdatesStatus
 
@@ -272,6 +272,7 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

@@ -6,6 +6,8 @@ import { hubsCreateCustomHub } from "../funcs/hubsCreateCustomHub.js";
 import { hubsDeleteCustomHub } from "../funcs/hubsDeleteCustomHub.js";
 import { hubsGetAllHubs } from "../funcs/hubsGetAllHubs.js";
 import { hubsGetContinueWatching } from "../funcs/hubsGetContinueWatching.js";
+import { hubsGetContinueWatchingItems } from "../funcs/hubsGetContinueWatchingItems.js";
+import { hubsGetHomeRecentlyAdded } from "../funcs/hubsGetHomeRecentlyAdded.js";
 import { hubsGetHubItems } from "../funcs/hubsGetHubItems.js";
 import { hubsGetMetadataHubs } from "../funcs/hubsGetMetadataHubs.js";
 import { hubsGetPostplayHubs } from "../funcs/hubsGetPostplayHubs.js";
@@ -18,6 +20,7 @@ import { hubsResetSectionDefaults } from "../funcs/hubsResetSectionDefaults.js";
 import { hubsUpdateHubVisibility } from "../funcs/hubsUpdateHubVisibility.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Hubs extends ClientSDK {
@@ -49,6 +52,40 @@ export class Hubs extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetContinueWatchingResponse> {
     return unwrapAsync(hubsGetContinueWatching(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Continue Watching Items
+   *
+   * @remarks
+   * Get direct access to Continue Watching items.
+   */
+  async getContinueWatchingItems(
+    request: operations.GetContinueWatchingItemsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(hubsGetContinueWatchingItems(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get home hubs Recently Added
+   *
+   * @remarks
+   * Get the recently added hub for the home screen.
+   */
+  async getHomeRecentlyAdded(
+    request: operations.GetHomeRecentlyAddedRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithHubs> {
+    return unwrapAsync(hubsGetHomeRecentlyAdded(
       this,
       request,
       options,

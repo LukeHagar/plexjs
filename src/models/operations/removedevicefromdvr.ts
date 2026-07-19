@@ -123,15 +123,11 @@ export type RemoveDeviceFromDVRMediaContainerMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   /**
@@ -140,17 +136,9 @@ export type RemoveDeviceFromDVRMediaContainerMediaContainer = {
   status?: number | undefined;
 };
 
-export type RemoveDeviceFromDVRDVR = {
-  device?: Array<shared.Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
-  uuid?: string | undefined;
-};
-
 export type RemoveDeviceFromDVRMediaContainer = {
   mediaContainer?: RemoveDeviceFromDVRMediaContainerMediaContainer | undefined;
-  dvr?: Array<RemoveDeviceFromDVRDVR> | undefined;
+  dvr?: Array<shared.Dvr> | undefined;
 };
 
 /**
@@ -251,32 +239,6 @@ export function removeDeviceFromDVRMediaContainerMediaContainerFromJSON(
 }
 
 /** @internal */
-export const RemoveDeviceFromDVRDVR$inboundSchema: z.ZodType<
-  RemoveDeviceFromDVRDVR,
-  unknown
-> = z.object({
-  Device: types.optional(z.array(shared.Device$inboundSchema)),
-  key: types.optional(types.string()),
-  language: types.optional(types.string()),
-  lineup: types.optional(types.string()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Device": "device",
-  });
-});
-
-export function removeDeviceFromDVRDVRFromJSON(
-  jsonString: string,
-): SafeParseResult<RemoveDeviceFromDVRDVR, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RemoveDeviceFromDVRDVR$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RemoveDeviceFromDVRDVR' from JSON`,
-  );
-}
-
-/** @internal */
 export const RemoveDeviceFromDVRMediaContainer$inboundSchema: z.ZodType<
   RemoveDeviceFromDVRMediaContainer,
   unknown
@@ -284,9 +246,7 @@ export const RemoveDeviceFromDVRMediaContainer$inboundSchema: z.ZodType<
   MediaContainer: types.optional(
     z.lazy(() => RemoveDeviceFromDVRMediaContainerMediaContainer$inboundSchema),
   ),
-  DVR: types.optional(
-    z.array(z.lazy(() => RemoveDeviceFromDVRDVR$inboundSchema)),
-  ),
+  DVR: types.optional(z.array(shared.Dvr$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "MediaContainer": "mediaContainer",

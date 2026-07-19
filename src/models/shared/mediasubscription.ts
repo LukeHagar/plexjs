@@ -24,8 +24,6 @@ export type AiringsTypeOpen = OpenEnum<typeof AiringsType>;
 
 /**
  * A media subscription contains a representation of metadata desired to be recorded
- *
- * @remarks
  */
 export type MediaSubscription = {
   title?: string | undefined;

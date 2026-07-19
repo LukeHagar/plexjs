@@ -119,17 +119,26 @@ export type GetLibraryMatchesRequest = {
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
   type?: shared.MediaType | undefined;
+  /**
+   * The title to filter by or assign
+   */
+  title?: string | undefined;
+  /**
+   * Include full metadata in the response
+   */
   includeFullMetadata?: shared.BoolInt | undefined;
+  /**
+   * Include ancestor metadata in the response
+   */
   includeAncestorMetadata?: shared.BoolInt | undefined;
+  /**
+   * Include alternate metadata sources in the response
+   */
   includeAlternateMetadataSources?: shared.BoolInt | undefined;
   /**
    * Used for movies, shows, artists, albums, and tracks.  Allowed for various URI schemes, to be defined.
    */
   guid?: string | undefined;
-  /**
-   * The title to filter by or assign
-   */
-  title?: string | undefined;
   /**
    * Used for movies shows, and albums.  Optional.
    */
@@ -183,11 +192,11 @@ export type GetLibraryMatchesRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   type?: number | undefined;
+  title?: string | undefined;
   includeFullMetadata: number;
   includeAncestorMetadata: number;
   includeAlternateMetadataSources: number;
   guid?: string | undefined;
-  title?: string | undefined;
   year?: number | undefined;
   path?: string | undefined;
   grandparentTitle?: string | undefined;
@@ -215,6 +224,7 @@ export const GetLibraryMatchesRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   type: shared.MediaType$outboundSchema.optional(),
+  title: z.string().optional(),
   includeFullMetadata: shared.BoolInt$outboundSchema.default(
     shared.BoolInt.False,
   ),
@@ -225,7 +235,6 @@ export const GetLibraryMatchesRequest$outboundSchema: z.ZodType<
     shared.BoolInt.False,
   ),
   guid: z.string().optional(),
-  title: z.string().optional(),
   year: z.int().optional(),
   path: z.string().optional(),
   grandparentTitle: z.string().optional(),

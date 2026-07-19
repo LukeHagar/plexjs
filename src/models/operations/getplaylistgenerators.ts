@@ -135,10 +135,6 @@ export type GetPlaylistGeneratorsTypeOpen = OpenEnum<
 >;
 
 export type PlayQueueGenerator = {
-  changedAt?: number | undefined;
-  createdAt?: number | undefined;
-  id?: number | undefined;
-  playlistID?: number | undefined;
   /**
    * The type of playlist generator.
    *
@@ -148,6 +144,10 @@ export type PlayQueueGenerator = {
    *   - 42: A optimized version generator
    */
   type?: GetPlaylistGeneratorsTypeOpen | undefined;
+  changedAt?: number | undefined;
+  createdAt?: number | undefined;
+  id?: number | undefined;
+  playlistID?: number | undefined;
   updatedAt?: number | undefined;
   /**
    * The URI indicating the search for this generator
@@ -166,15 +166,11 @@ export type GetPlaylistGeneratorsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   playQueueGenerator?: Array<PlayQueueGenerator> | undefined;
@@ -256,11 +252,11 @@ export const PlayQueueGenerator$inboundSchema: z.ZodType<
   PlayQueueGenerator,
   unknown
 > = z.object({
+  type: types.optional(GetPlaylistGeneratorsType$inboundSchema),
   changedAt: types.optional(types.number()),
   createdAt: types.optional(types.number()),
   id: types.optional(types.number()),
   playlistID: types.optional(types.number()),
-  type: types.optional(GetPlaylistGeneratorsType$inboundSchema),
   updatedAt: types.optional(types.number()),
   uri: types.optional(types.string()),
 });

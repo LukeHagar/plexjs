@@ -6,7 +6,6 @@ Whether this hub is visible on the home screen
   - admin: Visible to only admin users
   - shared: Visible to shared users
 
-
 ## Example Usage
 
 ```typescript

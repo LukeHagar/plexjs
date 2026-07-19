@@ -109,6 +109,14 @@ export type GetAllSubscriptionsRequest = {
    * Compute the storage of recorded items desired by this subscription
    */
   includeStorage?: shared.BoolInt | undefined;
+  /**
+   * Pagination start offset.
+   */
+  xPlexContainerStart?: number | undefined;
+  /**
+   * Pagination page size.
+   */
+  xPlexContainerSize?: number | undefined;
 };
 
 export type GetAllSubscriptionsResponse = {
@@ -131,6 +139,8 @@ export type GetAllSubscriptionsRequest$Outbound = {
   Marketplace?: string | undefined;
   includeGrabs: number;
   includeStorage: number;
+  "X-Plex-Container-Start"?: number | undefined;
+  "X-Plex-Container-Size"?: number | undefined;
 };
 
 /** @internal */
@@ -151,6 +161,8 @@ export const GetAllSubscriptionsRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   includeGrabs: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   includeStorage: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  xPlexContainerStart: z.int().optional(),
+  xPlexContainerSize: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",
@@ -163,6 +175,8 @@ export const GetAllSubscriptionsRequest$outboundSchema: z.ZodType<
     deviceVendor: "Device-Vendor",
     deviceName: "Device-Name",
     marketplace: "Marketplace",
+    xPlexContainerStart: "X-Plex-Container-Start",
+    xPlexContainerSize: "X-Plex-Container-Size",
   });
 });
 

@@ -4,24 +4,15 @@
 
 ```typescript
 import { GetSectionsResponse } from "@parke.dev/plexjs/models/operations";
-import { MediaTypeString } from "@parke.dev/plexjs/models/shared";
 
 let value: GetSectionsResponse = {
   headers: {},
   result: {
     mediaContainer: {
-      directory: [
-        {
-          title: "Movies",
-          type: MediaTypeString.Movie,
-          contentChangedAt: 1556281940,
-          createdAt: 1556281940,
-          language: "<value>",
-          uuid: "e69655a2-ef48-4aba-bb19-d3cc3401e7d6",
-          scannedAt: 1556281940,
-          updatedAt: 1556281940,
-        },
-      ],
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
     },
   },
 };

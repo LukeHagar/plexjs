@@ -102,12 +102,10 @@ export type ListTopUsersRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
-};
-
-export type Account = {
-  globalViewCount?: number | undefined;
-  id?: number | undefined;
 };
 
 /**
@@ -121,18 +119,14 @@ export type ListTopUsersMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  account?: Array<Account> | undefined;
+  account?: Array<shared.TopUserAccount> | undefined;
 };
 
 /**
@@ -199,22 +193,6 @@ export function listTopUsersRequestToJSON(
 }
 
 /** @internal */
-export const Account$inboundSchema: z.ZodType<Account, unknown> = z.object({
-  globalViewCount: types.optional(types.number()),
-  id: types.optional(types.number()),
-});
-
-export function accountFromJSON(
-  jsonString: string,
-): SafeParseResult<Account, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Account$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Account' from JSON`,
-  );
-}
-
-/** @internal */
 export const ListTopUsersMediaContainer$inboundSchema: z.ZodType<
   ListTopUsersMediaContainer,
   unknown
@@ -223,7 +201,7 @@ export const ListTopUsersMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Account: types.optional(z.array(z.lazy(() => Account$inboundSchema))),
+  Account: types.optional(z.array(shared.TopUserAccount$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Account": "account",

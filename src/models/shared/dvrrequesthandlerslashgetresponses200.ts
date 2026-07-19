@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { Device, Device$inboundSchema } from "./device.js";
+import { Dvr, Dvr$inboundSchema } from "./dvr.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -22,15 +22,11 @@ export type DvrRequestHandlerSlashGetResponses200MediaContainerMediaContainer =
     identifier?: string | undefined;
     /**
      * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-     *
-     * @remarks
      */
     offset?: number | undefined;
     size?: number | undefined;
     /**
      * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-     *
-     * @remarks
      */
     totalSize?: number | undefined;
     /**
@@ -38,14 +34,6 @@ export type DvrRequestHandlerSlashGetResponses200MediaContainerMediaContainer =
      */
     status?: number | undefined;
   };
-
-export type Dvr = {
-  device?: Array<Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
-  uuid?: string | undefined;
-};
 
 export type DvrRequestHandlerSlashGetResponses200MediaContainer = {
   mediaContainer?:
@@ -92,29 +80,6 @@ export function dvrRequestHandlerSlashGetResponses200MediaContainerMediaContaine
 }
 
 /** @internal */
-export const Dvr$inboundSchema: z.ZodType<Dvr, unknown> = z.object({
-  Device: types.optional(z.array(Device$inboundSchema)),
-  key: types.optional(types.string()),
-  language: types.optional(types.string()),
-  lineup: types.optional(types.string()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Device": "device",
-  });
-});
-
-export function dvrFromJSON(
-  jsonString: string,
-): SafeParseResult<Dvr, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Dvr$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Dvr' from JSON`,
-  );
-}
-
-/** @internal */
 export const DvrRequestHandlerSlashGetResponses200MediaContainer$inboundSchema:
   z.ZodType<DvrRequestHandlerSlashGetResponses200MediaContainer, unknown> = z
     .object({
@@ -123,7 +88,7 @@ export const DvrRequestHandlerSlashGetResponses200MediaContainer$inboundSchema:
           DvrRequestHandlerSlashGetResponses200MediaContainerMediaContainer$inboundSchema
         ),
       ),
-      DVR: types.optional(z.array(z.lazy(() => Dvr$inboundSchema))),
+      DVR: types.optional(z.array(Dvr$inboundSchema)),
     }).transform((v) => {
       return remap$(v, {
         "MediaContainer": "mediaContainer",

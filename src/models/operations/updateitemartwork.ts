@@ -53,6 +53,9 @@ export type UpdateItemArtworkGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The type of artwork element (e.g., art, poster, thumb)
+ */
 export enum UpdateItemArtworkElement {
   Thumb = "thumb",
   Art = "art",
@@ -107,7 +110,13 @@ export type UpdateItemArtworkRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The type of artwork element (e.g., art, poster, thumb)
+   */
   element: UpdateItemArtworkElement;
   /**
    * The url of the new asset.

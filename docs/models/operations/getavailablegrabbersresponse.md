@@ -12,7 +12,14 @@ let value: GetAvailableGrabbersResponse = {
       "<value 2>",
     ],
   },
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

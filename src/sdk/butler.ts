@@ -88,7 +88,7 @@ export class Butler extends ClientSDK {
   async startTask(
     request: operations.StartTaskRequest,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<operations.StartTaskResponse> {
     return unwrapAsync(butlerStartTask(
       this,
       request,

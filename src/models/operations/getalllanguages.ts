@@ -8,14 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type Language = {
-  /**
-   * 3 letter language code
-   */
-  code?: string | undefined;
-  title?: string | undefined;
-};
+import * as shared from "../shared/index.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -28,18 +21,14 @@ export type GetAllLanguagesMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  language?: Array<Language> | undefined;
+  language?: Array<shared.EPGLanguage> | undefined;
 };
 
 /**
@@ -55,22 +44,6 @@ export type GetAllLanguagesResponse = {
 };
 
 /** @internal */
-export const Language$inboundSchema: z.ZodType<Language, unknown> = z.object({
-  code: types.optional(types.string()),
-  title: types.optional(types.string()),
-});
-
-export function languageFromJSON(
-  jsonString: string,
-): SafeParseResult<Language, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Language$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Language' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetAllLanguagesMediaContainer$inboundSchema: z.ZodType<
   GetAllLanguagesMediaContainer,
   unknown
@@ -79,7 +52,7 @@ export const GetAllLanguagesMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Language: types.optional(z.array(z.lazy(() => Language$inboundSchema))),
+  Language: types.optional(z.array(shared.EPGLanguage$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Language": "language",

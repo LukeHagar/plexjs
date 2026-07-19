@@ -132,7 +132,7 @@ export type CreateSubscriptionRequest = {
   /**
    * The type of the thing we're subscribing too (e.g. show, season).
    */
-  type?: number | undefined;
+  mediaType?: number | undefined;
   /**
    * Hints describing what we're looking for.  Note: The hint `ratingKey` is required for downloading from a PMS remote.
    */
@@ -162,15 +162,11 @@ export type CreateSubscriptionMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   mediaSubscription?: Array<shared.MediaSubscription> | undefined;
@@ -243,7 +239,7 @@ export type CreateSubscriptionRequest$Outbound = {
   Marketplace?: string | undefined;
   targetLibrarySectionID?: number | undefined;
   targetSectionLocationID?: number | undefined;
-  type?: number | undefined;
+  mediaType?: number | undefined;
   hints?: Hints$Outbound | undefined;
   prefs?: CreateSubscriptionPrefs$Outbound | undefined;
   params?: Params$Outbound | undefined;
@@ -267,7 +263,7 @@ export const CreateSubscriptionRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   targetLibrarySectionID: z.int().optional(),
   targetSectionLocationID: z.int().optional(),
-  type: z.int().optional(),
+  mediaType: z.int().optional(),
   hints: z.lazy(() => Hints$outboundSchema).optional(),
   prefs: z.lazy(() => CreateSubscriptionPrefs$outboundSchema).optional(),
   params: z.lazy(() => Params$outboundSchema).optional(),

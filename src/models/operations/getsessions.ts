@@ -9,10 +9,44 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
+export type GetSessionsRequest = {
+  /**
+   * Filter by DVR ID.
+   */
+  dvrId?: number | undefined;
+  /**
+   * Filter by channel ID.
+   */
+  channel?: number | undefined;
+};
+
 export type GetSessionsResponse = {
   headers: { [k: string]: Array<string> };
   result: shared.MediaContainerWithMetadata;
 };
+
+/** @internal */
+export type GetSessionsRequest$Outbound = {
+  dvrId?: number | undefined;
+  channel?: number | undefined;
+};
+
+/** @internal */
+export const GetSessionsRequest$outboundSchema: z.ZodType<
+  GetSessionsRequest$Outbound,
+  GetSessionsRequest
+> = z.object({
+  dvrId: z.int().optional(),
+  channel: z.int().optional(),
+});
+
+export function getSessionsRequestToJSON(
+  getSessionsRequest: GetSessionsRequest,
+): string {
+  return JSON.stringify(
+    GetSessionsRequest$outboundSchema.parse(getSessionsRequest),
+  );
+}
 
 /** @internal */
 export const GetSessionsResponse$inboundSchema: z.ZodType<

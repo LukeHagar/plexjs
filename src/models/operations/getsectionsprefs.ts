@@ -101,7 +101,7 @@ export type GetSectionsPrefsRequest = {
   /**
    * The metadata type
    */
-  type: number;
+  mediaType: number;
   /**
    * The metadata agent in use
    */
@@ -121,7 +121,7 @@ export type GetSectionsPrefsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  type: number;
+  mediaType: number;
   agent?: string | undefined;
 };
 
@@ -141,7 +141,7 @@ export const GetSectionsPrefsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  type: z.int(),
+  mediaType: z.int(),
   agent: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

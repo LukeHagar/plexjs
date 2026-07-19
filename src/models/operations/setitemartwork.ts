@@ -53,6 +53,9 @@ export type SetItemArtworkGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The type of artwork element (e.g., art, poster, thumb)
+ */
 export enum SetItemArtworkElement {
   Thumb = "thumb",
   Art = "art",
@@ -107,7 +110,13 @@ export type SetItemArtworkRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The type of artwork element (e.g., art, poster, thumb)
+   */
   element: SetItemArtworkElement;
   /**
    * The url of the new asset.  If not provided, the binary of the asset must be provided in the post body.

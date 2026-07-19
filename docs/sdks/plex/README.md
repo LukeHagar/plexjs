@@ -2,6 +2,8 @@
 
 ## Overview
 
+Plex Plex operations
+
 ### Available Operations
 
 * [getServerResources](#getserverresources) - Get Server Resources
@@ -12,7 +14,7 @@ Get Plex server access tokens and server connections
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="get-server-resources" method="get" path="/resources" -->
+<!-- UsageSnippet language="typescript" operationID="getServerResources" method="get" path="/resources" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
 import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@parke.dev/plexjs/models/operations";
@@ -20,7 +22,7 @@ import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
-  clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientIdentifier: "abc123",
   token: "<YOUR_API_KEY_HERE>",
 });
 
@@ -51,7 +53,7 @@ import { Accepts } from "@parke.dev/plexjs/models/shared";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accepts: Accepts.ApplicationXml,
-  clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientIdentifier: "abc123",
   token: "<YOUR_API_KEY_HERE>",
 });
 
@@ -88,7 +90,7 @@ run();
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.GetServerResourcesUnauthorizedError | 401                                        | application/json                           |
-| errors.SDKError                            | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| errors.UnauthorizedError | 401                      | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |

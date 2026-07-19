@@ -7,7 +7,7 @@ Endpoints for manipulating collections.  In addition to these endpoints, `/libra
 ### Available Operations
 
 * [addCollectionItems](#addcollectionitems) - Add items to a collection
-* [deleteCollectionItem](#deletecollectionitem) - Delete an item from a collection
+* [updateCollectionItem](#updatecollectionitem) - Update an item in a collection
 * [moveCollectionItem](#movecollectionitem) - Reorder an item in the collection
 
 ## addCollectionItems
@@ -109,13 +109,13 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## deleteCollectionItem
+## updateCollectionItem
 
 Delete an item from a collection
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="deleteCollectionItem" method="put" path="/library/collections/{collectionId}/items/{itemId}" -->
+<!-- UsageSnippet language="typescript" operationID="updateCollectionItem" method="put" path="/library/collections/{collectionId}/items/{itemId}" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
 import { Accepts } from "@parke.dev/plexjs/models/shared";
@@ -136,9 +136,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.libraryCollections.deleteCollectionItem({
-    collectionId: 320928,
-    itemId: 406983,
+  const result = await plexAPI.libraryCollections.updateCollectionItem({
+    collectionId: 640014,
+    itemId: 2136,
   });
 
   console.log(result);
@@ -153,7 +153,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
-import { libraryCollectionsDeleteCollectionItem } from "@parke.dev/plexjs/funcs/libraryCollectionsDeleteCollectionItem.js";
+import { libraryCollectionsUpdateCollectionItem } from "@parke.dev/plexjs/funcs/libraryCollectionsUpdateCollectionItem.js";
 import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
@@ -174,15 +174,15 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryCollectionsDeleteCollectionItem(plexAPI, {
-    collectionId: 320928,
-    itemId: 406983,
+  const res = await libraryCollectionsUpdateCollectionItem(plexAPI, {
+    collectionId: 640014,
+    itemId: 2136,
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("libraryCollectionsDeleteCollectionItem failed:", res.error);
+    console.log("libraryCollectionsUpdateCollectionItem failed:", res.error);
   }
 }
 
@@ -193,7 +193,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteCollectionItemRequest](../../models/operations/deletecollectionitemrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.UpdateCollectionItemRequest](../../models/operations/updatecollectionitemrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

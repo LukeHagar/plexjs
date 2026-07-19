@@ -34,8 +34,6 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Get Plex server access tokens and server connections
- *
- * If set, this operation will use {@link Security.token} from the global security.
  */
 export function plexGetServerResources(
   client: PlexAPICore,
@@ -44,7 +42,7 @@ export function plexGetServerResources(
 ): APIPromise<
   Result<
     Array<shared.PlexDevice>,
-    | errors.GetServerResourcesUnauthorizedError
+    | errors.UnauthorizedError
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -70,7 +68,7 @@ async function $do(
   [
     Result<
       Array<shared.PlexDevice>,
-      | errors.GetServerResourcesUnauthorizedError
+      | errors.UnauthorizedError
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -123,12 +121,12 @@ async function $do(
 
   const secConfig = await extractSecurity(client._options.token);
   const securityInput = secConfig == null ? {} : { token: secConfig };
-  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
     options: client._options,
     baseURL: baseURL ?? "",
-    operationID: "get-server-resources",
+    operationID: "getServerResources",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -136,8 +134,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -174,7 +182,7 @@ async function $do(
 
   const [result] = await M.match<
     Array<shared.PlexDevice>,
-    | errors.GetServerResourcesUnauthorizedError
+    | errors.UnauthorizedError
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -185,7 +193,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, z.array(shared.PlexDevice$inboundSchema)),
-    M.jsonErr(401, errors.GetServerResourcesUnauthorizedError$inboundSchema),
+    M.jsonErr(401, errors.UnauthorizedError$inboundSchema),
     M.fail([400, "4XX"]),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

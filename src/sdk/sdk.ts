@@ -20,7 +20,9 @@ import { LibraryCollections } from "./librarycollections.js";
 import { LibraryPlaylists } from "./libraryplaylists.js";
 import { LiveTV } from "./livetv.js";
 import { Log } from "./log.js";
+import { Playback } from "./playback.js";
 import { Playlist } from "./playlist.js";
+import { Playlists } from "./playlists.js";
 import { PlayQueue } from "./playqueue.js";
 import { Plex } from "./plex.js";
 import { Preferences } from "./preferences.js";
@@ -51,6 +53,11 @@ export class PlexAPI extends ClientSDK {
     return (this._preferences ??= new Preferences(this._options));
   }
 
+  private _playback?: Playback;
+  get playback(): Playback {
+    return (this._playback ??= new Playback(this._options));
+  }
+
   private _rate?: Rate;
   get rate(): Rate {
     return (this._rate ??= new Rate(this._options));
@@ -61,9 +68,24 @@ export class PlexAPI extends ClientSDK {
     return (this._timeline ??= new Timeline(this._options));
   }
 
+  private _provider?: Provider;
+  get provider(): Provider {
+    return (this._provider ??= new Provider(this._options));
+  }
+
   private _activities?: Activities;
   get activities(): Activities {
     return (this._activities ??= new Activities(this._options));
+  }
+
+  private _users?: Users;
+  get users(): Users {
+    return (this._users ??= new Users(this._options));
+  }
+
+  private _authentication?: Authentication;
+  get authentication(): Authentication {
+    return (this._authentication ??= new Authentication(this._options));
   }
 
   private _butler?: Butler;
@@ -121,11 +143,6 @@ export class PlexAPI extends ClientSDK {
     return (this._devices ??= new Devices(this._options));
   }
 
-  private _provider?: Provider;
-  get provider(): Provider {
-    return (this._provider ??= new Provider(this._options));
-  }
-
   private _subscriptions?: Subscriptions;
   get subscriptions(): Subscriptions {
     return (this._subscriptions ??= new Subscriptions(this._options));
@@ -134,6 +151,11 @@ export class PlexAPI extends ClientSDK {
   private _transcoder?: Transcoder;
   get transcoder(): Transcoder {
     return (this._transcoder ??= new Transcoder(this._options));
+  }
+
+  private _playlists?: Playlists;
+  get playlists(): Playlists {
+    return (this._playlists ??= new Playlists(this._options));
   }
 
   private _playlist?: Playlist;
@@ -151,6 +173,11 @@ export class PlexAPI extends ClientSDK {
     return (this._playQueue ??= new PlayQueue(this._options));
   }
 
+  private _plex?: Plex;
+  get plex(): Plex {
+    return (this._plex ??= new Plex(this._options));
+  }
+
   private _ultraBlur?: UltraBlur;
   get ultraBlur(): UltraBlur {
     return (this._ultraBlur ??= new UltraBlur(this._options));
@@ -164,21 +191,6 @@ export class PlexAPI extends ClientSDK {
   private _updater?: Updater;
   get updater(): Updater {
     return (this._updater ??= new Updater(this._options));
-  }
-
-  private _authentication?: Authentication;
-  get authentication(): Authentication {
-    return (this._authentication ??= new Authentication(this._options));
-  }
-
-  private _users?: Users;
-  get users(): Users {
-    return (this._users ??= new Users(this._options));
-  }
-
-  private _plex?: Plex;
-  get plex(): Plex {
-    return (this._plex ??= new Plex(this._options));
   }
 
   private _content?: Content;

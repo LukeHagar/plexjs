@@ -18,13 +18,13 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { PlexAPIError } from "../models/errors/plexapierror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
-import * as types$ from "../types/primitives.js";
 
 /**
  * Tell a DVR to reload program guide
@@ -40,7 +40,8 @@ export function dvRsReloadGuide(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.ReloadGuideResponse | undefined,
+    operations.ReloadGuideResponse,
+    | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -65,7 +66,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.ReloadGuideResponse | undefined,
+      operations.ReloadGuideResponse,
+      | errors.ErrorT
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -98,7 +100,7 @@ async function $do(
   const path = pathToFunc("/livetv/dvrs/{dvrId}/reloadGuide")(pathParams);
 
   const headers = new Headers(compactMap({
-    Accept: "*/*",
+    Accept: "text/html",
     "X-Plex-Client-Identifier": encodeSimple(
       "X-Plex-Client-Identifier",
       payload["Client-Identifier"] ?? client._options.clientIdentifier,
@@ -171,8 +173,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -207,7 +219,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.ReloadGuideResponse | undefined,
+    operations.ReloadGuideResponse,
+    | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -217,10 +230,13 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, types$.optional(operations.ReloadGuideResponse$inboundSchema), {
+    M.bytes(200, operations.ReloadGuideResponse$inboundSchema, {
+      ctype: "text/html",
       hdrs: true,
+      key: "Result",
     }),
-    M.fail("4XX"),
+    M.jsonErr(401, errors.ErrorT$inboundSchema),
+    M.fail([400, "4XX"]),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

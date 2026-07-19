@@ -4,7 +4,10 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -124,18 +127,6 @@ export type PostUsersSignInDataRequest = {
   requestBody?: PostUsersSignInDataRequestBody | undefined;
 };
 
-export type PostUsersSignInDataUnauthorizedError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
-export type PostUsersSignInDataBadRequestError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
 /**
  * Your current mailing list status
  */
@@ -156,11 +147,11 @@ export enum ServiceStatus {
 export type ServiceStatusOpen = OpenEnum<typeof ServiceStatus>;
 
 export type Service = {
-  identifier: string;
   endpoint: string;
-  token: string | null;
+  identifier: string;
   secret: string | null;
   status: ServiceStatusOpen;
+  token: string | null;
 };
 
 /**
@@ -180,21 +171,13 @@ export type SubscriptionStatus1Open = OpenEnum<typeof SubscriptionStatus1>;
  */
 export type Subscription1 = {
   /**
-   * List of features allowed on your Plex Pass subscription
-   */
-  features?: Array<string> | undefined;
-  /**
    * If the account's Plex Pass subscription is active
    */
   active?: boolean | undefined;
   /**
-   * Date the account subscribed to Plex Pass
+   * List of features allowed on your Plex Pass subscription
    */
-  subscribedAt?: string | null | undefined;
-  /**
-   * String representation of subscriptionActive
-   */
-  status?: SubscriptionStatus1Open | undefined;
+  features?: Array<string> | undefined;
   /**
    * Payment service used for your Plex Pass subscription
    */
@@ -203,6 +186,14 @@ export type Subscription1 = {
    * Name of Plex Pass subscription plan
    */
   plan?: string | null | undefined;
+  /**
+   * String representation of subscriptionActive
+   */
+  status?: SubscriptionStatus1Open | undefined;
+  /**
+   * Date the account subscribed to Plex Pass
+   */
+  subscribedAt?: string | null | undefined;
 };
 
 /**
@@ -219,21 +210,13 @@ export type SubscriptionStatus2Open = OpenEnum<typeof SubscriptionStatus2>;
 
 export type Subscription2 = {
   /**
-   * List of features allowed on your Plex Pass subscription
-   */
-  features?: Array<string> | undefined;
-  /**
    * If the account's Plex Pass subscription is active
    */
   active?: boolean | undefined;
   /**
-   * Date the account subscribed to Plex Pass
+   * List of features allowed on your Plex Pass subscription
    */
-  subscribedAt?: string | null | undefined;
-  /**
-   * String representation of subscriptionActive
-   */
-  status?: SubscriptionStatus2Open | undefined;
+  features?: Array<string> | undefined;
   /**
    * Payment service used for your Plex Pass subscription
    */
@@ -242,6 +225,21 @@ export type Subscription2 = {
    * Name of Plex Pass subscription plan
    */
   plan?: string | null | undefined;
+  /**
+   * String representation of subscriptionActive
+   */
+  status?: SubscriptionStatus2Open | undefined;
+  /**
+   * Date the account subscribed to Plex Pass
+   */
+  subscribedAt?: string | null | undefined;
+};
+
+export type InternalPaymentMethod = {};
+
+export type Billing = {
+  internalPaymentMethod: InternalPaymentMethod;
+  paymentMethodId: number | null;
 };
 
 export enum PostUsersSignInDataState {
@@ -251,29 +249,22 @@ export type PostUsersSignInDataStateOpen = OpenEnum<
   typeof PostUsersSignInDataState
 >;
 
-export type InternalPaymentMethod = {};
-
-export type Billing = {
-  internalPaymentMethod: InternalPaymentMethod;
-  paymentMethodId: number | null;
-};
-
 export type PastSubscription = {
-  id: string | null;
-  mode: string | null;
-  renewsAt: number | null;
-  endsAt: number | null;
+  type: string;
+  billing: Billing;
   canceled: boolean;
-  gracePeriod: boolean;
-  onHold: boolean;
+  canConvert: boolean;
+  canDowngrade: boolean;
   canReactivate: boolean;
   canUpgrade: boolean;
-  canDowngrade: boolean;
-  canConvert: boolean;
-  type: string;
-  transfer: string | null;
+  endsAt: number | null;
+  gracePeriod: boolean;
+  id: string | null;
+  mode: string | null;
+  onHold: boolean;
+  renewsAt: number | null;
   state: PostUsersSignInDataStateOpen;
-  billing: Billing;
+  transfer: string | null;
 };
 
 export type Trial = {};
@@ -282,6 +273,10 @@ export type Trial = {};
  * Returns the user account data with a valid auth token
  */
 export type UserPlexAccount = {
+  /**
+   * The title of the account (username or friendly name)
+   */
+  title: string;
   /**
    * Unknown
    */
@@ -292,6 +287,7 @@ export type UserPlexAccount = {
    * Unknown
    */
   anonymous: boolean | null;
+  attributionPartner?: string | null | undefined;
   /**
    * The account token
    */
@@ -317,6 +313,10 @@ export type UserPlexAccount = {
    */
   emailOnlyAuth: boolean;
   /**
+   * List of devices your allowed to use with this account
+   */
+  entitlements?: Array<string> | undefined;
+  /**
    * If experimental features are enabled
    */
   experimentalFeatures: boolean;
@@ -324,10 +324,6 @@ export type UserPlexAccount = {
    * Your account full name
    */
   friendlyName: string;
-  /**
-   * List of devices your allowed to use with this account
-   */
-  entitlements?: Array<string> | undefined;
   /**
    * If the account is a Plex Home guest user
    */
@@ -414,10 +410,6 @@ export type UserPlexAccount = {
    */
   thumb?: string | undefined;
   /**
-   * The title of the account (username or friendly name)
-   */
-  title: string;
-  /**
    * If two-factor authentication is enabled
    */
   twoFactorEnabled: boolean;
@@ -429,9 +421,9 @@ export type UserPlexAccount = {
    * The account UUID
    */
   uuid: string;
-  attributionPartner?: string | null | undefined;
   pastSubscriptions: Array<PastSubscription>;
   trials: Array<Trial>;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -522,48 +514,6 @@ export function postUsersSignInDataRequestToJSON(
 }
 
 /** @internal */
-export const PostUsersSignInDataUnauthorizedError$inboundSchema: z.ZodType<
-  PostUsersSignInDataUnauthorizedError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function postUsersSignInDataUnauthorizedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<PostUsersSignInDataUnauthorizedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      PostUsersSignInDataUnauthorizedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PostUsersSignInDataUnauthorizedError' from JSON`,
-  );
-}
-
-/** @internal */
-export const PostUsersSignInDataBadRequestError$inboundSchema: z.ZodType<
-  PostUsersSignInDataBadRequestError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function postUsersSignInDataBadRequestErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<PostUsersSignInDataBadRequestError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      PostUsersSignInDataBadRequestError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PostUsersSignInDataBadRequestError' from JSON`,
-  );
-}
-
-/** @internal */
 export const MailingListStatus$inboundSchema: z.ZodType<
   MailingListStatusOpen,
   unknown
@@ -577,11 +527,11 @@ export const ServiceStatus$inboundSchema: z.ZodType<
 
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, unknown> = z.object({
-  identifier: types.string(),
   endpoint: types.string(),
-  token: types.nullable(types.string()),
+  identifier: types.string(),
   secret: types.nullable(types.string()),
   status: ServiceStatus$inboundSchema,
+  token: types.nullable(types.string()),
 });
 
 export function serviceFromJSON(
@@ -603,12 +553,12 @@ export const SubscriptionStatus1$inboundSchema: z.ZodType<
 /** @internal */
 export const Subscription1$inboundSchema: z.ZodType<Subscription1, unknown> = z
   .object({
-    features: types.optional(z.array(types.string())),
     active: types.optional(types.boolean()),
-    subscribedAt: z.nullable(types.string()).optional(),
-    status: types.optional(SubscriptionStatus1$inboundSchema),
+    features: types.optional(z.array(types.string())),
     paymentService: z.nullable(types.string()).optional(),
     plan: z.nullable(types.string()).optional(),
+    status: types.optional(SubscriptionStatus1$inboundSchema),
+    subscribedAt: z.nullable(types.string()).optional(),
   });
 
 export function subscription1FromJSON(
@@ -630,12 +580,12 @@ export const SubscriptionStatus2$inboundSchema: z.ZodType<
 /** @internal */
 export const Subscription2$inboundSchema: z.ZodType<Subscription2, unknown> = z
   .object({
-    features: types.optional(z.array(types.string())),
     active: types.optional(types.boolean()),
-    subscribedAt: z.nullable(types.string()).optional(),
-    status: types.optional(SubscriptionStatus2$inboundSchema),
+    features: types.optional(z.array(types.string())),
     paymentService: z.nullable(types.string()).optional(),
     plan: z.nullable(types.string()).optional(),
+    status: types.optional(SubscriptionStatus2$inboundSchema),
+    subscribedAt: z.nullable(types.string()).optional(),
   });
 
 export function subscription2FromJSON(
@@ -647,12 +597,6 @@ export function subscription2FromJSON(
     `Failed to parse 'Subscription2' from JSON`,
   );
 }
-
-/** @internal */
-export const PostUsersSignInDataState$inboundSchema: z.ZodType<
-  PostUsersSignInDataStateOpen,
-  unknown
-> = openEnums.inboundSchema(PostUsersSignInDataState);
 
 /** @internal */
 export const InternalPaymentMethod$inboundSchema: z.ZodType<
@@ -687,25 +631,31 @@ export function billingFromJSON(
 }
 
 /** @internal */
+export const PostUsersSignInDataState$inboundSchema: z.ZodType<
+  PostUsersSignInDataStateOpen,
+  unknown
+> = openEnums.inboundSchema(PostUsersSignInDataState);
+
+/** @internal */
 export const PastSubscription$inboundSchema: z.ZodType<
   PastSubscription,
   unknown
 > = z.object({
-  id: types.nullable(types.string()),
-  mode: types.nullable(types.string()),
-  renewsAt: types.nullable(types.number()),
-  endsAt: types.nullable(types.number()),
+  type: types.string(),
+  billing: z.lazy(() => Billing$inboundSchema),
   canceled: types.boolean().default(false),
-  gracePeriod: types.boolean().default(false),
-  onHold: types.boolean().default(false),
+  canConvert: types.boolean().default(false),
+  canDowngrade: types.boolean().default(false),
   canReactivate: types.boolean().default(false),
   canUpgrade: types.boolean().default(false),
-  canDowngrade: types.boolean().default(false),
-  canConvert: types.boolean().default(false),
-  type: types.string(),
-  transfer: types.nullable(types.string()),
+  endsAt: types.nullable(types.number()),
+  gracePeriod: types.boolean().default(false),
+  id: types.nullable(types.string()),
+  mode: types.nullable(types.string()),
+  onHold: types.boolean().default(false),
+  renewsAt: types.nullable(types.number()),
   state: PostUsersSignInDataState$inboundSchema,
-  billing: z.lazy(() => Billing$inboundSchema),
+  transfer: types.nullable(types.string()),
 });
 
 export function pastSubscriptionFromJSON(
@@ -735,53 +685,57 @@ export function trialFromJSON(
 export const UserPlexAccount$inboundSchema: z.ZodType<
   UserPlexAccount,
   unknown
-> = z.object({
-  adsConsent: z.nullable(types.boolean()).optional(),
-  adsConsentReminderAt: z.nullable(types.number()).optional(),
-  adsConsentSetAt: z.nullable(types.number()).optional(),
-  anonymous: z.nullable(types.boolean().default(false)),
-  authToken: types.string(),
-  backupCodesCreated: types.boolean().default(false),
-  confirmed: types.boolean().default(false),
-  country: types.optional(types.string()),
-  email: types.string(),
-  emailOnlyAuth: types.boolean().default(false),
-  experimentalFeatures: types.boolean().default(false),
-  friendlyName: types.string(),
-  entitlements: types.optional(z.array(types.string())),
-  guest: types.boolean().default(false),
-  hasPassword: types.boolean().default(true),
-  home: types.boolean().default(false),
-  homeAdmin: types.boolean().default(false),
-  homeSize: types.optional(types.number()),
-  id: types.number(),
-  joinedAt: types.number(),
-  locale: z.nullable(types.string()).optional(),
-  mailingListActive: types.boolean().default(false),
-  mailingListStatus: types.optional(MailingListStatus$inboundSchema),
-  maxHomeSize: types.optional(types.number()),
-  pin: types.optional(types.string()),
-  profile: types.optional(shared.UserProfile$inboundSchema),
-  protected: types.boolean().default(false),
-  rememberExpiresAt: types.optional(types.number()),
-  restricted: types.boolean().default(false),
-  roles: types.optional(z.array(types.string())),
-  scrobbleTypes: types.optional(types.string()),
-  services: types.optional(z.array(z.lazy(() => Service$inboundSchema))),
-  subscription: types.optional(z.lazy(() => Subscription1$inboundSchema)),
-  subscriptionDescription: z.nullable(types.string()).optional(),
-  subscriptions: types.optional(
-    z.array(z.lazy(() => Subscription2$inboundSchema)),
-  ),
-  thumb: types.optional(types.string()),
-  title: types.string(),
-  twoFactorEnabled: types.boolean().default(false),
-  username: types.string(),
-  uuid: types.string(),
-  attributionPartner: z.nullable(types.string()).optional(),
-  pastSubscriptions: z.array(z.lazy(() => PastSubscription$inboundSchema)),
-  trials: z.array(z.lazy(() => Trial$inboundSchema)),
-});
+> = collectExtraKeys$(
+  z.object({
+    title: types.string(),
+    adsConsent: z.nullable(types.boolean()).optional(),
+    adsConsentReminderAt: z.nullable(types.number()).optional(),
+    adsConsentSetAt: z.nullable(types.number()).optional(),
+    anonymous: z.nullable(types.boolean().default(false)),
+    attributionPartner: z.nullable(types.string()).optional(),
+    authToken: types.string(),
+    backupCodesCreated: types.boolean().default(false),
+    confirmed: types.boolean().default(false),
+    country: types.optional(types.string()),
+    email: types.string(),
+    emailOnlyAuth: types.boolean().default(false),
+    entitlements: types.optional(z.array(types.string())),
+    experimentalFeatures: types.boolean().default(false),
+    friendlyName: types.string(),
+    guest: types.boolean().default(false),
+    hasPassword: types.boolean().default(true),
+    home: types.boolean().default(false),
+    homeAdmin: types.boolean().default(false),
+    homeSize: types.optional(types.number()),
+    id: types.number(),
+    joinedAt: types.number(),
+    locale: z.nullable(types.string()).optional(),
+    mailingListActive: types.boolean().default(false),
+    mailingListStatus: types.optional(MailingListStatus$inboundSchema),
+    maxHomeSize: types.optional(types.number()),
+    pin: types.optional(types.string()),
+    profile: types.optional(shared.UserProfile$inboundSchema),
+    protected: types.boolean().default(false),
+    rememberExpiresAt: types.optional(types.number()),
+    restricted: types.boolean().default(false),
+    roles: types.optional(z.array(types.string())),
+    scrobbleTypes: types.optional(types.string()),
+    services: types.optional(z.array(z.lazy(() => Service$inboundSchema))),
+    subscription: types.optional(z.lazy(() => Subscription1$inboundSchema)),
+    subscriptionDescription: z.nullable(types.string()).optional(),
+    subscriptions: types.optional(
+      z.array(z.lazy(() => Subscription2$inboundSchema)),
+    ),
+    thumb: types.optional(types.string()),
+    twoFactorEnabled: types.boolean().default(false),
+    username: types.string(),
+    uuid: types.string(),
+    pastSubscriptions: z.array(z.lazy(() => PastSubscription$inboundSchema)),
+    trials: z.array(z.lazy(() => Trial$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function userPlexAccountFromJSON(
   jsonString: string,

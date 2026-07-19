@@ -24,7 +24,6 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
-import * as types$ from "../types/primitives.js";
 
 /**
  * Get a media part
@@ -40,7 +39,7 @@ export function libraryGetMediaPart(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.GetMediaPartResponse | undefined,
+    operations.GetMediaPartResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -65,7 +64,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.GetMediaPartResponse | undefined,
+      operations.GetMediaPartResponse,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -112,7 +111,7 @@ async function $do(
   });
 
   const headers = new Headers(compactMap({
-    Accept: "*/*",
+    Accept: "application/octet-stream",
     "X-Plex-Client-Identifier": encodeSimple(
       "X-Plex-Client-Identifier",
       payload["Client-Identifier"] ?? client._options.clientIdentifier,
@@ -185,8 +184,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -222,7 +231,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.GetMediaPartResponse | undefined,
+    operations.GetMediaPartResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -232,8 +241,9 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, types$.optional(operations.GetMediaPartResponse$inboundSchema), {
+    M.stream(200, operations.GetMediaPartResponse$inboundSchema, {
       hdrs: true,
+      key: "Result",
     }),
     M.fail([403, 404, "4XX"]),
     M.fail([503, 509, "5XX"]),

@@ -102,13 +102,13 @@ export type GetPostplayHubsRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * The metadata ID for the hubs to fetch
-   */
-  metadataId: number;
-  /**
    * Limit results to count items
    */
   count?: number | undefined;
+  /**
+   * The metadata ID for the hubs to fetch
+   */
+  metadataId: number;
   /**
    * Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added)
    */
@@ -133,8 +133,8 @@ export type GetPostplayHubsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  metadataId: number;
   count?: number | undefined;
+  metadataId: number;
   onlyTransient: number;
 };
 
@@ -154,8 +154,8 @@ export const GetPostplayHubsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  metadataId: z.int(),
   count: z.int().optional(),
+  metadataId: z.int(),
   onlyTransient: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {

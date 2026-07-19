@@ -102,6 +102,9 @@ export type GetSectionPreferencesRequest = {
    * Section identifier
    */
   sectionId: number;
+  /**
+   * The identifier of the metadata agent to use
+   */
   agent?: string | undefined;
 };
 

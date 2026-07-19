@@ -8,48 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type Activity = {
-  /**
-   * Indicates whether this activity can be cancelled
-   */
-  cancellable?: boolean | undefined;
-  /**
-   * An object with additional values
-   */
-  context?: { [k: string]: any } | undefined;
-  /**
-   * A progress percentage.  A value of -1 means the progress is indeterminate
-   */
-  progress?: number | undefined;
-  /**
-   * An object with the response to the async opperation
-   */
-  response?: { [k: string]: any } | undefined;
-  /**
-   * A user-friendly sub-title for this activity
-   */
-  subtitle?: string | undefined;
-  /**
-   * A user-friendly title for this activity
-   */
-  title?: string | undefined;
-  /**
-   * The type of activity
-   */
-  type?: string | undefined;
-  /**
-   * The user this activity belongs to
-   */
-  userID?: number | undefined;
-  /**
-   * The ID of the activity
-   */
-  uuid?: string | undefined;
-};
+import * as shared from "../shared/index.js";
 
 export type ListActivitiesMediaContainer = {
-  activity?: Array<Activity> | undefined;
+  activity?: Array<shared.Activity> | undefined;
 };
 
 /**
@@ -60,39 +22,11 @@ export type ListActivitiesResponse = {
 };
 
 /** @internal */
-export const Activity$inboundSchema: z.ZodType<Activity, unknown> = z.object({
-  cancellable: types.optional(types.boolean()),
-  Context: types.optional(z.record(z.string(), z.any())),
-  progress: types.optional(types.number()),
-  Response: types.optional(z.record(z.string(), z.any())),
-  subtitle: types.optional(types.string()),
-  title: types.optional(types.string()),
-  type: types.optional(types.string()),
-  userID: types.optional(types.number()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Context": "context",
-    "Response": "response",
-  });
-});
-
-export function activityFromJSON(
-  jsonString: string,
-): SafeParseResult<Activity, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Activity$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Activity' from JSON`,
-  );
-}
-
-/** @internal */
 export const ListActivitiesMediaContainer$inboundSchema: z.ZodType<
   ListActivitiesMediaContainer,
   unknown
 > = z.object({
-  Activity: types.optional(z.array(z.lazy(() => Activity$inboundSchema))),
+  Activity: types.optional(z.array(shared.Activity$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Activity": "activity",

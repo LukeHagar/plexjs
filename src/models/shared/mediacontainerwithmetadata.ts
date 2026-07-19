@@ -21,20 +21,19 @@ export type MediaContainerWithMetadataMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   metadata?: Array<Metadata> | undefined;
 };
 
+/**
+ * A MediaContainer that includes metadata items. When `includeCollections=1` is passed to endpoints such as `/library/sections/{sectionId}/all`, this container may also include `Collection` items.
+ */
 export type MediaContainerWithMetadata = {
   mediaContainer?: MediaContainerWithMetadataMediaContainer | undefined;
 };

@@ -29,8 +29,6 @@ export type Hub = {
   hubIdentifier?: string | undefined;
   /**
    * A key at which the exact content currently displayed can be fetched again. This is particularly important when a hub is marked as random and requesting the `key` may get different results. It's otherwise optional.
-   *
-   * @remarks
    */
   hubKey?: string | undefined;
   /**
@@ -40,8 +38,6 @@ export type Hub = {
   metadata?: Array<Metadata> | undefined;
   /**
    * "A boolean indicating that the hub contains more than what's included in the current response."
-   *
-   * @remarks
    */
   more?: boolean | undefined;
   /**
@@ -52,6 +48,18 @@ export type Hub = {
    * Indicating that the contents of the hub may change on each request
    */
   random?: boolean | undefined;
+  /**
+   * Reason for hub inclusion (e.g. "because you watched").
+   */
+  reason?: string | undefined;
+  /**
+   * ID of the item that triggered the reason.
+   */
+  reasonID?: number | undefined;
+  /**
+   * Human-readable reason title.
+   */
+  reasonTitle?: string | undefined;
   size?: number | undefined;
   /**
    * A suggestion on how this hub's contents might be displayed by a client. Some examples include `hero`, `list`, `spotlight`, and `upsell`
@@ -78,6 +86,9 @@ export const Hub$inboundSchema: z.ZodType<Hub, unknown> = collectExtraKeys$(
     more: types.optional(types.boolean()),
     promoted: types.optional(types.boolean()),
     random: types.optional(types.boolean()),
+    reason: types.optional(types.string()),
+    reasonID: types.optional(types.number()),
+    reasonTitle: types.optional(types.string()),
     size: types.optional(types.number()),
     style: types.optional(types.string()),
     subtype: types.optional(types.string()),

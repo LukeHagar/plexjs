@@ -6,28 +6,19 @@ OK
 
 ```typescript
 import { GetSectionsResponseBody } from "@parke.dev/plexjs/models/operations";
-import { MediaTypeString } from "@parke.dev/plexjs/models/shared";
 
 let value: GetSectionsResponseBody = {
   mediaContainer: {
-    directory: [
-      {
-        title: "Movies",
-        type: MediaTypeString.Movie,
-        contentChangedAt: 1556281940,
-        createdAt: 1556281940,
-        language: "<value>",
-        uuid: "e69655a2-ef48-4aba-bb19-d3cc3401e7d6",
-        scannedAt: 1556281940,
-        updatedAt: 1556281940,
-      },
-    ],
+    identifier: "com.plexapp.plugins.library",
+    offset: 0,
+    size: 1,
+    totalSize: 100,
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `mediaContainer`                                                                             | [operations.GetSectionsMediaContainer](../../models/operations/getsectionsmediacontainer.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `mediaContainer`                                                                             | [operations.GetSectionsMediaContainer](../../models/operations/getsectionsmediacontainer.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          | {<br/>"identifier": "com.plexapp.plugins.library",<br/>"offset": 0,<br/>"size": 1,<br/>"totalSize": 100<br/>} |

@@ -102,14 +102,6 @@ export type GetCommonRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * Section identifier
-   */
-  sectionId: number;
-  /**
-   * Item type
-   */
-  type?: number | undefined;
-  /**
    * A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
    *
    * @remarks
@@ -130,6 +122,14 @@ export type GetCommonRequest = {
    * See [API Info section](#section/API-Info/Media-Queries) for detailed information on building media queries.
    */
   mediaQuery?: shared.MediaQuery | undefined;
+  /**
+   * Section identifier
+   */
+  sectionId: number;
+  /**
+   * Item type
+   */
+  mediaType?: number | undefined;
 };
 
 export type GetCommonResponse = {
@@ -150,9 +150,9 @@ export type GetCommonRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: number;
-  type?: number | undefined;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
+  sectionId: number;
+  mediaType?: number | undefined;
 };
 
 /** @internal */
@@ -171,9 +171,9 @@ export const GetCommonRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.int(),
-  type: z.int().optional(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
+  sectionId: z.int(),
+  mediaType: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

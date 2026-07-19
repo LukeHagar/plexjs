@@ -22,6 +22,7 @@ import { PlexAPIError } from "../models/errors/plexapierror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -37,7 +38,7 @@ export function libraryGetPerson(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.GetPersonResponse,
+    shared.MediaContainerWithTags,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -62,7 +63,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.GetPersonResponse,
+      shared.MediaContainerWithTags,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -168,8 +169,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -200,7 +211,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.GetPersonResponse,
+    shared.MediaContainerWithTags,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -210,7 +221,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.GetPersonResponse$inboundSchema),
+    M.json(200, shared.MediaContainerWithTags$inboundSchema),
     M.fail([404, "4XX"]),
     M.fail("5XX"),
   )(response, req);

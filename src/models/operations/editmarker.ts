@@ -103,6 +103,9 @@ export type EditMarkerRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
   /**
    * The id of the marker to edit
@@ -111,7 +114,7 @@ export type EditMarkerRequest = {
   /**
    * The type of marker to edit/create
    */
-  type: number;
+  mediaType: number;
   /**
    * The start time of the marker
    */
@@ -158,7 +161,7 @@ export type EditMarkerRequest$Outbound = {
   Marketplace?: string | undefined;
   ids: string;
   marker: string;
-  type: number;
+  mediaType: number;
   startTimeOffset: number;
   endTimeOffset?: number | undefined;
   attributes?: EditMarkerAttributes$Outbound | undefined;
@@ -182,7 +185,7 @@ export const EditMarkerRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   ids: z.string(),
   marker: z.string(),
-  type: z.int(),
+  mediaType: z.int(),
   startTimeOffset: z.int(),
   endTimeOffset: z.int().optional(),
   attributes: z.lazy(() => EditMarkerAttributes$outboundSchema).optional(),

@@ -44,7 +44,7 @@ export class PlayQueue extends ClientSDK {
   async getPlayQueue(
     request: operations.GetPlayQueueRequest,
     options?: RequestOptions,
-  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
+  ): Promise<shared.PlayQueueResponse> {
     return unwrapAsync(playQueueGetPlayQueue(
       this,
       request,

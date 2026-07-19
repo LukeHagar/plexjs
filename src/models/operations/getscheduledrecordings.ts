@@ -6,100 +6,13 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type GetScheduledRecordingsMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  mediaGrabOperation?: Array<shared.MediaGrabOperation> | undefined;
-};
-
-/**
- * OK
- */
-export type GetScheduledRecordingsResponseBody = {
-  mediaContainer?: GetScheduledRecordingsMediaContainer | undefined;
-};
-
 export type GetScheduledRecordingsResponse = {
   headers: { [k: string]: Array<string> };
-  result: GetScheduledRecordingsResponseBody;
+  result: shared.MediaContainerWithMediaGrabOperation;
 };
-
-/** @internal */
-export const GetScheduledRecordingsMediaContainer$inboundSchema: z.ZodType<
-  GetScheduledRecordingsMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  MediaGrabOperation: types.optional(
-    z.array(shared.MediaGrabOperation$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaGrabOperation": "mediaGrabOperation",
-  });
-});
-
-export function getScheduledRecordingsMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetScheduledRecordingsMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetScheduledRecordingsMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetScheduledRecordingsMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetScheduledRecordingsResponseBody$inboundSchema: z.ZodType<
-  GetScheduledRecordingsResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => GetScheduledRecordingsMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function getScheduledRecordingsResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<GetScheduledRecordingsResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetScheduledRecordingsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetScheduledRecordingsResponseBody' from JSON`,
-  );
-}
 
 /** @internal */
 export const GetScheduledRecordingsResponse$inboundSchema: z.ZodType<
@@ -107,7 +20,7 @@ export const GetScheduledRecordingsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => GetScheduledRecordingsResponseBody$inboundSchema),
+  Result: shared.MediaContainerWithMediaGrabOperation$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

@@ -60,7 +60,7 @@ export class Subscriptions extends ClientSDK {
    */
   async processSubscriptions(
     options?: RequestOptions,
-  ): Promise<operations.ProcessSubscriptionsResponse | undefined> {
+  ): Promise<operations.ProcessSubscriptionsResponse> {
     return unwrapAsync(subscriptionsProcessSubscriptions(
       this,
       options,

@@ -51,7 +51,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.playQueue.createPlayQueue({
-    type: CreatePlayQueueType.Audio,
+    mediaType: CreatePlayQueueType.Audio,
     shuffle: BoolInt.True,
     repeat: BoolInt.True,
     continuous: BoolInt.True,
@@ -94,7 +94,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await playQueueCreatePlayQueue(plexAPI, {
-    type: CreatePlayQueueType.Audio,
+    mediaType: CreatePlayQueueType.Audio,
     shuffle: BoolInt.True,
     repeat: BoolInt.True,
     continuous: BoolInt.True,
@@ -226,7 +226,7 @@ run();
 
 ### Response
 
-**Promise\<[shared.MediaContainerWithPlaylistMetadata](../../models/shared/mediacontainerwithplaylistmetadata.md)\>**
+**Promise\<[shared.PlayQueueResponse](../../models/shared/playqueueresponse.md)\>**
 
 ### Errors
 
@@ -426,9 +426,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## resetPlayQueue
 

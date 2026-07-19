@@ -4,11 +4,11 @@
 
 import { libraryAddExtras } from "../funcs/libraryAddExtras.js";
 import { libraryAddSection } from "../funcs/libraryAddSection.js";
-import { libraryAddSubtitles } from "../funcs/libraryAddSubtitles.js";
 import { libraryAnalyzeMetadata } from "../funcs/libraryAnalyzeMetadata.js";
 import { libraryAutocomplete } from "../funcs/libraryAutocomplete.js";
 import { libraryCancelRefresh } from "../funcs/libraryCancelRefresh.js";
 import { libraryCleanBundles } from "../funcs/libraryCleanBundles.js";
+import { libraryComputeSonicPath } from "../funcs/libraryComputeSonicPath.js";
 import { libraryCreateMarker } from "../funcs/libraryCreateMarker.js";
 import { libraryDeleteCaches } from "../funcs/libraryDeleteCaches.js";
 import { libraryDeleteCollection } from "../funcs/libraryDeleteCollection.js";
@@ -23,14 +23,22 @@ import { libraryDetectAds } from "../funcs/libraryDetectAds.js";
 import { libraryDetectCredits } from "../funcs/libraryDetectCredits.js";
 import { libraryDetectIntros } from "../funcs/libraryDetectIntros.js";
 import { libraryDetectVoiceActivity } from "../funcs/libraryDetectVoiceActivity.js";
+import { libraryEditLibrarySection } from "../funcs/libraryEditLibrarySection.js";
 import { libraryEditMarker } from "../funcs/libraryEditMarker.js";
 import { libraryEditMetadataItem } from "../funcs/libraryEditMetadataItem.js";
 import { libraryEditSection } from "../funcs/libraryEditSection.js";
 import { libraryEmptyTrash } from "../funcs/libraryEmptyTrash.js";
+import { libraryEmptyTrashPost } from "../funcs/libraryEmptyTrashPost.js";
+import { libraryEmptyTrashPut } from "../funcs/libraryEmptyTrashPut.js";
 import { libraryGenerateThumbs } from "../funcs/libraryGenerateThumbs.js";
 import { libraryGetAllItemLeaves } from "../funcs/libraryGetAllItemLeaves.js";
 import { libraryGetAugmentationStatus } from "../funcs/libraryGetAugmentationStatus.js";
 import { libraryGetAvailableSorts } from "../funcs/libraryGetAvailableSorts.js";
+import { libraryGetByContentRating } from "../funcs/libraryGetByContentRating.js";
+import { libraryGetByDecade } from "../funcs/libraryGetByDecade.js";
+import { libraryGetByFolder } from "../funcs/libraryGetByFolder.js";
+import { libraryGetByResolution } from "../funcs/libraryGetByResolution.js";
+import { libraryGetByYear } from "../funcs/libraryGetByYear.js";
 import { libraryGetChapterImage } from "../funcs/libraryGetChapterImage.js";
 import { libraryGetCollections } from "../funcs/libraryGetCollections.js";
 import { libraryGetCommon } from "../funcs/libraryGetCommon.js";
@@ -46,32 +54,68 @@ import { libraryGetItemTree } from "../funcs/libraryGetItemTree.js";
 import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
 import { libraryGetLibraryMatches } from "../funcs/libraryGetLibraryMatches.js";
+import { libraryGetLibrarySectionHubs } from "../funcs/libraryGetLibrarySectionHubs.js";
+import { libraryGetLibrarySectionsFallback } from "../funcs/libraryGetLibrarySectionsFallback.js";
 import { libraryGetMediaPart } from "../funcs/libraryGetMediaPart.js";
+import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.js";
+import { libraryGetMetadataGrandchildren } from "../funcs/libraryGetMetadataGrandchildren.js";
+import { libraryGetMetadataGrandparent } from "../funcs/libraryGetMetadataGrandparent.js";
+import { libraryGetMetadataOnDeck } from "../funcs/libraryGetMetadataOnDeck.js";
+import { libraryGetMetadataParent } from "../funcs/libraryGetMetadataParent.js";
+import { libraryGetMetadataReviews } from "../funcs/libraryGetMetadataReviews.js";
+import { libraryGetNearestMetadata } from "../funcs/libraryGetNearestMetadata.js";
+import { libraryGetNewestForSection } from "../funcs/libraryGetNewestForSection.js";
+import { libraryGetOnDeckForSection } from "../funcs/libraryGetOnDeckForSection.js";
 import { libraryGetPartIndex } from "../funcs/libraryGetPartIndex.js";
 import { libraryGetPerson } from "../funcs/libraryGetPerson.js";
 import { libraryGetRandomArtwork } from "../funcs/libraryGetRandomArtwork.js";
+import { libraryGetRecentlyAddedForSection } from "../funcs/libraryGetRecentlyAddedForSection.js";
+import { libraryGetRecentlyAddedGlobal } from "../funcs/libraryGetRecentlyAddedGlobal.js";
 import { libraryGetRelatedItems } from "../funcs/libraryGetRelatedItems.js";
+import { libraryGetRootLibrary } from "../funcs/libraryGetRootLibrary.js";
+import { libraryGetSectionAgents } from "../funcs/libraryGetSectionAgents.js";
+import { libraryGetSectionArtists } from "../funcs/libraryGetSectionArtists.js";
+import { libraryGetSectionClips } from "../funcs/libraryGetSectionClips.js";
+import { libraryGetSectionEdit } from "../funcs/libraryGetSectionEdit.js";
+import { libraryGetSectionEpisodes } from "../funcs/libraryGetSectionEpisodes.js";
 import { libraryGetSectionFilters } from "../funcs/libraryGetSectionFilters.js";
 import { libraryGetSectionImage } from "../funcs/libraryGetSectionImage.js";
+import { libraryGetSectionLabels } from "../funcs/libraryGetSectionLabels.js";
+import { libraryGetSectionMovies } from "../funcs/libraryGetSectionMovies.js";
+import { libraryGetSectionPhotos } from "../funcs/libraryGetSectionPhotos.js";
+import { libraryGetSectionPlaylists } from "../funcs/libraryGetSectionPlaylists.js";
 import { libraryGetSectionPreferences } from "../funcs/libraryGetSectionPreferences.js";
 import { libraryGetSections } from "../funcs/libraryGetSections.js";
+import { libraryGetSectionSettings } from "../funcs/libraryGetSectionSettings.js";
+import { libraryGetSectionShows } from "../funcs/libraryGetSectionShows.js";
 import { libraryGetSectionsPrefs } from "../funcs/libraryGetSectionsPrefs.js";
+import { libraryGetSectionTags } from "../funcs/libraryGetSectionTags.js";
+import { libraryGetSectionTimeline } from "../funcs/libraryGetSectionTimeline.js";
 import { libraryGetStream } from "../funcs/libraryGetStream.js";
 import { libraryGetStreamLevels } from "../funcs/libraryGetStreamLevels.js";
 import { libraryGetStreamLoudness } from "../funcs/libraryGetStreamLoudness.js";
+import { libraryGetSubtitles } from "../funcs/libraryGetSubtitles.js";
 import { libraryGetTags } from "../funcs/libraryGetTags.js";
+import { libraryGetUnwatchedForSection } from "../funcs/libraryGetUnwatchedForSection.js";
 import { libraryIngestTransientItem } from "../funcs/libraryIngestTransientItem.js";
 import { libraryListMatches } from "../funcs/libraryListMatches.js";
 import { libraryListPersonMedia } from "../funcs/libraryListPersonMedia.js";
 import { libraryListSimilar } from "../funcs/libraryListSimilar.js";
-import { libraryListSonicallySimilar } from "../funcs/libraryListSonicallySimilar.js";
 import { libraryListTopUsers } from "../funcs/libraryListTopUsers.js";
 import { libraryMatchItem } from "../funcs/libraryMatchItem.js";
+import { libraryMatchSectionItems } from "../funcs/libraryMatchSectionItems.js";
 import { libraryMergeItems } from "../funcs/libraryMergeItems.js";
+import { libraryMoveSection } from "../funcs/libraryMoveSection.js";
 import { libraryOptimizeDatabase } from "../funcs/libraryOptimizeDatabase.js";
+import { libraryOptimizeLibrary } from "../funcs/libraryOptimizeLibrary.js";
+import { libraryOptimizeLibraryPost } from "../funcs/libraryOptimizeLibraryPost.js";
+import { libraryOptimizeSection } from "../funcs/libraryOptimizeSection.js";
+import { libraryOptimizeSectionPost } from "../funcs/libraryOptimizeSectionPost.js";
 import { libraryRefreshItemsMetadata } from "../funcs/libraryRefreshItemsMetadata.js";
 import { libraryRefreshSection } from "../funcs/libraryRefreshSection.js";
+import { libraryRefreshSectionPost } from "../funcs/libraryRefreshSectionPost.js";
 import { libraryRefreshSectionsMetadata } from "../funcs/libraryRefreshSectionsMetadata.js";
+import { librarySearchSection } from "../funcs/librarySearchSection.js";
 import { librarySetItemArtwork } from "../funcs/librarySetItemArtwork.js";
 import { librarySetItemPreferences } from "../funcs/librarySetItemPreferences.js";
 import { librarySetSectionPreferences } from "../funcs/librarySetSectionPreferences.js";
@@ -82,8 +126,11 @@ import { libraryStartAnalysis } from "../funcs/libraryStartAnalysis.js";
 import { libraryStartBifGeneration } from "../funcs/libraryStartBifGeneration.js";
 import { libraryStopAllRefreshes } from "../funcs/libraryStopAllRefreshes.js";
 import { libraryUnmatch } from "../funcs/libraryUnmatch.js";
+import { libraryUnmatchSectionItems } from "../funcs/libraryUnmatchSectionItems.js";
 import { libraryUpdateItemArtwork } from "../funcs/libraryUpdateItemArtwork.js";
 import { libraryUpdateItems } from "../funcs/libraryUpdateItems.js";
+import { libraryUploadArt } from "../funcs/libraryUploadArt.js";
+import { libraryUploadPoster } from "../funcs/libraryUploadPoster.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import * as shared from "../models/shared/index.js";
@@ -94,6 +141,21 @@ export { GetFileAcceptEnum } from "../funcs/libraryGetFile.js";
 export { GetItemArtworkAcceptEnum } from "../funcs/libraryGetItemArtwork.js";
 
 export class Library extends ClientSDK {
+  /**
+   * Get Root Library
+   *
+   * @remarks
+   * Get the root library object.
+   */
+  async getRootLibrary(
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithDirectory1> {
+    return unwrapAsync(libraryGetRootLibrary(
+      this,
+      options,
+    ));
+  }
+
   /**
    * Get all items in library
    *
@@ -181,6 +243,40 @@ export class Library extends ClientSDK {
   }
 
   /**
+   * Get Optimize Library
+   *
+   * @remarks
+   * Optimize the database globally across all library sections.
+   */
+  async optimizeLibrary(
+    request: operations.OptimizeLibraryRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryOptimizeLibrary(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Optimize Library
+   *
+   * @remarks
+   * Optimize the database globally across all library sections.
+   */
+  async optimizeLibraryPost(
+    request: operations.OptimizeLibraryPostRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryOptimizeLibraryPost(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Optimize the Database
    *
    * @remarks
@@ -212,6 +308,38 @@ export class Library extends ClientSDK {
     return unwrapAsync(libraryGetRandomArtwork(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Global Recently Added
+   *
+   * @remarks
+   * Get recently added items across all library sections.
+   */
+  async getRecentlyAddedGlobal(
+    request: operations.GetRecentlyAddedGlobalRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetRecentlyAddedGlobal(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Library Sections (Fallback)
+   *
+   * @remarks
+   * Fallback for non-owners to list library sections.
+   */
+  async getLibrarySectionsFallback(
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithDirectory1> {
+    return unwrapAsync(libraryGetLibrarySectionsFallback(
+      this,
       options,
     ));
   }
@@ -309,6 +437,176 @@ export class Library extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetTagsResponse> {
     return unwrapAsync(libraryGetTags(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Upload media art Art
+   *
+   * @remarks
+   * Upload custom background art for a metadata item.
+   */
+  async uploadArt(
+    request: operations.UploadArtRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryUploadArt(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Metadata Children
+   *
+   * @remarks
+   * Get children of a show, season, artist, or album.
+   */
+  async getMetadataChildren(
+    request: operations.GetMetadataChildrenRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetMetadataChildren(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Compute Sonic Path
+   *
+   * @remarks
+   * Compute a sonic adventure path from a starting track.
+   */
+  async computeSonicPath(
+    request: operations.ComputeSonicPathRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryComputeSonicPath(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Metadata Grandchildren
+   *
+   * @remarks
+   * Get grandchildren (e.g. episodes under a show).
+   */
+  async getMetadataGrandchildren(
+    request: operations.GetMetadataGrandchildrenRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetMetadataGrandchildren(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Metadata Grandparent
+   *
+   * @remarks
+   * Get grandparent metadata shortcut.
+   */
+  async getMetadataGrandparent(
+    request: operations.GetMetadataGrandparentRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetMetadataGrandparent(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Nearest Metadata
+   *
+   * @remarks
+   * Get sonically similar items for a music track.
+   */
+  async getNearestMetadata(
+    request: operations.GetNearestMetadataRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetNearestMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Metadata On Deck
+   *
+   * @remarks
+   * Get On Deck status for a show or season.
+   */
+  async getMetadataOnDeck(
+    request: operations.GetMetadataOnDeckRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetMetadataOnDeck(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Metadata Parent
+   *
+   * @remarks
+   * Get parent metadata shortcut.
+   */
+  async getMetadataParent(
+    request: operations.GetMetadataParentRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetMetadataParent(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Upload media art Poster
+   *
+   * @remarks
+   * Upload a custom poster image for a metadata item.
+   */
+  async uploadPoster(
+    request: operations.UploadPosterRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryUploadPoster(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Metadata Reviews
+   *
+   * @remarks
+   * Get user reviews for a metadata item.
+   */
+  async getMetadataReviews(
+    request: operations.GetMetadataReviewsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetMetadataReviews(
       this,
       request,
       options,
@@ -588,23 +886,6 @@ export class Library extends ClientSDK {
   }
 
   /**
-   * Get nearest tracks to metadata item
-   *
-   * @remarks
-   * Get the nearest tracks, sonically, to the provided track
-   */
-  async listSonicallySimilar(
-    request: operations.ListSonicallySimilarRequest,
-    options?: RequestOptions,
-  ): Promise<shared.MediaContainerWithMetadata> {
-    return unwrapAsync(libraryListSonicallySimilar(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Set metadata preferences
    *
    * @remarks
@@ -647,7 +928,7 @@ export class Library extends ClientSDK {
   async getRelatedItems(
     request: operations.GetRelatedItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetRelatedItemsResponse> {
+  ): Promise<shared.MediaContainerWithHubs> {
     return unwrapAsync(libraryGetRelatedItems(
       this,
       request,
@@ -690,16 +971,16 @@ export class Library extends ClientSDK {
   }
 
   /**
-   * Add subtitles
+   * Get subtitles
    *
    * @remarks
    * Add a subtitle to a metadata item
    */
-  async addSubtitles(
-    request: operations.AddSubtitlesRequest,
+  async getSubtitles(
+    request: operations.GetSubtitlesRequest,
     options?: RequestOptions,
   ): Promise<void> {
-    return unwrapAsync(libraryAddSubtitles(
+    return unwrapAsync(libraryGetSubtitles(
       this,
       request,
       options,
@@ -817,7 +1098,7 @@ export class Library extends ClientSDK {
   async getPerson(
     request: operations.GetPersonRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetPersonResponse> {
+  ): Promise<shared.MediaContainerWithTags> {
     return unwrapAsync(libraryGetPerson(
       this,
       request,
@@ -887,6 +1168,23 @@ export class Library extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(libraryEditSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Agents
+   *
+   * @remarks
+   * Get available metadata agents for a library section.
+   */
+  async getSectionAgents(
+    request: operations.GetSectionAgentsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithDirectory1> {
+    return unwrapAsync(libraryGetSectionAgents(
       this,
       request,
       options,
@@ -972,6 +1270,23 @@ export class Library extends ClientSDK {
   }
 
   /**
+   * Get Section Artists
+   *
+   * @remarks
+   * Get artists for a music library section.
+   */
+  async getSectionArtists(
+    request: operations.GetSectionArtistsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionArtists(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get autocompletions for search
    *
    * @remarks
@@ -983,6 +1298,108 @@ export class Library extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AutocompleteResponse> {
     return unwrapAsync(libraryAutocomplete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get By Content Rating
+   *
+   * @remarks
+   * Browse items in a library section grouped by content rating.
+   */
+  async getByContentRating(
+    request: operations.GetByContentRatingRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetByContentRating(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get By Decade
+   *
+   * @remarks
+   * Browse items in a library section grouped by decade.
+   */
+  async getByDecade(
+    request: operations.GetByDecadeRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetByDecade(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get By Folder
+   *
+   * @remarks
+   * Browse items in a library section by underlying filesystem folder.
+   */
+  async getByFolder(
+    request: operations.GetByFolderRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetByFolder(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get By Resolution
+   *
+   * @remarks
+   * Browse items in a library section grouped by resolution.
+   */
+  async getByResolution(
+    request: operations.GetByResolutionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetByResolution(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get By Year
+   *
+   * @remarks
+   * Browse items in a library section grouped by year.
+   */
+  async getByYear(
+    request: operations.GetByYearRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetByYear(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Clips
+   *
+   * @remarks
+   * Get clips for a library section.
+   */
+  async getSectionClips(
+    request: operations.GetSectionClipsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionClips(
       this,
       request,
       options,
@@ -1025,16 +1442,101 @@ export class Library extends ClientSDK {
   }
 
   /**
+   * Edit Section
+   *
+   * @remarks
+   * Get library section metadata.
+   */
+  async getSectionEdit(
+    request: operations.GetSectionEditRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryGetSectionEdit(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Edit Section
+   *
+   * @remarks
+   * Update library section metadata.
+   */
+  async editLibrarySection(
+    request: operations.EditLibrarySectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryEditLibrarySection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Empty Trash
+   *
+   * @remarks
+   * Permanently remove items from the trash for a library section.
+   */
+  async emptyTrash(
+    request: operations.EmptyTrashRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryEmptyTrash(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Empty Trash
+   *
+   * @remarks
+   * Permanently remove items from the trash for a library section.
+   */
+  async emptyTrashPost(
+    request: operations.EmptyTrashPostRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryEmptyTrashPost(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Empty section trash
    *
    * @remarks
    * Empty trash in the section, permanently deleting media/metadata for missing media
    */
-  async emptyTrash(
-    request: operations.EmptyTrashRequest,
+  async emptyTrashPut(
+    request: operations.EmptyTrashPutRequest,
     options?: RequestOptions,
   ): Promise<void> {
-    return unwrapAsync(libraryEmptyTrash(
+    return unwrapAsync(libraryEmptyTrashPut(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Episodes
+   *
+   * @remarks
+   * Get episodes for a TV library section.
+   */
+  async getSectionEpisodes(
+    request: operations.GetSectionEpisodesRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionEpisodes(
       this,
       request,
       options,
@@ -1050,7 +1552,7 @@ export class Library extends ClientSDK {
   async getSectionFilters(
     request: operations.GetSectionFiltersRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSectionFiltersResponse> {
+  ): Promise<shared.MediaContainerWithDirectory1> {
     return unwrapAsync(libraryGetSectionFilters(
       this,
       request,
@@ -1069,6 +1571,23 @@ export class Library extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetFirstCharactersResponse> {
     return unwrapAsync(libraryGetFirstCharacters(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Hubs
+   *
+   * @remarks
+   * Get hubs for a library section.
+   */
+  async getLibrarySectionHubs(
+    request: operations.GetLibrarySectionHubsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithHubs> {
+    return unwrapAsync(libraryGetLibrarySectionHubs(
       this,
       request,
       options,
@@ -1110,6 +1629,176 @@ export class Library extends ClientSDK {
   }
 
   /**
+   * Get Section Labels
+   *
+   * @remarks
+   * Get labels for a library section.
+   */
+  async getSectionLabels(
+    request: operations.GetSectionLabelsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithTags> {
+    return unwrapAsync(libraryGetSectionLabels(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Match Section Items
+   *
+   * @remarks
+   * Match items in a library section against metadata providers.
+   */
+  async matchSectionItems(
+    request: operations.MatchSectionItemsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryMatchSectionItems(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Move Section
+   *
+   * @remarks
+   * Move library section paths.
+   */
+  async moveSection(
+    request: operations.MoveSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryMoveSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Movies
+   *
+   * @remarks
+   * Get movies for a movie library section.
+   */
+  async getSectionMovies(
+    request: operations.GetSectionMoviesRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionMovies(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Newest for Section
+   *
+   * @remarks
+   * Get the newest additions for a specific library section.
+   */
+  async getNewestForSection(
+    request: operations.GetNewestForSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetNewestForSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get On Deck for Section
+   *
+   * @remarks
+   * Get the On Deck items for a specific library section.
+   */
+  async getOnDeckForSection(
+    request: operations.GetOnDeckForSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetOnDeckForSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Optimize Section
+   *
+   * @remarks
+   * Optimize the database for a specific library section.
+   */
+  async optimizeSection(
+    request: operations.OptimizeSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryOptimizeSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Optimize Section
+   *
+   * @remarks
+   * Optimize the database for a specific library section.
+   */
+  async optimizeSectionPost(
+    request: operations.OptimizeSectionPostRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryOptimizeSectionPost(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Photos
+   *
+   * @remarks
+   * Get photos for a photo library section.
+   */
+  async getSectionPhotos(
+    request: operations.GetSectionPhotosRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionPhotos(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Playlists
+   *
+   * @remarks
+   * Get playlists belonging to a library section.
+   */
+  async getSectionPlaylists(
+    request: operations.GetSectionPlaylistsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
+    return unwrapAsync(libraryGetSectionPlaylists(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get section prefs
    *
    * @remarks
@@ -1144,6 +1833,23 @@ export class Library extends ClientSDK {
   }
 
   /**
+   * Get Recently Added for Section
+   *
+   * @remarks
+   * Get recently added items for a specific library section.
+   */
+  async getRecentlyAddedForSection(
+    request: operations.GetRecentlyAddedForSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetRecentlyAddedForSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Cancel section refresh
    *
    * @remarks
@@ -1161,16 +1867,84 @@ export class Library extends ClientSDK {
   }
 
   /**
-   * Refresh section
+   * Get Refresh Section
    *
    * @remarks
-   * Start a refresh of this section
+   * Trigger a metadata refresh for a library section.
    */
   async refreshSection(
     request: operations.RefreshSectionRequest,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<shared.SuccessResponse> {
     return unwrapAsync(libraryRefreshSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Refresh Section
+   *
+   * @remarks
+   * Trigger a metadata refresh for a library section.
+   */
+  async refreshSectionPost(
+    request: operations.RefreshSectionPostRequest,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(libraryRefreshSectionPost(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Search Section
+   *
+   * @remarks
+   * Search within a specific library section.
+   */
+  async searchSection(
+    request: operations.SearchSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(librarySearchSection(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Settings
+   *
+   * @remarks
+   * Get section-specific settings.
+   */
+  async getSectionSettings(
+    request: operations.GetSectionSettingsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryGetSectionSettings(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Shows
+   *
+   * @remarks
+   * Get shows for a TV library section.
+   */
+  async getSectionShows(
+    request: operations.GetSectionShowsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionShows(
       this,
       request,
       options,
@@ -1186,8 +1960,76 @@ export class Library extends ClientSDK {
   async getAvailableSorts(
     request: operations.GetAvailableSortsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetAvailableSortsResponse> {
+  ): Promise<shared.MediaContainerWithSorts> {
     return unwrapAsync(libraryGetAvailableSorts(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Tags
+   *
+   * @remarks
+   * Get tags in a library section.
+   */
+  async getSectionTags(
+    request: operations.GetSectionTagsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithTags> {
+    return unwrapAsync(libraryGetSectionTags(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Section Timeline
+   *
+   * @remarks
+   * Get section timeline data.
+   */
+  async getSectionTimeline(
+    request: operations.GetSectionTimelineRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithDirectory1> {
+    return unwrapAsync(libraryGetSectionTimeline(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Unmatch Section Items
+   *
+   * @remarks
+   * Unmatch items in a library section from metadata providers.
+   */
+  async unmatchSectionItems(
+    request: operations.UnmatchSectionItemsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(libraryUnmatchSectionItems(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Unwatched for Section
+   *
+   * @remarks
+   * Get unwatched items for a specific library section.
+   */
+  async getUnwatchedForSection(
+    request: operations.GetUnwatchedForSectionRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetUnwatchedForSection(
       this,
       request,
       options,
@@ -1409,7 +2251,7 @@ export class Library extends ClientSDK {
   async getStream(
     request: operations.GetStreamRequest,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(libraryGetStream(
       this,
       request,
@@ -1426,7 +2268,7 @@ export class Library extends ClientSDK {
   async setStreamOffset(
     request: operations.SetStreamOffsetRequest,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(librarySetStreamOffset(
       this,
       request,
@@ -1464,7 +2306,7 @@ export class Library extends ClientSDK {
   async getMediaPart(
     request: operations.GetMediaPartRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetMediaPartResponse | undefined> {
+  ): Promise<operations.GetMediaPartResponse> {
     return unwrapAsync(libraryGetMediaPart(
       this,
       request,

@@ -114,7 +114,21 @@ export type GetPlaylistGeneratorRequest = {
   generatorId: number;
 };
 
-export type GetPlaylistGeneratorDevice = {
+/**
+ * The type of this generator
+ */
+export enum GetPlaylistGeneratorType {
+  Minus1 = -1,
+  FortyTwo = 42,
+}
+/**
+ * The type of this generator
+ */
+export type GetPlaylistGeneratorTypeOpen = OpenEnum<
+  typeof GetPlaylistGeneratorType
+>;
+
+export type Device = {
   profile?: string | undefined;
 };
 
@@ -205,26 +219,17 @@ export type GetPlaylistGeneratorStatus = {
   totalSize?: number | undefined;
 };
 
-/**
- * The type of this generator
- */
-export enum GetPlaylistGeneratorType {
-  Minus1 = -1,
-  FortyTwo = 42,
-}
-/**
- * The type of this generator
- */
-export type GetPlaylistGeneratorTypeOpen = OpenEnum<
-  typeof GetPlaylistGeneratorType
->;
-
 export type GetPlaylistGeneratorItem = {
+  title?: string | undefined;
+  /**
+   * The type of this generator
+   */
+  type?: GetPlaylistGeneratorTypeOpen | undefined;
   /**
    * The composite thumbnail image path
    */
   composite?: string | undefined;
-  device?: GetPlaylistGeneratorDevice | undefined;
+  device?: Device | undefined;
   id?: number | undefined;
   location?: GetPlaylistGeneratorLocation | undefined;
   mediaSettings?: MediaSettings | undefined;
@@ -235,11 +240,6 @@ export type GetPlaylistGeneratorItem = {
    * The tag of this generator's settings
    */
   targetTagID?: number | undefined;
-  title?: string | undefined;
-  /**
-   * The type of this generator
-   */
-  type?: GetPlaylistGeneratorTypeOpen | undefined;
 };
 
 /**
@@ -253,15 +253,11 @@ export type GetPlaylistGeneratorMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   item?: Array<GetPlaylistGeneratorItem> | undefined;
@@ -335,20 +331,23 @@ export function getPlaylistGeneratorRequestToJSON(
 }
 
 /** @internal */
-export const GetPlaylistGeneratorDevice$inboundSchema: z.ZodType<
-  GetPlaylistGeneratorDevice,
+export const GetPlaylistGeneratorType$inboundSchema: z.ZodType<
+  GetPlaylistGeneratorTypeOpen,
   unknown
-> = z.object({
+> = openEnums.inboundSchemaInt(GetPlaylistGeneratorType);
+
+/** @internal */
+export const Device$inboundSchema: z.ZodType<Device, unknown> = z.object({
   profile: types.optional(types.string()),
 });
 
-export function getPlaylistGeneratorDeviceFromJSON(
+export function deviceFromJSON(
   jsonString: string,
-): SafeParseResult<GetPlaylistGeneratorDevice, SDKValidationError> {
+): SafeParseResult<Device, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetPlaylistGeneratorDevice$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPlaylistGeneratorDevice' from JSON`,
+    (x) => Device$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Device' from JSON`,
   );
 }
 
@@ -473,20 +472,14 @@ export function getPlaylistGeneratorStatusFromJSON(
 }
 
 /** @internal */
-export const GetPlaylistGeneratorType$inboundSchema: z.ZodType<
-  GetPlaylistGeneratorTypeOpen,
-  unknown
-> = openEnums.inboundSchemaInt(GetPlaylistGeneratorType);
-
-/** @internal */
 export const GetPlaylistGeneratorItem$inboundSchema: z.ZodType<
   GetPlaylistGeneratorItem,
   unknown
 > = z.object({
+  title: types.optional(types.string()),
+  type: types.optional(GetPlaylistGeneratorType$inboundSchema),
   composite: types.optional(types.string()),
-  Device: types.optional(
-    z.lazy(() => GetPlaylistGeneratorDevice$inboundSchema),
-  ),
+  Device: types.optional(z.lazy(() => Device$inboundSchema)),
   id: types.optional(types.number()),
   Location: types.optional(
     z.lazy(() => GetPlaylistGeneratorLocation$inboundSchema),
@@ -500,8 +493,6 @@ export const GetPlaylistGeneratorItem$inboundSchema: z.ZodType<
   ),
   target: types.optional(types.string()),
   targetTagID: types.optional(types.number()),
-  title: types.optional(types.string()),
-  type: types.optional(GetPlaylistGeneratorType$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "Device": "device",

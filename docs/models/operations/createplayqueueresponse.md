@@ -17,13 +17,18 @@ let value: CreatePlayQueueResponse = {
       "<value 2>",
     ],
   },
-  result: {},
+  result: {
+    playQueueID: 1,
+    playQueueSelectedItemID: 1,
+    playQueueSelectedItemOffset: 0,
+    playQueueTotalCount: 10,
+  },
 };
 ```
 
 ## Fields
 
-| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `headers`                                                                                        | Record<string, *string*[]>                                                                       | :heavy_check_mark:                                                                               | N/A                                                                                              |
-| `result`                                                                                         | [operations.CreatePlayQueueResponseBody](../../models/operations/createplayqueueresponsebody.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     | Example                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `headers`                                                                                                       | Record<string, *string*[]>                                                                                      | :heavy_check_mark:                                                                                              | N/A                                                                                                             |                                                                                                                 |
+| `result`                                                                                                        | [shared.MediaContainerWithPlayQueue](../../models/shared/mediacontainerwithplayqueue.md)                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             | {<br/>"playQueueID": 1,<br/>"playQueueSelectedItemID": 1,<br/>"playQueueSelectedItemOffset": 0,<br/>"playQueueTotalCount": 10<br/>} |

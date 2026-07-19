@@ -4,6 +4,10 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetServerInfoGlobals = {
@@ -100,6 +104,93 @@ export type GetServerInfoRequest = {
   marketplace?: string | undefined;
 };
 
+/**
+ * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
+ *
+ * @remarks
+ * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
+ * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
+ */
+export type GetServerInfoResponse = {
+  identifier?: string | undefined;
+  /**
+   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
+   */
+  offset?: number | undefined;
+  size?: number | undefined;
+  /**
+   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
+   */
+  totalSize?: number | undefined;
+  allowCameraUpload?: boolean | undefined;
+  allowChannelAccess?: boolean | undefined;
+  allowMediaDeletion?: boolean | undefined;
+  allowSharing?: boolean | undefined;
+  allowSync?: boolean | undefined;
+  allowTuners?: boolean | undefined;
+  backgroundProcessing?: boolean | undefined;
+  certificate?: boolean | undefined;
+  companionProxy?: boolean | undefined;
+  countryCode?: string | undefined;
+  /**
+   * Comma-separated list of enabled diagnostics modules.
+   */
+  diagnostics?: Array<string> | undefined;
+  eventStream?: boolean | undefined;
+  friendlyName?: string | undefined;
+  hubSearch?: boolean | undefined;
+  itemClusters?: boolean | undefined;
+  livetv?: number | undefined;
+  machineIdentifier?: any | undefined;
+  mediaProviders?: boolean | undefined;
+  multiuser?: boolean | undefined;
+  musicAnalysis?: number | undefined;
+  myPlex?: boolean | undefined;
+  myPlexMappingState?: any | undefined;
+  myPlexSigninState?: any | undefined;
+  myPlexSubscription?: boolean | undefined;
+  myPlexUsername?: string | undefined;
+  /**
+   * Whether offline transcoding is enabled.
+   */
+  offlineTranscode?: number | undefined;
+  /**
+   * List of enabled owner features.
+   */
+  ownerFeatures?: Array<string> | undefined;
+  platform?: string | undefined;
+  platformVersion?: string | undefined;
+  pluginHost?: boolean | undefined;
+  pushNotifications?: boolean | undefined;
+  readOnlyLibraries?: boolean | undefined;
+  streamingBrainABRVersion?: number | undefined;
+  streamingBrainVersion?: number | undefined;
+  sync?: boolean | undefined;
+  transcoderActiveVideoSessions?: number | undefined;
+  transcoderAudio?: boolean | undefined;
+  transcoderLyrics?: boolean | undefined;
+  transcoderPhoto?: boolean | undefined;
+  transcoderSubtitles?: boolean | undefined;
+  transcoderVideo?: boolean | undefined;
+  /**
+   * List of supported transcoder video bitrates.
+   */
+  transcoderVideoBitrates?: Array<string> | undefined;
+  /**
+   * List of supported transcoder video qualities.
+   */
+  transcoderVideoQualities?: Array<string> | undefined;
+  /**
+   * List of supported transcoder video resolutions.
+   */
+  transcoderVideoResolutions?: Array<string> | undefined;
+  updatedAt?: number | undefined;
+  updater?: boolean | undefined;
+  version?: string | undefined;
+  voiceSearch?: boolean | undefined;
+  directory?: Array<shared.Directory> | undefined;
+};
+
 /** @internal */
 export type GetServerInfoRequest$Outbound = {
   accepts: string;
@@ -151,5 +242,79 @@ export function getServerInfoRequestToJSON(
 ): string {
   return JSON.stringify(
     GetServerInfoRequest$outboundSchema.parse(getServerInfoRequest),
+  );
+}
+
+/** @internal */
+export const GetServerInfoResponse$inboundSchema: z.ZodType<
+  GetServerInfoResponse,
+  unknown
+> = z.object({
+  identifier: types.optional(types.string()),
+  offset: types.optional(types.number()),
+  size: types.optional(types.number()),
+  totalSize: types.optional(types.number()),
+  allowCameraUpload: types.optional(types.boolean()),
+  allowChannelAccess: types.optional(types.boolean()),
+  allowMediaDeletion: types.optional(types.boolean()),
+  allowSharing: types.optional(types.boolean()),
+  allowSync: types.optional(types.boolean()),
+  allowTuners: types.optional(types.boolean()),
+  backgroundProcessing: types.optional(types.boolean()),
+  certificate: types.optional(types.boolean()),
+  companionProxy: types.optional(types.boolean()),
+  countryCode: types.optional(types.string()),
+  diagnostics: types.optional(z.array(types.string())),
+  eventStream: types.optional(types.boolean()),
+  friendlyName: types.optional(types.string()),
+  hubSearch: types.optional(types.boolean()),
+  itemClusters: types.optional(types.boolean()),
+  livetv: types.optional(types.number()),
+  machineIdentifier: types.optional(z.any()),
+  mediaProviders: types.optional(types.boolean()),
+  multiuser: types.optional(types.boolean()),
+  musicAnalysis: types.optional(types.number()),
+  myPlex: types.optional(types.boolean()),
+  myPlexMappingState: types.optional(z.any()),
+  myPlexSigninState: types.optional(z.any()),
+  myPlexSubscription: types.optional(types.boolean()),
+  myPlexUsername: types.optional(types.string()),
+  offlineTranscode: types.optional(types.number()),
+  ownerFeatures: types.optional(z.array(types.string())),
+  platform: types.optional(types.string()),
+  platformVersion: types.optional(types.string()),
+  pluginHost: types.optional(types.boolean()),
+  pushNotifications: types.optional(types.boolean()),
+  readOnlyLibraries: types.optional(types.boolean()),
+  streamingBrainABRVersion: types.optional(types.number()),
+  streamingBrainVersion: types.optional(types.number()),
+  sync: types.optional(types.boolean()),
+  transcoderActiveVideoSessions: types.optional(types.number()),
+  transcoderAudio: types.optional(types.boolean()),
+  transcoderLyrics: types.optional(types.boolean()),
+  transcoderPhoto: types.optional(types.boolean()),
+  transcoderSubtitles: types.optional(types.boolean()),
+  transcoderVideo: types.optional(types.boolean()),
+  transcoderVideoBitrates: types.optional(z.array(types.string())),
+  transcoderVideoQualities: types.optional(z.array(types.string())),
+  transcoderVideoResolutions: types.optional(z.array(types.string())),
+  updatedAt: types.optional(types.number()),
+  updater: types.optional(types.boolean()),
+  version: types.optional(types.string()),
+  voiceSearch: types.optional(types.boolean()),
+  Directory: types.optional(z.array(shared.Directory$inboundSchema)),
+}).transform((v) => {
+  return remap$(v, {
+    "Directory": "directory",
+  });
+});
+
+export function getServerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerInfoResponse' from JSON`,
   );
 }

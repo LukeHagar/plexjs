@@ -110,7 +110,7 @@ export type AddSectionRequest = {
   /**
    * The type of library section
    */
-  type: number;
+  mediaType: number;
   /**
    * The scanner this section should use
    */
@@ -174,7 +174,7 @@ export type AddSectionRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   name: string;
-  type: number;
+  mediaType: number;
   scanner?: string | undefined;
   agent: string;
   metadataAgentProviderGroupId?: string | undefined;
@@ -202,7 +202,7 @@ export const AddSectionRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   name: z.string(),
-  type: z.int(),
+  mediaType: z.int(),
   scanner: z.string().optional(),
   agent: z.string(),
   metadataAgentProviderGroupId: z.string().optional(),

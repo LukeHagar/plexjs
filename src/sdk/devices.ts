@@ -7,7 +7,10 @@ import { devicesDiscoverDevices } from "../funcs/devicesDiscoverDevices.js";
 import { devicesGetAvailableGrabbers } from "../funcs/devicesGetAvailableGrabbers.js";
 import { devicesGetDeviceDetails } from "../funcs/devicesGetDeviceDetails.js";
 import { devicesGetDevicesChannels } from "../funcs/devicesGetDevicesChannels.js";
-import { devicesGetThumb } from "../funcs/devicesGetThumb.js";
+import {
+  devicesGetThumb,
+  GetThumbAcceptEnum,
+} from "../funcs/devicesGetThumb.js";
 import { devicesListDevices } from "../funcs/devicesListDevices.js";
 import { devicesModifyDevice } from "../funcs/devicesModifyDevice.js";
 import { devicesRemoveDevice } from "../funcs/devicesRemoveDevice.js";
@@ -19,6 +22,8 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import * as shared from "../models/shared/index.js";
 import { unwrapAsync } from "../types/fp.js";
+
+export { GetThumbAcceptEnum } from "../funcs/devicesGetThumb.js";
 
 export class Devices extends ClientSDK {
   /**
@@ -77,10 +82,14 @@ export class Devices extends ClientSDK {
    * Tell grabbers to discover devices
    */
   async discoverDevices(
+    protocol?: operations.DiscoverDevicesProtocol | undefined,
+    grabberIdentifier?: string | undefined,
     options?: RequestOptions,
   ): Promise<shared.MediaContainerWithDevice> {
     return unwrapAsync(devicesDiscoverDevices(
       this,
+      protocol,
+      grabberIdentifier,
       options,
     ));
   }
@@ -229,8 +238,8 @@ export class Devices extends ClientSDK {
    */
   async getThumb(
     request: operations.GetThumbRequest,
-    options?: RequestOptions,
-  ): Promise<void> {
+    options?: RequestOptions & { acceptHeaderOverride?: GetThumbAcceptEnum },
+  ): Promise<operations.GetThumbResponse> {
     return unwrapAsync(devicesGetThumb(
       this,
       request,

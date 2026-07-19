@@ -99,10 +99,6 @@ export type CreateCollectionRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * The section where this collection will be created
-   */
-  sectionId: string;
-  /**
    * The title to filter by or assign
    */
   title?: string | undefined;
@@ -110,10 +106,6 @@ export type CreateCollectionRequest = {
    * Whether this is a smart collection/playlist
    */
   smart?: boolean | undefined;
-  /**
-   * The URI for processing the smart collection.  Required for a smart collection
-   */
-  uri?: string | undefined;
   /**
    * The type of media to retrieve or filter by.
    *
@@ -132,6 +124,14 @@ export type CreateCollectionRequest = {
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
   type?: shared.MediaType | undefined;
+  /**
+   * The section where this collection will be created
+   */
+  sectionId: string;
+  /**
+   * The URI for processing the smart collection.  Required for a smart collection
+   */
+  uri?: string | undefined;
 };
 
 /** @internal */
@@ -147,11 +147,11 @@ export type CreateCollectionRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: string;
   title?: string | undefined;
   smart?: boolean | undefined;
-  uri?: string | undefined;
   type?: number | undefined;
+  sectionId: string;
+  uri?: string | undefined;
 };
 
 /** @internal */
@@ -170,11 +170,11 @@ export const CreateCollectionRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.string(),
   title: z.string().optional(),
   smart: z.boolean().optional(),
-  uri: z.string().optional(),
   type: shared.MediaType$outboundSchema.optional(),
+  sectionId: z.string(),
+  uri: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

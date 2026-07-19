@@ -18,6 +18,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { PlexAPIError } from "../models/errors/plexapierror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
@@ -39,6 +40,7 @@ export function devicesStopScan(
 ): APIPromise<
   Result<
     shared.MediaContainerWithDevice,
+    | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -64,6 +66,7 @@ async function $do(
   [
     Result<
       shared.MediaContainerWithDevice,
+      | errors.ErrorT
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -171,8 +174,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -202,8 +215,13 @@ async function $do(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     shared.MediaContainerWithDevice,
+    | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -214,9 +232,10 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, shared.MediaContainerWithDevice$inboundSchema),
-    M.fail("4XX"),
+    M.jsonErr(401, errors.ErrorT$inboundSchema),
+    M.fail([400, "4XX"]),
     M.fail("5XX"),
-  )(response, req);
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

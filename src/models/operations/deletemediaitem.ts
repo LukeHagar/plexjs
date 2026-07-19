@@ -98,7 +98,13 @@ export type DeleteMediaItemRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The mediaItem
+   */
   mediaItem: string;
   /**
    * Whether proxy items, such as media optimized versions, should also be deleted.  Defaults to false.

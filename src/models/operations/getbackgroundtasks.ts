@@ -8,36 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export enum GetBackgroundTasksType {
-  Transcode = "transcode",
-}
-
-export type TranscodeJob = {
-  generatorID?: number | undefined;
-  key?: string | undefined;
-  progress?: number | undefined;
-  ratingKey?: string | undefined;
-  /**
-   * The number of seconds remaining in this job
-   */
-  remaining?: number | undefined;
-  /**
-   * The size of the result so far
-   */
-  size?: number | undefined;
-  /**
-   * The speed of the transcode; 1.0 means real-time
-   */
-  speed?: number | undefined;
-  /**
-   * The tag associated with the job.  This could be the tag containing the optimizer settings.
-   */
-  targetTagID?: number | undefined;
-  thumb?: string | undefined;
-  title?: string | undefined;
-  type?: GetBackgroundTasksType | undefined;
-};
+import * as shared from "../shared/index.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -50,18 +21,14 @@ export type GetBackgroundTasksMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  transcodeJob?: Array<TranscodeJob> | undefined;
+  transcodeJob?: Array<shared.TranscodeJob> | undefined;
 };
 
 /**
@@ -72,37 +39,6 @@ export type GetBackgroundTasksResponse = {
 };
 
 /** @internal */
-export const GetBackgroundTasksType$inboundSchema: z.ZodEnum<
-  typeof GetBackgroundTasksType
-> = z.enum(GetBackgroundTasksType);
-
-/** @internal */
-export const TranscodeJob$inboundSchema: z.ZodType<TranscodeJob, unknown> = z
-  .object({
-    generatorID: types.optional(types.number()),
-    key: types.optional(types.string()),
-    progress: types.optional(types.number()),
-    ratingKey: types.optional(types.string()),
-    remaining: types.optional(types.number()),
-    size: types.optional(types.number()),
-    speed: types.optional(types.number()),
-    targetTagID: types.optional(types.number()),
-    thumb: types.optional(types.string()),
-    title: types.optional(types.string()),
-    type: types.optional(GetBackgroundTasksType$inboundSchema),
-  });
-
-export function transcodeJobFromJSON(
-  jsonString: string,
-): SafeParseResult<TranscodeJob, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TranscodeJob$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TranscodeJob' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetBackgroundTasksMediaContainer$inboundSchema: z.ZodType<
   GetBackgroundTasksMediaContainer,
   unknown
@@ -111,9 +47,7 @@ export const GetBackgroundTasksMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  TranscodeJob: types.optional(
-    z.array(z.lazy(() => TranscodeJob$inboundSchema)),
-  ),
+  TranscodeJob: types.optional(z.array(shared.TranscodeJob$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "TranscodeJob": "transcodeJob",

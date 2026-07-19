@@ -98,7 +98,13 @@ export type StartBifGenerationRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * Force the operation even if conditions are not met
+   */
   force?: shared.BoolInt | undefined;
 };
 

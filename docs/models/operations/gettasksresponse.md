@@ -7,7 +7,20 @@ Butler tasks
 ```typescript
 import { GetTasksResponse } from "@parke.dev/plexjs/models/operations";
 
-let value: GetTasksResponse = {};
+let value: GetTasksResponse = {
+  butlerTasks: {
+    butlerTask: [
+      {
+        title: "string value",
+        description: "string value",
+        enabled: true,
+        interval: 1,
+        name: "string value",
+        scheduleRandomized: true,
+      },
+    ],
+  },
+};
 ```
 
 ## Fields

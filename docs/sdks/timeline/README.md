@@ -9,6 +9,7 @@ The actions feature within a media provider
 * [markPlayed](#markplayed) - Mark an item as played
 * [report](#report) - Report media timeline
 * [unscrobble](#unscrobble) - Mark an item as unplayed
+* [getConversionQueue](#getconversionqueue) - Get Conversion Queue
 
 ## markPlayed
 
@@ -41,6 +42,7 @@ async function run() {
   await plexAPI.timeline.markPlayed({
     identifier: "<value>",
     key: "59398",
+    uri: "https://mad-dredger.name",
   });
 
 
@@ -79,6 +81,7 @@ async function run() {
   const res = await timelineMarkPlayed(plexAPI, {
     identifier: "<value>",
     key: "59398",
+    uri: "https://mad-dredger.name",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -113,7 +116,6 @@ run();
 ## report
 
 This endpoint is hit during media playback for an item. It must be hit whenever the play state changes, or in the absence of a play state change, in a regular fashion (generally this means every 10 seconds on a LAN/WAN, and every 20 seconds over cellular).
-
 
 ### Example Usage
 
@@ -266,6 +268,7 @@ const plexAPI = new PlexAPI({
 async function run() {
   await plexAPI.timeline.unscrobble({
     identifier: "<value>",
+    uri: "https://qualified-order.org",
   });
 
 
@@ -303,6 +306,7 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await timelineUnscrobble(plexAPI, {
     identifier: "<value>",
+    uri: "https://qualified-order.org",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -333,3 +337,97 @@ run();
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getConversionQueue
+
+Get the conversion/optimization queue.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getConversionQueue" method="get" path="/playQueues/1" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.timeline.getConversionQueue({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { timelineGetConversionQueue } from "@parke.dev/plexjs/funcs/timelineGetConversionQueue.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await timelineGetConversionQueue(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("timelineGetConversionQueue failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetConversionQueueRequest](../../models/operations/getconversionqueuerequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithPlayQueue](../../models/shared/mediacontainerwithplayqueue.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

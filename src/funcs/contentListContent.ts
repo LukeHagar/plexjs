@@ -18,6 +18,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { PlexAPIError } from "../models/errors/plexapierror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
@@ -29,7 +30,10 @@ import { Result } from "../types/fp.js";
  * Get items in the section
  *
  * @remarks
- * Get the items in a section, potentially filtering them
+ * Get the items in a section, potentially filtering them.
+ * When `includeCollections=1` is passed, the response may also contain `Collection` items.
+ *
+ * If set, this operation will use {@link Security.token} from the global security.
  */
 export function contentListContent(
   client: PlexAPICore,
@@ -38,6 +42,7 @@ export function contentListContent(
 ): APIPromise<
   Result<
     operations.ListContentResponse,
+    | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -63,6 +68,7 @@ async function $do(
   [
     Result<
       operations.ListContentResponse,
+      | errors.ErrorT
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -95,11 +101,49 @@ async function $do(
   const path = pathToFunc("/library/sections/{sectionId}/all")(pathParams);
 
   const query = encodeFormQuery({
+    "asyncAugmentMetadata": payload.asyncAugmentMetadata,
+    "asyncRefreshLocalMediaAgent": payload.asyncRefreshLocalMediaAgent,
+    "checkFiles": payload.checkFiles,
+    "contentRating": payload.contentRating,
+    "excludeElements": payload.excludeElements,
+    "excludeFields": payload.excludeFields,
+    "filters": payload.filters,
+    "firstCharacter": payload.firstCharacter,
+    "genre": payload.genre,
+    "includeAdvanced": payload.includeAdvanced,
+    "includeArt": payload.includeArt,
+    "includeBandwidths": payload.includeBandwidths,
+    "includeBanner": payload.includeBanner,
+    "includeChapters": payload.includeChapters,
+    "includeCollections": payload.includeCollections,
+    "includeConcerts": payload.includeConcerts,
+    "includeCredits": payload.includeCredits,
+    "includeExternalIds": payload.includeExternalIds,
+    "includeExternalMedia": payload.includeExternalMedia,
+    "includeExtras": payload.includeExtras,
+    "includeFields": payload.includeFields,
     "includeGuids": payload.includeGuids,
+    "includeLoudnessRamps": payload.includeLoudnessRamps,
     "includeMeta": payload.includeMeta,
+    "includeOnDeck": payload.includeOnDeck,
+    "includePopularLeaves": payload.includePopularLeaves,
+    "includePreferences": payload.includePreferences,
+    "includeRelated": payload.includeRelated,
+    "includeReviews": payload.includeReviews,
+    "includeStations": payload.includeStations,
+    "includeTheme": payload.includeTheme,
+    "includeThumb": payload.includeThumb,
     "mediaQuery": payload.mediaQuery,
+    "nocache": payload.nocache,
+    "resolution": payload.resolution,
+    "skipRefresh": payload.skipRefresh,
+    "sort": payload.sort,
+    "studio": payload.studio,
+    "type": payload.mediaType,
+    "unwatched": payload.unwatched,
     "X-Plex-Container-Size": payload["X-Plex-Container-Size"],
     "X-Plex-Container-Start": payload["X-Plex-Container-Start"],
+    "year": payload.year,
   });
 
   const headers = new Headers(compactMap({
@@ -163,7 +207,7 @@ async function $do(
 
   const secConfig = await extractSecurity(client._options.token);
   const securityInput = secConfig == null ? {} : { token: secConfig };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
@@ -176,8 +220,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -214,6 +268,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListContentResponse,
+    | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -227,7 +282,8 @@ async function $do(
       hdrs: true,
       key: "Result",
     }),
-    M.fail("4XX"),
+    M.jsonErr(401, errors.ErrorT$inboundSchema),
+    M.fail([400, "4XX"]),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

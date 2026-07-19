@@ -15,16 +15,30 @@ import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Audio bitrate mode (cbr or vbr).
+ */
+export enum BitrateMode {
+  Cbr = "cbr",
+  Vbr = "vbr",
+}
+/**
+ * Audio bitrate mode (cbr or vbr).
+ */
+export type BitrateModeOpen = OpenEnum<typeof BitrateMode>;
+
 export enum CanAutoSyncEnum {
   Zero = "0",
   One = "1",
 }
 export type CanAutoSyncEnumOpen = OpenEnum<typeof CanAutoSyncEnum>;
 
+export type CanAutoSyncUnion1 = CanAutoSyncEnumOpen | boolean;
+
 /**
  * Indicates if the stream can auto-sync.
  */
-export type CanAutoSync = boolean | CanAutoSyncEnumOpen;
+export type CanAutoSyncUnion2 = boolean | CanAutoSyncEnumOpen | boolean;
 
 /**
  * Stream type:
@@ -51,26 +65,97 @@ export type StreamTypeOpen = OpenEnum<typeof StreamType>;
 
 /**
  * `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
- *
- * @remarks
  */
 export type Stream = {
+  /**
+   * Optional title for the stream (e.g., language variant).
+   */
+  title?: string | undefined;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
   /**
    * Indicates if this stream is default.
    */
   default?: boolean | undefined;
   /**
+   * ReplayGain album gain in dB.
+   */
+  albumGain?: number | undefined;
+  /**
+   * ReplayGain album peak amplitude.
+   */
+  albumPeak?: number | undefined;
+  /**
+   * ReplayGain album dynamic range in dB.
+   */
+  albumRange?: number | undefined;
+  /**
    * Audio channel layout.
    */
   audioChannelLayout?: string | undefined;
+  /**
+   * Bit depth of the video stream.
+   */
+  bitDepth?: number | undefined;
+  /**
+   * Bitrate of the stream.
+   */
+  bitrate?: number | undefined;
+  /**
+   * Audio bitrate mode (cbr or vbr).
+   */
+  bitrateMode?: BitrateModeOpen | undefined;
+  /**
+   * Indicates if the stream can auto-sync.
+   */
+  canAutoSync?: boolean | CanAutoSyncEnumOpen | boolean | undefined;
   /**
    * Number of audio channels (for audio streams).
    */
   channels?: number | undefined;
   /**
-   * Bit depth of the video stream.
+   * Chroma sample location.
    */
-  bitDepth?: number | undefined;
+  chromaLocation?: string | undefined;
+  /**
+   * Chroma subsampling format.
+   */
+  chromaSubsampling?: string | undefined;
+  closedCaptions?: boolean | undefined;
+  /**
+   * Codec used by the stream.
+   */
+  codec: string;
+  /**
+   * Coded video height.
+   */
+  codedHeight?: number | undefined;
+  /**
+   * Coded video width.
+   */
+  codedWidth?: number | undefined;
+  /**
+   * Color primaries used.
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * Color range (e.g., tv).
+   */
+  colorRange?: string | undefined;
+  /**
+   * Color space.
+   */
+  colorSpace?: string | undefined;
+  /**
+   * Color transfer characteristics.
+   */
+  colorTrc?: string | undefined;
+  /**
+   * Display title for the stream.
+   */
+  displayTitle: string;
   /**
    * Dolby Vision BL compatibility ID.
    */
@@ -104,63 +189,36 @@ export type Stream = {
    */
   doviVersion?: string | undefined;
   /**
-   * Bitrate of the stream.
+   * Indicates if the stream is a dub.
    */
-  bitrate?: number | undefined;
+  dub?: boolean | undefined;
+  embeddedInVideo?: string | undefined;
   /**
-   * Indicates if the stream can auto-sync.
+   * Loudness ramp end type.
    */
-  canAutoSync?: boolean | CanAutoSyncEnumOpen | undefined;
-  /**
-   * Chroma sample location.
-   */
-  chromaLocation?: string | undefined;
-  /**
-   * Chroma subsampling format.
-   */
-  chromaSubsampling?: string | undefined;
-  /**
-   * Coded video height.
-   */
-  codedHeight?: number | undefined;
-  /**
-   * Coded video width.
-   */
-  codedWidth?: number | undefined;
-  closedCaptions?: boolean | undefined;
-  /**
-   * Codec used by the stream.
-   */
-  codec: string;
-  /**
-   * Color primaries used.
-   */
-  colorPrimaries?: string | undefined;
-  /**
-   * Color range (e.g., tv).
-   */
-  colorRange?: string | undefined;
-  /**
-   * Color space.
-   */
-  colorSpace?: string | undefined;
-  /**
-   * Color transfer characteristics.
-   */
-  colorTrc?: string | undefined;
-  /**
-   * Display title for the stream.
-   */
-  displayTitle: string;
+  endRamp?: string | undefined;
   /**
    * Extended display title for the stream.
    */
   extendedDisplayTitle?: string | undefined;
+  forced?: boolean | undefined;
   /**
    * Frame rate of the stream.
    */
   frameRate?: number | undefined;
+  /**
+   * Track replay gain in dB.
+   */
+  gain?: number | undefined;
   hasScalingMatrix?: boolean | undefined;
+  /**
+   * Indicates whether header compression is enabled.
+   */
+  headerCompression?: boolean | undefined;
+  /**
+   * Indicates if the stream is for the hearing impaired.
+   */
+  hearingImpaired?: boolean | undefined;
   /**
    * Height of the video stream.
    */
@@ -190,25 +248,45 @@ export type Stream = {
    */
   languageTag?: string | undefined;
   /**
-   * Format of the stream (e.g., srt).
-   */
-  format?: string | undefined;
-  /**
-   * Indicates whether header compression is enabled.
-   */
-  headerCompression?: boolean | undefined;
-  /**
    * Video level.
    */
   level?: number | undefined;
+  /**
+   * Integrated loudness in LUFS.
+   */
+  loudness?: number | undefined;
+  /**
+   * Loudness range in LU.
+   */
+  lra?: number | undefined;
+  /**
+   * Minimum lines in the lyric file.
+   */
+  minLines?: number | undefined;
   /**
    * Indicates if this is the original stream.
    */
   original?: boolean | undefined;
   /**
+   * Track peak amplitude.
+   */
+  peak?: number | undefined;
+  /**
+   * Whether the subtitle is an exact match.
+   */
+  perfectMatch?: boolean | undefined;
+  /**
    * Video profile.
    */
   profile?: string | undefined;
+  /**
+   * Lyric or subtitle provider name.
+   */
+  provider?: string | undefined;
+  /**
+   * Subtitle provider display name.
+   */
+  providerTitle?: string | undefined;
   /**
    * Number of reference frames.
    */
@@ -218,26 +296,40 @@ export type Stream = {
    */
   samplingRate?: number | undefined;
   scanType?: string | undefined;
-  embeddedInVideo?: string | undefined;
+  /**
+   * Subtitle match confidence score (0-100).
+   */
+  score?: number | undefined;
   /**
    * Indicates if this stream is selected (applicable for audio streams).
    */
   selected?: boolean | undefined;
-  forced?: boolean | undefined;
   /**
-   * Indicates if the stream is for the hearing impaired.
+   * Source identifier for the subtitle.
    */
-  hearingImpaired?: boolean | undefined;
+  sourceKey?: string | undefined;
   /**
-   * Indicates if the stream is a dub.
+   * Loudness ramp start type.
    */
-  dub?: boolean | undefined;
-  /**
-   * Optional title for the stream (e.g., language variant).
-   */
-  title?: string | undefined;
+  startRamp?: string | undefined;
   streamIdentifier?: number | undefined;
   streamType: StreamTypeOpen;
+  /**
+   * Whether lyrics are timestamped.
+   */
+  timed?: boolean | undefined;
+  /**
+   * Whether the subtitle is temporary or downloaded.
+   */
+  transient?: boolean | undefined;
+  /**
+   * ID of the user who added the subtitle.
+   */
+  userID?: number | undefined;
+  /**
+   * Whether this audio track is an audio description track.
+   */
+  visualImpaired?: boolean | undefined;
   /**
    * Width of the video stream.
    */
@@ -246,22 +338,47 @@ export type Stream = {
 };
 
 /** @internal */
+export const BitrateMode$inboundSchema: z.ZodType<BitrateModeOpen, unknown> =
+  openEnums.inboundSchema(BitrateMode);
+
+/** @internal */
 export const CanAutoSyncEnum$inboundSchema: z.ZodType<
   CanAutoSyncEnumOpen,
   unknown
 > = openEnums.inboundSchema(CanAutoSyncEnum);
 
 /** @internal */
-export const CanAutoSync$inboundSchema: z.ZodType<CanAutoSync, unknown> =
-  smartUnion([types.boolean(), CanAutoSyncEnum$inboundSchema]);
+export const CanAutoSyncUnion1$inboundSchema: z.ZodType<
+  CanAutoSyncUnion1,
+  unknown
+> = smartUnion([CanAutoSyncEnum$inboundSchema, types.boolean()]);
 
-export function canAutoSyncFromJSON(
+export function canAutoSyncUnion1FromJSON(
   jsonString: string,
-): SafeParseResult<CanAutoSync, SDKValidationError> {
+): SafeParseResult<CanAutoSyncUnion1, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CanAutoSync$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CanAutoSync' from JSON`,
+    (x) => CanAutoSyncUnion1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CanAutoSyncUnion1' from JSON`,
+  );
+}
+
+/** @internal */
+export const CanAutoSyncUnion2$inboundSchema: z.ZodType<
+  CanAutoSyncUnion2,
+  unknown
+> = smartUnion([
+  types.boolean(),
+  smartUnion([CanAutoSyncEnum$inboundSchema, types.boolean()]),
+]);
+
+export function canAutoSyncUnion2FromJSON(
+  jsonString: string,
+): SafeParseResult<CanAutoSyncUnion2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CanAutoSyncUnion2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CanAutoSyncUnion2' from JSON`,
   );
 }
 
@@ -273,10 +390,34 @@ export const StreamType$inboundSchema: z.ZodType<StreamTypeOpen, unknown> =
 export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
   collectExtraKeys$(
     z.object({
+      title: types.optional(types.string()),
+      format: types.optional(types.string()),
       default: types.optional(types.boolean()),
+      albumGain: types.optional(types.number()),
+      albumPeak: types.optional(types.number()),
+      albumRange: types.optional(types.number()),
       audioChannelLayout: types.optional(types.string()),
-      channels: types.optional(types.number()),
       bitDepth: types.optional(types.number()),
+      bitrate: types.optional(types.number()),
+      bitrateMode: types.optional(BitrateMode$inboundSchema),
+      canAutoSync: types.optional(
+        smartUnion([
+          types.boolean(),
+          smartUnion([CanAutoSyncEnum$inboundSchema, types.boolean()]),
+        ]),
+      ),
+      channels: types.optional(types.number()),
+      chromaLocation: types.optional(types.string()),
+      chromaSubsampling: types.optional(types.string()),
+      closedCaptions: types.optional(types.boolean()),
+      codec: types.string(),
+      codedHeight: types.optional(types.number()),
+      codedWidth: types.optional(types.number()),
+      colorPrimaries: types.optional(types.string()),
+      colorRange: types.optional(types.string()),
+      colorSpace: types.optional(types.string()),
+      colorTrc: types.optional(types.string()),
+      displayTitle: types.string(),
       DOVIBLCompatID: types.optional(types.number()),
       DOVIBLPresent: types.optional(types.boolean()),
       DOVIELPresent: types.optional(types.boolean()),
@@ -285,24 +426,16 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       DOVIProfile: types.optional(types.number()),
       DOVIRPUPresent: types.optional(types.boolean()),
       DOVIVersion: types.optional(types.string()),
-      bitrate: types.optional(types.number()),
-      canAutoSync: types.optional(
-        smartUnion([types.boolean(), CanAutoSyncEnum$inboundSchema]),
-      ),
-      chromaLocation: types.optional(types.string()),
-      chromaSubsampling: types.optional(types.string()),
-      codedHeight: types.optional(types.number()),
-      codedWidth: types.optional(types.number()),
-      closedCaptions: types.optional(types.boolean()),
-      codec: types.string(),
-      colorPrimaries: types.optional(types.string()),
-      colorRange: types.optional(types.string()),
-      colorSpace: types.optional(types.string()),
-      colorTrc: types.optional(types.string()),
-      displayTitle: types.string(),
+      dub: types.optional(types.boolean()),
+      embeddedInVideo: types.optional(types.string()),
+      endRamp: types.optional(types.string()),
       extendedDisplayTitle: types.optional(types.string()),
+      forced: types.optional(types.boolean()),
       frameRate: types.optional(types.number()),
+      gain: types.optional(types.number()),
       hasScalingMatrix: types.optional(types.boolean()),
+      headerCompression: types.optional(types.boolean()),
+      hearingImpaired: types.optional(types.boolean()),
       height: types.optional(types.number()),
       id: types.number(),
       index: types.optional(types.number()),
@@ -310,22 +443,29 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       language: types.optional(types.string()),
       languageCode: types.optional(types.string()),
       languageTag: types.optional(types.string()),
-      format: types.optional(types.string()),
-      headerCompression: types.optional(types.boolean()),
       level: types.optional(types.number()),
+      loudness: types.optional(types.number()),
+      lra: types.optional(types.number()),
+      minLines: types.optional(types.number()),
       original: types.optional(types.boolean()),
+      peak: types.optional(types.number()),
+      perfectMatch: types.optional(types.boolean()),
       profile: types.optional(types.string()),
+      provider: types.optional(types.string()),
+      providerTitle: types.optional(types.string()),
       refFrames: types.optional(types.number()),
       samplingRate: types.optional(types.number()),
       scanType: types.optional(types.string()),
-      embeddedInVideo: types.optional(types.string()),
+      score: types.optional(types.number()),
       selected: types.optional(types.boolean()),
-      forced: types.optional(types.boolean()),
-      hearingImpaired: types.optional(types.boolean()),
-      dub: types.optional(types.boolean()),
-      title: types.optional(types.string()),
+      sourceKey: types.optional(types.string()),
+      startRamp: types.optional(types.string()),
       streamIdentifier: types.optional(types.number()),
       streamType: StreamType$inboundSchema,
+      timed: types.optional(types.boolean()),
+      transient: types.optional(types.boolean()),
+      userID: types.optional(types.number()),
+      visualImpaired: types.optional(types.boolean()),
       width: types.optional(types.number()),
     }).catchall(z.any()),
     "additionalProperties",

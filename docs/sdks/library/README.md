@@ -6,19 +6,34 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 
 ### Available Operations
 
+* [getRootLibrary](#getrootlibrary) - Get Root Library
 * [getLibraryItems](#getlibraryitems) - Get all items in library
 * [deleteCaches](#deletecaches) - Delete library caches
 * [cleanBundles](#cleanbundles) - Clean bundles
 * [ingestTransientItem](#ingesttransientitem) - Ingest a transient item
 * [getLibraryMatches](#getlibrarymatches) - Get library matches
+* [optimizeLibrary](#optimizelibrary) - Get Optimize Library
+* [optimizeLibraryPost](#optimizelibrarypost) - Optimize Library
 * [optimizeDatabase](#optimizedatabase) - Optimize the Database
 * [getRandomArtwork](#getrandomartwork) - Get random artwork
+* [getRecentlyAddedGlobal](#getrecentlyaddedglobal) - Get Global Recently Added
+* [getLibrarySectionsFallback](#getlibrarysectionsfallback) - Get Library Sections (Fallback)
 * [getSections](#getsections) - Get library sections (main Media Provider Only)
 * [addSection](#addsection) - Add a library section
 * [stopAllRefreshes](#stopallrefreshes) - Stop refresh
 * [getSectionsPrefs](#getsectionsprefs) - Get section prefs
 * [refreshSectionsMetadata](#refreshsectionsmetadata) - Refresh all sections
 * [getTags](#gettags) - Get all library tags of a type
+* [uploadArt](#uploadart) - Upload media art Art
+* [getMetadataChildren](#getmetadatachildren) - Get Metadata Children
+* [computeSonicPath](#computesonicpath) - Compute Sonic Path
+* [getMetadataGrandchildren](#getmetadatagrandchildren) - Get Metadata Grandchildren
+* [getMetadataGrandparent](#getmetadatagrandparent) - Get Metadata Grandparent
+* [getNearestMetadata](#getnearestmetadata) - Get Nearest Metadata
+* [getMetadataOnDeck](#getmetadataondeck) - Get Metadata On Deck
+* [getMetadataParent](#getmetadataparent) - Get Metadata Parent
+* [uploadPoster](#uploadposter) - Upload media art Poster
+* [getMetadataReviews](#getmetadatareviews) - Get Metadata Reviews
 * [deleteMetadataItem](#deletemetadataitem) - Delete a metadata item
 * [editMetadataItem](#editmetadataitem) - Edit a metadata item
 * [detectAds](#detectads) - Ad-detect an item
@@ -35,13 +50,12 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [matchItem](#matchitem) - Match a metadata item
 * [listMatches](#listmatches) - Get metadata matches for an item
 * [mergeItems](#mergeitems) - Merge a metadata item
-* [listSonicallySimilar](#listsonicallysimilar) - Get nearest tracks to metadata item
 * [setItemPreferences](#setitempreferences) - Set metadata preferences
 * [refreshItemsMetadata](#refreshitemsmetadata) - Refresh a metadata item
 * [getRelatedItems](#getrelateditems) - Get related items
 * [listSimilar](#listsimilar) - Get similar items
 * [splitItem](#splititem) - Split a metadata item
-* [addSubtitles](#addsubtitles) - Add subtitles
+* [getSubtitles](#getsubtitles) - Get subtitles
 * [getItemTree](#getitemtree) - Get metadata items as a tree
 * [unmatch](#unmatch) - Unmatch a metadata item
 * [listTopUsers](#listtopusers) - Get metadata top users
@@ -53,21 +67,54 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [deleteLibrarySection](#deletelibrarysection) - Delete a library section
 * [getLibraryDetails](#getlibrarydetails) - Get a library section by id
 * [editSection](#editsection) - Edit a library section
+* [getSectionAgents](#getsectionagents) - Get Section Agents
 * [updateItems](#updateitems) - Set the fields of the filtered items
 * [startAnalysis](#startanalysis) - Analyze a section
+* [getSectionArtists](#getsectionartists) - Get Section Artists
 * [autocomplete](#autocomplete) - Get autocompletions for search
+* [getByContentRating](#getbycontentrating) - Get By Content Rating
+* [getByDecade](#getbydecade) - Get By Decade
+* [getByFolder](#getbyfolder) - Get By Folder
+* [getByResolution](#getbyresolution) - Get By Resolution
+* [getByYear](#getbyyear) - Get By Year
+* [getSectionClips](#getsectionclips) - Get Section Clips
 * [getCollections](#getcollections) - Get collections in a section
 * [getCommon](#getcommon) - Get common fields for items
-* [emptyTrash](#emptytrash) - Empty section trash
+* [getSectionEdit](#getsectionedit) - Edit Section
+* [editLibrarySection](#editlibrarysection) - Edit Section
+* [emptyTrash](#emptytrash) - Get Empty Trash
+* [emptyTrashPost](#emptytrashpost) - Empty Trash
+* [emptyTrashPut](#emptytrashput) - Empty section trash
+* [getSectionEpisodes](#getsectionepisodes) - Get Section Episodes
 * [getSectionFilters](#getsectionfilters) - Get section filters
 * [getFirstCharacters](#getfirstcharacters) - Get list of first characters
+* [getLibrarySectionHubs](#getlibrarysectionhubs) - Get Section Hubs
 * [deleteIndexes](#deleteindexes) - Delete section indexes
 * [deleteIntros](#deleteintros) - Delete section intro markers
+* [getSectionLabels](#getsectionlabels) - Get Section Labels
+* [matchSectionItems](#matchsectionitems) - Match Section Items
+* [moveSection](#movesection) - Move Section
+* [getSectionMovies](#getsectionmovies) - Get Section Movies
+* [getNewestForSection](#getnewestforsection) - Get Newest for Section
+* [getOnDeckForSection](#getondeckforsection) - Get On Deck for Section
+* [optimizeSection](#optimizesection) - Get Optimize Section
+* [optimizeSectionPost](#optimizesectionpost) - Optimize Section
+* [getSectionPhotos](#getsectionphotos) - Get Section Photos
+* [getSectionPlaylists](#getsectionplaylists) - Get Section Playlists
 * [getSectionPreferences](#getsectionpreferences) - Get section prefs
 * [setSectionPreferences](#setsectionpreferences) - Set section prefs
+* [getRecentlyAddedForSection](#getrecentlyaddedforsection) - Get Recently Added for Section
 * [cancelRefresh](#cancelrefresh) - Cancel section refresh
-* [refreshSection](#refreshsection) - Refresh section
+* [refreshSection](#refreshsection) - Get Refresh Section
+* [refreshSectionPost](#refreshsectionpost) - Refresh Section
+* [searchSection](#searchsection) - Search Section
+* [getSectionSettings](#getsectionsettings) - Get Section Settings
+* [getSectionShows](#getsectionshows) - Get Section Shows
 * [getAvailableSorts](#getavailablesorts) - Get a section sorts
+* [getSectionTags](#getsectiontags) - Get Section Tags
+* [getSectionTimeline](#getsectiontimeline) - Get Section Timeline
+* [unmatchSectionItems](#unmatchsectionitems) - Unmatch Section Items
+* [getUnwatchedForSection](#getunwatchedforsection) - Get Unwatched for Section
 * [getStreamLevels](#getstreamlevels) - Get loudness about a stream in json
 * [getStreamLoudness](#getstreamloudness) - Get loudness about a stream
 * [getChapterImage](#getchapterimage) - Get a chapter image
@@ -85,6 +132,75 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [getItemArtwork](#getitemartwork) - Get an item's artwork, theme, etc
 * [getMediaPart](#getmediapart) - Get a media part
 * [getImageFromBif](#getimagefrombif) - Get an image from part BIF
+
+## getRootLibrary
+
+Get the root library object.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getRootLibrary" method="get" path="/library" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getRootLibrary();
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetRootLibrary } from "@parke.dev/plexjs/funcs/libraryGetRootLibrary.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetRootLibrary(plexAPI);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetRootLibrary failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithDirectory1](../../models/shared/mediacontainerwithdirectory1.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getLibraryItems
 
@@ -116,8 +232,8 @@ async function run() {
   const result = await plexAPI.library.getLibraryItems({
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
   });
 
@@ -157,8 +273,8 @@ async function run() {
   const res = await libraryGetLibraryItems(plexAPI, {
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
   });
   if (res.ok) {
@@ -187,9 +303,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteCaches
 
@@ -255,9 +372,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## cleanBundles
 
@@ -323,9 +441,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## ingestTransientItem
 
@@ -427,9 +546,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getLibraryMatches
 
@@ -534,9 +654,198 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## optimizeLibrary
+
+Optimize the database globally across all library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="optimizeLibrary" method="get" path="/library/optimize" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.optimizeLibrary({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryOptimizeLibrary } from "@parke.dev/plexjs/funcs/libraryOptimizeLibrary.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryOptimizeLibrary(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryOptimizeLibrary failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.OptimizeLibraryRequest](../../models/operations/optimizelibraryrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## optimizeLibraryPost
+
+Optimize the database globally across all library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="optimizeLibraryPost" method="post" path="/library/optimize" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.optimizeLibraryPost({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryOptimizeLibraryPost } from "@parke.dev/plexjs/funcs/libraryOptimizeLibraryPost.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryOptimizeLibraryPost(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryOptimizeLibraryPost failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.OptimizeLibraryPostRequest](../../models/operations/optimizelibrarypostrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## optimizeDatabase
 
@@ -631,16 +940,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getRandomArtwork
 
 Get random artwork across sections.  This is commonly used for a screensaver.
 
 This retrieves 100 random artwork paths in the specified sections and returns them.  Restrictions are put in place to not return artwork for items the user is not allowed to access.  Artwork will be for Movies, Shows, and Artists only.
-
 
 ### Example Usage
 
@@ -737,9 +1046,173 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getRecentlyAddedGlobal
+
+Get recently added items across all library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getRecentlyAddedGlobal" method="get" path="/library/recentlyAdded" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getRecentlyAddedGlobal({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetRecentlyAddedGlobal } from "@parke.dev/plexjs/funcs/libraryGetRecentlyAddedGlobal.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetRecentlyAddedGlobal(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetRecentlyAddedGlobal failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRecentlyAddedGlobalRequest](../../models/operations/getrecentlyaddedglobalrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getLibrarySectionsFallback
+
+Fallback for non-owners to list library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getLibrarySectionsFallback" method="get" path="/library/sections/" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getLibrarySectionsFallback();
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetLibrarySectionsFallback } from "@parke.dev/plexjs/funcs/libraryGetLibrarySectionsFallback.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetLibrarySectionsFallback(plexAPI);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetLibrarySectionsFallback failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithDirectory1](../../models/shared/mediacontainerwithdirectory1.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getSections
 
@@ -806,9 +1279,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## addSection
 
@@ -839,7 +1313,7 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.addSection({
     name: "<value>",
-    type: 39544,
+    mediaType: 39544,
     agent: "<value>",
     language: "<value>",
     locations: [
@@ -886,7 +1360,7 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await libraryAddSection(plexAPI, {
     name: "<value>",
-    type: 39544,
+    mediaType: 39544,
     agent: "<value>",
     language: "<value>",
     locations: [
@@ -991,9 +1465,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getSectionsPrefs
 
@@ -1023,7 +1498,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getSectionsPrefs({
-    type: 460221,
+    mediaType: 460221,
   });
 
   console.log(result);
@@ -1060,7 +1535,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetSectionsPrefs(plexAPI, {
-    type: 460221,
+    mediaType: 460221,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -1278,9 +1753,1152 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## uploadArt
+
+Upload custom background art for a metadata item.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="uploadArt" method="post" path="/library/metadata/{id}/arts" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { openAsBlob } from "node:fs";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.uploadArt({
+    id: 996758,
+    requestBody: {
+      file: await openAsBlob("example.file"),
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryUploadArt } from "@parke.dev/plexjs/funcs/libraryUploadArt.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { openAsBlob } from "node:fs";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryUploadArt(plexAPI, {
+    id: 996758,
+    requestBody: {
+      file: await openAsBlob("example.file"),
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryUploadArt failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UploadArtRequest](../../models/operations/uploadartrequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getMetadataChildren
+
+Get children of a show, season, artist, or album.
+
+### Example Usage: include-stream
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataChildren({
+    id: 240367,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataChildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataChildren.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataChildren(plexAPI, {
+    id: 240367,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataChildren failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: include-stream-otheritem
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream-otheritem" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataChildren({
+    id: 240367,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataChildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataChildren.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataChildren(plexAPI, {
+    id: 240367,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataChildren failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: include-stream-otheritem-anotheritem
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream-otheritem-anotheritem" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataChildren({
+    id: 240367,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataChildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataChildren.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataChildren(plexAPI, {
+    id: 240367,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataChildren failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataChildrenRequest](../../models/operations/getmetadatachildrenrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## computeSonicPath
+
+Compute a sonic adventure path from a starting track.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="computeSonicPath" method="get" path="/library/metadata/{id}/computePath" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.computeSonicPath({
+    id: 622554,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryComputeSonicPath } from "@parke.dev/plexjs/funcs/libraryComputeSonicPath.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryComputeSonicPath(plexAPI, {
+    id: 622554,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryComputeSonicPath failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ComputeSonicPathRequest](../../models/operations/computesonicpathrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getMetadataGrandchildren
+
+Get grandchildren (e.g. episodes under a show).
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataGrandchildren" method="get" path="/library/metadata/{id}/grandchildren" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataGrandchildren({
+    id: 679910,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataGrandchildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataGrandchildren.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataGrandchildren(plexAPI, {
+    id: 679910,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataGrandchildren failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataGrandchildrenRequest](../../models/operations/getmetadatagrandchildrenrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getMetadataGrandparent
+
+Get grandparent metadata shortcut.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataGrandparent" method="get" path="/library/metadata/{id}/grandparent" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataGrandparent({
+    id: 191152,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataGrandparent } from "@parke.dev/plexjs/funcs/libraryGetMetadataGrandparent.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataGrandparent(plexAPI, {
+    id: 191152,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataGrandparent failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataGrandparentRequest](../../models/operations/getmetadatagrandparentrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getNearestMetadata
+
+Get sonically similar items for a music track.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getNearestMetadata" method="get" path="/library/metadata/{id}/nearest" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getNearestMetadata({
+    id: 62697,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetNearestMetadata } from "@parke.dev/plexjs/funcs/libraryGetNearestMetadata.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetNearestMetadata(plexAPI, {
+    id: 62697,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetNearestMetadata failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetNearestMetadataRequest](../../models/operations/getnearestmetadatarequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getMetadataOnDeck
+
+Get On Deck status for a show or season.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataOnDeck" method="get" path="/library/metadata/{id}/onDeck" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataOnDeck({
+    id: 883975,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataOnDeck } from "@parke.dev/plexjs/funcs/libraryGetMetadataOnDeck.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataOnDeck(plexAPI, {
+    id: 883975,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataOnDeck failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataOnDeckRequest](../../models/operations/getmetadataondeckrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getMetadataParent
+
+Get parent metadata shortcut.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataParent" method="get" path="/library/metadata/{id}/parent" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataParent({
+    id: 352555,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataParent } from "@parke.dev/plexjs/funcs/libraryGetMetadataParent.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataParent(plexAPI, {
+    id: 352555,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataParent failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataParentRequest](../../models/operations/getmetadataparentrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## uploadPoster
+
+Upload a custom poster image for a metadata item.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="uploadPoster" method="post" path="/library/metadata/{id}/posters" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { openAsBlob } from "node:fs";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.uploadPoster({
+    id: 316927,
+    requestBody: {
+      file: await openAsBlob("example.file"),
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryUploadPoster } from "@parke.dev/plexjs/funcs/libraryUploadPoster.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { openAsBlob } from "node:fs";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryUploadPoster(plexAPI, {
+    id: 316927,
+    requestBody: {
+      file: await openAsBlob("example.file"),
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryUploadPoster failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UploadPosterRequest](../../models/operations/uploadposterrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getMetadataReviews
+
+Get user reviews for a metadata item.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataReviews" method="get" path="/library/metadata/{id}/reviews" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMetadataReviews({
+    id: 146091,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetMetadataReviews } from "@parke.dev/plexjs/funcs/libraryGetMetadataReviews.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMetadataReviews(plexAPI, {
+    id: 146091,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataReviews failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataReviewsRequest](../../models/operations/getmetadatareviewsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteMetadataItem
 
@@ -1577,9 +3195,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getAllItemLeaves
 
@@ -1674,9 +3293,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## analyzeMetadata
 
@@ -1771,9 +3391,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## generateThumbs
 
@@ -1870,9 +3491,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## detectCredits
 
@@ -1971,9 +3593,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getExtras
 
@@ -2068,9 +3691,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## addExtras
 
@@ -2264,9 +3888,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## startBifGeneration
 
@@ -2363,9 +3988,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## detectIntros
 
@@ -2462,9 +4088,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## createMarker
 
@@ -2495,7 +4122,7 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.createMarker({
     ids: "<value>",
-    type: 248391,
+    mediaType: 248391,
     startTimeOffset: 535191,
     attributes: {},
   });
@@ -2535,7 +4162,7 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await libraryCreateMarker(plexAPI, {
     ids: "<value>",
-    type: 248391,
+    mediaType: 248391,
     startTimeOffset: 535191,
     attributes: {},
   });
@@ -2662,9 +4289,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listMatches
 
@@ -2761,9 +4389,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## mergeItems
 
@@ -2858,106 +4487,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
-
-## listSonicallySimilar
-
-Get the nearest tracks, sonically, to the provided track
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="listSonicallySimilar" method="get" path="/library/metadata/{ids}/nearest" -->
-```typescript
-import { PlexAPI } from "@parke.dev/plexjs";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
-
-const plexAPI = new PlexAPI({
-  accepts: Accepts.ApplicationXml,
-  clientIdentifier: "abc123",
-  product: "Plex for Roku",
-  version: "2.4.1",
-  platform: "Roku",
-  platformVersion: "4.3 build 1057",
-  device: "Roku 3",
-  model: "4200X",
-  deviceVendor: "Roku",
-  deviceName: "Living Room TV",
-  marketplace: "googlePlay",
-  token: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await plexAPI.library.listSonicallySimilar({
-    ids: "<value>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PlexAPICore } from "@parke.dev/plexjs/core.js";
-import { libraryListSonicallySimilar } from "@parke.dev/plexjs/funcs/libraryListSonicallySimilar.js";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
-
-// Use `PlexAPICore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore({
-  accepts: Accepts.ApplicationXml,
-  clientIdentifier: "abc123",
-  product: "Plex for Roku",
-  version: "2.4.1",
-  platform: "Roku",
-  platformVersion: "4.3 build 1057",
-  device: "Roku 3",
-  model: "4200X",
-  deviceVendor: "Roku",
-  deviceName: "Living Room TV",
-  marketplace: "googlePlay",
-  token: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await libraryListSonicallySimilar(plexAPI, {
-    ids: "<value>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("libraryListSonicallySimilar failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListSonicallySimilarRequest](../../models/operations/listsonicallysimilarrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## setItemPreferences
 
@@ -3052,9 +4585,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## refreshItemsMetadata
 
@@ -3086,6 +4620,7 @@ async function run() {
   await plexAPI.library.refreshItemsMetadata({
     ids: "<value>",
     markUpdated: BoolInt.True,
+    skipRefresh: BoolInt.True,
   });
 
 
@@ -3124,6 +4659,7 @@ async function run() {
   const res = await libraryRefreshItemsMetadata(plexAPI, {
     ids: "<value>",
     markUpdated: BoolInt.True,
+    skipRefresh: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -3151,9 +4687,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getRelatedItems
 
@@ -3244,13 +4781,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetRelatedItemsResponse](../../models/operations/getrelateditemsresponse.md)\>**
+**Promise\<[shared.MediaContainerWithHubs](../../models/shared/mediacontainerwithhubs.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listSimilar
 
@@ -3345,9 +4883,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## splitItem
 
@@ -3442,17 +4981,18 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
-## addSubtitles
+## getSubtitles
 
 Add a subtitle to a metadata item
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="addSubtitles" method="get" path="/library/metadata/{ids}/subtitles" -->
+<!-- UsageSnippet language="typescript" operationID="getSubtitles" method="get" path="/library/metadata/{ids}/subtitles" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
 import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
@@ -3473,7 +5013,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.library.addSubtitles({
+  await plexAPI.library.getSubtitles({
     ids: "<value>",
     forced: BoolInt.True,
     hearingImpaired: BoolInt.True,
@@ -3491,7 +5031,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
-import { libraryAddSubtitles } from "@parke.dev/plexjs/funcs/libraryAddSubtitles.js";
+import { libraryGetSubtitles } from "@parke.dev/plexjs/funcs/libraryGetSubtitles.js";
 import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
@@ -3512,7 +5052,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryAddSubtitles(plexAPI, {
+  const res = await libraryGetSubtitles(plexAPI, {
     ids: "<value>",
     forced: BoolInt.True,
     hearingImpaired: BoolInt.True,
@@ -3521,7 +5061,7 @@ async function run() {
     const { value: result } = res;
     
   } else {
-    console.log("libraryAddSubtitles failed:", res.error);
+    console.log("libraryGetSubtitles failed:", res.error);
   }
 }
 
@@ -3532,7 +5072,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.AddSubtitlesRequest](../../models/operations/addsubtitlesrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetSubtitlesRequest](../../models/operations/getsubtitlesrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -3543,9 +5083,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getItemTree
 
@@ -3640,9 +5181,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## unmatch
 
@@ -3737,9 +5279,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listTopUsers
 
@@ -3834,9 +5377,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## detectVoiceActivity
 
@@ -3935,9 +5479,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getAugmentationStatus
 
@@ -4226,7 +5771,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetPersonResponse](../../models/operations/getpersonresponse.md)\>**
+**Promise\<[shared.MediaContainerWithTags](../../models/shared/mediacontainerwithtags.md)\>**
 
 ### Errors
 
@@ -4426,9 +5971,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getLibraryDetails
 
@@ -4525,9 +6071,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## editSection
 
@@ -4637,6 +6184,104 @@ run();
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getSectionAgents
+
+Get available metadata agents for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionAgents" method="get" path="/library/sections/{sectionId}/agents" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionAgents({
+    sectionId: 757906,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionAgents } from "@parke.dev/plexjs/funcs/libraryGetSectionAgents.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionAgents(plexAPI, {
+    sectionId: 757906,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionAgents failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionAgentsRequest](../../models/operations/getsectionagentsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithDirectory1](../../models/shared/mediacontainerwithdirectory1.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## updateItems
 
@@ -4874,9 +6519,108 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionArtists
+
+Get artists for a music library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionArtists" method="get" path="/library/sections/{sectionId}/artists" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionArtists({
+    sectionId: 716398,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionArtists } from "@parke.dev/plexjs/funcs/libraryGetSectionArtists.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionArtists(plexAPI, {
+    sectionId: 716398,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionArtists failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionArtistsRequest](../../models/operations/getsectionartistsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## autocomplete
 
@@ -4907,12 +6651,12 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.autocomplete({
-    sectionId: 942007,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 942007,
   });
 
   console.log(result);
@@ -4949,12 +6693,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryAutocomplete(plexAPI, {
-    sectionId: 942007,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 942007,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -4986,6 +6730,594 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
+## getByContentRating
+
+Browse items in a library section grouped by content rating.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getByContentRating" method="get" path="/library/sections/{sectionId}/byContentRating" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getByContentRating({
+    sectionId: 586837,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetByContentRating } from "@parke.dev/plexjs/funcs/libraryGetByContentRating.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetByContentRating(plexAPI, {
+    sectionId: 586837,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetByContentRating failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetByContentRatingRequest](../../models/operations/getbycontentratingrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getByDecade
+
+Browse items in a library section grouped by decade.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getByDecade" method="get" path="/library/sections/{sectionId}/byDecade" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getByDecade({
+    sectionId: 212187,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetByDecade } from "@parke.dev/plexjs/funcs/libraryGetByDecade.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetByDecade(plexAPI, {
+    sectionId: 212187,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetByDecade failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetByDecadeRequest](../../models/operations/getbydecaderequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getByFolder
+
+Browse items in a library section by underlying filesystem folder.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getByFolder" method="get" path="/library/sections/{sectionId}/byFolder" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getByFolder({
+    sectionId: 352088,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetByFolder } from "@parke.dev/plexjs/funcs/libraryGetByFolder.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetByFolder(plexAPI, {
+    sectionId: 352088,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetByFolder failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetByFolderRequest](../../models/operations/getbyfolderrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getByResolution
+
+Browse items in a library section grouped by resolution.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getByResolution" method="get" path="/library/sections/{sectionId}/byResolution" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getByResolution({
+    sectionId: 139174,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetByResolution } from "@parke.dev/plexjs/funcs/libraryGetByResolution.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetByResolution(plexAPI, {
+    sectionId: 139174,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetByResolution failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetByResolutionRequest](../../models/operations/getbyresolutionrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getByYear
+
+Browse items in a library section grouped by year.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getByYear" method="get" path="/library/sections/{sectionId}/byYear" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getByYear({
+    sectionId: 14634,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetByYear } from "@parke.dev/plexjs/funcs/libraryGetByYear.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetByYear(plexAPI, {
+    sectionId: 14634,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetByYear failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetByYearRequest](../../models/operations/getbyyearrequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionClips
+
+Get clips for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionClips" method="get" path="/library/sections/{sectionId}/clips" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionClips({
+    sectionId: 407860,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionClips } from "@parke.dev/plexjs/funcs/libraryGetSectionClips.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionClips(plexAPI, {
+    sectionId: 407860,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionClips failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionClipsRequest](../../models/operations/getsectionclipsrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
 ## getCollections
 
 Get all collections in a section
@@ -5014,12 +7346,12 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getCollections({
-    sectionId: 348838,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 348838,
   });
 
   console.log(result);
@@ -5056,12 +7388,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetCollections(plexAPI, {
-    sectionId: 348838,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 348838,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -5089,9 +7421,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getCommon
 
@@ -5122,12 +7455,12 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getCommon({
-    sectionId: 298154,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 298154,
   });
 
   console.log(result);
@@ -5164,12 +7497,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetCommon(plexAPI, {
-    sectionId: 298154,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 298154,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -5201,13 +7534,13 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## emptyTrash
+## getSectionEdit
 
-Empty trash in the section, permanently deleting media/metadata for missing media
+Get library section metadata.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="emptyTrash" method="put" path="/library/sections/{sectionId}/emptyTrash" -->
+<!-- UsageSnippet language="typescript" operationID="getSectionEdit" method="get" path="/library/sections/{sectionId}/edit" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
 import { Accepts } from "@parke.dev/plexjs/models/shared";
@@ -5228,11 +7561,207 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.library.emptyTrash({
+  const result = await plexAPI.library.getSectionEdit({
+    sectionId: 223075,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionEdit } from "@parke.dev/plexjs/funcs/libraryGetSectionEdit.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionEdit(plexAPI, {
+    sectionId: 223075,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionEdit failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionEditRequest](../../models/operations/getsectioneditrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## editLibrarySection
+
+Update library section metadata.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="editLibrarySection" method="put" path="/library/sections/{sectionId}/edit" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.editLibrarySection({
+    sectionId: 834094,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryEditLibrarySection } from "@parke.dev/plexjs/funcs/libraryEditLibrarySection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryEditLibrarySection(plexAPI, {
+    sectionId: 834094,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryEditLibrarySection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.EditLibrarySectionRequest](../../models/operations/editlibrarysectionrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## emptyTrash
+
+Permanently remove items from the trash for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="emptyTrash" method="get" path="/library/sections/{sectionId}/emptyTrash" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.emptyTrash({
     sectionId: 30052,
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -5270,7 +7799,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("libraryEmptyTrash failed:", res.error);
   }
@@ -5290,13 +7819,308 @@ run();
 
 ### Response
 
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## emptyTrashPost
+
+Permanently remove items from the trash for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="emptyTrashPost" method="post" path="/library/sections/{sectionId}/emptyTrash" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.emptyTrashPost({
+    sectionId: 537157,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryEmptyTrashPost } from "@parke.dev/plexjs/funcs/libraryEmptyTrashPost.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryEmptyTrashPost(plexAPI, {
+    sectionId: 537157,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryEmptyTrashPost failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.EmptyTrashPostRequest](../../models/operations/emptytrashpostrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## emptyTrashPut
+
+Empty trash in the section, permanently deleting media/metadata for missing media
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="emptyTrashPut" method="put" path="/library/sections/{sectionId}/emptyTrash" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  await plexAPI.library.emptyTrashPut({
+    sectionId: 642296,
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryEmptyTrashPut } from "@parke.dev/plexjs/funcs/libraryEmptyTrashPut.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryEmptyTrashPut(plexAPI, {
+    sectionId: 642296,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("libraryEmptyTrashPut failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.EmptyTrashPutRequest](../../models/operations/emptytrashputrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
 **Promise\<void\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionEpisodes
+
+Get episodes for a TV library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionEpisodes" method="get" path="/library/sections/{sectionId}/episodes" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionEpisodes({
+    sectionId: 229495,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionEpisodes } from "@parke.dev/plexjs/funcs/libraryGetSectionEpisodes.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionEpisodes(plexAPI, {
+    sectionId: 229495,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionEpisodes failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionEpisodesRequest](../../models/operations/getsectionepisodesrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getSectionFilters
 
@@ -5387,13 +8211,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSectionFiltersResponse](../../models/operations/getsectionfiltersresponse.md)\>**
+**Promise\<[shared.MediaContainerWithDirectory1](../../models/shared/mediacontainerwithdirectory1.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getFirstCharacters
 
@@ -5423,12 +8248,12 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getFirstCharacters({
-    sectionId: 3947,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 3947,
   });
 
   console.log(result);
@@ -5465,12 +8290,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetFirstCharacters(plexAPI, {
-    sectionId: 3947,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 3947,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -5498,9 +8323,108 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getLibrarySectionHubs
+
+Get hubs for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getLibrarySectionHubs" method="get" path="/library/sections/{sectionId}/hubs" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getLibrarySectionHubs({
+    sectionId: 426468,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetLibrarySectionHubs } from "@parke.dev/plexjs/funcs/libraryGetLibrarySectionHubs.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetLibrarySectionHubs(plexAPI, {
+    sectionId: 426468,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetLibrarySectionHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetLibrarySectionHubsRequest](../../models/operations/getlibrarysectionhubsrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithHubs](../../models/shared/mediacontainerwithhubs.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteIndexes
 
@@ -5595,9 +8519,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteIntros
 
@@ -5692,9 +8617,990 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionLabels
+
+Get labels for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionLabels" method="get" path="/library/sections/{sectionId}/label" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionLabels({
+    sectionId: 705342,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionLabels } from "@parke.dev/plexjs/funcs/libraryGetSectionLabels.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionLabels(plexAPI, {
+    sectionId: 705342,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionLabels failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionLabelsRequest](../../models/operations/getsectionlabelsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithTags](../../models/shared/mediacontainerwithtags.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## matchSectionItems
+
+Match items in a library section against metadata providers.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="matchSectionItems" method="get" path="/library/sections/{sectionId}/match" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.matchSectionItems({
+    sectionId: 31032,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryMatchSectionItems } from "@parke.dev/plexjs/funcs/libraryMatchSectionItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryMatchSectionItems(plexAPI, {
+    sectionId: 31032,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryMatchSectionItems failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.MatchSectionItemsRequest](../../models/operations/matchsectionitemsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## moveSection
+
+Move library section paths.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="moveSection" method="put" path="/library/sections/{sectionId}/move" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.moveSection({
+    sectionId: 483061,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryMoveSection } from "@parke.dev/plexjs/funcs/libraryMoveSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryMoveSection(plexAPI, {
+    sectionId: 483061,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryMoveSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.MoveSectionRequest](../../models/operations/movesectionrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionMovies
+
+Get movies for a movie library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionMovies" method="get" path="/library/sections/{sectionId}/movies" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionMovies({
+    sectionId: 530892,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionMovies } from "@parke.dev/plexjs/funcs/libraryGetSectionMovies.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionMovies(plexAPI, {
+    sectionId: 530892,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionMovies failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionMoviesRequest](../../models/operations/getsectionmoviesrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getNewestForSection
+
+Get the newest additions for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getNewestForSection" method="get" path="/library/sections/{sectionId}/newest" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getNewestForSection({
+    sectionId: 73900,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetNewestForSection } from "@parke.dev/plexjs/funcs/libraryGetNewestForSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetNewestForSection(plexAPI, {
+    sectionId: 73900,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetNewestForSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetNewestForSectionRequest](../../models/operations/getnewestforsectionrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getOnDeckForSection
+
+Get the On Deck items for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getOnDeckForSection" method="get" path="/library/sections/{sectionId}/onDeck" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getOnDeckForSection({
+    sectionId: 331089,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetOnDeckForSection } from "@parke.dev/plexjs/funcs/libraryGetOnDeckForSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetOnDeckForSection(plexAPI, {
+    sectionId: 331089,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetOnDeckForSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetOnDeckForSectionRequest](../../models/operations/getondeckforsectionrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## optimizeSection
+
+Optimize the database for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="optimizeSection" method="get" path="/library/sections/{sectionId}/optimize" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.optimizeSection({
+    sectionId: 721290,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryOptimizeSection } from "@parke.dev/plexjs/funcs/libraryOptimizeSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryOptimizeSection(plexAPI, {
+    sectionId: 721290,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryOptimizeSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.OptimizeSectionRequest](../../models/operations/optimizesectionrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## optimizeSectionPost
+
+Optimize the database for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="optimizeSectionPost" method="post" path="/library/sections/{sectionId}/optimize" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.optimizeSectionPost({
+    sectionId: 876391,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryOptimizeSectionPost } from "@parke.dev/plexjs/funcs/libraryOptimizeSectionPost.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryOptimizeSectionPost(plexAPI, {
+    sectionId: 876391,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryOptimizeSectionPost failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.OptimizeSectionPostRequest](../../models/operations/optimizesectionpostrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionPhotos
+
+Get photos for a photo library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionPhotos" method="get" path="/library/sections/{sectionId}/photos" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionPhotos({
+    sectionId: 622466,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionPhotos } from "@parke.dev/plexjs/funcs/libraryGetSectionPhotos.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionPhotos(plexAPI, {
+    sectionId: 622466,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionPhotos failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionPhotosRequest](../../models/operations/getsectionphotosrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionPlaylists
+
+Get playlists belonging to a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionPlaylists" method="get" path="/library/sections/{sectionId}/playlists" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionPlaylists({
+    sectionId: 826184,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionPlaylists } from "@parke.dev/plexjs/funcs/libraryGetSectionPlaylists.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionPlaylists(plexAPI, {
+    sectionId: 826184,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionPlaylists failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionPlaylistsRequest](../../models/operations/getsectionplaylistsrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithPlaylistMetadata](../../models/shared/mediacontainerwithplaylistmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getSectionPreferences
 
@@ -5789,9 +9695,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## setSectionPreferences
 
@@ -5888,9 +9795,108 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getRecentlyAddedForSection
+
+Get recently added items for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getRecentlyAddedForSection" method="get" path="/library/sections/{sectionId}/recentlyAdded" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getRecentlyAddedForSection({
+    sectionId: 46283,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetRecentlyAddedForSection } from "@parke.dev/plexjs/funcs/libraryGetRecentlyAddedForSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetRecentlyAddedForSection(plexAPI, {
+    sectionId: 46283,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetRecentlyAddedForSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRecentlyAddedForSectionRequest](../../models/operations/getrecentlyaddedforsectionrequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## cancelRefresh
 
@@ -5985,20 +9991,21 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## refreshSection
 
-Start a refresh of this section
+Trigger a metadata refresh for a library section.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="refreshSection" method="post" path="/library/sections/{sectionId}/refresh" -->
+<!-- UsageSnippet language="typescript" operationID="refreshSection" method="get" path="/library/sections/{sectionId}/refresh" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
-import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -6016,12 +10023,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.library.refreshSection({
+  const result = await plexAPI.library.refreshSection({
     sectionId: 450300,
-    force: BoolInt.True,
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -6034,7 +10040,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
 import { libraryRefreshSection } from "@parke.dev/plexjs/funcs/libraryRefreshSection.js";
-import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -6056,11 +10062,10 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await libraryRefreshSection(plexAPI, {
     sectionId: 450300,
-    force: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("libraryRefreshSection failed:", res.error);
   }
@@ -6080,13 +10085,408 @@ run();
 
 ### Response
 
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## refreshSectionPost
+
+Trigger a metadata refresh for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="refreshSectionPost" method="post" path="/library/sections/{sectionId}/refresh" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  await plexAPI.library.refreshSectionPost({
+    sectionId: 848668,
+    force: BoolInt.True,
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryRefreshSectionPost } from "@parke.dev/plexjs/funcs/libraryRefreshSectionPost.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryRefreshSectionPost(plexAPI, {
+    sectionId: 848668,
+    force: BoolInt.True,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("libraryRefreshSectionPost failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.RefreshSectionPostRequest](../../models/operations/refreshsectionpostrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
 **Promise\<void\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## searchSection
+
+Search within a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="searchSection" method="get" path="/library/sections/{sectionId}/search" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.searchSection({
+    sectionId: 925380,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { librarySearchSection } from "@parke.dev/plexjs/funcs/librarySearchSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await librarySearchSection(plexAPI, {
+    sectionId: 925380,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("librarySearchSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.SearchSectionRequest](../../models/operations/searchsectionrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionSettings
+
+Get section-specific settings.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionSettings" method="get" path="/library/sections/{sectionId}/settings" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionSettings({
+    sectionId: 100390,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionSettings } from "@parke.dev/plexjs/funcs/libraryGetSectionSettings.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionSettings(plexAPI, {
+    sectionId: 100390,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionSettings failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionSettingsRequest](../../models/operations/getsectionsettingsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionShows
+
+Get shows for a TV library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionShows" method="get" path="/library/sections/{sectionId}/shows" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionShows({
+    sectionId: 9583,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionShows } from "@parke.dev/plexjs/funcs/libraryGetSectionShows.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionShows(plexAPI, {
+    sectionId: 9583,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionShows failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionShowsRequest](../../models/operations/getsectionshowsrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getAvailableSorts
 
@@ -6177,13 +10577,406 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetAvailableSortsResponse](../../models/operations/getavailablesortsresponse.md)\>**
+**Promise\<[shared.MediaContainerWithSorts](../../models/shared/mediacontainerwithsorts.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionTags
+
+Get tags in a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionTags" method="get" path="/library/sections/{sectionId}/tags" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionTags({
+    sectionId: 787543,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionTags } from "@parke.dev/plexjs/funcs/libraryGetSectionTags.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionTags(plexAPI, {
+    sectionId: 787543,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionTags failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionTagsRequest](../../models/operations/getsectiontagsrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithTags](../../models/shared/mediacontainerwithtags.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionTimeline
+
+Get section timeline data.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionTimeline" method="get" path="/library/sections/{sectionId}/timeline" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionTimeline({
+    sectionId: 670370,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionTimeline } from "@parke.dev/plexjs/funcs/libraryGetSectionTimeline.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionTimeline(plexAPI, {
+    sectionId: 670370,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionTimeline failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionTimelineRequest](../../models/operations/getsectiontimelinerequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithDirectory1](../../models/shared/mediacontainerwithdirectory1.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## unmatchSectionItems
+
+Unmatch items in a library section from metadata providers.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="unmatchSectionItems" method="get" path="/library/sections/{sectionId}/unmatch" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.unmatchSectionItems({
+    sectionId: 209342,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryUnmatchSectionItems } from "@parke.dev/plexjs/funcs/libraryUnmatchSectionItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryUnmatchSectionItems(plexAPI, {
+    sectionId: 209342,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryUnmatchSectionItems failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UnmatchSectionItemsRequest](../../models/operations/unmatchsectionitemsrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.SuccessResponse](../../models/shared/successresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getUnwatchedForSection
+
+Get unwatched items for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getUnwatchedForSection" method="get" path="/library/sections/{sectionId}/unwatched" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getUnwatchedForSection({
+    sectionId: 483590,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetUnwatchedForSection } from "@parke.dev/plexjs/funcs/libraryGetUnwatchedForSection.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetUnwatchedForSection(plexAPI, {
+    sectionId: 483590,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetUnwatchedForSection failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetUnwatchedForSectionRequest](../../models/operations/getunwatchedforsectionrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getStreamLevels
 
@@ -6576,9 +11369,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## updateItemArtwork
 
@@ -6678,9 +11472,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteMarker
 
@@ -6811,7 +11606,7 @@ async function run() {
   const result = await plexAPI.library.editMarker({
     ids: "<value>",
     marker: "<value>",
-    type: 884347,
+    mediaType: 884347,
     startTimeOffset: 517251,
     attributes: {},
   });
@@ -6852,7 +11647,7 @@ async function run() {
   const res = await libraryEditMarker(plexAPI, {
     ids: "<value>",
     marker: "<value>",
-    type: 884347,
+    mediaType: 884347,
     startTimeOffset: 517251,
     attributes: {},
   });
@@ -7215,13 +12010,13 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   await plexAPI.library.getSectionImage({
-    sectionId: 925611,
-    updatedAt: 117413,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 925611,
+    updatedAt: 117413,
   });
 
 
@@ -7258,13 +12053,13 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetSectionImage(plexAPI, {
-    sectionId: 925611,
-    updatedAt: 117413,
     mediaQuery: {
       type: MediaType.Episode,
-      sourceType: 2,
       sort: "duration:desc,index",
+      sourceType: 2,
     },
+    sectionId: 925611,
+    updatedAt: 117413,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -7292,9 +12087,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteStream
 
@@ -7422,13 +12218,13 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.library.getStream({
+  const result = await plexAPI.library.getStream({
     streamId: 314506,
     ext: "<value>",
     autoAdjustSubtitle: BoolInt.True,
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -7468,7 +12264,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("libraryGetStream failed:", res.error);
   }
@@ -7488,7 +12284,7 @@ run();
 
 ### Response
 
-**Promise\<void\>**
+**Promise\<[ReadableStream<Uint8Array>](../../models/binaryresponse.md)\>**
 
 ### Errors
 
@@ -7523,12 +12319,12 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.library.setStreamOffset({
+  const result = await plexAPI.library.setStreamOffset({
     streamId: 606295,
     ext: "<value>",
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -7567,7 +12363,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("librarySetStreamOffset failed:", res.error);
   }
@@ -7587,7 +12383,7 @@ run();
 
 ### Response
 
-**Promise\<void\>**
+**Promise\<[ReadableStream<Uint8Array>](../../models/binaryresponse.md)\>**
 
 ### Errors
 
@@ -7694,16 +12490,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getMediaPart
 
 Get a media part for streaming or download.
   - streaming: This is the default scenario.  Bandwidth usage on this endpoint will be guaranteed (on the server's end) to be at least the bandwidth reservation given in the decision.  If no decision exists, an ad-hoc decision will be created if sufficient bandwidth exists.  Clients should not rely on ad-hoc decisions being made as this may be removed in the future.
   - download: Indicated if the query parameter indicates this is a download.  Bandwidth will be prioritized behind playbacks and will get a fair share of what remains.
-
 
 ### Example Usage
 

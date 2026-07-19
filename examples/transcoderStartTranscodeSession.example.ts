@@ -16,6 +16,7 @@ import {
   Extension,
   StartTranscodeSessionLocation,
   StartTranscodeSessionProtocol,
+  StartTranscodeSessionSubtitles,
 } from "@parke.dev/plexjs/models/operations";
 import {
   Accepts,
@@ -42,8 +43,8 @@ const plexAPI = new PlexAPI({
 async function main() {
   const result = await plexAPI.transcoder.startTranscodeSession({
     transcodeType: TranscodeType.Music,
-    extension: Extension.Mpd,
     advancedSubtitles: AdvancedSubtitles.Burn,
+    extension: Extension.Mpd,
     audioBoost: 50,
     audioChannelCount: 5,
     autoAdjustQuality: BoolInt.True,
@@ -65,9 +66,11 @@ async function main() {
     protocol: StartTranscodeSessionProtocol.Dash,
     secondsPerSegment: 5,
     subtitleSize: 50,
+    subtitles: StartTranscodeSessionSubtitles.Burn,
+    videoResolution: "1080x1080",
+    copyts: BoolInt.True,
     videoBitrate: 12000,
     videoQuality: 50,
-    videoResolution: "1080x1080",
     xPlexClientProfileExtra:
       "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
     xPlexClientProfileName: "generic",

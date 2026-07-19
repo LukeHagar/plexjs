@@ -23,65 +23,65 @@ export enum PlexDeviceProtocol {
  */
 export type PlexDeviceProtocolOpen = OpenEnum<typeof PlexDeviceProtocol>;
 
-export type Connection = {
-  /**
-   * The protocol used for the connection (http, https, etc)
-   */
-  protocol: PlexDeviceProtocolOpen;
+export type PlexDeviceConnection = {
   /**
    * The (ip) address or domain name used for the connection
    */
   address: string;
   /**
-   * The port used for the connection
+   * If the connection is using IPv6
    */
-  port: number;
-  /**
-   * The full URI of the connection
-   */
-  uri: string;
+  iPv6: boolean;
   /**
    * If the connection is local address
    */
   local: boolean;
   /**
+   * The port used for the connection
+   */
+  port: number;
+  /**
+   * The protocol used for the connection (http, https, etc)
+   */
+  protocol: PlexDeviceProtocolOpen;
+  /**
    * If the connection is relayed through plex.direct
    */
   relay: boolean;
   /**
-   * If the connection is using IPv6
+   * The full URI of the connection
    */
-  iPv6: boolean;
+  uri: string;
 };
 
 export type PlexDevice = {
-  name: string;
-  product: string;
-  productVersion: string;
-  platform: string | null;
-  platformVersion: string | null;
-  device: string | null;
+  accessToken: string;
   clientIdentifier: string;
+  connections: Array<PlexDeviceConnection>;
   createdAt: Date;
+  device?: string | null | undefined;
+  dnsRebindingProtection: boolean;
+  home: boolean;
+  httpsRequired: boolean;
   lastSeenAt: Date;
-  provides: string;
+  name: string;
+  natLoopbackSupported: boolean;
+  owned: boolean;
   /**
    * ownerId is null when the device is owned by the token used to send the request
    */
   ownerId: number | null;
-  sourceTitle: string | null;
-  publicAddress: string;
-  accessToken: string;
-  owned: boolean;
-  home: boolean;
-  synced: boolean;
-  relay: boolean;
+  platform?: string | null | undefined;
+  platformVersion?: string | null | undefined;
   presence: boolean;
-  httpsRequired: boolean;
+  product: string;
+  productVersion: string;
+  provides: string;
+  publicAddress: string;
   publicAddressMatches: boolean;
-  dnsRebindingProtection: boolean;
-  natLoopbackSupported: boolean;
-  connections: Array<Connection>;
+  relay: boolean;
+  sourceTitle: string | null;
+  synced: boolean;
 };
 
 /** @internal */
@@ -91,58 +91,60 @@ export const PlexDeviceProtocol$inboundSchema: z.ZodType<
 > = openEnums.inboundSchema(PlexDeviceProtocol);
 
 /** @internal */
-export const Connection$inboundSchema: z.ZodType<Connection, unknown> = z
-  .object({
-    protocol: PlexDeviceProtocol$inboundSchema,
-    address: types.string(),
-    port: types.number(),
-    uri: types.string(),
-    local: types.boolean(),
-    relay: types.boolean(),
-    IPv6: types.boolean(),
-  }).transform((v) => {
-    return remap$(v, {
-      "IPv6": "iPv6",
-    });
+export const PlexDeviceConnection$inboundSchema: z.ZodType<
+  PlexDeviceConnection,
+  unknown
+> = z.object({
+  address: types.string(),
+  IPv6: types.boolean(),
+  local: types.boolean(),
+  port: types.number(),
+  protocol: PlexDeviceProtocol$inboundSchema,
+  relay: types.boolean(),
+  uri: types.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "IPv6": "iPv6",
   });
+});
 
-export function connectionFromJSON(
+export function plexDeviceConnectionFromJSON(
   jsonString: string,
-): SafeParseResult<Connection, SDKValidationError> {
+): SafeParseResult<PlexDeviceConnection, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Connection$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Connection' from JSON`,
+    (x) => PlexDeviceConnection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PlexDeviceConnection' from JSON`,
   );
 }
 
 /** @internal */
 export const PlexDevice$inboundSchema: z.ZodType<PlexDevice, unknown> = z
   .object({
+    accessToken: types.string(),
+    clientIdentifier: types.string(),
+    connections: z.array(z.lazy(() => PlexDeviceConnection$inboundSchema)),
+    createdAt: types.date(),
+    device: z.nullable(types.string()).optional(),
+    dnsRebindingProtection: types.boolean(),
+    home: types.boolean(),
+    httpsRequired: types.boolean(),
+    lastSeenAt: types.date(),
     name: types.string(),
+    natLoopbackSupported: types.boolean(),
+    owned: types.boolean(),
+    ownerId: types.nullable(types.number()),
+    platform: z.nullable(types.string()).optional(),
+    platformVersion: z.nullable(types.string()).optional(),
+    presence: types.boolean(),
     product: types.string(),
     productVersion: types.string(),
-    platform: types.nullable(types.string()),
-    platformVersion: types.nullable(types.string()),
-    device: types.nullable(types.string()),
-    clientIdentifier: types.string(),
-    createdAt: types.date(),
-    lastSeenAt: types.date(),
     provides: types.string(),
-    ownerId: types.nullable(types.number()),
-    sourceTitle: types.nullable(types.string()),
     publicAddress: types.string(),
-    accessToken: types.string(),
-    owned: types.boolean(),
-    home: types.boolean(),
-    synced: types.boolean(),
-    relay: types.boolean(),
-    presence: types.boolean(),
-    httpsRequired: types.boolean(),
     publicAddressMatches: types.boolean(),
-    dnsRebindingProtection: types.boolean(),
-    natLoopbackSupported: types.boolean(),
-    connections: z.array(z.lazy(() => Connection$inboundSchema)),
+    relay: types.boolean(),
+    sourceTitle: types.nullable(types.string()),
+    synced: types.boolean(),
   });
 
 export function plexDeviceFromJSON(

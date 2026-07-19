@@ -98,6 +98,9 @@ export type ReorderSubscriptionRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * The unique identifier of the subscription
+   */
   subscriptionId: number;
   /**
    * The subscription to move this sub after.  If missing will insert at the beginning of the list

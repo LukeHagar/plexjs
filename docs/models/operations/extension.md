@@ -1,7 +1,6 @@
 # Extension
 
-Extension 
-
+Extension
 
 ## Example Usage
 

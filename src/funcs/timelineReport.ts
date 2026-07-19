@@ -92,10 +92,13 @@ async function $do(
     "bandwidth": payload.bandwidth,
     "bufferedSize": payload.bufferedSize,
     "bufferedTime": payload.bufferedTime,
+    "containerKey": payload.containerKey,
     "continuing": payload.continuing,
     "duration": payload.duration,
+    "guid": payload.guid,
     "key": payload.key,
     "offline": payload.offline,
+    "playQueueID": payload.playQueueID,
     "playQueueItemID": payload.playQueueItemID,
     "ratingKey": payload.ratingKey,
     "state": payload.state,
@@ -103,6 +106,7 @@ async function $do(
     "timeStalled": payload.timeStalled,
     "timeToFirstFrame": payload.timeToFirstFrame,
     "updated": payload.updated,
+    "url": payload.url,
   });
 
   const headers = new Headers(compactMap({
@@ -184,8 +188,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {

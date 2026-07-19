@@ -99,6 +99,10 @@ export type GetSonicPathRequest = {
    */
   marketplace?: string | undefined;
   /**
+   * Limit results to count items
+   */
+  count?: number | undefined;
+  /**
    * Section identifier
    */
   sectionId: number;
@@ -110,10 +114,6 @@ export type GetSonicPathRequest = {
    * The ending metadata item id
    */
   endID: number;
-  /**
-   * Limit results to count items
-   */
-  count?: number | undefined;
   /**
    * The maximum distance allowed along the path; defaults to 0.25
    */
@@ -133,10 +133,10 @@ export type GetSonicPathRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  count?: number | undefined;
   sectionId: number;
   startID: number;
   endID: number;
-  count?: number | undefined;
   maxDistance?: number | undefined;
 };
 
@@ -156,10 +156,10 @@ export const GetSonicPathRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  count: z.int().optional(),
   sectionId: z.int(),
   startID: z.int(),
   endID: z.int(),
-  count: z.int().optional(),
   maxDistance: z.number().optional(),
 }).transform((v) => {
   return remap$(v, {

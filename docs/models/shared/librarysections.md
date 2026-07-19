@@ -9,18 +9,14 @@ import { LibrarySections } from "@parke.dev/plexjs/models/shared";
 
 let value: LibrarySections = {
   mediaContainer: {
-    livetv: 7,
-    machineIdentifier: "0123456789abcdef0123456789abcdef012345678",
-    musicAnalysis: 2,
-    myPlexMappingState: "mapped",
-    myPlexSigninState: "ok",
-    offlineTranscode: 1,
+    friendlyName: "My Plex Server",
+    machineIdentifier: "abc123",
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `mediaContainer`                                                                             | [shared.LibrarySectionsMediaContainer](../../models/shared/librarysectionsmediacontainer.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `mediaContainer`                                                                             | [shared.LibrarySectionsMediaContainer](../../models/shared/librarysectionsmediacontainer.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          | {<br/>"friendlyName": "My Plex Server",<br/>"machineIdentifier": "abc123"<br/>}              |

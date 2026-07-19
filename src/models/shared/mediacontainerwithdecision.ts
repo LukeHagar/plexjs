@@ -22,8 +22,6 @@ import { Tag, Tag$inboundSchema } from "./tag.js";
 export type MediaContainerWithDecisionGuid = {
   /**
    * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
-   *
-   * @remarks
    */
   id: string;
 };
@@ -54,6 +52,20 @@ export type MediaContainerWithDecisionOptimizedForStreamingOpen = OpenEnum<
   typeof MediaContainerWithDecisionOptimizedForStreaming
 >;
 
+/**
+ * Audio bitrate mode (cbr or vbr).
+ */
+export enum MediaContainerWithDecisionBitrateMode {
+  Cbr = "cbr",
+  Vbr = "vbr",
+}
+/**
+ * Audio bitrate mode (cbr or vbr).
+ */
+export type MediaContainerWithDecisionBitrateModeOpen = OpenEnum<
+  typeof MediaContainerWithDecisionBitrateMode
+>;
+
 export enum MediaContainerWithDecisionCanAutoSyncEnum {
   Zero = "0",
   One = "1",
@@ -62,12 +74,17 @@ export type MediaContainerWithDecisionCanAutoSyncEnumOpen = OpenEnum<
   typeof MediaContainerWithDecisionCanAutoSyncEnum
 >;
 
+export type MediaContainerWithDecisionCanAutoSyncUnion1 =
+  | MediaContainerWithDecisionCanAutoSyncEnumOpen
+  | boolean;
+
 /**
  * Indicates if the stream can auto-sync.
  */
-export type MediaContainerWithDecisionCanAutoSyncUnion =
+export type MediaContainerWithDecisionCanAutoSyncUnion2 =
   | boolean
-  | MediaContainerWithDecisionCanAutoSyncEnumOpen;
+  | MediaContainerWithDecisionCanAutoSyncEnumOpen
+  | boolean;
 
 /**
  * Stream type:
@@ -120,26 +137,101 @@ export type MediaContainerWithDecisionLocationOpen = OpenEnum<
 
 /**
  * `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
- *
- * @remarks
  */
 export type MediaContainerWithDecisionStream = {
+  /**
+   * Optional title for the stream (e.g., language variant).
+   */
+  title?: string | undefined;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
   /**
    * Indicates if this stream is default.
    */
   default?: boolean | undefined;
   /**
+   * ReplayGain album gain in dB.
+   */
+  albumGain?: number | undefined;
+  /**
+   * ReplayGain album peak amplitude.
+   */
+  albumPeak?: number | undefined;
+  /**
+   * ReplayGain album dynamic range in dB.
+   */
+  albumRange?: number | undefined;
+  /**
    * Audio channel layout.
    */
   audioChannelLayout?: string | undefined;
+  /**
+   * Bit depth of the video stream.
+   */
+  bitDepth?: number | undefined;
+  /**
+   * Bitrate of the stream.
+   */
+  bitrate?: number | undefined;
+  /**
+   * Audio bitrate mode (cbr or vbr).
+   */
+  bitrateMode?: MediaContainerWithDecisionBitrateModeOpen | undefined;
+  /**
+   * Indicates if the stream can auto-sync.
+   */
+  canAutoSync?:
+    | boolean
+    | MediaContainerWithDecisionCanAutoSyncEnumOpen
+    | boolean
+    | undefined;
   /**
    * Number of audio channels (for audio streams).
    */
   channels?: number | undefined;
   /**
-   * Bit depth of the video stream.
+   * Chroma sample location.
    */
-  bitDepth?: number | undefined;
+  chromaLocation?: string | undefined;
+  /**
+   * Chroma subsampling format.
+   */
+  chromaSubsampling?: string | undefined;
+  closedCaptions?: boolean | undefined;
+  /**
+   * Codec used by the stream.
+   */
+  codec: string;
+  /**
+   * Coded video height.
+   */
+  codedHeight?: number | undefined;
+  /**
+   * Coded video width.
+   */
+  codedWidth?: number | undefined;
+  /**
+   * Color primaries used.
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * Color range (e.g., tv).
+   */
+  colorRange?: string | undefined;
+  /**
+   * Color space.
+   */
+  colorSpace?: string | undefined;
+  /**
+   * Color transfer characteristics.
+   */
+  colorTrc?: string | undefined;
+  /**
+   * Display title for the stream.
+   */
+  displayTitle: string;
   /**
    * Dolby Vision BL compatibility ID.
    */
@@ -173,66 +265,36 @@ export type MediaContainerWithDecisionStream = {
    */
   doviVersion?: string | undefined;
   /**
-   * Bitrate of the stream.
+   * Indicates if the stream is a dub.
    */
-  bitrate?: number | undefined;
+  dub?: boolean | undefined;
+  embeddedInVideo?: string | undefined;
   /**
-   * Indicates if the stream can auto-sync.
+   * Loudness ramp end type.
    */
-  canAutoSync?:
-    | boolean
-    | MediaContainerWithDecisionCanAutoSyncEnumOpen
-    | undefined;
-  /**
-   * Chroma sample location.
-   */
-  chromaLocation?: string | undefined;
-  /**
-   * Chroma subsampling format.
-   */
-  chromaSubsampling?: string | undefined;
-  /**
-   * Coded video height.
-   */
-  codedHeight?: number | undefined;
-  /**
-   * Coded video width.
-   */
-  codedWidth?: number | undefined;
-  closedCaptions?: boolean | undefined;
-  /**
-   * Codec used by the stream.
-   */
-  codec: string;
-  /**
-   * Color primaries used.
-   */
-  colorPrimaries?: string | undefined;
-  /**
-   * Color range (e.g., tv).
-   */
-  colorRange?: string | undefined;
-  /**
-   * Color space.
-   */
-  colorSpace?: string | undefined;
-  /**
-   * Color transfer characteristics.
-   */
-  colorTrc?: string | undefined;
-  /**
-   * Display title for the stream.
-   */
-  displayTitle: string;
+  endRamp?: string | undefined;
   /**
    * Extended display title for the stream.
    */
   extendedDisplayTitle?: string | undefined;
+  forced?: boolean | undefined;
   /**
    * Frame rate of the stream.
    */
   frameRate?: number | undefined;
+  /**
+   * Track replay gain in dB.
+   */
+  gain?: number | undefined;
   hasScalingMatrix?: boolean | undefined;
+  /**
+   * Indicates whether header compression is enabled.
+   */
+  headerCompression?: boolean | undefined;
+  /**
+   * Indicates if the stream is for the hearing impaired.
+   */
+  hearingImpaired?: boolean | undefined;
   /**
    * Height of the video stream.
    */
@@ -262,25 +324,45 @@ export type MediaContainerWithDecisionStream = {
    */
   languageTag?: string | undefined;
   /**
-   * Format of the stream (e.g., srt).
-   */
-  format?: string | undefined;
-  /**
-   * Indicates whether header compression is enabled.
-   */
-  headerCompression?: boolean | undefined;
-  /**
    * Video level.
    */
   level?: number | undefined;
+  /**
+   * Integrated loudness in LUFS.
+   */
+  loudness?: number | undefined;
+  /**
+   * Loudness range in LU.
+   */
+  lra?: number | undefined;
+  /**
+   * Minimum lines in the lyric file.
+   */
+  minLines?: number | undefined;
   /**
    * Indicates if this is the original stream.
    */
   original?: boolean | undefined;
   /**
+   * Track peak amplitude.
+   */
+  peak?: number | undefined;
+  /**
+   * Whether the subtitle is an exact match.
+   */
+  perfectMatch?: boolean | undefined;
+  /**
    * Video profile.
    */
   profile?: string | undefined;
+  /**
+   * Lyric or subtitle provider name.
+   */
+  provider?: string | undefined;
+  /**
+   * Subtitle provider display name.
+   */
+  providerTitle?: string | undefined;
   /**
    * Number of reference frames.
    */
@@ -290,26 +372,40 @@ export type MediaContainerWithDecisionStream = {
    */
   samplingRate?: number | undefined;
   scanType?: string | undefined;
-  embeddedInVideo?: string | undefined;
+  /**
+   * Subtitle match confidence score (0-100).
+   */
+  score?: number | undefined;
   /**
    * Indicates if this stream is selected (applicable for audio streams).
    */
   selected?: boolean | undefined;
-  forced?: boolean | undefined;
   /**
-   * Indicates if the stream is for the hearing impaired.
+   * Source identifier for the subtitle.
    */
-  hearingImpaired?: boolean | undefined;
+  sourceKey?: string | undefined;
   /**
-   * Indicates if the stream is a dub.
+   * Loudness ramp start type.
    */
-  dub?: boolean | undefined;
-  /**
-   * Optional title for the stream (e.g., language variant).
-   */
-  title?: string | undefined;
+  startRamp?: string | undefined;
   streamIdentifier?: number | undefined;
   streamType: MediaContainerWithDecisionStreamTypeOpen;
+  /**
+   * Whether lyrics are timestamped.
+   */
+  timed?: boolean | undefined;
+  /**
+   * Whether the subtitle is temporary or downloaded.
+   */
+  transient?: boolean | undefined;
+  /**
+   * ID of the user who added the subtitle.
+   */
+  userID?: number | undefined;
+  /**
+   * Whether this audio track is an audio description track.
+   */
+  visualImpaired?: boolean | undefined;
   /**
    * Width of the video stream.
    */
@@ -328,8 +424,6 @@ export type DecisionOpen = OpenEnum<typeof Decision>;
 
 /**
  * `Part` represents a particular file or "part" of a media item. The part is the playable unit of the media hierarchy. Suppose that a movie library contains a movie that is broken up into files, reminiscent of a movie split across two BDs. The metadata item represents information about the movie, the media item represents this instance of the movie at this resolution and quality, and the part items represent the two playable files.  If another media were added which contained the joining of these two parts transcoded down to a lower resolution, then this metadata would contain 2 medias, one with 2 parts and one with 1 part.
- *
- * @remarks
  */
 export type MediaContainerWithDecisionPart = {
   /**
@@ -341,6 +435,10 @@ export type MediaContainerWithDecisionPart = {
    * The container of the media file, such as `mp4` or `mkv`
    */
   container?: string | undefined;
+  /**
+   * Deep analysis version for this part.
+   */
+  deepAnalysisVersion?: number | undefined;
   /**
    * The duration of the media item, in milliseconds
    */
@@ -362,10 +460,30 @@ export type MediaContainerWithDecisionPart = {
   key: string;
   optimizedForStreaming?: boolean | undefined;
   /**
+   * RTP packet length for streaming.
+   */
+  packetLength?: number | undefined;
+  /**
+   * Streaming protocol (e.g. dash, hls, direct).
+   */
+  protocol?: string | undefined;
+  /**
+   * Comma-separated list of bandwidth requirements.
+   */
+  requiredBandwidths?: string | undefined;
+  /**
    * The size of the media, in bytes
    */
   size?: number | undefined;
   stream?: Array<MediaContainerWithDecisionStream> | undefined;
+  /**
+   * Mobile sync item association ID.
+   */
+  syncItemId?: number | undefined;
+  /**
+   * Sync state (e.g. pending, downloaded, processing).
+   */
+  syncState?: string | undefined;
   videoProfile?: string | undefined;
   decision?: DecisionOpen | undefined;
   selected?: boolean | undefined;
@@ -374,8 +492,6 @@ export type MediaContainerWithDecisionPart = {
 
 /**
  * `Media` represents an one or more media files (parts) and is a child of a metadata item. There aren't necessarily any guaranteed attributes on media elements since the attributes will vary based on the type. The possible attributes are not documented here, but they typically have self-evident names. High-level media information that can be used for badging and flagging, such as `videoResolution` and codecs, is included on the media element.
- *
- * @remarks
  */
 export type MediaContainerWithDecisionMedia = {
   aspectRatio?: number | undefined;
@@ -402,6 +518,11 @@ export type MediaContainerWithDecisionMedia = {
     | MediaContainerWithDecisionOptimizedForStreamingOpen
     | undefined;
   part?: Array<MediaContainerWithDecisionPart> | undefined;
+  selected?: boolean | undefined;
+  /**
+   * Unique identifier for this media instance.
+   */
+  uuid?: string | undefined;
   videoCodec?: string | undefined;
   videoFrameRate?: string | undefined;
   videoProfile?: string | undefined;
@@ -409,7 +530,6 @@ export type MediaContainerWithDecisionMedia = {
   width?: number | undefined;
   abr?: boolean | undefined;
   resourceSession?: string | undefined;
-  selected?: boolean | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
@@ -474,6 +594,10 @@ export type MediaContainerWithDecisionMetadatum = {
    */
   art?: string | undefined;
   /**
+   * Blur hash for background art.
+   */
+  artBlurHash?: string | undefined;
+  /**
    * Some rating systems separate reviewer ratings from audience ratings
    */
   audienceRating?: number | undefined;
@@ -505,9 +629,21 @@ export type MediaContainerWithDecisionMetadatum = {
   country?: Array<Tag> | undefined;
   director?: Array<Tag> | undefined;
   /**
+   * Levenshtein distance for voice search results.
+   */
+  distance?: number | undefined;
+  /**
    * When present, the duration for the item, in units of milliseconds.
    */
   duration?: number | undefined;
+  /**
+   * Edition string (e.g. "Director's Cut").
+   */
+  editionTitle?: string | undefined;
+  /**
+   * Whether credits marker generation is enabled for this item.
+   */
+  enableCreditsMarkerGeneration?: boolean | undefined;
   /**
    * Typically only seen in metadata at a library's top level
    */
@@ -563,12 +699,24 @@ export type MediaContainerWithDecisionMetadatum = {
    * The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
    */
   key: string;
+  /**
+   * Per-item language override.
+   */
+  languageOverride?: string | undefined;
+  /**
+   * Timestamp of the last user rating.
+   */
+  lastRatedAt?: number | undefined;
   lastViewedAt?: number | undefined;
   /**
    * For shows and seasons, contains the number of total episodes.
    */
   leafCount?: number | undefined;
   media?: Array<MediaContainerWithDecisionMedia> | undefined;
+  /**
+   * Analysis version for music items.
+   */
+  musicAnalysisVersion?: number | undefined;
   /**
    * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
    */
@@ -605,6 +753,10 @@ export type MediaContainerWithDecisionMetadatum = {
    * The `title` of the parent
    */
   parentTitle?: string | undefined;
+  /**
+   * Item ID within a playlist.
+   */
+  playlistItemID?: number | undefined;
   /**
    * Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
    */
@@ -647,6 +799,10 @@ export type MediaContainerWithDecisionMetadatum = {
     | MediaContainerWithDecisionSkipChildrenEnumOpen
     | undefined;
   /**
+   * Number of times this track has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
    * When present on an episode or track item, indicates parent should be skipped in favor of grandparent (show).
    */
   skipParent?:
@@ -654,9 +810,17 @@ export type MediaContainerWithDecisionMetadatum = {
     | MediaContainerWithDecisionSkipParentEnumOpen
     | undefined;
   /**
+   * URL-friendly slug for the item.
+   */
+  slug?: string | undefined;
+  /**
    * Typically only seen in metadata at a library's top level
    */
   sort?: Array<Sort> | undefined;
+  /**
+   * Remote or shared server item URI.
+   */
+  sourceURI?: string | undefined;
   /**
    * When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
    */
@@ -682,6 +846,10 @@ export type MediaContainerWithDecisionMetadatum = {
    */
   thumb?: string | undefined;
   /**
+   * Blur hash for thumbnail.
+   */
+  thumbBlurHash?: string | undefined;
+  /**
    * Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
    */
   titleSort?: string | undefined;
@@ -689,6 +857,10 @@ export type MediaContainerWithDecisionMetadatum = {
    * In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
    */
   updatedAt?: number | undefined;
+  /**
+   * Whether to display the original title.
+   */
+  useOriginalTitle?: boolean | undefined;
   /**
    * When the user has rated an item, this contains the user rating
    */
@@ -724,15 +896,11 @@ export type MediaContainerWithDecisionMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   /**
@@ -823,31 +991,63 @@ export const MediaContainerWithDecisionOptimizedForStreaming$inboundSchema:
     openEnums.inboundSchemaInt(MediaContainerWithDecisionOptimizedForStreaming);
 
 /** @internal */
+export const MediaContainerWithDecisionBitrateMode$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionBitrateModeOpen,
+  unknown
+> = openEnums.inboundSchema(MediaContainerWithDecisionBitrateMode);
+
+/** @internal */
 export const MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema: z.ZodType<
   MediaContainerWithDecisionCanAutoSyncEnumOpen,
   unknown
 > = openEnums.inboundSchema(MediaContainerWithDecisionCanAutoSyncEnum);
 
 /** @internal */
-export const MediaContainerWithDecisionCanAutoSyncUnion$inboundSchema:
-  z.ZodType<MediaContainerWithDecisionCanAutoSyncUnion, unknown> = smartUnion([
-    types.boolean(),
+export const MediaContainerWithDecisionCanAutoSyncUnion1$inboundSchema:
+  z.ZodType<MediaContainerWithDecisionCanAutoSyncUnion1, unknown> = smartUnion([
     MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
+    types.boolean(),
   ]);
 
-export function mediaContainerWithDecisionCanAutoSyncUnionFromJSON(
+export function mediaContainerWithDecisionCanAutoSyncUnion1FromJSON(
   jsonString: string,
 ): SafeParseResult<
-  MediaContainerWithDecisionCanAutoSyncUnion,
+  MediaContainerWithDecisionCanAutoSyncUnion1,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      MediaContainerWithDecisionCanAutoSyncUnion$inboundSchema.parse(
+      MediaContainerWithDecisionCanAutoSyncUnion1$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'MediaContainerWithDecisionCanAutoSyncUnion' from JSON`,
+    `Failed to parse 'MediaContainerWithDecisionCanAutoSyncUnion1' from JSON`,
+  );
+}
+
+/** @internal */
+export const MediaContainerWithDecisionCanAutoSyncUnion2$inboundSchema:
+  z.ZodType<MediaContainerWithDecisionCanAutoSyncUnion2, unknown> = smartUnion([
+    types.boolean(),
+    smartUnion([
+      MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
+      types.boolean(),
+    ]),
+  ]);
+
+export function mediaContainerWithDecisionCanAutoSyncUnion2FromJSON(
+  jsonString: string,
+): SafeParseResult<
+  MediaContainerWithDecisionCanAutoSyncUnion2,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MediaContainerWithDecisionCanAutoSyncUnion2$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'MediaContainerWithDecisionCanAutoSyncUnion2' from JSON`,
   );
 }
 
@@ -875,10 +1075,39 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
   unknown
 > = collectExtraKeys$(
   z.object({
+    title: types.optional(types.string()),
+    format: types.optional(types.string()),
     default: types.optional(types.boolean()),
+    albumGain: types.optional(types.number()),
+    albumPeak: types.optional(types.number()),
+    albumRange: types.optional(types.number()),
     audioChannelLayout: types.optional(types.string()),
-    channels: types.optional(types.number()),
     bitDepth: types.optional(types.number()),
+    bitrate: types.optional(types.number()),
+    bitrateMode: types.optional(
+      MediaContainerWithDecisionBitrateMode$inboundSchema,
+    ),
+    canAutoSync: types.optional(
+      smartUnion([
+        types.boolean(),
+        smartUnion([
+          MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
+          types.boolean(),
+        ]),
+      ]),
+    ),
+    channels: types.optional(types.number()),
+    chromaLocation: types.optional(types.string()),
+    chromaSubsampling: types.optional(types.string()),
+    closedCaptions: types.optional(types.boolean()),
+    codec: types.string(),
+    codedHeight: types.optional(types.number()),
+    codedWidth: types.optional(types.number()),
+    colorPrimaries: types.optional(types.string()),
+    colorRange: types.optional(types.string()),
+    colorSpace: types.optional(types.string()),
+    colorTrc: types.optional(types.string()),
+    displayTitle: types.string(),
     DOVIBLCompatID: types.optional(types.number()),
     DOVIBLPresent: types.optional(types.boolean()),
     DOVIELPresent: types.optional(types.boolean()),
@@ -887,27 +1116,16 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     DOVIProfile: types.optional(types.number()),
     DOVIRPUPresent: types.optional(types.boolean()),
     DOVIVersion: types.optional(types.string()),
-    bitrate: types.optional(types.number()),
-    canAutoSync: types.optional(
-      smartUnion([
-        types.boolean(),
-        MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
-      ]),
-    ),
-    chromaLocation: types.optional(types.string()),
-    chromaSubsampling: types.optional(types.string()),
-    codedHeight: types.optional(types.number()),
-    codedWidth: types.optional(types.number()),
-    closedCaptions: types.optional(types.boolean()),
-    codec: types.string(),
-    colorPrimaries: types.optional(types.string()),
-    colorRange: types.optional(types.string()),
-    colorSpace: types.optional(types.string()),
-    colorTrc: types.optional(types.string()),
-    displayTitle: types.string(),
+    dub: types.optional(types.boolean()),
+    embeddedInVideo: types.optional(types.string()),
+    endRamp: types.optional(types.string()),
     extendedDisplayTitle: types.optional(types.string()),
+    forced: types.optional(types.boolean()),
     frameRate: types.optional(types.number()),
+    gain: types.optional(types.number()),
     hasScalingMatrix: types.optional(types.boolean()),
+    headerCompression: types.optional(types.boolean()),
+    hearingImpaired: types.optional(types.boolean()),
     height: types.optional(types.number()),
     id: types.number(),
     index: types.optional(types.number()),
@@ -915,22 +1133,29 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     language: types.optional(types.string()),
     languageCode: types.optional(types.string()),
     languageTag: types.optional(types.string()),
-    format: types.optional(types.string()),
-    headerCompression: types.optional(types.boolean()),
     level: types.optional(types.number()),
+    loudness: types.optional(types.number()),
+    lra: types.optional(types.number()),
+    minLines: types.optional(types.number()),
     original: types.optional(types.boolean()),
+    peak: types.optional(types.number()),
+    perfectMatch: types.optional(types.boolean()),
     profile: types.optional(types.string()),
+    provider: types.optional(types.string()),
+    providerTitle: types.optional(types.string()),
     refFrames: types.optional(types.number()),
     samplingRate: types.optional(types.number()),
     scanType: types.optional(types.string()),
-    embeddedInVideo: types.optional(types.string()),
+    score: types.optional(types.number()),
     selected: types.optional(types.boolean()),
-    forced: types.optional(types.boolean()),
-    hearingImpaired: types.optional(types.boolean()),
-    dub: types.optional(types.boolean()),
-    title: types.optional(types.string()),
+    sourceKey: types.optional(types.string()),
+    startRamp: types.optional(types.string()),
     streamIdentifier: types.optional(types.number()),
     streamType: MediaContainerWithDecisionStreamType$inboundSchema,
+    timed: types.optional(types.boolean()),
+    transient: types.optional(types.boolean()),
+    userID: types.optional(types.number()),
+    visualImpaired: types.optional(types.boolean()),
     width: types.optional(types.number()),
     decision: types.optional(StreamDecision$inboundSchema),
     location: types.optional(MediaContainerWithDecisionLocation$inboundSchema),
@@ -973,6 +1198,7 @@ export const MediaContainerWithDecisionPart$inboundSchema: z.ZodType<
     accessible: types.optional(types.boolean()),
     audioProfile: types.optional(types.string()),
     container: types.optional(types.string()),
+    deepAnalysisVersion: types.optional(types.number()),
     duration: types.optional(types.number()),
     exists: types.optional(types.boolean()),
     file: types.optional(types.string()),
@@ -981,10 +1207,15 @@ export const MediaContainerWithDecisionPart$inboundSchema: z.ZodType<
     indexes: types.optional(types.string()),
     key: types.string(),
     optimizedForStreaming: types.optional(types.boolean()),
+    packetLength: types.optional(types.number()),
+    protocol: types.optional(types.string()),
+    requiredBandwidths: types.optional(types.string()),
     size: types.optional(types.number()),
     Stream: types.optional(
       z.array(z.lazy(() => MediaContainerWithDecisionStream$inboundSchema)),
     ),
+    syncItemId: types.optional(types.number()),
+    syncState: types.optional(types.string()),
     videoProfile: types.optional(types.string()),
     decision: types.optional(Decision$inboundSchema),
     selected: types.optional(types.boolean()),
@@ -1035,6 +1266,8 @@ export const MediaContainerWithDecisionMedia$inboundSchema: z.ZodType<
     Part: types.optional(
       z.array(z.lazy(() => MediaContainerWithDecisionPart$inboundSchema)),
     ),
+    selected: types.optional(types.boolean()),
+    uuid: types.optional(types.string()),
     videoCodec: types.optional(types.string()),
     videoFrameRate: types.optional(types.string()),
     videoProfile: types.optional(types.string()),
@@ -1042,7 +1275,6 @@ export const MediaContainerWithDecisionMedia$inboundSchema: z.ZodType<
     width: types.optional(types.number()),
     abr: types.optional(types.boolean()),
     resourceSession: types.optional(types.string()),
-    selected: types.optional(types.boolean()),
   }).catchall(z.any()),
   "additionalProperties",
   true,
@@ -1132,6 +1364,7 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
     absoluteIndex: types.optional(types.number()),
     addedAt: types.number(),
     art: types.optional(types.string()),
+    artBlurHash: types.optional(types.string()),
     audienceRating: types.optional(types.number()),
     audienceRatingImage: types.optional(types.string()),
     Autotag: types.optional(z.array(Tag$inboundSchema)),
@@ -1142,7 +1375,10 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
     contentRating: types.optional(types.string()),
     Country: types.optional(z.array(Tag$inboundSchema)),
     Director: types.optional(z.array(Tag$inboundSchema)),
+    distance: types.optional(types.number()),
     duration: types.optional(types.number()),
+    editionTitle: types.optional(types.string()),
+    enableCreditsMarkerGeneration: types.optional(types.boolean()),
     Filter: types.optional(z.array(Filter$inboundSchema)),
     Genre: types.optional(z.array(Tag$inboundSchema)),
     grandparentArt: types.optional(types.string()),
@@ -1161,11 +1397,14 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
     Image: types.optional(z.array(Image$inboundSchema)),
     index: types.optional(types.number()),
     key: types.string(),
+    languageOverride: types.optional(types.string()),
+    lastRatedAt: types.optional(types.number()),
     lastViewedAt: types.optional(types.number()),
     leafCount: types.optional(types.number()),
     Media: types.optional(
       z.array(z.lazy(() => MediaContainerWithDecisionMedia$inboundSchema)),
     ),
+    musicAnalysisVersion: types.optional(types.number()),
     originallyAvailableAt: types.optional(types.date()),
     originalTitle: types.optional(types.string()),
     parentGuid: types.optional(types.string()),
@@ -1175,6 +1414,7 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
     parentRatingKey: types.optional(types.string()),
     parentThumb: types.optional(types.string()),
     parentTitle: types.optional(types.string()),
+    playlistItemID: types.optional(types.number()),
     primaryExtraKey: types.optional(types.string()),
     prompt: types.optional(types.string()),
     rating: types.optional(types.number()),
@@ -1191,21 +1431,26 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
         MediaContainerWithDecisionSkipChildrenEnum$inboundSchema,
       ]),
     ),
+    skipCount: types.optional(types.number()),
     skipParent: types.optional(
       smartUnion([
         types.boolean(),
         MediaContainerWithDecisionSkipParentEnum$inboundSchema,
       ]),
     ),
+    slug: types.optional(types.string()),
     Sort: types.optional(z.array(Sort$inboundSchema)),
+    sourceURI: types.optional(types.string()),
     studio: types.optional(types.string()),
     subtype: types.optional(types.string()),
     summary: types.optional(types.string()),
     tagline: types.optional(types.string()),
     theme: types.optional(types.string()),
     thumb: types.optional(types.string()),
+    thumbBlurHash: types.optional(types.string()),
     titleSort: types.optional(types.string()),
     updatedAt: types.optional(types.number()),
+    useOriginalTitle: types.optional(types.boolean()),
     userRating: types.optional(types.number()),
     viewCount: types.optional(types.number()),
     viewedLeafCount: types.optional(types.number()),

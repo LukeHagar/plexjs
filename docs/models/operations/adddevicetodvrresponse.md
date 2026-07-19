@@ -15,7 +15,14 @@ let value: AddDeviceToDVRResponse = {
       "<value 2>",
     ],
   },
-  result: {},
+  result: {
+    mediaContainer: {
+      mediaContainer: {
+        identifier: "com.plexapp.system",
+        size: 1,
+      },
+    },
+  },
 };
 ```
 

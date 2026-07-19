@@ -6,13 +6,8 @@
 import { ReloadGuideResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: ReloadGuideResponse = {
-  headers: {
-    "key": [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-  },
+  headers: {},
+  result: new TextEncoder().encode("0x71ff0A6280"),
 };
 ```
 
@@ -21,3 +16,4 @@ let value: ReloadGuideResponse = {
 | Field                      | Type                       | Required                   | Description                |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 | `headers`                  | Record<string, *string*[]> | :heavy_check_mark:         | N/A                        |
+| `result`                   | *Uint8Array*               | :heavy_check_mark:         | N/A                        |

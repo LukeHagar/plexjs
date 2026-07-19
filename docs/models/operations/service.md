@@ -6,11 +6,11 @@
 import { Service, ServiceStatus } from "@parke.dev/plexjs/models/operations";
 
 let value: Service = {
-  identifier: "metadata-dev",
   endpoint: "https://epg.provider.plex.tv",
-  token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
+  identifier: "metadata-dev",
   secret: "<value>",
   status: ServiceStatus.Online,
+  token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
 };
 ```
 
@@ -18,8 +18,8 @@ let value: Service = {
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `identifier`                                                         | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  | metadata-dev                                                         |
 | `endpoint`                                                           | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  | https://epg.provider.plex.tv                                         |
-| `token`                                                              | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  | DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv                                     |
+| `identifier`                                                         | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  | metadata-dev                                                         |
 | `secret`                                                             | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
 | `status`                                                             | [operations.ServiceStatus](../../models/operations/servicestatus.md) | :heavy_check_mark:                                                   | N/A                                                                  | online                                                               |
+| `token`                                                              | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  | DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv                                     |

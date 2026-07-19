@@ -4,6 +4,11 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetThumbGlobals = {
@@ -108,6 +113,8 @@ export type GetThumbRequest = {
   versionPathParameter: number;
 };
 
+export type GetThumbResponse = ReadableStream<Uint8Array> | string;
+
 /** @internal */
 export type GetThumbRequest$Outbound = {
   accepts: string;
@@ -162,4 +169,23 @@ export function getThumbRequestToJSON(
   getThumbRequest: GetThumbRequest,
 ): string {
   return JSON.stringify(GetThumbRequest$outboundSchema.parse(getThumbRequest));
+}
+
+/** @internal */
+export const GetThumbResponse$inboundSchema: z.ZodType<
+  GetThumbResponse,
+  unknown
+> = smartUnion([
+  z.custom<ReadableStream<Uint8Array>>(x => x instanceof ReadableStream),
+  types.string(),
+]);
+
+export function getThumbResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetThumbResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetThumbResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetThumbResponse' from JSON`,
+  );
 }

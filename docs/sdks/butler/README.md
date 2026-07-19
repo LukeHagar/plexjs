@@ -76,14 +76,14 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getTasks
 
 Get the list of butler tasks and their scheduling
-
 
 ### Example Usage
 
@@ -145,9 +145,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## startTasks
 
@@ -157,7 +158,6 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
   2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.
   3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
   4. If we are outside the configured window, the task will start immediately.
-
 
 ### Example Usage
 
@@ -219,14 +219,14 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## stopTask
 
 This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists
-
 
 ### Example Usage
 
@@ -327,7 +327,6 @@ run();
 
 This endpoint will attempt to start a specific Butler task by name.
 
-
 ### Example Usage
 
 <!-- UsageSnippet language="typescript" operationID="startTask" method="post" path="/butler/{butlerTask}" -->
@@ -352,11 +351,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.butler.startTask({
+  const result = await plexAPI.butler.startTask({
     butlerTask: StartTaskButlerTask.RefreshLocalMedia,
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -395,7 +394,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("butlerStartTask failed:", res.error);
   }
@@ -415,7 +414,7 @@ run();
 
 ### Response
 
-**Promise\<void\>**
+**Promise\<[operations.StartTaskResponse](../../models/operations/starttaskresponse.md)\>**
 
 ### Errors
 

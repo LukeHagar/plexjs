@@ -102,6 +102,9 @@ export type GetFileRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
   /**
    * The bundle url, typically starting with `metadata://` or `media://`

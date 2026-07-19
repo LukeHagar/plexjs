@@ -112,13 +112,6 @@ export type GetCountryRegionsRequest = {
   epgId: string;
 };
 
-export type GetCountryRegionsCountry = {
-  key?: string | undefined;
-  national?: boolean | undefined;
-  title?: string | undefined;
-  type?: string | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -130,18 +123,14 @@ export type GetCountryRegionsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  country?: Array<GetCountryRegionsCountry> | undefined;
+  country?: Array<shared.EPGRegion> | undefined;
 };
 
 /**
@@ -215,27 +204,6 @@ export function getCountryRegionsRequestToJSON(
 }
 
 /** @internal */
-export const GetCountryRegionsCountry$inboundSchema: z.ZodType<
-  GetCountryRegionsCountry,
-  unknown
-> = z.object({
-  key: types.optional(types.string()),
-  national: types.optional(types.boolean()),
-  title: types.optional(types.string()),
-  type: types.optional(types.string()),
-});
-
-export function getCountryRegionsCountryFromJSON(
-  jsonString: string,
-): SafeParseResult<GetCountryRegionsCountry, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetCountryRegionsCountry$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetCountryRegionsCountry' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetCountryRegionsMediaContainer$inboundSchema: z.ZodType<
   GetCountryRegionsMediaContainer,
   unknown
@@ -244,9 +212,7 @@ export const GetCountryRegionsMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Country: types.optional(
-    z.array(z.lazy(() => GetCountryRegionsCountry$inboundSchema)),
-  ),
+  Country: types.optional(z.array(shared.EPGRegion$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Country": "country",

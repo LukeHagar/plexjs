@@ -8,26 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ChannelMapping,
-  ChannelMapping$inboundSchema,
-} from "./channelmapping.js";
-
-export type MediaContainerWithDeviceDevice = {
-  channelMapping?: Array<ChannelMapping> | undefined;
-  key?: string | undefined;
-  lastSeenAt?: number | undefined;
-  make?: string | undefined;
-  model?: string | undefined;
-  modelNumber?: string | undefined;
-  protocol?: string | undefined;
-  sources?: string | undefined;
-  state?: string | undefined;
-  status?: string | undefined;
-  tuners?: string | undefined;
-  uri?: string | undefined;
-  uuid?: string | undefined;
-};
+import { Device, Device$inboundSchema } from "./device.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -40,57 +21,19 @@ export type MediaContainerWithDeviceMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  device?: Array<MediaContainerWithDeviceDevice> | undefined;
+  device?: Array<Device> | undefined;
 };
 
 export type MediaContainerWithDevice = {
   mediaContainer?: MediaContainerWithDeviceMediaContainer | undefined;
 };
-
-/** @internal */
-export const MediaContainerWithDeviceDevice$inboundSchema: z.ZodType<
-  MediaContainerWithDeviceDevice,
-  unknown
-> = z.object({
-  ChannelMapping: types.optional(z.array(ChannelMapping$inboundSchema)),
-  key: types.optional(types.string()),
-  lastSeenAt: types.optional(types.number()),
-  make: types.optional(types.string()),
-  model: types.optional(types.string()),
-  modelNumber: types.optional(types.string()),
-  protocol: types.optional(types.string()),
-  sources: types.optional(types.string()),
-  state: types.optional(types.string()),
-  status: types.optional(types.string()),
-  tuners: types.optional(types.string()),
-  uri: types.optional(types.string()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "ChannelMapping": "channelMapping",
-  });
-});
-
-export function mediaContainerWithDeviceDeviceFromJSON(
-  jsonString: string,
-): SafeParseResult<MediaContainerWithDeviceDevice, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MediaContainerWithDeviceDevice$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MediaContainerWithDeviceDevice' from JSON`,
-  );
-}
 
 /** @internal */
 export const MediaContainerWithDeviceMediaContainer$inboundSchema: z.ZodType<
@@ -101,9 +44,7 @@ export const MediaContainerWithDeviceMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Device: types.optional(
-    z.array(z.lazy(() => MediaContainerWithDeviceDevice$inboundSchema)),
-  ),
+  Device: types.optional(z.array(Device$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Device": "device",

@@ -7,7 +7,7 @@ Endpoints for manipulating playlists.
 ### Available Operations
 
 * [createPlaylist](#createplaylist) - Create a Playlist
-* [uploadPlaylist](#uploadplaylist) - Upload
+* [uploadPlaylist](#uploadplaylist) - Upload media art
 * [deletePlaylist](#deleteplaylist) - Delete a Playlist
 * [updatePlaylist](#updateplaylist) - Editing a Playlist
 * [getPlaylistGenerators](#getplaylistgenerators) - Get a playlist's generators
@@ -931,6 +931,8 @@ async function run() {
     playlistId: 972007,
     generatorId: 208334,
     item: {
+      title: "Jack-Jack Attack",
+      type: 42,
       location: {
         uri: "library://82503060-0d68-4603-b594-8b071d54819e/item/%2Flibrary%2Fmetadata%2F146",
       },
@@ -940,8 +942,6 @@ async function run() {
       },
       target: "",
       targetTagID: 1,
-      title: "Jack-Jack Attack",
-      type: 42,
     },
   });
 
@@ -983,6 +983,8 @@ async function run() {
     playlistId: 972007,
     generatorId: 208334,
     item: {
+      title: "Jack-Jack Attack",
+      type: 42,
       location: {
         uri: "library://82503060-0d68-4603-b594-8b071d54819e/item/%2Flibrary%2Fmetadata%2F146",
       },
@@ -992,8 +994,6 @@ async function run() {
       },
       target: "",
       targetTagID: 1,
-      title: "Jack-Jack Attack",
-      type: 42,
     },
   });
   if (res.ok) {

@@ -6,7 +6,6 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
@@ -112,57 +111,9 @@ export type AddLineupRequest = {
   lineup: string;
 };
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type AddLineupMediaContainerMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  /**
-   * A status indicator. If present and non-zero, indicates an error
-   */
-  status?: number | undefined;
-};
-
-export type AddLineupDVR = {
-  device?: Array<shared.Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
-  uuid?: string | undefined;
-};
-
-export type AddLineupMediaContainer = {
-  mediaContainer?: AddLineupMediaContainerMediaContainer | undefined;
-  dvr?: Array<AddLineupDVR> | undefined;
-};
-
-/**
- * OK
- */
-export type AddLineupResponseBody = {
-  mediaContainer?: AddLineupMediaContainer | undefined;
-};
-
 export type AddLineupResponse = {
   headers: { [k: string]: Array<string> };
-  result: AddLineupResponseBody;
+  result: shared.DVRResponse;
 };
 
 /** @internal */
@@ -224,109 +175,12 @@ export function addLineupRequestToJSON(
 }
 
 /** @internal */
-export const AddLineupMediaContainerMediaContainer$inboundSchema: z.ZodType<
-  AddLineupMediaContainerMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  status: types.optional(types.number()),
-});
-
-export function addLineupMediaContainerMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<AddLineupMediaContainerMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AddLineupMediaContainerMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddLineupMediaContainerMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const AddLineupDVR$inboundSchema: z.ZodType<AddLineupDVR, unknown> = z
-  .object({
-    Device: types.optional(z.array(shared.Device$inboundSchema)),
-    key: types.optional(types.string()),
-    language: types.optional(types.string()),
-    lineup: types.optional(types.string()),
-    uuid: types.optional(types.string()),
-  }).transform((v) => {
-    return remap$(v, {
-      "Device": "device",
-    });
-  });
-
-export function addLineupDVRFromJSON(
-  jsonString: string,
-): SafeParseResult<AddLineupDVR, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddLineupDVR$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddLineupDVR' from JSON`,
-  );
-}
-
-/** @internal */
-export const AddLineupMediaContainer$inboundSchema: z.ZodType<
-  AddLineupMediaContainer,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => AddLineupMediaContainerMediaContainer$inboundSchema),
-  ),
-  DVR: types.optional(z.array(z.lazy(() => AddLineupDVR$inboundSchema))),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-    "DVR": "dvr",
-  });
-});
-
-export function addLineupMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<AddLineupMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddLineupMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddLineupMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const AddLineupResponseBody$inboundSchema: z.ZodType<
-  AddLineupResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => AddLineupMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function addLineupResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<AddLineupResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddLineupResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddLineupResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const AddLineupResponse$inboundSchema: z.ZodType<
   AddLineupResponse,
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => AddLineupResponseBody$inboundSchema),
+  Result: shared.DVRResponse$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

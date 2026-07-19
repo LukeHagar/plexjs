@@ -24,7 +24,6 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
-import * as types$ from "../types/primitives.js";
 
 /**
  * Compute the best lineup
@@ -38,7 +37,7 @@ export function epgGetLineup(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.GetLineupResponse | undefined,
+    operations.GetLineupResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -63,7 +62,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.GetLineupResponse | undefined,
+      operations.GetLineupResponse,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -95,7 +94,7 @@ async function $do(
   });
 
   const headers = new Headers(compactMap({
-    Accept: "*/*",
+    Accept: "application/json",
     "X-Plex-Client-Identifier": encodeSimple(
       "X-Plex-Client-Identifier",
       payload["Client-Identifier"] ?? client._options.clientIdentifier,
@@ -168,8 +167,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -205,7 +214,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.GetLineupResponse | undefined,
+    operations.GetLineupResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -215,8 +224,9 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, types$.optional(operations.GetLineupResponse$inboundSchema), {
+    M.json(200, operations.GetLineupResponse$inboundSchema, {
       hdrs: true,
+      key: "Result",
     }),
     M.fail([404, "4XX"]),
     M.fail([500, "5XX"]),

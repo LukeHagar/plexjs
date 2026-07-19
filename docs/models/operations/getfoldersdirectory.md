@@ -12,6 +12,6 @@ let value: GetFoldersDirectory = {};
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
+| `title`            | *string*           | :heavy_minus_sign: | N/A                |
 | `fastKey`          | *string*           | :heavy_minus_sign: | N/A                |
 | `key`              | *string*           | :heavy_minus_sign: | N/A                |
-| `title`            | *string*           | :heavy_minus_sign: | N/A                |

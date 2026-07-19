@@ -108,12 +108,6 @@ export type GetAvailableGrabbersRequest = {
   protocol?: string | undefined;
 };
 
-export type MediaGrabber = {
-  identifier?: string | undefined;
-  protocol?: string | undefined;
-  title?: string | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -125,18 +119,14 @@ export type GetAvailableGrabbersMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  mediaGrabber?: Array<MediaGrabber> | undefined;
+  mediaGrabber?: Array<shared.MediaGrabber> | undefined;
 };
 
 /**
@@ -210,24 +200,6 @@ export function getAvailableGrabbersRequestToJSON(
 }
 
 /** @internal */
-export const MediaGrabber$inboundSchema: z.ZodType<MediaGrabber, unknown> = z
-  .object({
-    identifier: types.optional(types.string()),
-    protocol: types.optional(types.string()),
-    title: types.optional(types.string()),
-  });
-
-export function mediaGrabberFromJSON(
-  jsonString: string,
-): SafeParseResult<MediaGrabber, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MediaGrabber$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MediaGrabber' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetAvailableGrabbersMediaContainer$inboundSchema: z.ZodType<
   GetAvailableGrabbersMediaContainer,
   unknown
@@ -236,9 +208,7 @@ export const GetAvailableGrabbersMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  MediaGrabber: types.optional(
-    z.array(z.lazy(() => MediaGrabber$inboundSchema)),
-  ),
+  MediaGrabber: types.optional(z.array(shared.MediaGrabber$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "MediaGrabber": "mediaGrabber",

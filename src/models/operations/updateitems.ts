@@ -102,7 +102,10 @@ export type UpdateItemsRequest = {
    * The id of the section
    */
   sectionId: string;
-  type?: string | undefined;
+  /**
+   * The media type to filter by
+   */
+  mediaType?: string | undefined;
   /**
    * The filters to apply to determine which items should be modified
    */
@@ -167,7 +170,7 @@ export type UpdateItemsRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   sectionId: string;
-  type?: string | undefined;
+  mediaType?: string | undefined;
   filters?: string | undefined;
   "field.value"?: string | undefined;
   "field.locked": number;
@@ -199,7 +202,7 @@ export const UpdateItemsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   sectionId: z.string(),
-  type: z.string().optional(),
+  mediaType: z.string().optional(),
   filters: z.string().optional(),
   fieldValue: z.string().optional(),
   fieldLocked: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),

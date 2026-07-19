@@ -98,6 +98,7 @@ export type GetCollectionImageRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  composite?: shared.Composite | undefined;
   /**
    * The collection id
    */
@@ -106,7 +107,6 @@ export type GetCollectionImageRequest = {
    * The update time of the image.  Used for busting cache.
    */
   updatedAt: number;
-  composite?: shared.Composite | undefined;
 };
 
 /** @internal */
@@ -122,9 +122,9 @@ export type GetCollectionImageRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  composite?: shared.Composite$Outbound | undefined;
   collectionId: number;
   updatedAt: number;
-  composite?: shared.Composite$Outbound | undefined;
 };
 
 /** @internal */
@@ -143,9 +143,9 @@ export const GetCollectionImageRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  composite: shared.Composite$outboundSchema.optional(),
   collectionId: z.int(),
   updatedAt: z.int(),
-  composite: shared.Composite$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

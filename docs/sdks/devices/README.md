@@ -37,6 +37,7 @@ Example SSDP output
   - UDN: (string) A UUID for the device. This should be unique across models of a device at minimum.
   - URLBase: (string) The base HTTP URL for the device from which all of the other endpoints are hosted.
 
+Note: This tag covers media grabber and network tuner devices only. For client device discovery, use `/clients` or `/resources`.
 
 ### Available Operations
 
@@ -147,9 +148,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listDevices
 
@@ -215,9 +217,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## addDevice
 
@@ -322,7 +325,7 @@ Tell grabbers to discover devices
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="discoverDevices" method="post" path="/media/grabbers/devices/discover" -->
+<!-- UsageSnippet language="typescript" operationID="discoverDevices" method="get" path="/media/grabbers/devices/discover" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
 
@@ -370,6 +373,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `protocol`                                                                                                                                                                     | [operations.DiscoverDevicesProtocol](../../models/operations/discoverdevicesprotocol.md)                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Protocol to filter discovery.                                                                                                                                                  |
+| `grabberIdentifier`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Targeted grabber identifier.                                                                                                                                                   |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -380,9 +385,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## removeDevice
 
@@ -806,9 +812,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getDevicesChannels
 
@@ -1000,9 +1007,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## stopScan
 
@@ -1097,9 +1105,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## scan
 
@@ -1196,9 +1205,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getThumb
 
@@ -1227,12 +1237,12 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  await plexAPI.devices.getThumb({
+  const result = await plexAPI.devices.getThumb({
     deviceId: 960617,
     versionPathParameter: 1025,
   });
 
-
+  console.log(result);
 }
 
 run();
@@ -1271,7 +1281,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
     console.log("devicesGetThumb failed:", res.error);
   }
@@ -1291,7 +1301,7 @@ run();
 
 ### Response
 
-**Promise\<void\>**
+**Promise\<[operations.GetThumbResponse](../../models/operations/getthumbresponse.md)\>**
 
 ### Errors
 

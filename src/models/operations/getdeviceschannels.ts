@@ -108,20 +108,6 @@ export type GetDevicesChannelsRequest = {
   deviceId: number;
 };
 
-export type DeviceChannel = {
-  /**
-   * Indicates the channel is DRMed and thus may not be playable
-   */
-  drm?: boolean | undefined;
-  favorite?: boolean | undefined;
-  hd?: boolean | undefined;
-  identifier?: string | undefined;
-  key?: string | undefined;
-  name?: string | undefined;
-  signalQuality?: number | undefined;
-  signalStrength?: number | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -133,18 +119,14 @@ export type GetDevicesChannelsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  deviceChannel?: Array<DeviceChannel> | undefined;
+  deviceChannel?: Array<shared.DeviceChannel> | undefined;
 };
 
 /**
@@ -216,29 +198,6 @@ export function getDevicesChannelsRequestToJSON(
 }
 
 /** @internal */
-export const DeviceChannel$inboundSchema: z.ZodType<DeviceChannel, unknown> = z
-  .object({
-    drm: types.optional(types.boolean()),
-    favorite: types.optional(types.boolean()),
-    hd: types.optional(types.boolean()),
-    identifier: types.optional(types.string()),
-    key: types.optional(types.string()),
-    name: types.optional(types.string()),
-    signalQuality: types.optional(types.number()),
-    signalStrength: types.optional(types.number()),
-  });
-
-export function deviceChannelFromJSON(
-  jsonString: string,
-): SafeParseResult<DeviceChannel, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeviceChannel$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeviceChannel' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetDevicesChannelsMediaContainer$inboundSchema: z.ZodType<
   GetDevicesChannelsMediaContainer,
   unknown
@@ -247,9 +206,7 @@ export const GetDevicesChannelsMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  DeviceChannel: types.optional(
-    z.array(z.lazy(() => DeviceChannel$inboundSchema)),
-  ),
+  DeviceChannel: types.optional(z.array(shared.DeviceChannel$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "DeviceChannel": "deviceChannel",

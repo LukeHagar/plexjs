@@ -8,7 +8,7 @@ import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: AddSectionRequest = {
   name: "<value>",
-  type: 583726,
+  mediaType: 583726,
   agent: "<value>",
   language: "<value>",
   locations: [
@@ -37,7 +37,7 @@ let value: AddSectionRequest = {
 | `deviceName`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | A friendly name for the client                                           | Living Room TV                                                           |
 | `marketplace`                                                            | *string*                                                                 | :heavy_minus_sign:                                                       | The marketplace on which the client application is distributed           | googlePlay                                                               |
 | `name`                                                                   | *string*                                                                 | :heavy_check_mark:                                                       | The name of the new section                                              |                                                                          |
-| `type`                                                                   | *number*                                                                 | :heavy_check_mark:                                                       | The type of library section                                              |                                                                          |
+| `mediaType`                                                              | *number*                                                                 | :heavy_check_mark:                                                       | The type of library section                                              |                                                                          |
 | `scanner`                                                                | *string*                                                                 | :heavy_minus_sign:                                                       | The scanner this section should use                                      |                                                                          |
 | `agent`                                                                  | *string*                                                                 | :heavy_check_mark:                                                       | The agent this section should use for metadata                           |                                                                          |
 | `metadataAgentProviderGroupId`                                           | *string*                                                                 | :heavy_minus_sign:                                                       | The agent group id for this section                                      |                                                                          |

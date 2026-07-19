@@ -4,10 +4,6 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export const GetTokenDetailsServerList = [
@@ -108,18 +104,6 @@ export type GetTokenDetailsRequest = {
   marketplace?: string | undefined;
 };
 
-export type GetTokenDetailsUnauthorizedError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
-export type GetTokenDetailsBadRequestError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
 /** @internal */
 export type GetTokenDetailsRequest$Outbound = {
   accepts: string;
@@ -171,45 +155,5 @@ export function getTokenDetailsRequestToJSON(
 ): string {
   return JSON.stringify(
     GetTokenDetailsRequest$outboundSchema.parse(getTokenDetailsRequest),
-  );
-}
-
-/** @internal */
-export const GetTokenDetailsUnauthorizedError$inboundSchema: z.ZodType<
-  GetTokenDetailsUnauthorizedError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function getTokenDetailsUnauthorizedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTokenDetailsUnauthorizedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTokenDetailsUnauthorizedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTokenDetailsUnauthorizedError' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetTokenDetailsBadRequestError$inboundSchema: z.ZodType<
-  GetTokenDetailsBadRequestError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function getTokenDetailsBadRequestErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTokenDetailsBadRequestError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTokenDetailsBadRequestError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTokenDetailsBadRequestError' from JSON`,
   );
 }

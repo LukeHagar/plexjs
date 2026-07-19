@@ -126,6 +126,8 @@ export type GetLibraryDetailsAllowSyncEnumOpen = OpenEnum<
 export type AllowSync = boolean | GetLibraryDetailsAllowSyncEnumOpen;
 
 export type GetLibraryDetailsMediaContainer = {
+  allowSync?: boolean | GetLibraryDetailsAllowSyncEnumOpen | undefined;
+  art?: string | undefined;
   /**
    * The flavors of directory found here:
    *
@@ -135,8 +137,6 @@ export type GetLibraryDetailsMediaContainer = {
    *   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `"search": true` which used to be used to allow clients to build search dialogs on the fly.
    */
   content?: string | undefined;
-  allowSync?: boolean | GetLibraryDetailsAllowSyncEnumOpen | undefined;
-  art?: string | undefined;
   directory?: Array<shared.Metadata> | undefined;
   identifier?: string | undefined;
   librarySectionID?: number | undefined;
@@ -240,11 +240,11 @@ export const GetLibraryDetailsMediaContainer$inboundSchema: z.ZodType<
   GetLibraryDetailsMediaContainer,
   unknown
 > = z.object({
-  content: types.optional(types.string()),
   allowSync: types.optional(
     smartUnion([types.boolean(), GetLibraryDetailsAllowSyncEnum$inboundSchema]),
   ),
   art: types.optional(types.string()),
+  content: types.optional(types.string()),
   Directory: types.optional(z.array(shared.Metadata$inboundSchema)),
   identifier: types.optional(types.string()),
   librarySectionID: types.optional(types.number()),

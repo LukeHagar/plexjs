@@ -76,7 +76,8 @@ export class Content extends ClientSDK {
    * Get items in the section
    *
    * @remarks
-   * Get the items in a section, potentially filtering them
+   * Get the items in a section, potentially filtering them.
+   * When `includeCollections=1` is passed, the response may also contain `Collection` items.
    */
   async listContent(
     request: operations.ListContentRequest,

@@ -12,6 +12,6 @@ let value: GetFirstCharactersDirectory = {};
 
 | Field                                            | Type                                             | Required                                         | Description                                      |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `title`                                          | *string*                                         | :heavy_minus_sign:                               | N/A                                              |
 | `key`                                            | *string*                                         | :heavy_minus_sign:                               | N/A                                              |
 | `size`                                           | *number*                                         | :heavy_minus_sign:                               | The number of items starting with this character |
-| `title`                                          | *string*                                         | :heavy_minus_sign:                               | N/A                                              |

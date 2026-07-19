@@ -102,10 +102,6 @@ export type GetCollectionsRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * Section identifier
-   */
-  sectionId: number;
-  /**
    * A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
    *
    * @remarks
@@ -126,6 +122,10 @@ export type GetCollectionsRequest = {
    * See [API Info section](#section/API-Info/Media-Queries) for detailed information on building media queries.
    */
   mediaQuery?: shared.MediaQuery | undefined;
+  /**
+   * Section identifier
+   */
+  sectionId: number;
 };
 
 export type GetCollectionsResponse = {
@@ -146,8 +146,8 @@ export type GetCollectionsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: number;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
+  sectionId: number;
 };
 
 /** @internal */
@@ -166,8 +166,8 @@ export const GetCollectionsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.int(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
+  sectionId: z.int(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

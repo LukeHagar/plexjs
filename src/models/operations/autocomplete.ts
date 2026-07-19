@@ -102,18 +102,6 @@ export type AutocompleteRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * Section identifier
-   */
-  sectionId: number;
-  /**
-   * Item type
-   */
-  type?: number | undefined;
-  /**
-   * The "field" stands in for any field, the value is a partial string for matching
-   */
-  fieldQuery?: string | undefined;
-  /**
    * A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
    *
    * @remarks
@@ -134,6 +122,18 @@ export type AutocompleteRequest = {
    * See [API Info section](#section/API-Info/Media-Queries) for detailed information on building media queries.
    */
   mediaQuery?: shared.MediaQuery | undefined;
+  /**
+   * Section identifier
+   */
+  sectionId: number;
+  /**
+   * Item type
+   */
+  mediaType?: number | undefined;
+  /**
+   * The "field" stands in for any field, the value is a partial string for matching
+   */
+  fieldQuery?: string | undefined;
 };
 
 export type AutocompleteResponse = {
@@ -154,10 +154,10 @@ export type AutocompleteRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: number;
-  type?: number | undefined;
-  "field.query"?: string | undefined;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
+  sectionId: number;
+  mediaType?: number | undefined;
+  "field.query"?: string | undefined;
 };
 
 /** @internal */
@@ -176,10 +176,10 @@ export const AutocompleteRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.int(),
-  type: z.int().optional(),
-  fieldQuery: z.string().optional(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
+  sectionId: z.int(),
+  mediaType: z.int().optional(),
+  fieldQuery: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

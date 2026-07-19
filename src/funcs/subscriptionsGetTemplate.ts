@@ -90,6 +90,8 @@ async function $do(
 
   const query = encodeFormQuery({
     "guid": payload.guid,
+    "targetLibrarySectionID": payload.targetLibrarySectionID,
+    "type": payload.mediaType,
   });
 
   const headers = new Headers(compactMap({
@@ -166,8 +168,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {

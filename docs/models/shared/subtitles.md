@@ -5,7 +5,7 @@
 ```typescript
 import { Subtitles } from "@parke.dev/plexjs/models/shared";
 
-let value: Subtitles = Subtitles.Embedded;
+let value: Subtitles = Subtitles.Burn;
 ```
 
 ## Values

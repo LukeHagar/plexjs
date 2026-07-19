@@ -38,7 +38,7 @@ export function playQueueGetPlayQueue(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    shared.MediaContainerWithPlaylistMetadata,
+    shared.PlayQueueResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -63,7 +63,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      shared.MediaContainerWithPlaylistMetadata,
+      shared.PlayQueueResponse,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -177,8 +177,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -210,7 +220,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    shared.MediaContainerWithPlaylistMetadata,
+    shared.PlayQueueResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -220,7 +230,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, shared.MediaContainerWithPlaylistMetadata$inboundSchema),
+    M.json(200, shared.PlayQueueResponse$inboundSchema),
     M.fail([400, 404, "4XX"]),
     M.fail("5XX"),
   )(response, req);

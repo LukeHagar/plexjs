@@ -15,8 +15,6 @@ import { Stream, Stream$inboundSchema } from "./stream.js";
 
 /**
  * `Part` represents a particular file or "part" of a media item. The part is the playable unit of the media hierarchy. Suppose that a movie library contains a movie that is broken up into files, reminiscent of a movie split across two BDs. The metadata item represents information about the movie, the media item represents this instance of the movie at this resolution and quality, and the part items represent the two playable files.  If another media were added which contained the joining of these two parts transcoded down to a lower resolution, then this metadata would contain 2 medias, one with 2 parts and one with 1 part.
- *
- * @remarks
  */
 export type Part = {
   /**
@@ -28,6 +26,10 @@ export type Part = {
    * The container of the media file, such as `mp4` or `mkv`
    */
   container?: string | undefined;
+  /**
+   * Deep analysis version for this part.
+   */
+  deepAnalysisVersion?: number | undefined;
   /**
    * The duration of the media item, in milliseconds
    */
@@ -49,10 +51,30 @@ export type Part = {
   key: string;
   optimizedForStreaming?: boolean | undefined;
   /**
+   * RTP packet length for streaming.
+   */
+  packetLength?: number | undefined;
+  /**
+   * Streaming protocol (e.g. dash, hls, direct).
+   */
+  protocol?: string | undefined;
+  /**
+   * Comma-separated list of bandwidth requirements.
+   */
+  requiredBandwidths?: string | undefined;
+  /**
    * The size of the media, in bytes
    */
   size?: number | undefined;
   stream?: Array<Stream> | undefined;
+  /**
+   * Mobile sync item association ID.
+   */
+  syncItemId?: number | undefined;
+  /**
+   * Sync state (e.g. pending, downloaded, processing).
+   */
+  syncState?: string | undefined;
   videoProfile?: string | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
@@ -63,6 +85,7 @@ export const Part$inboundSchema: z.ZodType<Part, unknown> = collectExtraKeys$(
     accessible: types.optional(types.boolean()),
     audioProfile: types.optional(types.string()),
     container: types.optional(types.string()),
+    deepAnalysisVersion: types.optional(types.number()),
     duration: types.optional(types.number()),
     exists: types.optional(types.boolean()),
     file: types.optional(types.string()),
@@ -71,8 +94,13 @@ export const Part$inboundSchema: z.ZodType<Part, unknown> = collectExtraKeys$(
     indexes: types.optional(types.string()),
     key: types.string(),
     optimizedForStreaming: types.optional(types.boolean()),
+    packetLength: types.optional(types.number()),
+    protocol: types.optional(types.string()),
+    requiredBandwidths: types.optional(types.string()),
     size: types.optional(types.number()),
     Stream: types.optional(z.array(Stream$inboundSchema)),
+    syncItemId: types.optional(types.number()),
+    syncState: types.optional(types.string()),
     videoProfile: types.optional(types.string()),
   }).catchall(z.any()),
   "additionalProperties",

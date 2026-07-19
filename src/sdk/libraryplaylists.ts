@@ -39,7 +39,7 @@ export class LibraryPlaylists extends ClientSDK {
   }
 
   /**
-   * Upload
+   * Upload media art
    *
    * @remarks
    * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.

@@ -11,7 +11,14 @@ let value: CreateDVRResponse = {
       "<value 1>",
     ],
   },
-  result: {},
+  result: {
+    mediaContainer: {
+      mediaContainer: {
+        identifier: "com.plexapp.system",
+        size: 1,
+      },
+    },
+  },
 };
 ```
 

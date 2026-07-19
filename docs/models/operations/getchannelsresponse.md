@@ -13,13 +13,22 @@ let value: GetChannelsResponse = {
       "<value 2>",
     ],
   },
-  result: {},
+  result: {
+    mediaContainer: {
+      size: 1,
+      channel: [
+        {
+          title: "Example Channel",
+        },
+      ],
+    },
+  },
 };
 ```
 
 ## Fields
 
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `headers`                                                                                | Record<string, *string*[]>                                                               | :heavy_check_mark:                                                                       | N/A                                                                                      |
-| `result`                                                                                 | [operations.GetChannelsResponseBody](../../models/operations/getchannelsresponsebody.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `headers`                                                                                   | Record<string, *string*[]>                                                                  | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| `result`                                                                                    | [shared.ChannelResponse](../../models/shared/channelresponse.md)                            | :heavy_check_mark:                                                                          | N/A                                                                                         | {<br/>"MediaContainer": {<br/>"size": 1,<br/>"Channel": [<br/>{<br/>"id": 1,<br/>"title": "Example Channel"<br/>}<br/>]<br/>}<br/>} |

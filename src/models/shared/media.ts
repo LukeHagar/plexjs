@@ -38,8 +38,6 @@ export type OptimizedForStreamingOpen = OpenEnum<typeof OptimizedForStreaming>;
 
 /**
  * `Media` represents an one or more media files (parts) and is a child of a metadata item. There aren't necessarily any guaranteed attributes on media elements since the attributes will vary based on the type. The possible attributes are not documented here, but they typically have self-evident names. High-level media information that can be used for badging and flagging, such as `videoResolution` and codecs, is included on the media element.
- *
- * @remarks
  */
 export type Media = {
   aspectRatio?: number | undefined;
@@ -61,6 +59,14 @@ export type Media = {
   id: number;
   optimizedForStreaming?: OptimizedForStreamingOpen | undefined;
   part?: Array<Part> | undefined;
+  /**
+   * Whether this media version is selected for playback.
+   */
+  selected?: boolean | undefined;
+  /**
+   * Unique identifier for this media instance.
+   */
+  uuid?: string | undefined;
   videoCodec?: string | undefined;
   videoFrameRate?: string | undefined;
   videoProfile?: string | undefined;
@@ -115,6 +121,8 @@ export const Media$inboundSchema: z.ZodType<Media, unknown> = collectExtraKeys$(
     id: types.number(),
     optimizedForStreaming: types.optional(OptimizedForStreaming$inboundSchema),
     Part: types.optional(z.array(Part$inboundSchema)),
+    selected: types.optional(types.boolean()),
+    uuid: types.optional(types.string()),
     videoCodec: types.optional(types.string()),
     videoFrameRate: types.optional(types.string()),
     videoProfile: types.optional(types.string()),

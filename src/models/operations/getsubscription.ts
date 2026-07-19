@@ -98,6 +98,9 @@ export type GetSubscriptionRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * The unique identifier of the subscription
+   */
   subscriptionId: number;
   /**
    * Indicates whether the active grabs should be included as well

@@ -5,9 +5,20 @@ A configuration setting or preference
 ## Example Usage
 
 ```typescript
-import { Setting } from "@parke.dev/plexjs/models/shared";
+import { Setting, SettingType } from "@parke.dev/plexjs/models/shared";
 
-let value: Setting = {};
+let value: Setting = {
+  type: SettingType.Bool,
+  default: "string value",
+  advanced: true,
+  enumValues: "string value",
+  group: "string value",
+  hidden: true,
+  id: "string value",
+  label: "string value",
+  summary: "string value",
+  value: "string value",
+};
 ```
 
 ## Fields

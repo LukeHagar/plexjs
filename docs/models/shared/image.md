@@ -2,13 +2,16 @@
 
 Images such as movie posters and background artwork are represented by Image elements.
 
-
 ## Example Usage
 
 ```typescript
-import { Image } from "@parke.dev/plexjs/models/shared";
+import { Image, ImageType } from "@parke.dev/plexjs/models/shared";
 
-let value: Image = {};
+let value: Image = {
+  type: ImageType.Background,
+  alt: "string value",
+  url: "string value",
+};
 ```
 
 ## Fields

@@ -6,7 +6,7 @@
 import { GetSectionsPrefsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSectionsPrefsRequest = {
-  type: 934408,
+  mediaType: 934408,
 };
 ```
 
@@ -25,5 +25,5 @@ let value: GetSectionsPrefsRequest = {
 | `deviceVendor`                                                 | *string*                                                       | :heavy_minus_sign:                                             | The device vendor                                              | Roku                                                           |
 | `deviceName`                                                   | *string*                                                       | :heavy_minus_sign:                                             | A friendly name for the client                                 | Living Room TV                                                 |
 | `marketplace`                                                  | *string*                                                       | :heavy_minus_sign:                                             | The marketplace on which the client application is distributed | googlePlay                                                     |
-| `type`                                                         | *number*                                                       | :heavy_check_mark:                                             | The metadata type                                              |                                                                |
+| `mediaType`                                                    | *number*                                                       | :heavy_check_mark:                                             | The metadata type                                              |                                                                |
 | `agent`                                                        | *string*                                                       | :heavy_minus_sign:                                             | The metadata agent in use                                      |                                                                |

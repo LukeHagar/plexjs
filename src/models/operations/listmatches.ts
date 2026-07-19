@@ -98,12 +98,33 @@ export type ListMatchesRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The title to filter by
+   */
   title?: string | undefined;
+  /**
+   * The parentTitle
+   */
   parentTitle?: string | undefined;
+  /**
+   * The identifier of the metadata agent to use
+   */
   agent?: string | undefined;
+  /**
+   * The language code to use
+   */
   language?: string | undefined;
+  /**
+   * The year to filter by
+   */
   year?: number | undefined;
+  /**
+   * Whether to perform the operation manually
+   */
   manual?: shared.BoolInt | undefined;
 };
 

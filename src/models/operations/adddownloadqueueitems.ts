@@ -103,17 +103,7 @@ export type AddDownloadQueueItemsRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * The queue id
-   */
-  queueId: number;
-  /**
-   * Keys to add
-   */
-  keys: Array<string>;
-  /**
    * Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * 'burn' - Burn incompatible advanced text subtitles into the video stream * 'text' - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost
-   *
-   * @remarks
    */
   advancedSubtitles?: shared.AdvancedSubtitles | undefined;
   /**
@@ -190,8 +180,6 @@ export type AddDownloadQueueItemsRequest = {
   photoResolution?: string | undefined;
   /**
    * Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022)
-   *
-   * @remarks
    */
   protocol?: shared.ProtocolParameter | undefined;
   /**
@@ -204,8 +192,6 @@ export type AddDownloadQueueItemsRequest = {
   subtitleSize?: number | undefined;
   /**
    * Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream
-   *
-   * @remarks
    */
   subtitles?: shared.Subtitles | undefined;
   /**
@@ -220,17 +206,14 @@ export type AddDownloadQueueItemsRequest = {
    * Target maximum video resolution.
    */
   videoResolution?: string | undefined;
-};
-
-export type AddedQueueItem = {
   /**
-   * The queue item id that was added or the existing one if an item already exists in this queue with the same parameters
+   * The queue id
    */
-  id?: number | undefined;
+  queueId: number;
   /**
-   * The key added to the queue
+   * Keys to add
    */
-  key?: string | undefined;
+  keys: Array<string>;
 };
 
 /**
@@ -244,18 +227,14 @@ export type AddDownloadQueueItemsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  addedQueueItems?: Array<AddedQueueItem> | undefined;
+  addedQueueItems?: Array<shared.AddedQueueItem> | undefined;
 };
 
 /**
@@ -278,8 +257,6 @@ export type AddDownloadQueueItemsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  queueId: number;
-  keys: Array<string>;
   advancedSubtitles?: string | undefined;
   audioBoost?: number | undefined;
   audioChannelCount?: number | undefined;
@@ -306,6 +283,8 @@ export type AddDownloadQueueItemsRequest$Outbound = {
   videoBitrate?: number | undefined;
   videoQuality?: number | undefined;
   videoResolution?: string | undefined;
+  queueId: number;
+  keys: Array<string>;
 };
 
 /** @internal */
@@ -324,8 +303,6 @@ export const AddDownloadQueueItemsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  queueId: z.int(),
-  keys: z.array(z.string()),
   advancedSubtitles: shared.AdvancedSubtitles$outboundSchema.optional(),
   audioBoost: z.int().optional(),
   audioChannelCount: z.int().optional(),
@@ -360,6 +337,8 @@ export const AddDownloadQueueItemsRequest$outboundSchema: z.ZodType<
   videoBitrate: z.int().optional(),
   videoQuality: z.int().optional(),
   videoResolution: z.string().optional(),
+  queueId: z.int(),
+  keys: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",
@@ -386,23 +365,6 @@ export function addDownloadQueueItemsRequestToJSON(
 }
 
 /** @internal */
-export const AddedQueueItem$inboundSchema: z.ZodType<AddedQueueItem, unknown> =
-  z.object({
-    id: types.optional(types.number()),
-    key: types.optional(types.string()),
-  });
-
-export function addedQueueItemFromJSON(
-  jsonString: string,
-): SafeParseResult<AddedQueueItem, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddedQueueItem$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddedQueueItem' from JSON`,
-  );
-}
-
-/** @internal */
 export const AddDownloadQueueItemsMediaContainer$inboundSchema: z.ZodType<
   AddDownloadQueueItemsMediaContainer,
   unknown
@@ -411,9 +373,7 @@ export const AddDownloadQueueItemsMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  AddedQueueItems: types.optional(
-    z.array(z.lazy(() => AddedQueueItem$inboundSchema)),
-  ),
+  AddedQueueItems: types.optional(z.array(shared.AddedQueueItem$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "AddedQueueItems": "addedQueueItems",

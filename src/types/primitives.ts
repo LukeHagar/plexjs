@@ -64,25 +64,6 @@ export function number(): z.ZodType<number> {
   ]);
 }
 
-export function bigint(): z.ZodType<bigint> {
-  return z.union([
-    z.string().transform((x, ctx) => {
-      try {
-        return BigInt(x);
-      } catch (error) {
-        ctx.addIssue({
-          input: x,
-          code: "invalid_type",
-          expected: "bigint",
-          received: "string",
-        });
-        return z.NEVER;
-      }
-    }),
-    zodDefaultToZeroValue(0n),
-  ]);
-}
-
 export function date(): z.ZodType<Date> {
   return z.union([
     z.union([z.string(), zodDefaultToZeroValue(0)]).transform((x) =>
@@ -108,10 +89,6 @@ export function literal<T extends string | number | boolean>(
   value: T,
 ): z.ZodType<T> {
   return z.union([z.literal(value), zodDefaultToZeroValue(value)]);
-}
-
-export function literalBigInt<T extends bigint>(value: T): z.ZodType<T> {
-  return z.literal(String(value)).transform((x) => BigInt(x)) as any;
 }
 
 export function optional<T extends z.ZodType>(t: T) {

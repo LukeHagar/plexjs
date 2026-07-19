@@ -32,14 +32,6 @@ export type MediaQuery = {
    */
   type?: MediaType | undefined;
   /**
-   * Change the default level to which fields refer (used with type for hierarchical queries)
-   */
-  sourceType?: number | undefined;
-  /**
-   * Field(s) to sort by, with optional modifiers. Use comma to separate multiple fields, and :desc or :nullsLast for modifiers (e.g., "duration:desc,index")
-   */
-  sort?: string | undefined;
-  /**
    * Field to group results by (similar to SQL GROUP BY)
    */
   group?: string | undefined;
@@ -47,15 +39,23 @@ export type MediaQuery = {
    * Maximum number of results to return
    */
   limit?: number | undefined;
+  /**
+   * Field(s) to sort by, with optional modifiers. Use comma to separate multiple fields, and :desc or :nullsLast for modifiers (e.g., "duration:desc,index")
+   */
+  sort?: string | undefined;
+  /**
+   * Change the default level to which fields refer (used with type for hierarchical queries)
+   */
+  sourceType?: number | undefined;
 };
 
 /** @internal */
 export type MediaQuery$Outbound = {
   type?: number | undefined;
-  sourceType?: number | undefined;
-  sort?: string | undefined;
   group?: string | undefined;
   limit?: number | undefined;
+  sort?: string | undefined;
+  sourceType?: number | undefined;
 };
 
 /** @internal */
@@ -64,10 +64,10 @@ export const MediaQuery$outboundSchema: z.ZodType<
   MediaQuery
 > = z.object({
   type: MediaType$outboundSchema.optional(),
-  sourceType: z.int().optional(),
-  sort: z.string().optional(),
   group: z.string().optional(),
   limit: z.int().optional(),
+  sort: z.string().optional(),
+  sourceType: z.int().optional(),
 });
 
 export function mediaQueryToJSON(mediaQuery: MediaQuery): string {

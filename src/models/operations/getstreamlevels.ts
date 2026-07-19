@@ -112,13 +112,6 @@ export type GetStreamLevelsRequest = {
   subsample?: number | undefined;
 };
 
-export type GetStreamLevelsLevel = {
-  /**
-   * The level in db.
-   */
-  v?: number | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -130,18 +123,14 @@ export type GetStreamLevelsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  level?: Array<GetStreamLevelsLevel> | undefined;
+  level?: Array<shared.Level> | undefined;
   /**
    * The total number of samples (as a string)
    */
@@ -214,24 +203,6 @@ export function getStreamLevelsRequestToJSON(
 }
 
 /** @internal */
-export const GetStreamLevelsLevel$inboundSchema: z.ZodType<
-  GetStreamLevelsLevel,
-  unknown
-> = z.object({
-  v: types.optional(types.number()),
-});
-
-export function getStreamLevelsLevelFromJSON(
-  jsonString: string,
-): SafeParseResult<GetStreamLevelsLevel, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetStreamLevelsLevel$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetStreamLevelsLevel' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetStreamLevelsMediaContainer$inboundSchema: z.ZodType<
   GetStreamLevelsMediaContainer,
   unknown
@@ -240,9 +211,7 @@ export const GetStreamLevelsMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Level: types.optional(
-    z.array(z.lazy(() => GetStreamLevelsLevel$inboundSchema)),
-  ),
+  Level: types.optional(z.array(shared.Level$inboundSchema)),
   totalSamples: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {

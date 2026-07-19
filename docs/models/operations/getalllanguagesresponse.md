@@ -7,7 +7,14 @@ import { GetAllLanguagesResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetAllLanguagesResponse = {
   headers: {},
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

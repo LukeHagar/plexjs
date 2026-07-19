@@ -5,58 +5,10 @@
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import * as openEnums from "../../types/enums.js";
-import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * The state of this queue
- *
- * @remarks
- *   - deciding: At least one item is still being decided
- *   - waiting: At least one item is waiting for transcode and none are currently transcoding
- *   - processing: At least one item is being transcoded
- *   - done: All items are available (or potentially expired)
- *   - error: At least one item has encountered an error
- */
-export enum CreateDownloadQueueStatus {
-  Deciding = "deciding",
-  Waiting = "waiting",
-  Processing = "processing",
-  Done = "done",
-  Error = "error",
-}
-/**
- * The state of this queue
- *
- * @remarks
- *   - deciding: At least one item is still being decided
- *   - waiting: At least one item is waiting for transcode and none are currently transcoding
- *   - processing: At least one item is being transcoded
- *   - done: All items are available (or potentially expired)
- *   - error: At least one item has encountered an error
- */
-export type CreateDownloadQueueStatusOpen = OpenEnum<
-  typeof CreateDownloadQueueStatus
->;
-
-export type CreateDownloadQueueDownloadQueue = {
-  id?: number | undefined;
-  itemCount?: number | undefined;
-  /**
-   * The state of this queue
-   *
-   * @remarks
-   *   - deciding: At least one item is still being decided
-   *   - waiting: At least one item is waiting for transcode and none are currently transcoding
-   *   - processing: At least one item is being transcoded
-   *   - done: All items are available (or potentially expired)
-   *   - error: At least one item has encountered an error
-   */
-  status?: CreateDownloadQueueStatusOpen | undefined;
-};
+import * as shared from "../shared/index.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -69,18 +21,14 @@ export type CreateDownloadQueueMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  downloadQueue?: Array<CreateDownloadQueueDownloadQueue> | undefined;
+  downloadQueue?: Array<shared.DownloadQueue> | undefined;
 };
 
 /**
@@ -91,32 +39,6 @@ export type CreateDownloadQueueResponse = {
 };
 
 /** @internal */
-export const CreateDownloadQueueStatus$inboundSchema: z.ZodType<
-  CreateDownloadQueueStatusOpen,
-  unknown
-> = openEnums.inboundSchema(CreateDownloadQueueStatus);
-
-/** @internal */
-export const CreateDownloadQueueDownloadQueue$inboundSchema: z.ZodType<
-  CreateDownloadQueueDownloadQueue,
-  unknown
-> = z.object({
-  id: types.optional(types.number()),
-  itemCount: types.optional(types.number()),
-  status: types.optional(CreateDownloadQueueStatus$inboundSchema),
-});
-
-export function createDownloadQueueDownloadQueueFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateDownloadQueueDownloadQueue, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateDownloadQueueDownloadQueue$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateDownloadQueueDownloadQueue' from JSON`,
-  );
-}
-
-/** @internal */
 export const CreateDownloadQueueMediaContainer$inboundSchema: z.ZodType<
   CreateDownloadQueueMediaContainer,
   unknown
@@ -125,9 +47,7 @@ export const CreateDownloadQueueMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  DownloadQueue: types.optional(
-    z.array(z.lazy(() => CreateDownloadQueueDownloadQueue$inboundSchema)),
-  ),
+  DownloadQueue: types.optional(z.array(shared.DownloadQueue$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "DownloadQueue": "downloadQueue",

@@ -6,7 +6,6 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
@@ -114,43 +113,15 @@ export type SearchHubsRequest = {
    * The number of items to return per hub.  3 if not specified
    */
   limit?: number | undefined;
-};
-
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type SearchHubsMediaContainer = {
-  identifier?: string | undefined;
   /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
+   * Include collection results in search hubs
    */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  hub?: Array<shared.Hub> | undefined;
-};
-
-/**
- * OK
- */
-export type SearchHubsResponseBody = {
-  mediaContainer?: SearchHubsMediaContainer | undefined;
+  includeCollections?: boolean | undefined;
 };
 
 export type SearchHubsResponse = {
   headers: { [k: string]: Array<string> };
-  result: SearchHubsResponseBody;
+  result: shared.MediaContainerWithHubs;
 };
 
 /** @internal */
@@ -169,6 +140,7 @@ export type SearchHubsRequest$Outbound = {
   query: string;
   sectionId?: number | undefined;
   limit?: number | undefined;
+  includeCollections?: boolean | undefined;
 };
 
 /** @internal */
@@ -190,6 +162,7 @@ export const SearchHubsRequest$outboundSchema: z.ZodType<
   query: z.string(),
   sectionId: z.int().optional(),
   limit: z.int().optional(),
+  includeCollections: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",
@@ -214,62 +187,12 @@ export function searchHubsRequestToJSON(
 }
 
 /** @internal */
-export const SearchHubsMediaContainer$inboundSchema: z.ZodType<
-  SearchHubsMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  Hub: types.optional(z.array(shared.Hub$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "Hub": "hub",
-  });
-});
-
-export function searchHubsMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<SearchHubsMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SearchHubsMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SearchHubsMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const SearchHubsResponseBody$inboundSchema: z.ZodType<
-  SearchHubsResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => SearchHubsMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function searchHubsResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SearchHubsResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SearchHubsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SearchHubsResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const SearchHubsResponse$inboundSchema: z.ZodType<
   SearchHubsResponse,
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => SearchHubsResponseBody$inboundSchema),
+  Result: shared.MediaContainerWithHubs$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

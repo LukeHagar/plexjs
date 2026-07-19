@@ -5,7 +5,6 @@ Stream type:
   - AUDIO = 2 (Audio stream)
   - SUBTITLE = 3 (Subtitle stream)
 
-
 ## Example Usage
 
 ```typescript

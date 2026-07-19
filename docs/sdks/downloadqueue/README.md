@@ -2,7 +2,8 @@
 
 ## Overview
 
-API Operations against the Download Queue
+API Operations against the Download Queue.
+Note: The Download Queue is distinct from the Play Queue. The Download Queue manages offline/downloaded content, while the Play Queue manages active playback sessions.
 
 ### Available Operations
 
@@ -21,7 +22,6 @@ API Operations against the Download Queue
 Available: 0.2.0
 
 Creates a download queue for this client if one doesn't exist, or returns the existing queue for this client and user.
-
 
 ### Example Usage
 
@@ -83,16 +83,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getDownloadQueue
 
 Available: 0.2.0
 
 Get a download queue by its id
-
 
 ### Example Usage
 
@@ -183,9 +183,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## addDownloadQueueItems
 
@@ -193,13 +194,19 @@ Available: 0.2.0
 
 Add items to the download queue
 
-
 ### Example Usage
 
 <!-- UsageSnippet language="typescript" operationID="addDownloadQueueItems" method="post" path="/downloadQueue/{queueId}/add" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
-import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@parke.dev/plexjs/models/shared";
+import {
+  Accepts,
+  AdvancedSubtitles,
+  BoolInt,
+  LocationParameter,
+  ProtocolParameter,
+  Subtitles,
+} from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -218,11 +225,6 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.downloadQueue.addDownloadQueueItems({
-    queueId: 984925,
-    keys: [
-      "/library/metadata/3",
-      "/library/metadata/6",
-    ],
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
@@ -245,9 +247,15 @@ async function run() {
     protocol: ProtocolParameter.Dash,
     secondsPerSegment: 5,
     subtitleSize: 50,
+    subtitles: Subtitles.Burn,
     videoBitrate: 12000,
     videoQuality: 50,
     videoResolution: "1080x1080",
+    queueId: 984925,
+    keys: [
+      "/library/metadata/3",
+      "/library/metadata/6",
+    ],
   });
 
   console.log(result);
@@ -263,7 +271,14 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
 import { downloadQueueAddDownloadQueueItems } from "@parke.dev/plexjs/funcs/downloadQueueAddDownloadQueueItems.js";
-import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@parke.dev/plexjs/models/shared";
+import {
+  Accepts,
+  AdvancedSubtitles,
+  BoolInt,
+  LocationParameter,
+  ProtocolParameter,
+  Subtitles,
+} from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -284,11 +299,6 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await downloadQueueAddDownloadQueueItems(plexAPI, {
-    queueId: 984925,
-    keys: [
-      "/library/metadata/3",
-      "/library/metadata/6",
-    ],
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
@@ -311,9 +321,15 @@ async function run() {
     protocol: ProtocolParameter.Dash,
     secondsPerSegment: 5,
     subtitleSize: 50,
+    subtitles: Subtitles.Burn,
     videoBitrate: 12000,
     videoQuality: 50,
     videoResolution: "1080x1080",
+    queueId: 984925,
+    keys: [
+      "/library/metadata/3",
+      "/library/metadata/6",
+    ],
   });
   if (res.ok) {
     const { value: result } = res;
@@ -341,16 +357,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listDownloadQueueItems
 
 Available: 0.2.0
 
 Get items from a download queue
-
 
 ### Example Usage
 
@@ -441,16 +457,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getItemDecision
 
 Available: 0.2.0
 
 Grab the decision for a download queue item
-
 
 ### Example Usage
 
@@ -552,7 +568,6 @@ run();
 Available: 0.2.0
 
 Grab the media for a download queue item
-
 
 ### Example Usage
 
@@ -752,16 +767,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getDownloadQueueItems
 
 Available: 0.2.0
 
 Get items from a download queue
-
 
 ### Example Usage
 
@@ -862,16 +877,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## restartProcessingDownloadQueueItems
 
 Available: 0.2.0
 
 Reprocess download queue items with previous decision parameters
-
 
 ### Example Usage
 
@@ -972,6 +987,7 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

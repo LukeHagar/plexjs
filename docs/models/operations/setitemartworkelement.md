@@ -1,5 +1,7 @@
 # SetItemArtworkElement
 
+The type of artwork element (e.g., art, poster, thumb)
+
 ## Example Usage
 
 ```typescript

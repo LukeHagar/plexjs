@@ -47,6 +47,14 @@ export type Lineup = {
    */
   type?: string | undefined;
   /**
+   * Lineup identifier.
+   */
+  identifier?: string | undefined;
+  /**
+   * API key for this lineup.
+   */
+  key?: string | undefined;
+  /**
    * - `-1`: N/A
    *
    * @remarks
@@ -72,6 +80,8 @@ export const LineupType$inboundSchema: z.ZodType<LineupTypeOpen, unknown> =
 export const Lineup$inboundSchema: z.ZodType<Lineup, unknown> = z.object({
   title: types.optional(types.string()),
   type: types.optional(types.string()),
+  identifier: types.optional(types.string()),
+  key: types.optional(types.string()),
   lineupType: types.optional(LineupType$inboundSchema),
   location: types.optional(types.string()),
   uuid: types.optional(types.string()),

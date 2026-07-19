@@ -105,7 +105,7 @@ export type GetSonicallySimilarRequest = {
   /**
    * The metadata type to fetch (should be 10 for audio track)
    */
-  type?: number | undefined;
+  mediaType?: number | undefined;
   /**
    * The music analysis to center the search.  Typically obtained from the `musicAnalysis` of a track
    */
@@ -134,7 +134,7 @@ export type GetSonicallySimilarRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   sectionId: number;
-  type?: number | undefined;
+  mediaType?: number | undefined;
   values: Array<number>;
   limit?: number | undefined;
   maxDistance?: number | undefined;
@@ -157,7 +157,7 @@ export const GetSonicallySimilarRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   sectionId: z.int(),
-  type: z.int().optional(),
+  mediaType: z.int().optional(),
   values: z.array(z.int()),
   limit: z.int().optional(),
   maxDistance: z.number().optional(),

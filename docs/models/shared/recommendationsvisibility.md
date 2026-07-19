@@ -6,7 +6,6 @@ The visibility of this hub in recommendations:
   - admin: Visible to only admin users
   - shared: Visible to shared users
 
-
 ## Example Usage
 
 ```typescript

@@ -113,6 +113,7 @@ export type GetLineupRequest = {
 
 export type GetLineupResponse = {
   headers: { [k: string]: Array<string> };
+  result: shared.MediaContainerWithLineup;
 };
 
 /** @internal */
@@ -179,9 +180,11 @@ export const GetLineupResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
+  Result: shared.MediaContainerWithLineup$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
+    "Result": "result",
   });
 });
 

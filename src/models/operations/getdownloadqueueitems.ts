@@ -5,8 +5,6 @@
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import * as openEnums from "../../types/enums.js";
-import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -114,97 +112,6 @@ export type GetDownloadQueueItemsRequest = {
   itemId: Array<number>;
 };
 
-export type GetDownloadQueueItemsDecisionResult = {
-  /**
-   * The maximum bitrate set when item was added
-   */
-  availableBandwidth?: number | undefined;
-  directPlayDecisionCode?: number | undefined;
-  directPlayDecisionText?: string | undefined;
-  generalDecisionCode?: number | undefined;
-  generalDecisionText?: string | undefined;
-  /**
-   * The code indicating the status of evaluation of playback when client indicates `hasMDE=1`
-   */
-  mdeDecisionCode?: number | undefined;
-  /**
-   * Descriptive text for the above code
-   */
-  mdeDecisionText?: string | undefined;
-  transcodeDecisionCode?: number | undefined;
-  transcodeDecisionText?: string | undefined;
-};
-
-/**
- * The state of the item:
- *
- * @remarks
- *   - deciding: The item decision is pending
- *   - waiting: The item is waiting for transcode
- *   - processing: The item is being transcoded
- *   - available: The item is available for download
- *   - error: The item encountered an error in the decision or transcode
- *   - expired: The transcoded item has timed out and is no longer available
- */
-export enum GetDownloadQueueItemsStatus {
-  Deciding = "deciding",
-  Waiting = "waiting",
-  Processing = "processing",
-  Available = "available",
-  Error = "error",
-  Expired = "expired",
-}
-/**
- * The state of the item:
- *
- * @remarks
- *   - deciding: The item decision is pending
- *   - waiting: The item is waiting for transcode
- *   - processing: The item is being transcoded
- *   - available: The item is available for download
- *   - error: The item encountered an error in the decision or transcode
- *   - expired: The transcoded item has timed out and is no longer available
- */
-export type GetDownloadQueueItemsStatusOpen = OpenEnum<
-  typeof GetDownloadQueueItemsStatus
->;
-
-/**
- * The transcode session object which is not yet documented otherwise it'd be a $ref here.
- */
-export type GetDownloadQueueItemsTranscode = {};
-
-export type GetDownloadQueueItemsDownloadQueueItem = {
-  decisionResult?: GetDownloadQueueItemsDecisionResult | undefined;
-  /**
-   * The error encountered in transcoding or decision
-   */
-  error?: string | undefined;
-  id?: number | undefined;
-  key?: string | undefined;
-  queueId?: number | undefined;
-  /**
-   * The state of the item:
-   *
-   * @remarks
-   *   - deciding: The item decision is pending
-   *   - waiting: The item is waiting for transcode
-   *   - processing: The item is being transcoded
-   *   - available: The item is available for download
-   *   - error: The item encountered an error in the decision or transcode
-   *   - expired: The transcoded item has timed out and is no longer available
-   */
-  status?: GetDownloadQueueItemsStatusOpen | undefined;
-  /**
-   * The transcode session object which is not yet documented otherwise it'd be a $ref here.
-   */
-  transcode?: GetDownloadQueueItemsTranscode | undefined;
-  /**
-   * The transcode session if item is currently being transcoded
-   */
-  transcodeSession?: shared.TranscodeSession | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -216,18 +123,14 @@ export type GetDownloadQueueItemsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  downloadQueueItem?: Array<GetDownloadQueueItemsDownloadQueueItem> | undefined;
+  downloadQueueItem?: Array<shared.DownloadQueueItem> | undefined;
 };
 
 /**
@@ -298,90 +201,6 @@ export function getDownloadQueueItemsRequestToJSON(
 }
 
 /** @internal */
-export const GetDownloadQueueItemsDecisionResult$inboundSchema: z.ZodType<
-  GetDownloadQueueItemsDecisionResult,
-  unknown
-> = z.object({
-  availableBandwidth: types.optional(types.number()),
-  directPlayDecisionCode: types.optional(types.number()),
-  directPlayDecisionText: types.optional(types.string()),
-  generalDecisionCode: types.optional(types.number()),
-  generalDecisionText: types.optional(types.string()),
-  mdeDecisionCode: types.optional(types.number()),
-  mdeDecisionText: types.optional(types.string()),
-  transcodeDecisionCode: types.optional(types.number()),
-  transcodeDecisionText: types.optional(types.string()),
-});
-
-export function getDownloadQueueItemsDecisionResultFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDownloadQueueItemsDecisionResult, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetDownloadQueueItemsDecisionResult$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDownloadQueueItemsDecisionResult' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetDownloadQueueItemsStatus$inboundSchema: z.ZodType<
-  GetDownloadQueueItemsStatusOpen,
-  unknown
-> = openEnums.inboundSchema(GetDownloadQueueItemsStatus);
-
-/** @internal */
-export const GetDownloadQueueItemsTranscode$inboundSchema: z.ZodType<
-  GetDownloadQueueItemsTranscode,
-  unknown
-> = z.object({});
-
-export function getDownloadQueueItemsTranscodeFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDownloadQueueItemsTranscode, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetDownloadQueueItemsTranscode$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDownloadQueueItemsTranscode' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetDownloadQueueItemsDownloadQueueItem$inboundSchema: z.ZodType<
-  GetDownloadQueueItemsDownloadQueueItem,
-  unknown
-> = z.object({
-  DecisionResult: types.optional(
-    z.lazy(() => GetDownloadQueueItemsDecisionResult$inboundSchema),
-  ),
-  error: types.optional(types.string()),
-  id: types.optional(types.number()),
-  key: types.optional(types.string()),
-  queueId: types.optional(types.number()),
-  status: types.optional(GetDownloadQueueItemsStatus$inboundSchema),
-  transcode: types.optional(
-    z.lazy(() => GetDownloadQueueItemsTranscode$inboundSchema),
-  ),
-  TranscodeSession: types.optional(shared.TranscodeSession$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "DecisionResult": "decisionResult",
-    "TranscodeSession": "transcodeSession",
-  });
-});
-
-export function getDownloadQueueItemsDownloadQueueItemFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDownloadQueueItemsDownloadQueueItem, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetDownloadQueueItemsDownloadQueueItem$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDownloadQueueItemsDownloadQueueItem' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetDownloadQueueItemsMediaContainer$inboundSchema: z.ZodType<
   GetDownloadQueueItemsMediaContainer,
   unknown
@@ -391,7 +210,7 @@ export const GetDownloadQueueItemsMediaContainer$inboundSchema: z.ZodType<
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
   DownloadQueueItem: types.optional(
-    z.array(z.lazy(() => GetDownloadQueueItemsDownloadQueueItem$inboundSchema)),
+    z.array(shared.DownloadQueueItem$inboundSchema),
   ),
 }).transform((v) => {
   return remap$(v, {

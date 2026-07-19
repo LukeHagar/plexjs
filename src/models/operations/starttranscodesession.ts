@@ -4,6 +4,10 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/smartUnion.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type StartTranscodeSessionGlobals = {
@@ -55,8 +59,6 @@ export type StartTranscodeSessionGlobals = {
 
 /**
  * Extension
- *
- * @remarks
  */
 export enum Extension {
   M3u8 = "m3u8",
@@ -74,8 +76,6 @@ export enum StartTranscodeSessionLocation {
 
 /**
  * Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022)
- *
- * @remarks
  */
 export enum StartTranscodeSessionProtocol {
   Http = "http",
@@ -85,8 +85,6 @@ export enum StartTranscodeSessionProtocol {
 
 /**
  * Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream
- *
- * @remarks
  */
 export enum StartTranscodeSessionSubtitles {
   Auto = "auto",
@@ -152,17 +150,17 @@ export type StartTranscodeSessionRequest = {
    */
   transcodeSessionId?: string | undefined;
   /**
-   * Extension
-   *
-   * @remarks
-   */
-  extension: Extension;
-  /**
    * Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * 'burn' - Burn incompatible advanced text subtitles into the video stream * 'text' - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost
-   *
-   * @remarks
    */
   advancedSubtitles?: shared.AdvancedSubtitles | undefined;
+  /**
+   * Client platform (some clients send this in addition to headers).
+   */
+  platformQueryParameter?: string | undefined;
+  /**
+   * Extension
+   */
+  extension: Extension;
   /**
    * Percentage of original audio loudness to use when transcoding (100 is equivalent to original volume, 50 is half, 200 is double, etc)
    */
@@ -237,8 +235,6 @@ export type StartTranscodeSessionRequest = {
   photoResolution?: string | undefined;
   /**
    * Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022)
-   *
-   * @remarks
    */
   protocol?: StartTranscodeSessionProtocol | undefined;
   /**
@@ -251,10 +247,20 @@ export type StartTranscodeSessionRequest = {
   subtitleSize?: number | undefined;
   /**
    * Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream
-   *
-   * @remarks
    */
   subtitles?: StartTranscodeSessionSubtitles | undefined;
+  /**
+   * Client-side maximum video bitrate cap in kbps
+   */
+  maxVideoBitrate?: number | undefined;
+  /**
+   * Cap resolution string (e.g. 1920x1080)
+   */
+  videoResolution?: string | undefined;
+  /**
+   * Copy timestamps instead of re-encoding them
+   */
+  copyts?: shared.BoolInt | undefined;
   /**
    * Target video bitrate (in kbps).
    */
@@ -263,10 +269,6 @@ export type StartTranscodeSessionRequest = {
    * Target photo quality.
    */
   videoQuality?: number | undefined;
-  /**
-   * Target maximum video resolution.
-   */
-  videoResolution?: string | undefined;
   /**
    * See [Profile Augmentations](#section/API-Info/Profile-Augmentations) .
    */
@@ -280,6 +282,11 @@ export type StartTranscodeSessionRequest = {
    */
   xPlexSessionIdentifier?: string | undefined;
 };
+
+export type StartTranscodeSessionResponse =
+  | ReadableStream<Uint8Array>
+  | ReadableStream<Uint8Array>
+  | ReadableStream<Uint8Array>;
 
 /** @internal */
 export const Extension$outboundSchema: z.ZodEnum<typeof Extension> = z.enum(
@@ -316,8 +323,9 @@ export type StartTranscodeSessionRequest$Outbound = {
   Marketplace?: string | undefined;
   transcodeType: string;
   transcodeSessionId?: string | undefined;
-  extension: string;
   advancedSubtitles?: string | undefined;
+  platformQueryParameter?: string | undefined;
+  extension: string;
   audioBoost?: number | undefined;
   audioChannelCount?: number | undefined;
   autoAdjustQuality: number;
@@ -340,9 +348,11 @@ export type StartTranscodeSessionRequest$Outbound = {
   secondsPerSegment?: number | undefined;
   subtitleSize?: number | undefined;
   subtitles?: string | undefined;
+  maxVideoBitrate?: number | undefined;
+  videoResolution?: string | undefined;
+  copyts: number;
   videoBitrate?: number | undefined;
   videoQuality?: number | undefined;
-  videoResolution?: string | undefined;
   "X-Plex-Client-Profile-Extra"?: string | undefined;
   "X-Plex-Client-Profile-Name"?: string | undefined;
   "X-Plex-Session-Identifier"?: string | undefined;
@@ -366,8 +376,9 @@ export const StartTranscodeSessionRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   transcodeType: shared.TranscodeType$outboundSchema,
   transcodeSessionId: z.string().optional(),
-  extension: Extension$outboundSchema,
   advancedSubtitles: shared.AdvancedSubtitles$outboundSchema.optional(),
+  platformQueryParameter: z.string().optional(),
+  extension: Extension$outboundSchema,
   audioBoost: z.int().optional(),
   audioChannelCount: z.int().optional(),
   autoAdjustQuality: shared.BoolInt$outboundSchema.default(
@@ -398,9 +409,11 @@ export const StartTranscodeSessionRequest$outboundSchema: z.ZodType<
   secondsPerSegment: z.int().optional(),
   subtitleSize: z.int().optional(),
   subtitles: StartTranscodeSessionSubtitles$outboundSchema.optional(),
+  maxVideoBitrate: z.int().optional(),
+  videoResolution: z.string().optional(),
+  copyts: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   videoBitrate: z.int().optional(),
   videoQuality: z.int().optional(),
-  videoResolution: z.string().optional(),
   xPlexClientProfileExtra: z.string().optional(),
   xPlexClientProfileName: z.string().optional(),
   xPlexSessionIdentifier: z.string().optional(),
@@ -429,5 +442,25 @@ export function startTranscodeSessionRequestToJSON(
     StartTranscodeSessionRequest$outboundSchema.parse(
       startTranscodeSessionRequest,
     ),
+  );
+}
+
+/** @internal */
+export const StartTranscodeSessionResponse$inboundSchema: z.ZodType<
+  StartTranscodeSessionResponse,
+  unknown
+> = smartUnion([
+  z.custom<ReadableStream<Uint8Array>>(x => x instanceof ReadableStream),
+  z.custom<ReadableStream<Uint8Array>>(x => x instanceof ReadableStream),
+  z.custom<ReadableStream<Uint8Array>>(x => x instanceof ReadableStream),
+]);
+
+export function startTranscodeSessionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StartTranscodeSessionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartTranscodeSessionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartTranscodeSessionResponse' from JSON`,
   );
 }

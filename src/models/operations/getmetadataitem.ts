@@ -101,6 +101,9 @@ export type GetMetadataItemRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: Array<string>;
   /**
    * Determines if file check should be performed asynchronously.  An activity is created to indicate progress.  Default is false.
@@ -134,6 +137,54 @@ export type GetMetadataItemRequest = {
    * Number of augmentations to add.  Requires `asyncAugmentMetadata` to be specified.
    */
   augmentCount?: shared.BoolInt | undefined;
+  /**
+   * Include intro/credits markers in the response
+   */
+  includeMarkers?: boolean | undefined;
+  /**
+   * Include external GUIDs (e.g. TMDB, TVDB) in the response
+   */
+  includeGuids?: boolean | undefined;
+  /**
+   * Include chapter data in the response
+   */
+  includeChapters?: boolean | undefined;
+  /**
+   * Include external/online media in the response
+   */
+  includeExternalMedia?: boolean | undefined;
+  /**
+   * Include trailers, behind-the-scenes, and other extras
+   */
+  includeExtras?: boolean | undefined;
+  /**
+   * Include related items in the response
+   */
+  includeRelated?: boolean | undefined;
+  /**
+   * Include On Deck status in the response
+   */
+  includeOnDeck?: boolean | undefined;
+  /**
+   * Include popular episodes in the response
+   */
+  includePopularLeaves?: boolean | undefined;
+  /**
+   * Include user reviews in the response
+   */
+  includeReviews?: boolean | undefined;
+  /**
+   * Include radio station data in the response
+   */
+  includeStations?: boolean | undefined;
+  /**
+   * Comma-separated list of elements to exclude from the response
+   */
+  excludeElements?: string | undefined;
+  /**
+   * Comma-separated list of fields to exclude from the response
+   */
+  excludeFields?: string | undefined;
 };
 
 export type GetMetadataItemResponse = {
@@ -163,6 +214,18 @@ export type GetMetadataItemRequest$Outbound = {
   checkFileAvailability: number;
   asyncAugmentMetadata: number;
   augmentCount: number;
+  includeMarkers?: boolean | undefined;
+  includeGuids?: boolean | undefined;
+  includeChapters?: boolean | undefined;
+  includeExternalMedia?: boolean | undefined;
+  includeExtras?: boolean | undefined;
+  includeRelated?: boolean | undefined;
+  includeOnDeck?: boolean | undefined;
+  includePopularLeaves?: boolean | undefined;
+  includeReviews?: boolean | undefined;
+  includeStations?: boolean | undefined;
+  excludeElements?: string | undefined;
+  excludeFields?: string | undefined;
 };
 
 /** @internal */
@@ -198,6 +261,18 @@ export const GetMetadataItemRequest$outboundSchema: z.ZodType<
     shared.BoolInt.False,
   ),
   augmentCount: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeMarkers: z.boolean().optional(),
+  includeGuids: z.boolean().optional(),
+  includeChapters: z.boolean().optional(),
+  includeExternalMedia: z.boolean().optional(),
+  includeExtras: z.boolean().optional(),
+  includeRelated: z.boolean().optional(),
+  includeOnDeck: z.boolean().optional(),
+  includePopularLeaves: z.boolean().optional(),
+  includeReviews: z.boolean().optional(),
+  includeStations: z.boolean().optional(),
+  excludeElements: z.string().optional(),
+  excludeFields: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

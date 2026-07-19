@@ -98,11 +98,14 @@ export type ListSimilarRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
-  ids: string;
   /**
    * Limit results to count items
    */
   count?: number | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
+  ids: string;
 };
 
 /** @internal */
@@ -118,8 +121,8 @@ export type ListSimilarRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  ids: string;
   count?: number | undefined;
+  ids: string;
 };
 
 /** @internal */
@@ -138,8 +141,8 @@ export const ListSimilarRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  ids: z.string(),
   count: z.int().optional(),
+  ids: z.string(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

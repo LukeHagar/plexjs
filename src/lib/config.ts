@@ -93,13 +93,13 @@ export type SDKOptions = {
    */
   port?: string | undefined;
   /**
-   * Sets the protocol variable for url substitution
-   */
-  protocol?: string | undefined;
-  /**
    * Sets the host variable for url substitution
    */
   host?: string | undefined;
+  /**
+   * Sets the protocol variable for url substitution
+   */
+  protocol?: string | undefined;
   /**
    * Sets the full_server_url variable for url substitution
    */
@@ -130,9 +130,9 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
       "port": options.port ?? "32400",
     },
     {
-      "protocol": options.protocol ?? "http",
       "host": options.host ?? "localhost",
       "port": options.port ?? "32400",
+      "protocol": options.protocol ?? "http",
     },
     {
       "full_server_url": options.fullServerUrl ?? "http://localhost:32400",
@@ -156,7 +156,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.1.1",
-  sdkVersion: "0.45.3",
-  genVersion: "2.884.4",
-  userAgent: "speakeasy-sdk/typescript 0.45.3 2.884.4 1.1.1 @parke.dev/plexjs",
+  sdkVersion: "0.46.0",
+  genVersion: "2.918.3",
+  userAgent: "speakeasy-sdk/typescript 0.46.0 2.918.3 1.1.1 @parke.dev/plexjs",
 } as const;

@@ -98,6 +98,13 @@ export type AddExtrasRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * The title to filter by or assign
+   */
+  title?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
   /**
    * The metadata type of the extra
@@ -107,10 +114,6 @@ export type AddExtrasRequest = {
    * The URL of the extra
    */
   url: string;
-  /**
-   * The title to filter by or assign
-   */
-  title?: string | undefined;
 };
 
 /** @internal */
@@ -126,10 +129,10 @@ export type AddExtrasRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  title?: string | undefined;
   ids: string;
   extraType?: number | undefined;
   url: string;
-  title?: string | undefined;
 };
 
 /** @internal */
@@ -148,10 +151,10 @@ export const AddExtrasRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  title: z.string().optional(),
   ids: z.string(),
   extraType: z.int().optional(),
   url: z.string(),
-  title: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

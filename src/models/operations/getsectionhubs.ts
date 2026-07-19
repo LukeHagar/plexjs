@@ -6,7 +6,6 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
@@ -103,54 +102,22 @@ export type GetSectionHubsRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * The section ID for the hubs to fetch
-   */
-  sectionId: number;
-  /**
    * Limit results to count items
    */
   count?: number | undefined;
+  /**
+   * The section ID for the hubs to fetch
+   */
+  sectionId: number;
   /**
    * Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added)
    */
   onlyTransient?: shared.BoolInt | undefined;
 };
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type GetSectionHubsMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  hub?: Array<shared.Hub> | undefined;
-};
-
-/**
- * OK
- */
-export type GetSectionHubsResponseBody = {
-  mediaContainer?: GetSectionHubsMediaContainer | undefined;
-};
-
 export type GetSectionHubsResponse = {
   headers: { [k: string]: Array<string> };
-  result: GetSectionHubsResponseBody;
+  result: shared.MediaContainerWithHubs;
 };
 
 /** @internal */
@@ -166,8 +133,8 @@ export type GetSectionHubsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: number;
   count?: number | undefined;
+  sectionId: number;
   onlyTransient: number;
 };
 
@@ -187,8 +154,8 @@ export const GetSectionHubsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.int(),
   count: z.int().optional(),
+  sectionId: z.int(),
   onlyTransient: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
@@ -214,62 +181,12 @@ export function getSectionHubsRequestToJSON(
 }
 
 /** @internal */
-export const GetSectionHubsMediaContainer$inboundSchema: z.ZodType<
-  GetSectionHubsMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  Hub: types.optional(z.array(shared.Hub$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "Hub": "hub",
-  });
-});
-
-export function getSectionHubsMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSectionHubsMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSectionHubsMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSectionHubsMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSectionHubsResponseBody$inboundSchema: z.ZodType<
-  GetSectionHubsResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => GetSectionHubsMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function getSectionHubsResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSectionHubsResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSectionHubsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSectionHubsResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetSectionHubsResponse$inboundSchema: z.ZodType<
   GetSectionHubsResponse,
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => GetSectionHubsResponseBody$inboundSchema),
+  Result: shared.MediaContainerWithHubs$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

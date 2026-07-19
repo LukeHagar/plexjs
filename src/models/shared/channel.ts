@@ -12,10 +12,26 @@ export type Channel = {
   title?: string | undefined;
   callSign?: string | undefined;
   channelVcn?: string | undefined;
+  /**
+   * Whether the channel requires DRM.
+   */
+  drm?: boolean | undefined;
+  /**
+   * Whether the channel is marked as a favorite.
+   */
+  favorite?: boolean | undefined;
   hd?: boolean | undefined;
   identifier?: string | undefined;
   key?: string | undefined;
   language?: string | undefined;
+  /**
+   * Signal quality percentage (0-100).
+   */
+  signalQuality?: number | undefined;
+  /**
+   * Signal strength percentage (0-100).
+   */
+  signalStrength?: number | undefined;
   thumb?: string | undefined;
 };
 
@@ -24,10 +40,14 @@ export const Channel$inboundSchema: z.ZodType<Channel, unknown> = z.object({
   title: types.optional(types.string()),
   callSign: types.optional(types.string()),
   channelVcn: types.optional(types.string()),
+  drm: types.optional(types.boolean()),
+  favorite: types.optional(types.boolean()),
   hd: types.optional(types.boolean()),
   identifier: types.optional(types.string()),
   key: types.optional(types.string()),
   language: types.optional(types.string()),
+  signalQuality: types.optional(types.number()),
+  signalStrength: types.optional(types.number()),
   thumb: types.optional(types.string()),
 });
 

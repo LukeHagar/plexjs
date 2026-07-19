@@ -4,6 +4,7 @@
 
 import { eventsConnectWebSocket } from "../funcs/eventsConnectWebSocket.js";
 import { eventsGetNotifications } from "../funcs/eventsGetNotifications.js";
+import { eventsGetWebsocketNotifications } from "../funcs/eventsGetWebsocketNotifications.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -37,6 +38,23 @@ export class Events extends ClientSDK {
     options?: RequestOptions,
   ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(eventsConnectWebSocket(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get WebSocket Notifications
+   *
+   * @remarks
+   * WebSocket endpoint for real-time notifications (plural alias). Connect with X-Plex-Token header. Delivers NotificationContainer messages.
+   */
+  async getWebsocketNotifications(
+    request: operations.GetWebsocketNotificationsRequest,
+    options?: RequestOptions,
+  ): Promise<Uint8Array | undefined> {
+    return unwrapAsync(eventsGetWebsocketNotifications(
       this,
       request,
       options,

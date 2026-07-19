@@ -6,7 +6,6 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
@@ -108,57 +107,9 @@ export type GetDVRRequest = {
   dvrId: number;
 };
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type GetDVRMediaContainerMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  /**
-   * A status indicator. If present and non-zero, indicates an error
-   */
-  status?: number | undefined;
-};
-
-export type GetDVRDVR = {
-  device?: Array<shared.Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
-  uuid?: string | undefined;
-};
-
-export type GetDVRMediaContainer = {
-  mediaContainer?: GetDVRMediaContainerMediaContainer | undefined;
-  dvr?: Array<GetDVRDVR> | undefined;
-};
-
-/**
- * OK
- */
-export type GetDVRResponseBody = {
-  mediaContainer?: GetDVRMediaContainer | undefined;
-};
-
 export type GetDVRResponse = {
   headers: { [k: string]: Array<string> };
-  result: GetDVRResponseBody;
+  result: shared.DVRResponse;
 };
 
 /** @internal */
@@ -214,106 +165,10 @@ export function getDVRRequestToJSON(getDVRRequest: GetDVRRequest): string {
 }
 
 /** @internal */
-export const GetDVRMediaContainerMediaContainer$inboundSchema: z.ZodType<
-  GetDVRMediaContainerMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  status: types.optional(types.number()),
-});
-
-export function getDVRMediaContainerMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDVRMediaContainerMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetDVRMediaContainerMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDVRMediaContainerMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetDVRDVR$inboundSchema: z.ZodType<GetDVRDVR, unknown> = z.object({
-  Device: types.optional(z.array(shared.Device$inboundSchema)),
-  key: types.optional(types.string()),
-  language: types.optional(types.string()),
-  lineup: types.optional(types.string()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Device": "device",
-  });
-});
-
-export function getDVRDVRFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDVRDVR, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetDVRDVR$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDVRDVR' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetDVRMediaContainer$inboundSchema: z.ZodType<
-  GetDVRMediaContainer,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => GetDVRMediaContainerMediaContainer$inboundSchema),
-  ),
-  DVR: types.optional(z.array(z.lazy(() => GetDVRDVR$inboundSchema))),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-    "DVR": "dvr",
-  });
-});
-
-export function getDVRMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDVRMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetDVRMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDVRMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetDVRResponseBody$inboundSchema: z.ZodType<
-  GetDVRResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => GetDVRMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function getDVRResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<GetDVRResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetDVRResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDVRResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetDVRResponse$inboundSchema: z.ZodType<GetDVRResponse, unknown> =
   z.object({
     Headers: z.record(z.string(), z.array(z.string())).default({}),
-    Result: z.lazy(() => GetDVRResponseBody$inboundSchema),
+    Result: shared.DVRResponse$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "Headers": "headers",

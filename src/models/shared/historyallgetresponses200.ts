@@ -8,53 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type MetadatumResponse = {
-  /**
-   * The account id of this playback
-   */
-  accountID?: number | undefined;
-  /**
-   * The device id which played the item
-   */
-  deviceID?: number | undefined;
-  /**
-   * The key for this individual history item
-   */
-  historyKey?: string | undefined;
-  /**
-   * The metadata key for the item played
-   */
-  key?: string | undefined;
-  /**
-   * The library section id containing the item played
-   */
-  librarySectionID?: string | undefined;
-  /**
-   * The originally available at of the item played
-   */
-  originallyAvailableAt?: string | undefined;
-  /**
-   * The rating key for the item played
-   */
-  ratingKey?: string | undefined;
-  /**
-   * The thumb of the item played
-   */
-  thumb?: string | undefined;
-  /**
-   * The title of the item played
-   */
-  title?: string | undefined;
-  /**
-   * The metadata type of the item played
-   */
-  type?: string | undefined;
-  /**
-   * The time when the item was played
-   */
-  viewedAt?: number | undefined;
-};
+import {
+  PlaybackHistoryMetadata,
+  PlaybackHistoryMetadata$inboundSchema,
+} from "./playbackhistorymetadata.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -67,18 +24,14 @@ export type HistoryAllGetResponses200MediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  metadata?: Array<MetadatumResponse> | undefined;
+  metadata?: Array<PlaybackHistoryMetadata> | undefined;
 };
 
 /**
@@ -89,34 +42,6 @@ export type HistoryAllGetResponses200 = {
 };
 
 /** @internal */
-export const MetadatumResponse$inboundSchema: z.ZodType<
-  MetadatumResponse,
-  unknown
-> = z.object({
-  accountID: types.optional(types.number()),
-  deviceID: types.optional(types.number()),
-  historyKey: types.optional(types.string()),
-  key: types.optional(types.string()),
-  librarySectionID: types.optional(types.string()),
-  originallyAvailableAt: types.optional(types.string()),
-  ratingKey: types.optional(types.string()),
-  thumb: types.optional(types.string()),
-  title: types.optional(types.string()),
-  type: types.optional(types.string()),
-  viewedAt: types.optional(types.number()),
-});
-
-export function metadatumResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<MetadatumResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MetadatumResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MetadatumResponse' from JSON`,
-  );
-}
-
-/** @internal */
 export const HistoryAllGetResponses200MediaContainer$inboundSchema: z.ZodType<
   HistoryAllGetResponses200MediaContainer,
   unknown
@@ -125,9 +50,7 @@ export const HistoryAllGetResponses200MediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Metadata: types.optional(
-    z.array(z.lazy(() => MetadatumResponse$inboundSchema)),
-  ),
+  Metadata: types.optional(z.array(PlaybackHistoryMetadata$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Metadata": "metadata",

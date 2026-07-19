@@ -2,19 +2,22 @@
 
 A variety of extra information about a metadata item is included as tags. These tags use their own element names such as `Genre`, `Writer`, `Directory`, and `Role`. Individual tag types may introduce their own extra attributes.
 
-
 ## Example Usage
 
 ```typescript
 import { Tag } from "@parke.dev/plexjs/models/shared";
 
 let value: Tag = {
-  filter: "actor=49",
-  ratingKey: "58683",
-  role: "Secretary",
-  tag: "Shaun Lawton",
-  tagKey: "5d3ee12c4cde6a001c3e0b27",
-  thumb: "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
+  confidence: 1,
+  context: "string value",
+  filter: "string value",
+  id: 1,
+  ratingKey: "string value",
+  role: "string value",
+  tag: "string value",
+  tagKey: "string value",
+  tagType: 1,
+  thumb: "string value",
 };
 ```
 

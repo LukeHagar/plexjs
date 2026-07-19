@@ -1,0 +1,33 @@
+# PlayQueueResponse
+
+## Example Usage
+
+```typescript
+import { PlayQueueResponse } from "@parke.dev/plexjs/models/shared";
+
+let value: PlayQueueResponse = {
+  playQueueID: 1,
+  playQueueLastAddedItemID: "string value",
+  playQueueSelectedItemID: 1,
+  playQueueSelectedItemOffset: 1,
+  playQueueSelectedMetadataItemID: 1,
+  playQueueShuffled: true,
+  playQueueSourceURI: "string value",
+  playQueueTotalCount: 1,
+  playQueueVersion: 1,
+};
+```
+
+## Fields
+
+| Field                                                                                                                                    | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `playQueueID`                                                                                                                            | *number*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The ID of the play queue, which is used in subsequent requests.                                                                          |
+| `playQueueLastAddedItemID`                                                                                                               | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | Defines where the "Up Next" region starts                                                                                                |
+| `playQueueSelectedItemID`                                                                                                                | *number*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The queue item ID of the currently selected  item.                                                                                       |
+| `playQueueSelectedItemOffset`                                                                                                            | *number*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The offset of the selected item in the play queue, from the beginning of the queue.                                                      |
+| `playQueueSelectedMetadataItemID`                                                                                                        | *number*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The metadata item ID of the currently selected item (matches `ratingKey` attribute in metadata item if the media provider is a library). |
+| `playQueueShuffled`                                                                                                                      | *boolean*                                                                                                                                | :heavy_minus_sign:                                                                                                                       | Whether or not the queue is shuffled.                                                                                                    |
+| `playQueueSourceURI`                                                                                                                     | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The original URI used to create the play queue.                                                                                          |
+| `playQueueTotalCount`                                                                                                                    | *number*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The total number of items in the play queue.                                                                                             |
+| `playQueueVersion`                                                                                                                       | *number*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The version of the play queue. It increments every time a change is made to the play queue to assist clients in knowing when to refresh. |

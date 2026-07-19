@@ -112,28 +112,6 @@ export type GetSourceConnectionInformationRequest = {
   refresh?: shared.BoolInt | undefined;
 };
 
-export type Connection = {
-  address?: string | undefined;
-  /**
-   * Indicates if the connection is the server's LAN address
-   */
-  local?: boolean | undefined;
-  port?: number | undefined;
-  protocol?: string | undefined;
-  /**
-   * Indicates the connection is over a relayed connection
-   */
-  relay?: boolean | undefined;
-  uri?: string | undefined;
-};
-
-export type GetSourceConnectionInformationDevice = {
-  accessToken?: string | undefined;
-  clientIdentifier?: string | undefined;
-  connection?: Array<Connection> | undefined;
-  name?: string | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -145,18 +123,14 @@ export type GetSourceConnectionInformationMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  device?: GetSourceConnectionInformationDevice | undefined;
+  device?: shared.ConnectionInfo | undefined;
 };
 
 /**
@@ -227,62 +201,13 @@ export function getSourceConnectionInformationRequestToJSON(
 }
 
 /** @internal */
-export const Connection$inboundSchema: z.ZodType<Connection, unknown> = z
-  .object({
-    address: types.optional(types.string()),
-    local: types.optional(types.boolean()),
-    port: types.optional(types.number()),
-    protocol: types.optional(types.string()),
-    relay: types.optional(types.boolean()),
-    uri: types.optional(types.string()),
-  });
-
-export function connectionFromJSON(
-  jsonString: string,
-): SafeParseResult<Connection, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Connection$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Connection' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSourceConnectionInformationDevice$inboundSchema: z.ZodType<
-  GetSourceConnectionInformationDevice,
-  unknown
-> = z.object({
-  accessToken: types.optional(types.string()),
-  clientIdentifier: types.optional(types.string()),
-  Connection: types.optional(z.array(z.lazy(() => Connection$inboundSchema))),
-  name: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Connection": "connection",
-  });
-});
-
-export function getSourceConnectionInformationDeviceFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSourceConnectionInformationDevice, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetSourceConnectionInformationDevice$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSourceConnectionInformationDevice' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetSourceConnectionInformationMediaContainer$inboundSchema:
   z.ZodType<GetSourceConnectionInformationMediaContainer, unknown> = z.object({
     identifier: types.optional(types.string()),
     offset: types.optional(types.number()),
     size: types.optional(types.number()),
     totalSize: types.optional(types.number()),
-    Device: types.optional(
-      z.lazy(() => GetSourceConnectionInformationDevice$inboundSchema),
-    ),
+    Device: types.optional(shared.ConnectionInfo$inboundSchema),
   }).transform((v) => {
     return remap$(v, {
       "Device": "device",

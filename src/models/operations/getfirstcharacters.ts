@@ -103,18 +103,6 @@ export type GetFirstCharactersRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * Section identifier
-   */
-  sectionId: number;
-  /**
-   * The metadata type to filter on
-   */
-  type?: number | undefined;
-  /**
-   * The metadata type to filter on
-   */
-  sort?: number | undefined;
-  /**
    * A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
    *
    * @remarks
@@ -135,15 +123,27 @@ export type GetFirstCharactersRequest = {
    * See [API Info section](#section/API-Info/Media-Queries) for detailed information on building media queries.
    */
   mediaQuery?: shared.MediaQuery | undefined;
+  /**
+   * Section identifier
+   */
+  sectionId: number;
+  /**
+   * The metadata type to filter on
+   */
+  mediaType?: number | undefined;
+  /**
+   * The metadata type to filter on
+   */
+  sort?: number | undefined;
 };
 
 export type GetFirstCharactersDirectory = {
+  title?: string | undefined;
   key?: string | undefined;
   /**
    * The number of items starting with this character
    */
   size?: number | undefined;
-  title?: string | undefined;
 };
 
 /**
@@ -157,15 +157,11 @@ export type GetFirstCharactersMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   directory?: Array<GetFirstCharactersDirectory> | undefined;
@@ -191,10 +187,10 @@ export type GetFirstCharactersRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: number;
-  type?: number | undefined;
-  sort?: number | undefined;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
+  sectionId: number;
+  mediaType?: number | undefined;
+  sort?: number | undefined;
 };
 
 /** @internal */
@@ -213,10 +209,10 @@ export const GetFirstCharactersRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.int(),
-  type: z.int().optional(),
-  sort: z.int().optional(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
+  sectionId: z.int(),
+  mediaType: z.int().optional(),
+  sort: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",
@@ -245,9 +241,9 @@ export const GetFirstCharactersDirectory$inboundSchema: z.ZodType<
   GetFirstCharactersDirectory,
   unknown
 > = z.object({
+  title: types.optional(types.string()),
   key: types.optional(types.string()),
   size: types.optional(types.number()),
-  title: types.optional(types.string()),
 });
 
 export function getFirstCharactersDirectoryFromJSON(

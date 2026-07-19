@@ -26,7 +26,6 @@ In the response's items, the following extra attributes are returned to further 
 
 This request is intended to be very fast, and called as the user types.
 
-
 ### Example Usage
 
 <!-- UsageSnippet language="typescript" operationID="searchHubs" method="get" path="/hubs/search" -->
@@ -130,7 +129,6 @@ This endpoint performs a search specifically tailored towards voice or other imp
 
 Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
 
-
 ### Example Usage
 
 <!-- UsageSnippet language="typescript" operationID="voiceSearchHubs" method="get" path="/hubs/search/voice" -->
@@ -155,8 +153,8 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.search.voiceSearchHubs({
-    query: "<value>",
     type: MediaType.TvShow,
+    query: "<value>",
   });
 
   console.log(result);
@@ -193,8 +191,8 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await searchVoiceSearchHubs(plexAPI, {
-    query: "<value>",
     type: MediaType.TvShow,
+    query: "<value>",
   });
   if (res.ok) {
     const { value: result } = res;

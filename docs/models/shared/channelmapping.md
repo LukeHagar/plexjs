@@ -5,7 +5,12 @@
 ```typescript
 import { ChannelMapping } from "@parke.dev/plexjs/models/shared";
 
-let value: ChannelMapping = {};
+let value: ChannelMapping = {
+  channelKey: "string value",
+  deviceIdentifier: "string value",
+  enabled: "string value",
+  lineupIdentifier: "string value",
+};
 ```
 
 ## Fields

@@ -98,6 +98,9 @@ export type DeleteSubscriptionRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * The unique identifier of the subscription
+   */
   subscriptionId: number;
 };
 

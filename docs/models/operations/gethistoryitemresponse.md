@@ -7,7 +7,14 @@ import { GetHistoryItemResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetHistoryItemResponse = {
   headers: {},
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

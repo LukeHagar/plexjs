@@ -36,8 +36,8 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.collections.createCollection({
-    sectionId: "<id>",
     type: MediaType.TvShow,
+    sectionId: "<id>",
   });
 
   console.log(result);
@@ -74,8 +74,8 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await collectionsCreateCollection(plexAPI, {
-    sectionId: "<id>",
     type: MediaType.TvShow,
+    sectionId: "<id>",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -99,7 +99,7 @@ run();
 
 ### Response
 
-**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+**Promise\<[shared.Collection](../../models/shared/collection.md)\>**
 
 ### Errors
 

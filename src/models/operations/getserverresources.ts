@@ -4,10 +4,6 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export const GetServerResourcesServerList = [
@@ -78,12 +74,6 @@ export type GetServerResourcesRequest = {
   includeIPv6?: IncludeIPv6 | undefined;
 };
 
-export type GetServerResourcesError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
 /** @internal */
 export const IncludeHttps$outboundSchema: z.ZodEnum<typeof IncludeHttps> = z
   .enum(IncludeHttps);
@@ -127,25 +117,5 @@ export function getServerResourcesRequestToJSON(
 ): string {
   return JSON.stringify(
     GetServerResourcesRequest$outboundSchema.parse(getServerResourcesRequest),
-  );
-}
-
-/** @internal */
-export const GetServerResourcesError$inboundSchema: z.ZodType<
-  GetServerResourcesError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function getServerResourcesErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetServerResourcesError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetServerResourcesError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetServerResourcesError' from JSON`,
   );
 }

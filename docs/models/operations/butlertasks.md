@@ -5,11 +5,22 @@
 ```typescript
 import { ButlerTasks } from "@parke.dev/plexjs/models/operations";
 
-let value: ButlerTasks = {};
+let value: ButlerTasks = {
+  butlerTask: [
+    {
+      title: "string value",
+      description: "string value",
+      enabled: true,
+      interval: 1,
+      name: "string value",
+      scheduleRandomized: true,
+    },
+  ],
+};
 ```
 
 ## Fields
 
-| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `butlerTask`                                                                     | [operations.GetTasksButlerTask](../../models/operations/gettasksbutlertask.md)[] | :heavy_minus_sign:                                                               | N/A                                                                              |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `butlerTask`                                             | [shared.ButlerTask](../../models/shared/butlertask.md)[] | :heavy_minus_sign:                                       | N/A                                                      |

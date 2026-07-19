@@ -9,6 +9,7 @@ import { BoolInt } from "@parke.dev/plexjs/models/shared";
 let value: RefreshItemsMetadataRequest = {
   ids: "<value>",
   markUpdated: BoolInt.True,
+  skipRefresh: BoolInt.True,
 };
 ```
 
@@ -27,6 +28,7 @@ let value: RefreshItemsMetadataRequest = {
 | `deviceVendor`                                                 | *string*                                                       | :heavy_minus_sign:                                             | The device vendor                                              | Roku                                                           |
 | `deviceName`                                                   | *string*                                                       | :heavy_minus_sign:                                             | A friendly name for the client                                 | Living Room TV                                                 |
 | `marketplace`                                                  | *string*                                                       | :heavy_minus_sign:                                             | The marketplace on which the client application is distributed | googlePlay                                                     |
-| `ids`                                                          | *string*                                                       | :heavy_check_mark:                                             | N/A                                                            |                                                                |
-| `agent`                                                        | *string*                                                       | :heavy_minus_sign:                                             | N/A                                                            |                                                                |
-| `markUpdated`                                                  | [shared.BoolInt](../../models/shared/boolint.md)               | :heavy_minus_sign:                                             | N/A                                                            | 1                                                              |
+| `ids`                                                          | *string*                                                       | :heavy_check_mark:                                             | Comma-separated list of IDs                                    |                                                                |
+| `agent`                                                        | *string*                                                       | :heavy_minus_sign:                                             | The identifier of the metadata agent to use                    |                                                                |
+| `markUpdated`                                                  | [shared.BoolInt](../../models/shared/boolint.md)               | :heavy_minus_sign:                                             | The markUpdated                                                | 1                                                              |
+| `skipRefresh`                                                  | [shared.BoolInt](../../models/shared/boolint.md)               | :heavy_minus_sign:                                             | Skip synchronous refresh                                       | 1                                                              |

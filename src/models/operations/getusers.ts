@@ -110,66 +110,6 @@ export type GetUsersRequest = {
   marketplace?: string | undefined;
 };
 
-export type GetUsersUnauthorizedError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
-export type GetUsersBadRequestError = {
-  code?: number | undefined;
-  message?: string | undefined;
-  status?: number | undefined;
-};
-
-/**
- * Indicates whether the account is protected.
- */
-export enum Protected {
-  Disable = 0,
-  Enable = 1,
-}
-/**
- * Indicates whether the account is protected.
- */
-export type ProtectedOpen = OpenEnum<typeof Protected>;
-
-/**
- * Indicates if the user is part of a home group.
- */
-export enum Home {
-  Disable = 0,
-  Enable = 1,
-}
-/**
- * Indicates if the user is part of a home group.
- */
-export type HomeOpen = OpenEnum<typeof Home>;
-
-/**
- * Indicates if the user is allowed to use tuners.
- */
-export enum AllowTuners {
-  Disable = 0,
-  Enable = 1,
-}
-/**
- * Indicates if the user is allowed to use tuners.
- */
-export type AllowTunersOpen = OpenEnum<typeof AllowTuners>;
-
-/**
- * Indicates if the user is allowed to sync media.
- */
-export enum GetUsersAllowSync {
-  Disable = 0,
-  Enable = 1,
-}
-/**
- * Indicates if the user is allowed to sync media.
- */
-export type GetUsersAllowSyncOpen = OpenEnum<typeof GetUsersAllowSync>;
-
 /**
  * Indicates if the user is allowed to upload from a camera.
  */
@@ -205,6 +145,54 @@ export enum AllowSubtitleAdmin {
  * Indicates if the user can manage subtitles.
  */
 export type AllowSubtitleAdminOpen = OpenEnum<typeof AllowSubtitleAdmin>;
+
+/**
+ * Indicates if the user is allowed to sync media.
+ */
+export enum GetUsersAllowSync {
+  Disable = 0,
+  Enable = 1,
+}
+/**
+ * Indicates if the user is allowed to sync media.
+ */
+export type GetUsersAllowSyncOpen = OpenEnum<typeof GetUsersAllowSync>;
+
+/**
+ * Indicates if the user is allowed to use tuners.
+ */
+export enum AllowTuners {
+  Disable = 0,
+  Enable = 1,
+}
+/**
+ * Indicates if the user is allowed to use tuners.
+ */
+export type AllowTunersOpen = OpenEnum<typeof AllowTuners>;
+
+/**
+ * Indicates if the user is part of a home group.
+ */
+export enum Home {
+  Disable = 0,
+  Enable = 1,
+}
+/**
+ * Indicates if the user is part of a home group.
+ */
+export type HomeOpen = OpenEnum<typeof Home>;
+
+/**
+ * Indicates whether the account is protected.
+ */
+export enum Protected {
+  Disable = 0,
+  Enable = 1,
+}
+/**
+ * Indicates whether the account is protected.
+ */
+export type ProtectedOpen = OpenEnum<typeof Protected>;
 
 /**
  * Indicates if the user has restricted access.
@@ -255,14 +243,15 @@ export enum Pending {
 export type PendingOpen = OpenEnum<typeof Pending>;
 
 export type Server = {
+  allLibraries: AllLibrariesOpen;
   /**
    * Unique ID of the server of the connected user
    */
   id: number;
   /**
-   * ID of the actual Plex server.
+   * Unix epoch datetime in seconds
    */
-  serverId: number;
+  lastSeenAt: number;
   /**
    * Machine identifier of the Plex server.
    */
@@ -272,50 +261,31 @@ export type Server = {
    */
   name: string;
   /**
-   * Unix epoch datetime in seconds
-   */
-  lastSeenAt: number;
-  /**
    * Number of libraries in the server this user has access to.
    */
   numLibraries: number;
-  allLibraries: AllLibrariesOpen;
   owned: OwnedOpen;
   pending: PendingOpen;
+  /**
+   * ID of the actual Plex server.
+   */
+  serverId: number;
 };
 
-export type User = {
-  /**
-   * User's unique ID.
-   */
-  id: number;
+export type GetUsersUser = {
   /**
    * User's display name.
    */
   title: string;
-  /**
-   * User's username.
-   */
-  username: string;
+  allowCameraUpload: AllowCameraUploadOpen;
+  allowChannels: AllowChannelsOpen;
+  allowSubtitleAdmin: AllowSubtitleAdminOpen;
+  allowSync: GetUsersAllowSyncOpen;
+  allowTuners: AllowTunersOpen;
   /**
    * User's email address.
    */
   email: string;
-  /**
-   * ID of the user's recommendation playlist.
-   */
-  recommendationsPlaylistId?: string | null | undefined;
-  /**
-   * URL to the user's avatar image.
-   */
-  thumb: string;
-  protected: ProtectedOpen;
-  home: HomeOpen;
-  allowTuners: AllowTunersOpen;
-  allowSync: GetUsersAllowSyncOpen;
-  allowCameraUpload: AllowCameraUploadOpen;
-  allowChannels: AllowChannelsOpen;
-  allowSubtitleAdmin: AllowSubtitleAdminOpen;
   /**
    * Filters applied for all content.
    */
@@ -336,11 +306,29 @@ export type User = {
    * Filters applied for television.
    */
   filterTelevision?: string | undefined;
+  home: HomeOpen;
+  /**
+   * User's unique ID.
+   */
+  id: number;
+  protected: ProtectedOpen;
+  /**
+   * ID of the user's recommendation playlist.
+   */
+  recommendationsPlaylistId?: string | null | undefined;
   restricted: RestrictedOpen;
   /**
    * List of servers owned by the user.
    */
   server: Array<Server>;
+  /**
+   * URL to the user's avatar image.
+   */
+  thumb: string;
+  /**
+   * User's username.
+   */
+  username: string;
 };
 
 /**
@@ -357,17 +345,17 @@ export type GetUsersMediaContainer = {
    */
   machineIdentifier: string;
   /**
-   * Total number of users.
-   */
-  totalSize: number;
-  /**
    * Number of users in the current response.
    */
   size: number;
   /**
+   * Total number of users.
+   */
+  totalSize: number;
+  /**
    * List of users with access to the Plex server.
    */
-  user: Array<User>;
+  user: Array<GetUsersUser>;
 };
 
 /**
@@ -433,64 +421,6 @@ export function getUsersRequestToJSON(
 }
 
 /** @internal */
-export const GetUsersUnauthorizedError$inboundSchema: z.ZodType<
-  GetUsersUnauthorizedError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function getUsersUnauthorizedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetUsersUnauthorizedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetUsersUnauthorizedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetUsersUnauthorizedError' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetUsersBadRequestError$inboundSchema: z.ZodType<
-  GetUsersBadRequestError,
-  unknown
-> = z.object({
-  code: types.optional(types.number()),
-  message: types.optional(types.string()),
-  status: types.optional(types.number()),
-});
-
-export function getUsersBadRequestErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetUsersBadRequestError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetUsersBadRequestError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetUsersBadRequestError' from JSON`,
-  );
-}
-
-/** @internal */
-export const Protected$inboundSchema: z.ZodType<ProtectedOpen, unknown> =
-  openEnums.inboundSchemaInt(Protected);
-
-/** @internal */
-export const Home$inboundSchema: z.ZodType<HomeOpen, unknown> = openEnums
-  .inboundSchemaInt(Home);
-
-/** @internal */
-export const AllowTuners$inboundSchema: z.ZodType<AllowTunersOpen, unknown> =
-  openEnums.inboundSchemaInt(AllowTuners);
-
-/** @internal */
-export const GetUsersAllowSync$inboundSchema: z.ZodType<
-  GetUsersAllowSyncOpen,
-  unknown
-> = openEnums.inboundSchemaInt(GetUsersAllowSync);
-
-/** @internal */
 export const AllowCameraUpload$inboundSchema: z.ZodType<
   AllowCameraUploadOpen,
   unknown
@@ -507,6 +437,24 @@ export const AllowSubtitleAdmin$inboundSchema: z.ZodType<
   AllowSubtitleAdminOpen,
   unknown
 > = openEnums.inboundSchemaInt(AllowSubtitleAdmin);
+
+/** @internal */
+export const GetUsersAllowSync$inboundSchema: z.ZodType<
+  GetUsersAllowSyncOpen,
+  unknown
+> = openEnums.inboundSchemaInt(GetUsersAllowSync);
+
+/** @internal */
+export const AllowTuners$inboundSchema: z.ZodType<AllowTunersOpen, unknown> =
+  openEnums.inboundSchemaInt(AllowTuners);
+
+/** @internal */
+export const Home$inboundSchema: z.ZodType<HomeOpen, unknown> = openEnums
+  .inboundSchemaInt(Home);
+
+/** @internal */
+export const Protected$inboundSchema: z.ZodType<ProtectedOpen, unknown> =
+  openEnums.inboundSchemaInt(Protected);
 
 /** @internal */
 export const Restricted$inboundSchema: z.ZodType<RestrictedOpen, unknown> =
@@ -526,15 +474,15 @@ export const Pending$inboundSchema: z.ZodType<PendingOpen, unknown> = openEnums
 
 /** @internal */
 export const Server$inboundSchema: z.ZodType<Server, unknown> = z.object({
+  allLibraries: AllLibraries$inboundSchema.default(AllLibraries.Disable),
   id: types.number(),
-  serverId: types.number(),
+  lastSeenAt: types.number(),
   machineIdentifier: types.string(),
   name: types.string(),
-  lastSeenAt: types.number(),
   numLibraries: types.number(),
-  allLibraries: AllLibraries$inboundSchema.default(AllLibraries.Disable),
   owned: Owned$inboundSchema.default(Owned.Disable),
   pending: Pending$inboundSchema.default(Pending.Disable),
+  serverId: types.number(),
 });
 
 export function serverFromJSON(
@@ -548,44 +496,47 @@ export function serverFromJSON(
 }
 
 /** @internal */
-export const User$inboundSchema: z.ZodType<User, unknown> = z.object({
-  id: types.number(),
-  title: types.string(),
-  username: types.string(),
-  email: types.string(),
-  recommendationsPlaylistId: z.nullable(types.string()).optional(),
-  thumb: types.string(),
-  protected: Protected$inboundSchema.default(Protected.Disable),
-  home: Home$inboundSchema.default(Home.Disable),
-  allowTuners: AllowTuners$inboundSchema.default(AllowTuners.Disable),
-  allowSync: GetUsersAllowSync$inboundSchema.default(GetUsersAllowSync.Disable),
-  allowCameraUpload: AllowCameraUpload$inboundSchema.default(
-    AllowCameraUpload.Disable,
-  ),
-  allowChannels: AllowChannels$inboundSchema.default(AllowChannels.Disable),
-  allowSubtitleAdmin: AllowSubtitleAdmin$inboundSchema.default(
-    AllowSubtitleAdmin.Disable,
-  ),
-  filterAll: z.nullable(types.string()).optional(),
-  filterMovies: z.nullable(types.string()).optional(),
-  filterMusic: z.nullable(types.string()).optional(),
-  filterPhotos: z.nullable(types.string()).optional(),
-  filterTelevision: types.optional(types.string()),
-  restricted: Restricted$inboundSchema.default(Restricted.Disable),
-  Server: z.array(z.lazy(() => Server$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "Server": "server",
+export const GetUsersUser$inboundSchema: z.ZodType<GetUsersUser, unknown> = z
+  .object({
+    title: types.string(),
+    allowCameraUpload: AllowCameraUpload$inboundSchema.default(
+      AllowCameraUpload.Disable,
+    ),
+    allowChannels: AllowChannels$inboundSchema.default(AllowChannels.Disable),
+    allowSubtitleAdmin: AllowSubtitleAdmin$inboundSchema.default(
+      AllowSubtitleAdmin.Disable,
+    ),
+    allowSync: GetUsersAllowSync$inboundSchema.default(
+      GetUsersAllowSync.Disable,
+    ),
+    allowTuners: AllowTuners$inboundSchema.default(AllowTuners.Disable),
+    email: types.string(),
+    filterAll: z.nullable(types.string()).optional(),
+    filterMovies: z.nullable(types.string()).optional(),
+    filterMusic: z.nullable(types.string()).optional(),
+    filterPhotos: z.nullable(types.string()).optional(),
+    filterTelevision: types.optional(types.string()),
+    home: Home$inboundSchema.default(Home.Disable),
+    id: types.number(),
+    protected: Protected$inboundSchema.default(Protected.Disable),
+    recommendationsPlaylistId: z.nullable(types.string()).optional(),
+    restricted: Restricted$inboundSchema.default(Restricted.Disable),
+    Server: z.array(z.lazy(() => Server$inboundSchema)),
+    thumb: types.string(),
+    username: types.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Server": "server",
+    });
   });
-});
 
-export function userFromJSON(
+export function getUsersUserFromJSON(
   jsonString: string,
-): SafeParseResult<User, SDKValidationError> {
+): SafeParseResult<GetUsersUser, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => User$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'User' from JSON`,
+    (x) => GetUsersUser$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUsersUser' from JSON`,
   );
 }
 
@@ -597,9 +548,9 @@ export const GetUsersMediaContainer$inboundSchema: z.ZodType<
   friendlyName: types.string(),
   identifier: types.string(),
   machineIdentifier: types.string(),
-  totalSize: types.number(),
   size: types.number(),
-  User: z.array(z.lazy(() => User$inboundSchema)),
+  totalSize: types.number(),
+  User: z.array(z.lazy(() => GetUsersUser$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "User": "user",

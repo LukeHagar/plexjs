@@ -13,7 +13,14 @@ let value: GetDevicesChannelsResponse = {
       "<value 3>",
     ],
   },
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

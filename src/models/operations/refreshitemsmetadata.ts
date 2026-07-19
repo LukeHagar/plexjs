@@ -98,9 +98,22 @@ export type RefreshItemsMetadataRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The identifier of the metadata agent to use
+   */
   agent?: string | undefined;
+  /**
+   * The markUpdated
+   */
   markUpdated?: shared.BoolInt | undefined;
+  /**
+   * Skip synchronous refresh
+   */
+  skipRefresh?: shared.BoolInt | undefined;
 };
 
 /** @internal */
@@ -119,6 +132,7 @@ export type RefreshItemsMetadataRequest$Outbound = {
   ids: string;
   agent?: string | undefined;
   markUpdated: number;
+  skipRefresh: number;
 };
 
 /** @internal */
@@ -140,6 +154,7 @@ export const RefreshItemsMetadataRequest$outboundSchema: z.ZodType<
   ids: z.string(),
   agent: z.string().optional(),
   markUpdated: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  skipRefresh: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

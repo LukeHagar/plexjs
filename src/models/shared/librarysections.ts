@@ -29,15 +29,11 @@ export type LibrarySectionsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   allowCameraUpload?: boolean | undefined;
@@ -50,7 +46,10 @@ export type LibrarySectionsMediaContainer = {
   certificate?: boolean | undefined;
   companionProxy?: boolean | undefined;
   countryCode?: string | undefined;
-  diagnostics?: string | undefined;
+  /**
+   * Comma-separated list of enabled diagnostics modules.
+   */
+  diagnostics?: Array<string> | undefined;
   eventStream?: boolean | undefined;
   friendlyName?: string | undefined;
   hubSearch?: boolean | undefined;
@@ -65,11 +64,14 @@ export type LibrarySectionsMediaContainer = {
   myPlexSigninState?: any | undefined;
   myPlexSubscription?: boolean | undefined;
   myPlexUsername?: string | undefined;
-  offlineTranscode?: any | undefined;
   /**
-   * A comma-separated list of features which are enabled for the server owner
+   * Whether offline transcoding is enabled.
    */
-  ownerFeatures?: string | undefined;
+  offlineTranscode?: number | undefined;
+  /**
+   * List of enabled owner features.
+   */
+  ownerFeatures?: Array<string> | undefined;
   platform?: string | undefined;
   platformVersion?: string | undefined;
   pluginHost?: boolean | undefined;
@@ -85,14 +87,17 @@ export type LibrarySectionsMediaContainer = {
   transcoderSubtitles?: boolean | undefined;
   transcoderVideo?: boolean | undefined;
   /**
-   * The suggested video quality bitrates to present to the user
+   * List of supported transcoder video bitrates.
    */
-  transcoderVideoBitrates?: any | undefined;
-  transcoderVideoQualities?: string | undefined;
+  transcoderVideoBitrates?: Array<string> | undefined;
   /**
-   * The suggested video resolutions to the above quality bitrates
+   * List of supported transcoder video qualities.
    */
-  transcoderVideoResolutions?: any | undefined;
+  transcoderVideoQualities?: Array<string> | undefined;
+  /**
+   * List of supported transcoder video resolutions.
+   */
+  transcoderVideoResolutions?: Array<string> | undefined;
   updatedAt?: number | undefined;
   updater?: boolean | undefined;
   version?: string | undefined;
@@ -146,7 +151,7 @@ export const LibrarySectionsMediaContainer$inboundSchema: z.ZodType<
   certificate: types.optional(types.boolean()),
   companionProxy: types.optional(types.boolean()),
   countryCode: types.optional(types.string()),
-  diagnostics: types.optional(types.string()),
+  diagnostics: types.optional(z.array(types.string())),
   eventStream: types.optional(types.boolean()),
   friendlyName: types.optional(types.string()),
   hubSearch: types.optional(types.boolean()),
@@ -161,8 +166,8 @@ export const LibrarySectionsMediaContainer$inboundSchema: z.ZodType<
   myPlexSigninState: types.optional(z.any()),
   myPlexSubscription: types.optional(types.boolean()),
   myPlexUsername: types.optional(types.string()),
-  offlineTranscode: types.optional(z.any()),
-  ownerFeatures: types.optional(types.string()),
+  offlineTranscode: types.optional(types.number()),
+  ownerFeatures: types.optional(z.array(types.string())),
   platform: types.optional(types.string()),
   platformVersion: types.optional(types.string()),
   pluginHost: types.optional(types.boolean()),
@@ -177,9 +182,9 @@ export const LibrarySectionsMediaContainer$inboundSchema: z.ZodType<
   transcoderPhoto: types.optional(types.boolean()),
   transcoderSubtitles: types.optional(types.boolean()),
   transcoderVideo: types.optional(types.boolean()),
-  transcoderVideoBitrates: types.optional(z.any()),
-  transcoderVideoQualities: types.optional(types.string()),
-  transcoderVideoResolutions: types.optional(z.any()),
+  transcoderVideoBitrates: types.optional(z.array(types.string())),
+  transcoderVideoQualities: types.optional(z.array(types.string())),
+  transcoderVideoResolutions: types.optional(z.array(types.string())),
   updatedAt: types.optional(types.number()),
   updater: types.optional(types.boolean()),
   version: types.optional(types.string()),

@@ -14,7 +14,14 @@ let value: GetCountryRegionsResponse = {
     ],
     "key1": [],
   },
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

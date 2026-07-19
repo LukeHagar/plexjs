@@ -27,9 +27,7 @@ export type MediaGrabOperationStatusOpen = OpenEnum<
 >;
 
 /**
- * A media grab opration represents a scheduled or active recording of media
- *
- * @remarks
+ * A media grab operation represents a scheduled or active recording of media
  */
 export type MediaGrabOperation = {
   currentSize?: number | undefined;

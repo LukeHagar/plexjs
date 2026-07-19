@@ -98,7 +98,13 @@ export type MergeItemsRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   idsPathParameter: string;
+  /**
+   * Comma-separated list of item identifiers
+   */
   idsQueryParameter?: Array<string> | undefined;
 };
 

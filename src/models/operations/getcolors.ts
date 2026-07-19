@@ -108,25 +108,6 @@ export type GetColorsRequest = {
   url?: string | undefined;
 };
 
-export type UltraBlurColor = {
-  /**
-   * The color (hex) for the bottom left quadrant.
-   */
-  bottomLeft?: string | undefined;
-  /**
-   * The color (hex) for the bottom right quadrant.
-   */
-  bottomRight?: string | undefined;
-  /**
-   * The color (hex) for the top left quadrant.
-   */
-  topLeft?: string | undefined;
-  /**
-   * The color (hex) for the top right quadrant.
-   */
-  topRight?: string | undefined;
-};
-
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
  *
@@ -138,18 +119,14 @@ export type GetColorsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  ultraBlurColors?: Array<UltraBlurColor> | undefined;
+  ultraBlurColors?: Array<shared.UltraBlurColors> | undefined;
 };
 
 /**
@@ -216,25 +193,6 @@ export function getColorsRequestToJSON(
 }
 
 /** @internal */
-export const UltraBlurColor$inboundSchema: z.ZodType<UltraBlurColor, unknown> =
-  z.object({
-    bottomLeft: types.optional(types.string()),
-    bottomRight: types.optional(types.string()),
-    topLeft: types.optional(types.string()),
-    topRight: types.optional(types.string()),
-  });
-
-export function ultraBlurColorFromJSON(
-  jsonString: string,
-): SafeParseResult<UltraBlurColor, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UltraBlurColor$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UltraBlurColor' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetColorsMediaContainer$inboundSchema: z.ZodType<
   GetColorsMediaContainer,
   unknown
@@ -244,7 +202,7 @@ export const GetColorsMediaContainer$inboundSchema: z.ZodType<
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
   UltraBlurColors: types.optional(
-    z.array(z.lazy(() => UltraBlurColor$inboundSchema)),
+    z.array(shared.UltraBlurColors$inboundSchema),
   ),
 }).transform((v) => {
   return remap$(v, {

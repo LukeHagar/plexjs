@@ -7,7 +7,6 @@
 - `3`: IPTV
 - `4`: Virtual
 
-
 ## Example Usage
 
 ```typescript

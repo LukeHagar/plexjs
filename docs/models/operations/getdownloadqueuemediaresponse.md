@@ -5,13 +5,12 @@
 ```typescript
 import { GetDownloadQueueMediaResponse } from "@parke.dev/plexjs/models/operations";
 
-let value: GetDownloadQueueMediaResponse = {
-  headers: {},
-};
+// No examples available for this model
 ```
 
 ## Fields
 
-| Field                      | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `headers`                  | Record<string, *string*[]> | :heavy_check_mark:         | N/A                        |
+| Field                        | Type                         | Required                     | Description                  | Example                      |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `headers`                    | Record<string, *string*[]>   | :heavy_check_mark:           | N/A                          |                              |
+| `result`                     | *ReadableStream<Uint8Array>* | :heavy_check_mark:           | N/A                          | <binary data>                |

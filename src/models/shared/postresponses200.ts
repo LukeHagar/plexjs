@@ -34,23 +34,19 @@ export type PostResponses200MediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
+  title?: string | undefined;
+  type?: TypeResponseOpen | undefined;
   color?: string | undefined;
   endTimeOffset?: number | undefined;
   id?: number | undefined;
   startTimeOffset?: number | undefined;
-  title?: string | undefined;
-  type?: TypeResponseOpen | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
@@ -75,12 +71,12 @@ export const PostResponses200MediaContainer$inboundSchema: z.ZodType<
     offset: types.optional(types.number()),
     size: types.optional(types.number()),
     totalSize: types.optional(types.number()),
+    title: types.optional(types.string()),
+    type: types.optional(TypeResponse$inboundSchema),
     color: types.optional(types.string()),
     endTimeOffset: types.optional(types.number()),
     id: types.optional(types.number()),
     startTimeOffset: types.optional(types.number()),
-    title: types.optional(types.string()),
-    type: types.optional(TypeResponse$inboundSchema),
   }).catchall(z.any()),
   "additionalProperties",
   true,

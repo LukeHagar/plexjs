@@ -111,13 +111,17 @@ export type ListPlaylistsRequest = {
    */
   marketplace?: string | undefined;
   /**
+   * Whether this is a smart collection/playlist
+   */
+  smart?: boolean | undefined;
+  /**
    * Limit to a type of playlist
    */
   playlistType?: PlaylistType | undefined;
   /**
-   * Whether this is a smart collection/playlist
+   * Filter by playlist type. Use 42 for optimized/conversion items.
    */
-  smart?: boolean | undefined;
+  mediaType?: number | undefined;
 };
 
 export type ListPlaylistsResponse = {
@@ -142,8 +146,9 @@ export type ListPlaylistsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  playlistType?: string | undefined;
   smart?: boolean | undefined;
+  playlistType?: string | undefined;
+  mediaType?: number | undefined;
 };
 
 /** @internal */
@@ -162,8 +167,9 @@ export const ListPlaylistsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  playlistType: PlaylistType$outboundSchema.optional(),
   smart: z.boolean().optional(),
+  playlistType: PlaylistType$outboundSchema.optional(),
+  mediaType: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

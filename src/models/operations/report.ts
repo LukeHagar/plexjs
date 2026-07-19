@@ -169,31 +169,32 @@ export type ReportRequest = {
    */
   bufferedSize?: number | undefined;
   /**
+   * Groups timeline reports (e.g. /playQueues/123).
+   */
+  containerKey?: string | undefined;
+  /**
+   * Global unique identifier for the item.
+   */
+  guid?: string | undefined;
+  /**
+   * Identifies the play queue itself (distinct from playQueueItemID).
+   */
+  playQueueID?: number | undefined;
+  /**
+   * Alternative to key/ratingKey (legacy).
+   */
+  url?: string | undefined;
+  /**
    * Unique per client playback session.  Used if a client can playback multiple items at a time (such as a browser with multiple tabs)
    */
   xPlexSessionIdentifier?: string | undefined;
-};
-
-export type Bandwidth = {
-  /**
-   * The bandwidth at this time in kbps
-   */
-  bandwidth?: number | undefined;
-  /**
-   * The user-friendly resolution at this time
-   */
-  resolution?: string | undefined;
-  /**
-   * Media playback time where this bandwidth started
-   */
-  time?: number | undefined;
 };
 
 /**
  * A list of media times and bandwidths when trascoding is using with auto adjustment of bandwidth
  */
 export type Bandwidths = {
-  bandwidth?: Array<Bandwidth> | undefined;
+  bandwidth?: Array<shared.Bandwidth> | undefined;
 };
 
 /**
@@ -207,15 +208,11 @@ export type ReportMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   allowCameraUpload?: boolean | undefined;
@@ -228,7 +225,10 @@ export type ReportMediaContainer = {
   certificate?: boolean | undefined;
   companionProxy?: boolean | undefined;
   countryCode?: string | undefined;
-  diagnostics?: string | undefined;
+  /**
+   * Comma-separated list of enabled diagnostics modules.
+   */
+  diagnostics?: Array<string> | undefined;
   eventStream?: boolean | undefined;
   friendlyName?: string | undefined;
   hubSearch?: boolean | undefined;
@@ -243,11 +243,14 @@ export type ReportMediaContainer = {
   myPlexSigninState?: any | undefined;
   myPlexSubscription?: boolean | undefined;
   myPlexUsername?: string | undefined;
-  offlineTranscode?: any | undefined;
   /**
-   * A comma-separated list of features which are enabled for the server owner
+   * Whether offline transcoding is enabled.
    */
-  ownerFeatures?: string | undefined;
+  offlineTranscode?: number | undefined;
+  /**
+   * List of enabled owner features.
+   */
+  ownerFeatures?: Array<string> | undefined;
   platform?: string | undefined;
   platformVersion?: string | undefined;
   pluginHost?: boolean | undefined;
@@ -263,14 +266,17 @@ export type ReportMediaContainer = {
   transcoderSubtitles?: boolean | undefined;
   transcoderVideo?: boolean | undefined;
   /**
-   * The suggested video quality bitrates to present to the user
+   * List of supported transcoder video bitrates.
    */
-  transcoderVideoBitrates?: any | undefined;
-  transcoderVideoQualities?: string | undefined;
+  transcoderVideoBitrates?: Array<string> | undefined;
   /**
-   * The suggested video resolutions to the above quality bitrates
+   * List of supported transcoder video qualities.
    */
-  transcoderVideoResolutions?: any | undefined;
+  transcoderVideoQualities?: Array<string> | undefined;
+  /**
+   * List of supported transcoder video resolutions.
+   */
+  transcoderVideoResolutions?: Array<string> | undefined;
   updatedAt?: number | undefined;
   updater?: boolean | undefined;
   version?: string | undefined;
@@ -279,6 +285,10 @@ export type ReportMediaContainer = {
    * A list of media times and bandwidths when trascoding is using with auto adjustment of bandwidth
    */
   bandwidths?: Bandwidths | undefined;
+  /**
+   * The play queue ID when playback originates from a queue.
+   */
+  playQueueID?: number | undefined;
   /**
    * A code describing why the session was terminated by the server.
    */
@@ -328,6 +338,10 @@ export type ReportRequest$Outbound = {
   bandwidth?: number | undefined;
   bufferedTime?: number | undefined;
   bufferedSize?: number | undefined;
+  containerKey?: string | undefined;
+  guid?: string | undefined;
+  playQueueID?: number | undefined;
+  url?: string | undefined;
   "X-Plex-Session-Identifier"?: string | undefined;
 };
 
@@ -361,6 +375,10 @@ export const ReportRequest$outboundSchema: z.ZodType<
   bandwidth: z.int().optional(),
   bufferedTime: z.int().optional(),
   bufferedSize: z.int().optional(),
+  containerKey: z.string().optional(),
+  guid: z.string().optional(),
+  playQueueID: z.int().optional(),
+  url: z.string().optional(),
   xPlexSessionIdentifier: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -383,26 +401,9 @@ export function reportRequestToJSON(reportRequest: ReportRequest): string {
 }
 
 /** @internal */
-export const Bandwidth$inboundSchema: z.ZodType<Bandwidth, unknown> = z.object({
-  bandwidth: types.optional(types.number()),
-  resolution: types.optional(types.string()),
-  time: types.optional(types.number()),
-});
-
-export function bandwidthFromJSON(
-  jsonString: string,
-): SafeParseResult<Bandwidth, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Bandwidth$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Bandwidth' from JSON`,
-  );
-}
-
-/** @internal */
 export const Bandwidths$inboundSchema: z.ZodType<Bandwidths, unknown> = z
   .object({
-    Bandwidth: types.optional(z.array(z.lazy(() => Bandwidth$inboundSchema))),
+    Bandwidth: types.optional(z.array(shared.Bandwidth$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "Bandwidth": "bandwidth",
@@ -438,7 +439,7 @@ export const ReportMediaContainer$inboundSchema: z.ZodType<
   certificate: types.optional(types.boolean()),
   companionProxy: types.optional(types.boolean()),
   countryCode: types.optional(types.string()),
-  diagnostics: types.optional(types.string()),
+  diagnostics: types.optional(z.array(types.string())),
   eventStream: types.optional(types.boolean()),
   friendlyName: types.optional(types.string()),
   hubSearch: types.optional(types.boolean()),
@@ -453,8 +454,8 @@ export const ReportMediaContainer$inboundSchema: z.ZodType<
   myPlexSigninState: types.optional(z.any()),
   myPlexSubscription: types.optional(types.boolean()),
   myPlexUsername: types.optional(types.string()),
-  offlineTranscode: types.optional(z.any()),
-  ownerFeatures: types.optional(types.string()),
+  offlineTranscode: types.optional(types.number()),
+  ownerFeatures: types.optional(z.array(types.string())),
   platform: types.optional(types.string()),
   platformVersion: types.optional(types.string()),
   pluginHost: types.optional(types.boolean()),
@@ -469,14 +470,15 @@ export const ReportMediaContainer$inboundSchema: z.ZodType<
   transcoderPhoto: types.optional(types.boolean()),
   transcoderSubtitles: types.optional(types.boolean()),
   transcoderVideo: types.optional(types.boolean()),
-  transcoderVideoBitrates: types.optional(z.any()),
-  transcoderVideoQualities: types.optional(types.string()),
-  transcoderVideoResolutions: types.optional(z.any()),
+  transcoderVideoBitrates: types.optional(z.array(types.string())),
+  transcoderVideoQualities: types.optional(z.array(types.string())),
+  transcoderVideoResolutions: types.optional(z.array(types.string())),
   updatedAt: types.optional(types.number()),
   updater: types.optional(types.boolean()),
   version: types.optional(types.string()),
   voiceSearch: types.optional(types.boolean()),
   Bandwidths: types.optional(z.lazy(() => Bandwidths$inboundSchema)),
+  playQueueID: types.optional(types.number()),
   terminationCode: types.optional(types.number()),
   terminationText: types.optional(types.string()),
 }).transform((v) => {

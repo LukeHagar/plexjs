@@ -11,6 +11,19 @@ import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
+ * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
+ */
+export enum AutoSelectSubtitle {
+  ManuallySelected = 0,
+  ShownWithForeignAudio = 1,
+  AlwaysEnabled = 2,
+}
+/**
+ * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
+ */
+export type AutoSelectSubtitleOpen = OpenEnum<typeof AutoSelectSubtitle>;
+
+/**
  * The audio accessibility mode (0 = Prefer non-accessibility audio, 1 = Prefer accessibility audio, 2 = Only show accessibility audio, 3 = Only show non-accessibility audio)
  */
 export enum DefaultAudioAccessibility {
@@ -25,19 +38,6 @@ export enum DefaultAudioAccessibility {
 export type DefaultAudioAccessibilityOpen = OpenEnum<
   typeof DefaultAudioAccessibility
 >;
-
-/**
- * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
- */
-export enum AutoSelectSubtitle {
-  ManuallySelected = 0,
-  ShownWithForeignAudio = 1,
-  AlwaysEnabled = 2,
-}
-/**
- * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
- */
-export type AutoSelectSubtitleOpen = OpenEnum<typeof AutoSelectSubtitle>;
 
 /**
  * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only show non-SDH subtitles)
@@ -70,20 +70,6 @@ export enum DefaultSubtitleForced {
 export type DefaultSubtitleForcedOpen = OpenEnum<typeof DefaultSubtitleForced>;
 
 /**
- * Whether or not media watched indicators are enabled (little orange dot on media)
- */
-export enum WatchedIndicator {
-  None = 0,
-  MoviesAndTvShows = 1,
-  Movies = 2,
-  TvShows = 3,
-}
-/**
- * Whether or not media watched indicators are enabled (little orange dot on media)
- */
-export type WatchedIndicatorOpen = OpenEnum<typeof WatchedIndicator>;
-
-/**
  * Whether or not the account has media reviews visibility enabled
  */
 export enum MediaReviewsVisibility {
@@ -99,20 +85,37 @@ export type MediaReviewsVisibilityOpen = OpenEnum<
   typeof MediaReviewsVisibility
 >;
 
+/**
+ * Whether or not media watched indicators are enabled (little orange dot on media)
+ */
+export enum WatchedIndicator {
+  None = 0,
+  MoviesAndTvShows = 1,
+  Movies = 2,
+  TvShows = 3,
+}
+/**
+ * Whether or not media watched indicators are enabled (little orange dot on media)
+ */
+export type WatchedIndicatorOpen = OpenEnum<typeof WatchedIndicator>;
+
 export type UserProfile = {
   /**
    * If the account has automatically select audio and subtitle tracks enabled
    */
   autoSelectAudio: boolean;
+  autoSelectSubtitle: AutoSelectSubtitleOpen;
+  defaultAudioAccessibility: DefaultAudioAccessibilityOpen;
   /**
    * The preferred audio language for the account
    */
   defaultAudioLanguage: string | null;
-  defaultAudioAccessibility: DefaultAudioAccessibilityOpen;
   /**
    * The preferred audio languages for the account
    */
   defaultAudioLanguages?: Array<string> | null | undefined;
+  defaultSubtitleAccessibility: DefaultSubtitleAccessibilityOpen;
+  defaultSubtitleForced: DefaultSubtitleForcedOpen;
   /**
    * The preferred subtitle language for the account
    */
@@ -121,28 +124,25 @@ export type UserProfile = {
    * The preferred subtitle languages for the account
    */
   defaultSubtitleLanguages?: Array<string> | null | undefined;
-  autoSelectSubtitle: AutoSelectSubtitleOpen;
-  defaultSubtitleAccessibility: DefaultSubtitleAccessibilityOpen;
-  defaultSubtitleForced: DefaultSubtitleForcedOpen;
-  watchedIndicator: WatchedIndicatorOpen;
-  mediaReviewsVisibility: MediaReviewsVisibilityOpen;
   /**
    * The languages for media reviews visibility
    */
   mediaReviewsLanguages?: Array<string> | null | undefined;
+  mediaReviewsVisibility: MediaReviewsVisibilityOpen;
+  watchedIndicator: WatchedIndicatorOpen;
 };
-
-/** @internal */
-export const DefaultAudioAccessibility$inboundSchema: z.ZodType<
-  DefaultAudioAccessibilityOpen,
-  unknown
-> = openEnums.inboundSchemaInt(DefaultAudioAccessibility);
 
 /** @internal */
 export const AutoSelectSubtitle$inboundSchema: z.ZodType<
   AutoSelectSubtitleOpen,
   unknown
 > = openEnums.inboundSchemaInt(AutoSelectSubtitle);
+
+/** @internal */
+export const DefaultAudioAccessibility$inboundSchema: z.ZodType<
+  DefaultAudioAccessibilityOpen,
+  unknown
+> = openEnums.inboundSchemaInt(DefaultAudioAccessibility);
 
 /** @internal */
 export const DefaultSubtitleAccessibility$inboundSchema: z.ZodType<
@@ -157,43 +157,43 @@ export const DefaultSubtitleForced$inboundSchema: z.ZodType<
 > = openEnums.inboundSchemaInt(DefaultSubtitleForced);
 
 /** @internal */
-export const WatchedIndicator$inboundSchema: z.ZodType<
-  WatchedIndicatorOpen,
-  unknown
-> = openEnums.inboundSchemaInt(WatchedIndicator);
-
-/** @internal */
 export const MediaReviewsVisibility$inboundSchema: z.ZodType<
   MediaReviewsVisibilityOpen,
   unknown
 > = openEnums.inboundSchemaInt(MediaReviewsVisibility);
 
 /** @internal */
+export const WatchedIndicator$inboundSchema: z.ZodType<
+  WatchedIndicatorOpen,
+  unknown
+> = openEnums.inboundSchemaInt(WatchedIndicator);
+
+/** @internal */
 export const UserProfile$inboundSchema: z.ZodType<UserProfile, unknown> = z
   .object({
     autoSelectAudio: types.boolean().default(true),
-    defaultAudioLanguage: types.nullable(types.string()),
-    defaultAudioAccessibility: DefaultAudioAccessibility$inboundSchema.default(
-      DefaultAudioAccessibility.PreferNonAccessibility,
-    ),
-    defaultAudioLanguages: z.nullable(z.array(types.string())).optional(),
-    defaultSubtitleLanguage: types.nullable(types.string()),
-    defaultSubtitleLanguages: z.nullable(z.array(types.string())).optional(),
     autoSelectSubtitle: AutoSelectSubtitle$inboundSchema.default(
       AutoSelectSubtitle.ManuallySelected,
     ),
+    defaultAudioAccessibility: DefaultAudioAccessibility$inboundSchema.default(
+      DefaultAudioAccessibility.PreferNonAccessibility,
+    ),
+    defaultAudioLanguage: types.nullable(types.string()),
+    defaultAudioLanguages: z.nullable(z.array(types.string())).optional(),
     defaultSubtitleAccessibility: DefaultSubtitleAccessibility$inboundSchema
       .default(DefaultSubtitleAccessibility.PreferNonSdh),
     defaultSubtitleForced: DefaultSubtitleForced$inboundSchema.default(
       DefaultSubtitleForced.PreferNonForced,
     ),
-    watchedIndicator: WatchedIndicator$inboundSchema.default(
-      WatchedIndicator.None,
-    ),
+    defaultSubtitleLanguage: types.nullable(types.string()),
+    defaultSubtitleLanguages: z.nullable(z.array(types.string())).optional(),
+    mediaReviewsLanguages: z.nullable(z.array(types.string())).optional(),
     mediaReviewsVisibility: MediaReviewsVisibility$inboundSchema.default(
       MediaReviewsVisibility.NoOne,
     ),
-    mediaReviewsLanguages: z.nullable(z.array(types.string())).optional(),
+    watchedIndicator: WatchedIndicator$inboundSchema.default(
+      WatchedIndicator.None,
+    ),
   });
 
 export function userProfileFromJSON(

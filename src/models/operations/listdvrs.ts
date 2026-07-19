@@ -6,158 +6,44 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type ListDVRsMediaContainerMediaContainer = {
-  identifier?: string | undefined;
+export type ListDVRsRequest = {
   /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
+   * Filter by DVR UUID.
    */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  /**
-   * A status indicator. If present and non-zero, indicates an error
-   */
-  status?: number | undefined;
-};
-
-export type ListDVRsDVR = {
-  device?: Array<shared.Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
   uuid?: string | undefined;
-};
-
-export type ListDVRsMediaContainer = {
-  mediaContainer?: ListDVRsMediaContainerMediaContainer | undefined;
-  dvr?: Array<ListDVRsDVR> | undefined;
-};
-
-/**
- * OK
- */
-export type ListDVRsResponseBody = {
-  mediaContainer?: ListDVRsMediaContainer | undefined;
+  /**
+   * Filter by lineup.
+   */
+  lineup?: string | undefined;
 };
 
 export type ListDVRsResponse = {
   headers: { [k: string]: Array<string> };
-  result: ListDVRsResponseBody;
+  result: shared.DVRResponse;
 };
 
 /** @internal */
-export const ListDVRsMediaContainerMediaContainer$inboundSchema: z.ZodType<
-  ListDVRsMediaContainerMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  status: types.optional(types.number()),
-});
-
-export function listDVRsMediaContainerMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<ListDVRsMediaContainerMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ListDVRsMediaContainerMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDVRsMediaContainerMediaContainer' from JSON`,
-  );
-}
+export type ListDVRsRequest$Outbound = {
+  uuid?: string | undefined;
+  lineup?: string | undefined;
+};
 
 /** @internal */
-export const ListDVRsDVR$inboundSchema: z.ZodType<ListDVRsDVR, unknown> = z
-  .object({
-    Device: types.optional(z.array(shared.Device$inboundSchema)),
-    key: types.optional(types.string()),
-    language: types.optional(types.string()),
-    lineup: types.optional(types.string()),
-    uuid: types.optional(types.string()),
-  }).transform((v) => {
-    return remap$(v, {
-      "Device": "device",
-    });
-  });
-
-export function listDVRsDVRFromJSON(
-  jsonString: string,
-): SafeParseResult<ListDVRsDVR, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListDVRsDVR$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDVRsDVR' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListDVRsMediaContainer$inboundSchema: z.ZodType<
-  ListDVRsMediaContainer,
-  unknown
+export const ListDVRsRequest$outboundSchema: z.ZodType<
+  ListDVRsRequest$Outbound,
+  ListDVRsRequest
 > = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => ListDVRsMediaContainerMediaContainer$inboundSchema),
-  ),
-  DVR: types.optional(z.array(z.lazy(() => ListDVRsDVR$inboundSchema))),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-    "DVR": "dvr",
-  });
+  uuid: z.string().optional(),
+  lineup: z.string().optional(),
 });
 
-export function listDVRsMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<ListDVRsMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListDVRsMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDVRsMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListDVRsResponseBody$inboundSchema: z.ZodType<
-  ListDVRsResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => ListDVRsMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function listDVRsResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<ListDVRsResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListDVRsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDVRsResponseBody' from JSON`,
-  );
+export function listDVRsRequestToJSON(
+  listDVRsRequest: ListDVRsRequest,
+): string {
+  return JSON.stringify(ListDVRsRequest$outboundSchema.parse(listDVRsRequest));
 }
 
 /** @internal */
@@ -166,7 +52,7 @@ export const ListDVRsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => ListDVRsResponseBody$inboundSchema),
+  Result: shared.DVRResponse$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

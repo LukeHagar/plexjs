@@ -12,8 +12,8 @@ let value: GetUsersResponse = {
     friendlyName: "myPlex",
     identifier: "com.plexapp.plugins.myplex",
     machineIdentifier: "3dff4c4da3b1229a649aa574a9e2b419a684a20e",
-    totalSize: 30,
     size: 30,
+    totalSize: 30,
     user: [],
   },
 };

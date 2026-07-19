@@ -14,16 +14,52 @@ import {
 } from "./channelmapping.js";
 
 export type Device = {
+  /**
+   * Display title for the device.
+   */
+  title?: string | undefined;
   channelMapping?: Array<ChannelMapping> | undefined;
+  /**
+   * Distinct hardware identifier for the device.
+   */
+  deviceIdentifier?: string | undefined;
+  /**
+   * Whether the device is enabled.
+   */
+  enabled?: boolean | undefined;
+  /**
+   * Unique device ID.
+   */
+  id?: number | undefined;
   key?: string | undefined;
   lastSeenAt?: number | undefined;
+  /**
+   * EPG lineup association.
+   */
+  lineup?: string | undefined;
+  /**
+   * Type of EPG lineup.
+   */
+  lineupType?: string | undefined;
   make?: string | undefined;
   model?: string | undefined;
   modelNumber?: string | undefined;
+  /**
+   * Human-readable device name.
+   */
+  name?: string | undefined;
   protocol?: string | undefined;
   sources?: string | undefined;
   state?: string | undefined;
   status?: string | undefined;
+  /**
+   * URL to the device thumbnail image.
+   */
+  thumb?: string | undefined;
+  /**
+   * Version of the device thumbnail.
+   */
+  thumbVersion?: number | undefined;
   tuners?: string | undefined;
   uri?: string | undefined;
   uuid?: string | undefined;
@@ -31,16 +67,25 @@ export type Device = {
 
 /** @internal */
 export const Device$inboundSchema: z.ZodType<Device, unknown> = z.object({
+  title: types.optional(types.string()),
   ChannelMapping: types.optional(z.array(ChannelMapping$inboundSchema)),
+  deviceIdentifier: types.optional(types.string()),
+  enabled: types.optional(types.boolean()),
+  id: types.optional(types.number()),
   key: types.optional(types.string()),
   lastSeenAt: types.optional(types.number()),
+  lineup: types.optional(types.string()),
+  lineupType: types.optional(types.string()),
   make: types.optional(types.string()),
   model: types.optional(types.string()),
   modelNumber: types.optional(types.string()),
+  name: types.optional(types.string()),
   protocol: types.optional(types.string()),
   sources: types.optional(types.string()),
   state: types.optional(types.string()),
   status: types.optional(types.string()),
+  thumb: types.optional(types.string()),
+  thumbVersion: types.optional(types.number()),
   tuners: types.optional(types.string()),
   uri: types.optional(types.string()),
   uuid: types.optional(types.string()),

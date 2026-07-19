@@ -63,9 +63,9 @@ export enum ModifyPlaylistGeneratorScope {
 }
 
 export type ModifyPlaylistGeneratorPolicy = {
-  value?: number | undefined;
   scope?: ModifyPlaylistGeneratorScope | undefined;
   unwatched?: shared.BoolInt | undefined;
+  value?: number | undefined;
 };
 
 /**
@@ -76,13 +76,13 @@ export type ModifyPlaylistGeneratorPolicy = {
  * Item[type]=42&Item[title]=Jack-Jack Attack&Item[target]=&Item[targetTagID]=1&Item[locationID]=-1&Item[Location][uri]=library://82503060-0d68-4603-b594-8b071d54819e/item//library/metadata/146&Item[Policy][scope]=all&Item[Policy][value]=&Item[Policy][unwatched]=0
  */
 export type ModifyPlaylistGeneratorItem = {
+  title?: string | undefined;
+  type?: number | undefined;
   location?: ModifyPlaylistGeneratorLocation | undefined;
   locationID?: number | undefined;
   policy?: ModifyPlaylistGeneratorPolicy | undefined;
   target?: string | undefined;
   targetTagID?: number | undefined;
-  title?: string | undefined;
-  type?: number | undefined;
 };
 
 export type ModifyPlaylistGeneratorRequest = {
@@ -178,9 +178,9 @@ export const ModifyPlaylistGeneratorScope$outboundSchema: z.ZodEnum<
 
 /** @internal */
 export type ModifyPlaylistGeneratorPolicy$Outbound = {
-  value?: number | undefined;
   scope?: string | undefined;
   unwatched: number;
+  value?: number | undefined;
 };
 
 /** @internal */
@@ -188,9 +188,9 @@ export const ModifyPlaylistGeneratorPolicy$outboundSchema: z.ZodType<
   ModifyPlaylistGeneratorPolicy$Outbound,
   ModifyPlaylistGeneratorPolicy
 > = z.object({
-  value: z.int().optional(),
   scope: ModifyPlaylistGeneratorScope$outboundSchema.optional(),
   unwatched: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  value: z.int().optional(),
 });
 
 export function modifyPlaylistGeneratorPolicyToJSON(
@@ -205,13 +205,13 @@ export function modifyPlaylistGeneratorPolicyToJSON(
 
 /** @internal */
 export type ModifyPlaylistGeneratorItem$Outbound = {
+  title?: string | undefined;
+  type?: number | undefined;
   Location?: ModifyPlaylistGeneratorLocation$Outbound | undefined;
   locationID?: number | undefined;
   Policy?: ModifyPlaylistGeneratorPolicy$Outbound | undefined;
   target?: string | undefined;
   targetTagID?: number | undefined;
-  title?: string | undefined;
-  type?: number | undefined;
 };
 
 /** @internal */
@@ -219,14 +219,14 @@ export const ModifyPlaylistGeneratorItem$outboundSchema: z.ZodType<
   ModifyPlaylistGeneratorItem$Outbound,
   ModifyPlaylistGeneratorItem
 > = z.object({
+  title: z.string().optional(),
+  type: z.int().optional(),
   location: z.lazy(() => ModifyPlaylistGeneratorLocation$outboundSchema)
     .optional(),
   locationID: z.int().optional(),
   policy: z.lazy(() => ModifyPlaylistGeneratorPolicy$outboundSchema).optional(),
   target: z.string().optional(),
   targetTagID: z.int().optional(),
-  title: z.string().optional(),
-  type: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     location: "Location",

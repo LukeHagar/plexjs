@@ -8,8 +8,6 @@ import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The type of media content in the Plex library. This can represent videos, music, or photos.
- *
- * @remarks
  */
 export enum MediaTypeString {
   Movie = "movie",
@@ -25,8 +23,6 @@ export enum MediaTypeString {
 }
 /**
  * The type of media content in the Plex library. This can represent videos, music, or photos.
- *
- * @remarks
  */
 export type MediaTypeStringOpen = OpenEnum<typeof MediaTypeString>;
 

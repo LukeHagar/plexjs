@@ -57,6 +57,9 @@ export type GetItemArtworkGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The type of artwork element (e.g., art, poster, thumb)
+ */
 export enum GetItemArtworkElement {
   Thumb = "thumb",
   Art = "art",
@@ -111,7 +114,13 @@ export type GetItemArtworkRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The type of artwork element (e.g., art, poster, thumb)
+   */
   element: GetItemArtworkElement;
   /**
    * A timestamp on the element used for cache management in the client

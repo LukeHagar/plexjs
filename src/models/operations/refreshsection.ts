@@ -102,14 +102,6 @@ export type RefreshSectionRequest = {
    * Section identifier
    */
   sectionId: number;
-  /**
-   * Whether the update of metadata and items should be performed even if modification dates indicate the items have not change
-   */
-  force?: shared.BoolInt | undefined;
-  /**
-   * Restrict refresh to the specified path
-   */
-  path?: string | undefined;
 };
 
 /** @internal */
@@ -126,8 +118,6 @@ export type RefreshSectionRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   sectionId: number;
-  force: number;
-  path?: string | undefined;
 };
 
 /** @internal */
@@ -147,8 +137,6 @@ export const RefreshSectionRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   sectionId: z.int(),
-  force: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
-  path: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

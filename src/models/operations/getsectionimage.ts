@@ -99,14 +99,6 @@ export type GetSectionImageRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * Section identifier
-   */
-  sectionId: number;
-  /**
-   * The update time of the image.  Used for busting cache.
-   */
-  updatedAt: number;
-  /**
    * A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
    *
    * @remarks
@@ -128,6 +120,14 @@ export type GetSectionImageRequest = {
    */
   mediaQuery?: shared.MediaQuery | undefined;
   composite?: shared.Composite | undefined;
+  /**
+   * Section identifier
+   */
+  sectionId: number;
+  /**
+   * The update time of the image.  Used for busting cache.
+   */
+  updatedAt: number;
 };
 
 /** @internal */
@@ -143,10 +143,10 @@ export type GetSectionImageRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  sectionId: number;
-  updatedAt: number;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
   composite?: shared.Composite$Outbound | undefined;
+  sectionId: number;
+  updatedAt: number;
 };
 
 /** @internal */
@@ -165,10 +165,10 @@ export const GetSectionImageRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  sectionId: z.int(),
-  updatedAt: z.int(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
   composite: shared.Composite$outboundSchema.optional(),
+  sectionId: z.int(),
+  updatedAt: z.int(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -123,15 +123,11 @@ export type AddDeviceToDVRMediaContainerMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   /**
@@ -140,17 +136,9 @@ export type AddDeviceToDVRMediaContainerMediaContainer = {
   status?: number | undefined;
 };
 
-export type AddDeviceToDVRDVR = {
-  device?: Array<shared.Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
-  uuid?: string | undefined;
-};
-
 export type AddDeviceToDVRMediaContainer = {
   mediaContainer?: AddDeviceToDVRMediaContainerMediaContainer | undefined;
-  dvr?: Array<AddDeviceToDVRDVR> | undefined;
+  dvr?: Array<shared.Dvr> | undefined;
 };
 
 /**
@@ -250,32 +238,6 @@ export function addDeviceToDVRMediaContainerMediaContainerFromJSON(
 }
 
 /** @internal */
-export const AddDeviceToDVRDVR$inboundSchema: z.ZodType<
-  AddDeviceToDVRDVR,
-  unknown
-> = z.object({
-  Device: types.optional(z.array(shared.Device$inboundSchema)),
-  key: types.optional(types.string()),
-  language: types.optional(types.string()),
-  lineup: types.optional(types.string()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Device": "device",
-  });
-});
-
-export function addDeviceToDVRDVRFromJSON(
-  jsonString: string,
-): SafeParseResult<AddDeviceToDVRDVR, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AddDeviceToDVRDVR$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AddDeviceToDVRDVR' from JSON`,
-  );
-}
-
-/** @internal */
 export const AddDeviceToDVRMediaContainer$inboundSchema: z.ZodType<
   AddDeviceToDVRMediaContainer,
   unknown
@@ -283,7 +245,7 @@ export const AddDeviceToDVRMediaContainer$inboundSchema: z.ZodType<
   MediaContainer: types.optional(
     z.lazy(() => AddDeviceToDVRMediaContainerMediaContainer$inboundSchema),
   ),
-  DVR: types.optional(z.array(z.lazy(() => AddDeviceToDVRDVR$inboundSchema))),
+  DVR: types.optional(z.array(shared.Dvr$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "MediaContainer": "mediaContainer",

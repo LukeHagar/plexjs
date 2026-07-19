@@ -113,6 +113,7 @@ export type GetDownloadQueueMediaRequest = {
 
 export type GetDownloadQueueMediaResponse = {
   headers: { [k: string]: Array<string> };
+  result: ReadableStream<Uint8Array>;
 };
 
 /** @internal */
@@ -181,9 +182,13 @@ export const GetDownloadQueueMediaResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
+  Result: z.custom<ReadableStream<Uint8Array>>(x =>
+    x instanceof ReadableStream
+  ),
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
+    "Result": "result",
   });
 });
 

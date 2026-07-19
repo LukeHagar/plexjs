@@ -64,8 +64,6 @@ export enum MakeDecisionLocation {
 
 /**
  * Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022)
- *
- * @remarks
  */
 export enum MakeDecisionProtocol {
   Http = "http",
@@ -75,8 +73,6 @@ export enum MakeDecisionProtocol {
 
 /**
  * Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream
- *
- * @remarks
  */
 export enum MakeDecisionSubtitles {
   Auto = "auto",
@@ -143,10 +139,12 @@ export type MakeDecisionRequest = {
   transcodeSessionId?: string | undefined;
   /**
    * Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * 'burn' - Burn incompatible advanced text subtitles into the video stream * 'text' - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost
-   *
-   * @remarks
    */
   advancedSubtitles?: shared.AdvancedSubtitles | undefined;
+  /**
+   * Client platform (some clients send this in addition to headers).
+   */
+  platformQueryParameter?: string | undefined;
   /**
    * Percentage of original audio loudness to use when transcoding (100 is equivalent to original volume, 50 is half, 200 is double, etc)
    */
@@ -221,8 +219,6 @@ export type MakeDecisionRequest = {
   photoResolution?: string | undefined;
   /**
    * Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022)
-   *
-   * @remarks
    */
   protocol?: MakeDecisionProtocol | undefined;
   /**
@@ -235,10 +231,20 @@ export type MakeDecisionRequest = {
   subtitleSize?: number | undefined;
   /**
    * Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream
-   *
-   * @remarks
    */
   subtitles?: MakeDecisionSubtitles | undefined;
+  /**
+   * Client-side maximum video bitrate cap in kbps
+   */
+  maxVideoBitrate?: number | undefined;
+  /**
+   * Cap resolution string (e.g. 1920x1080)
+   */
+  videoResolution?: string | undefined;
+  /**
+   * Copy timestamps instead of re-encoding them
+   */
+  copyts?: shared.BoolInt | undefined;
   /**
    * Target video bitrate (in kbps).
    */
@@ -247,10 +253,6 @@ export type MakeDecisionRequest = {
    * Target photo quality.
    */
   videoQuality?: number | undefined;
-  /**
-   * Target maximum video resolution.
-   */
-  videoResolution?: string | undefined;
   /**
    * See [Profile Augmentations](#section/API-Info/Profile-Augmentations) .
    */
@@ -296,6 +298,7 @@ export type MakeDecisionRequest$Outbound = {
   transcodeType: string;
   transcodeSessionId?: string | undefined;
   advancedSubtitles?: string | undefined;
+  platformQueryParameter?: string | undefined;
   audioBoost?: number | undefined;
   audioChannelCount?: number | undefined;
   autoAdjustQuality: number;
@@ -318,9 +321,11 @@ export type MakeDecisionRequest$Outbound = {
   secondsPerSegment?: number | undefined;
   subtitleSize?: number | undefined;
   subtitles?: string | undefined;
+  maxVideoBitrate?: number | undefined;
+  videoResolution?: string | undefined;
+  copyts: number;
   videoBitrate?: number | undefined;
   videoQuality?: number | undefined;
-  videoResolution?: string | undefined;
   "X-Plex-Client-Profile-Extra"?: string | undefined;
   "X-Plex-Client-Profile-Name"?: string | undefined;
   "X-Plex-Session-Identifier"?: string | undefined;
@@ -345,6 +350,7 @@ export const MakeDecisionRequest$outboundSchema: z.ZodType<
   transcodeType: shared.TranscodeType$outboundSchema,
   transcodeSessionId: z.string().optional(),
   advancedSubtitles: shared.AdvancedSubtitles$outboundSchema.optional(),
+  platformQueryParameter: z.string().optional(),
   audioBoost: z.int().optional(),
   audioChannelCount: z.int().optional(),
   autoAdjustQuality: shared.BoolInt$outboundSchema.default(
@@ -375,9 +381,11 @@ export const MakeDecisionRequest$outboundSchema: z.ZodType<
   secondsPerSegment: z.int().optional(),
   subtitleSize: z.int().optional(),
   subtitles: MakeDecisionSubtitles$outboundSchema.optional(),
+  maxVideoBitrate: z.int().optional(),
+  videoResolution: z.string().optional(),
+  copyts: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   videoBitrate: z.int().optional(),
   videoQuality: z.int().optional(),
-  videoResolution: z.string().optional(),
   xPlexClientProfileExtra: z.string().optional(),
   xPlexClientProfileName: z.string().optional(),
   xPlexSessionIdentifier: z.string().optional(),

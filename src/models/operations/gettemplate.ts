@@ -106,12 +106,18 @@ export type GetTemplateRequest = {
    * The guid of the item for which to get the template
    */
   guid?: string | undefined;
+  /**
+   * Subscription type.
+   */
+  mediaType?: string | undefined;
+  /**
+   * Target library section ID.
+   */
+  targetLibrarySectionID?: number | undefined;
 };
 
 /**
  * A media subscription contains a representation of metadata desired to be recorded
- *
- * @remarks
  */
 export type MediaSubscription = {
   /**
@@ -179,15 +185,11 @@ export type GetTemplateMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   subscriptionTemplate?: Array<SubscriptionTemplate> | undefined;
@@ -219,6 +221,8 @@ export type GetTemplateRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   guid?: string | undefined;
+  mediaType?: string | undefined;
+  targetLibrarySectionID?: number | undefined;
 };
 
 /** @internal */
@@ -238,6 +242,8 @@ export const GetTemplateRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   guid: z.string().optional(),
+  mediaType: z.string().optional(),
+  targetLibrarySectionID: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

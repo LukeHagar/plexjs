@@ -39,8 +39,8 @@ export function authenticationPostUsersSignInData(
 ): APIPromise<
   Result<
     operations.UserPlexAccount,
-    | errors.PostUsersSignInDataBadRequestError
-    | errors.PostUsersSignInDataUnauthorizedError
+    | errors.BadRequestError
+    | errors.UnauthorizedError
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.UserPlexAccount,
-      | errors.PostUsersSignInDataBadRequestError
-      | errors.PostUsersSignInDataUnauthorizedError
+      | errors.BadRequestError
+      | errors.UnauthorizedError
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -165,7 +165,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: baseURL ?? "",
-    operationID: "post-users-sign-in-data",
+    operationID: "postUsersSignInData",
     oAuth2Scopes: null,
 
     resolvedSecurity: null,
@@ -173,8 +173,18 @@ async function $do(
     securitySource: null,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -209,8 +219,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.UserPlexAccount,
-    | errors.PostUsersSignInDataBadRequestError
-    | errors.PostUsersSignInDataUnauthorizedError
+    | errors.BadRequestError
+    | errors.UnauthorizedError
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -221,8 +231,8 @@ async function $do(
     | SDKValidationError
   >(
     M.json(201, operations.UserPlexAccount$inboundSchema),
-    M.jsonErr(400, errors.PostUsersSignInDataBadRequestError$inboundSchema),
-    M.jsonErr(401, errors.PostUsersSignInDataUnauthorizedError$inboundSchema),
+    M.jsonErr(400, errors.BadRequestError$inboundSchema),
+    M.jsonErr(401, errors.UnauthorizedError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

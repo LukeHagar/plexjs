@@ -7,7 +7,22 @@ The transcode session if item is currently being transcoded
 ```typescript
 import { TranscodeSession } from "@parke.dev/plexjs/models/shared";
 
-let value: TranscodeSession = {};
+let value: TranscodeSession = {
+  complete: true,
+  context: "string value",
+  duration: 1,
+  error: true,
+  key: "string value",
+  progress: 1,
+  protocol: "string value",
+  size: 1,
+  sourceAudioCodec: "string value",
+  sourceVideoCodec: "string value",
+  speed: 1,
+  throttled: true,
+  transcodeHwFullPipeline: true,
+  transcodeHwRequested: true,
+};
 ```
 
 ## Fields

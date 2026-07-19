@@ -99,7 +99,7 @@ export type EmptyTrashRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * Section identifier
+   * The unique identifier of the library section
    */
   sectionId: number;
 };

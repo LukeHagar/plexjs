@@ -6,7 +6,6 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
@@ -122,7 +121,7 @@ export type CreatePlayQueueRequest = {
   /**
    * The type of play queue to create
    */
-  type: CreatePlayQueueType;
+  mediaType: CreatePlayQueueType;
   /**
    * The key of the first item to play, defaults to the first in the play queue.
    */
@@ -153,76 +152,9 @@ export type CreatePlayQueueRequest = {
   onDeck?: shared.BoolInt | undefined;
 };
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type CreatePlayQueueMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  /**
-   * The ID of the play queue, which is used in subsequent requests.
-   */
-  playQueueID?: number | undefined;
-  /**
-   * Defines where the "Up Next" region starts
-   */
-  playQueueLastAddedItemID?: string | undefined;
-  /**
-   * The queue item ID of the currently selected  item.
-   */
-  playQueueSelectedItemID?: number | undefined;
-  /**
-   * The offset of the selected item in the play queue, from the beginning of the queue.
-   */
-  playQueueSelectedItemOffset?: number | undefined;
-  /**
-   * The metadata item ID of the currently selected item (matches `ratingKey` attribute in metadata item if the media provider is a library).
-   */
-  playQueueSelectedMetadataItemID?: number | undefined;
-  /**
-   * Whether or not the queue is shuffled.
-   */
-  playQueueShuffled?: boolean | undefined;
-  /**
-   * The original URI used to create the play queue.
-   */
-  playQueueSourceURI?: string | undefined;
-  /**
-   * The total number of items in the play queue.
-   */
-  playQueueTotalCount?: number | undefined;
-  /**
-   * The version of the play queue. It increments every time a change is made to the play queue to assist clients in knowing when to refresh.
-   */
-  playQueueVersion?: number | undefined;
-};
-
-/**
- * OK
- */
-export type CreatePlayQueueResponseBody = {
-  mediaContainer?: CreatePlayQueueMediaContainer | undefined;
-};
-
 export type CreatePlayQueueResponse = {
   headers: { [k: string]: Array<string> };
-  result: CreatePlayQueueResponseBody;
+  result: shared.MediaContainerWithPlayQueue;
 };
 
 /** @internal */
@@ -245,7 +177,7 @@ export type CreatePlayQueueRequest$Outbound = {
   Marketplace?: string | undefined;
   uri?: string | undefined;
   playlistID?: number | undefined;
-  type: string;
+  mediaType: string;
   key?: string | undefined;
   shuffle: number;
   repeat: number;
@@ -273,7 +205,7 @@ export const CreatePlayQueueRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   uri: z.string().optional(),
   playlistID: z.int().optional(),
-  type: CreatePlayQueueType$outboundSchema,
+  mediaType: CreatePlayQueueType$outboundSchema,
   key: z.string().optional(),
   shuffle: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   repeat: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
@@ -305,66 +237,12 @@ export function createPlayQueueRequestToJSON(
 }
 
 /** @internal */
-export const CreatePlayQueueMediaContainer$inboundSchema: z.ZodType<
-  CreatePlayQueueMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  playQueueID: types.optional(types.number()),
-  playQueueLastAddedItemID: types.optional(types.string()),
-  playQueueSelectedItemID: types.optional(types.number()),
-  playQueueSelectedItemOffset: types.optional(types.number()),
-  playQueueSelectedMetadataItemID: types.optional(types.number()),
-  playQueueShuffled: types.optional(types.boolean()),
-  playQueueSourceURI: types.optional(types.string()),
-  playQueueTotalCount: types.optional(types.number()),
-  playQueueVersion: types.optional(types.number()),
-});
-
-export function createPlayQueueMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlayQueueMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePlayQueueMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlayQueueMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePlayQueueResponseBody$inboundSchema: z.ZodType<
-  CreatePlayQueueResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => CreatePlayQueueMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function createPlayQueueResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlayQueueResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePlayQueueResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlayQueueResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const CreatePlayQueueResponse$inboundSchema: z.ZodType<
   CreatePlayQueueResponse,
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => CreatePlayQueueResponseBody$inboundSchema),
+  Result: shared.MediaContainerWithPlayQueue$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

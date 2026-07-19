@@ -28,8 +28,6 @@ export type ImageTypeOpen = OpenEnum<typeof ImageType>;
 
 /**
  * Images such as movie posters and background artwork are represented by Image elements.
- *
- * @remarks
  */
 export type Image = {
   /**

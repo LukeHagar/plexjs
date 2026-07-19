@@ -139,21 +139,169 @@ export type ListContentRequest = {
    */
   mediaQuery?: shared.MediaQuery | undefined;
   /**
+   * The id of the section
+   */
+  sectionId: number;
+  /**
+   * Filter by metadata type (1=movie, 2=show, 3=season, 4=episode, 8=artist, 9=album, 10=track)
+   */
+  mediaType?: number | undefined;
+  /**
+   * Sort key and direction (e.g. addedAt:desc, titleSort)
+   */
+  sort?: string | undefined;
+  /**
    * Adds the Meta object to the response
-   *
-   * @remarks
    */
   includeMeta?: shared.BoolInt | undefined;
   /**
    * Adds the Guid object to the response
-   *
-   * @remarks
    */
   includeGuids?: shared.BoolInt | undefined;
   /**
-   * The id of the section
+   * Include collection items in results
    */
-  sectionId: string;
+  includeCollections?: shared.BoolInt | undefined;
+  /**
+   * Include external or online media
+   */
+  includeExternalMedia?: shared.BoolInt | undefined;
+  /**
+   * Include advanced settings
+   */
+  includeAdvanced?: shared.BoolInt | undefined;
+  /**
+   * Verify file existence
+   */
+  checkFiles?: shared.BoolInt | undefined;
+  /**
+   * Include related items
+   */
+  includeRelated?: shared.BoolInt | undefined;
+  /**
+   * Include trailers, behind-the-scenes, etc.
+   */
+  includeExtras?: shared.BoolInt | undefined;
+  /**
+   * Include popular episodes
+   */
+  includePopularLeaves?: shared.BoolInt | undefined;
+  /**
+   * Include concert items
+   */
+  includeConcerts?: shared.BoolInt | undefined;
+  /**
+   * Include On Deck status
+   */
+  includeOnDeck?: shared.BoolInt | undefined;
+  /**
+   * Include chapter markers
+   */
+  includeChapters?: shared.BoolInt | undefined;
+  /**
+   * Include user preferences
+   */
+  includePreferences?: shared.BoolInt | undefined;
+  /**
+   * Include bandwidth info
+   */
+  includeBandwidths?: shared.BoolInt | undefined;
+  /**
+   * Include loudness ramp data
+   */
+  includeLoudnessRamps?: shared.BoolInt | undefined;
+  /**
+   * Include radio station data
+   */
+  includeStations?: shared.BoolInt | undefined;
+  /**
+   * Include external GUIDs
+   */
+  includeExternalIds?: shared.BoolInt | undefined;
+  /**
+   * Include user reviews
+   */
+  includeReviews?: shared.BoolInt | undefined;
+  /**
+   * Include full credits
+   */
+  includeCredits?: shared.BoolInt | undefined;
+  /**
+   * Force inclusion of artwork fields
+   */
+  includeArt?: shared.BoolInt | undefined;
+  /**
+   * Force inclusion of thumbnail fields
+   */
+  includeThumb?: shared.BoolInt | undefined;
+  /**
+   * Force inclusion of banner fields
+   */
+  includeBanner?: shared.BoolInt | undefined;
+  /**
+   * Force inclusion of theme fields
+   */
+  includeTheme?: shared.BoolInt | undefined;
+  /**
+   * Whitelist of fields to return
+   */
+  includeFields?: string | undefined;
+  /**
+   * Blacklist of fields to omit
+   */
+  excludeFields?: string | undefined;
+  /**
+   * Async metadata augmentation
+   */
+  asyncAugmentMetadata?: shared.BoolInt | undefined;
+  /**
+   * Async local media agent refresh
+   */
+  asyncRefreshLocalMediaAgent?: shared.BoolInt | undefined;
+  /**
+   * Bypass cache
+   */
+  nocache?: shared.BoolInt | undefined;
+  /**
+   * Skip synchronous refresh
+   */
+  skipRefresh?: shared.BoolInt | undefined;
+  /**
+   * Comma-separated list of elements to exclude from the response
+   */
+  excludeElements?: string | undefined;
+  /**
+   * General filtering expression.
+   */
+  filters?: string | undefined;
+  /**
+   * Filter to unwatched only (1 = true).
+   */
+  unwatched?: shared.BoolInt | undefined;
+  /**
+   * Filter by genre.
+   */
+  genre?: string | undefined;
+  /**
+   * Filter by studio.
+   */
+  studio?: string | undefined;
+  /**
+   * Filter by content rating.
+   */
+  contentRating?: string | undefined;
+  /**
+   * Filter by resolution.
+   */
+  resolution?: string | undefined;
+  /**
+   * Filter by year.
+   */
+  year?: number | undefined;
+  /**
+   * Filter by first character of title.
+   */
+  firstCharacter?: string | undefined;
 };
 
 export type ListContentResponse = {
@@ -177,9 +325,47 @@ export type ListContentRequest$Outbound = {
   "X-Plex-Container-Start": number;
   "X-Plex-Container-Size": number;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
+  sectionId: number;
+  mediaType?: number | undefined;
+  sort?: string | undefined;
   includeMeta: number;
   includeGuids: number;
-  sectionId: string;
+  includeCollections: number;
+  includeExternalMedia: number;
+  includeAdvanced: number;
+  checkFiles: number;
+  includeRelated: number;
+  includeExtras: number;
+  includePopularLeaves: number;
+  includeConcerts: number;
+  includeOnDeck: number;
+  includeChapters: number;
+  includePreferences: number;
+  includeBandwidths: number;
+  includeLoudnessRamps: number;
+  includeStations: number;
+  includeExternalIds: number;
+  includeReviews: number;
+  includeCredits: number;
+  includeArt: number;
+  includeThumb: number;
+  includeBanner: number;
+  includeTheme: number;
+  includeFields?: string | undefined;
+  excludeFields?: string | undefined;
+  asyncAugmentMetadata: number;
+  asyncRefreshLocalMediaAgent: number;
+  nocache: number;
+  skipRefresh: number;
+  excludeElements?: string | undefined;
+  filters?: string | undefined;
+  unwatched: number;
+  genre?: string | undefined;
+  studio?: string | undefined;
+  contentRating?: string | undefined;
+  resolution?: string | undefined;
+  year?: number | undefined;
+  firstCharacter?: string | undefined;
 };
 
 /** @internal */
@@ -201,9 +387,65 @@ export const ListContentRequest$outboundSchema: z.ZodType<
   xPlexContainerStart: z.int().default(0),
   xPlexContainerSize: z.int().default(50),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
+  sectionId: z.int(),
+  mediaType: z.int().optional(),
+  sort: z.string().optional(),
   includeMeta: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   includeGuids: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
-  sectionId: z.string(),
+  includeCollections: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeExternalMedia: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeAdvanced: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  checkFiles: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeRelated: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeExtras: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includePopularLeaves: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeConcerts: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeOnDeck: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeChapters: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includePreferences: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeBandwidths: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeLoudnessRamps: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeStations: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeExternalIds: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeReviews: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeCredits: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeArt: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeThumb: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeBanner: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeTheme: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeFields: z.string().optional(),
+  excludeFields: z.string().optional(),
+  asyncAugmentMetadata: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  asyncRefreshLocalMediaAgent: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  nocache: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  skipRefresh: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  excludeElements: z.string().optional(),
+  filters: z.string().optional(),
+  unwatched: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  genre: z.string().optional(),
+  studio: z.string().optional(),
+  contentRating: z.string().optional(),
+  resolution: z.string().optional(),
+  year: z.int().optional(),
+  firstCharacter: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

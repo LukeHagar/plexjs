@@ -103,6 +103,9 @@ export type EditMetadataItemRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: Array<string>;
   /**
    * The new values for the metadata item

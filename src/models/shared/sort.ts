@@ -49,8 +49,6 @@ export type DefaultDirectionOpen = OpenEnum<typeof DefaultDirection>;
 
 /**
  * Each `Sort` object contains a description of the sort field.
- *
- * @remarks
  */
 export type Sort = {
   /**

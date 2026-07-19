@@ -22,7 +22,6 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
-import * as types$ from "../types/primitives.js";
 
 /**
  * Process all subscriptions
@@ -35,7 +34,7 @@ export function subscriptionsProcessSubscriptions(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.ProcessSubscriptionsResponse | undefined,
+    operations.ProcessSubscriptionsResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -58,7 +57,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.ProcessSubscriptionsResponse | undefined,
+      operations.ProcessSubscriptionsResponse,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -74,7 +73,7 @@ async function $do(
   const path = pathToFunc("/media/subscriptions/process")();
 
   const headers = new Headers(compactMap({
-    Accept: "*/*",
+    Accept: "text/html",
   }));
 
   const secConfig = await extractSecurity(client._options.token);
@@ -92,8 +91,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -127,7 +136,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.ProcessSubscriptionsResponse | undefined,
+    operations.ProcessSubscriptionsResponse,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -137,11 +146,11 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(
-      200,
-      types$.optional(operations.ProcessSubscriptionsResponse$inboundSchema),
-      { hdrs: true },
-    ),
+    M.bytes(200, operations.ProcessSubscriptionsResponse$inboundSchema, {
+      ctype: "text/html",
+      hdrs: true,
+      key: "Result",
+    }),
     M.fail([403, "4XX"]),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

@@ -5,108 +5,10 @@
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import * as openEnums from "../../types/enums.js";
-import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * Whether this hub is visible on the home screen
- *
- * @remarks
- *   - all: Visible to all users
- *   - none: Visible to no users
- *   - admin: Visible to only admin users
- *   - shared: Visible to shared users
- */
-export enum HomeVisibility {
-  All = "all",
-  None = "none",
-  Admin = "admin",
-  Shared = "shared",
-}
-/**
- * Whether this hub is visible on the home screen
- *
- * @remarks
- *   - all: Visible to all users
- *   - none: Visible to no users
- *   - admin: Visible to only admin users
- *   - shared: Visible to shared users
- */
-export type HomeVisibilityOpen = OpenEnum<typeof HomeVisibility>;
-
-/**
- * The visibility of this hub in recommendations:
- *
- * @remarks
- *   - all: Visible to all users
- *   - none: Visible to no users
- *   - admin: Visible to only admin users
- *   - shared: Visible to shared users
- */
-export enum RecommendationsVisibility {
-  All = "all",
-  None = "none",
-  Admin = "admin",
-  Shared = "shared",
-}
-/**
- * The visibility of this hub in recommendations:
- *
- * @remarks
- *   - all: Visible to all users
- *   - none: Visible to no users
- *   - admin: Visible to only admin users
- *   - shared: Visible to shared users
- */
-export type RecommendationsVisibilityOpen = OpenEnum<
-  typeof RecommendationsVisibility
->;
-
-export type HubResponse = {
-  /**
-   * Whether this hub is visible on the home screen
-   *
-   * @remarks
-   *   - all: Visible to all users
-   *   - none: Visible to no users
-   *   - admin: Visible to only admin users
-   *   - shared: Visible to shared users
-   */
-  homeVisibility?: HomeVisibilityOpen | undefined;
-  /**
-   * The identifier for this hub
-   */
-  identifier?: string | undefined;
-  /**
-   * Whether this hub is visible to admin user home
-   */
-  promotedToOwnHome?: boolean | undefined;
-  /**
-   * Whether this hub is promoted to all for recommendations
-   */
-  promotedToRecommended?: boolean | undefined;
-  /**
-   * Whether this hub is visible to shared user's home
-   */
-  promotedToSharedHome?: boolean | undefined;
-  /**
-   * The visibility of this hub in recommendations:
-   *
-   * @remarks
-   *   - all: Visible to all users
-   *   - none: Visible to no users
-   *   - admin: Visible to only admin users
-   *   - shared: Visible to shared users
-   */
-  recommendationsVisibility?: RecommendationsVisibilityOpen | undefined;
-  /**
-   * The title of this hub
-   */
-  title?: string | undefined;
-};
+import { ManagedHub, ManagedHub$inboundSchema } from "./managedhub.js";
 
 /**
  * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
@@ -119,18 +21,14 @@ export type GetResponses200MediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  hub?: Array<HubResponse> | undefined;
+  hub?: Array<ManagedHub> | undefined;
 };
 
 /**
@@ -141,42 +39,6 @@ export type GetResponses200 = {
 };
 
 /** @internal */
-export const HomeVisibility$inboundSchema: z.ZodType<
-  HomeVisibilityOpen,
-  unknown
-> = openEnums.inboundSchema(HomeVisibility);
-
-/** @internal */
-export const RecommendationsVisibility$inboundSchema: z.ZodType<
-  RecommendationsVisibilityOpen,
-  unknown
-> = openEnums.inboundSchema(RecommendationsVisibility);
-
-/** @internal */
-export const HubResponse$inboundSchema: z.ZodType<HubResponse, unknown> = z
-  .object({
-    homeVisibility: types.optional(HomeVisibility$inboundSchema),
-    identifier: types.optional(types.string()),
-    promotedToOwnHome: types.optional(types.boolean()),
-    promotedToRecommended: types.optional(types.boolean()),
-    promotedToSharedHome: types.optional(types.boolean()),
-    recommendationsVisibility: types.optional(
-      RecommendationsVisibility$inboundSchema,
-    ),
-    title: types.optional(types.string()),
-  });
-
-export function hubResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<HubResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HubResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HubResponse' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetResponses200MediaContainer$inboundSchema: z.ZodType<
   GetResponses200MediaContainer,
   unknown
@@ -185,7 +47,7 @@ export const GetResponses200MediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
-  Hub: types.optional(z.array(z.lazy(() => HubResponse$inboundSchema))),
+  Hub: types.optional(z.array(ManagedHub$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Hub": "hub",

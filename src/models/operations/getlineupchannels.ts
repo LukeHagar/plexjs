@@ -147,6 +147,14 @@ export type Lineup = {
    */
   type?: string | undefined;
   /**
+   * Lineup identifier.
+   */
+  identifier?: string | undefined;
+  /**
+   * API key for this lineup.
+   */
+  key?: string | undefined;
+  /**
    * - `-1`: N/A
    *
    * @remarks
@@ -176,15 +184,11 @@ export type GetLineupChannelsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   lineup?: Array<Lineup> | undefined;
@@ -261,6 +265,8 @@ export const LineupType$inboundSchema: z.ZodType<LineupTypeOpen, unknown> =
 export const Lineup$inboundSchema: z.ZodType<Lineup, unknown> = z.object({
   title: types.optional(types.string()),
   type: types.optional(types.string()),
+  identifier: types.optional(types.string()),
+  key: types.optional(types.string()),
   lineupType: types.optional(LineupType$inboundSchema),
   location: types.optional(types.string()),
   uuid: types.optional(types.string()),

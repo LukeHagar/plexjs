@@ -103,6 +103,14 @@ export type ListPlaybackHistoryRequest = {
    */
   marketplace?: string | undefined;
   /**
+   * Pagination start offset
+   */
+  xPlexContainerStart?: number | undefined;
+  /**
+   * Pagination page size
+   */
+  xPlexContainerSize?: number | undefined;
+  /**
    * The account id to restrict view history
    */
   accountID?: number | undefined;
@@ -122,53 +130,34 @@ export type ListPlaybackHistoryRequest = {
    * The field on which to sort.  Multiple orderings can be specified separated by `,` and the direction specified following a `:` (`desc` or `asc`; `asc` is assumed if not provided).  Note `metadataItemID` may not be used here.
    */
   sort?: Array<string> | undefined;
-};
-
-export type ListPlaybackHistoryMetadatum = {
   /**
-   * The account id of this playback
+   * Comma-separated list of elements to exclude from the response
    */
-  accountID?: number | undefined;
+  excludeElements?: string | undefined;
   /**
-   * The device id which played the item
+   * Comma-separated list of fields to exclude from the response
+   */
+  excludeFields?: string | undefined;
+  /**
+   * Whitelist of fields to return
+   */
+  includeFields?: string | undefined;
+  /**
+   * Whitelist of elements to include
+   */
+  includeElements?: string | undefined;
+  /**
+   * Greater-than filter for viewedAt timestamp
+   */
+  viewedAtGreaterThan?: number | undefined;
+  /**
+   * Less-than filter for viewedAt timestamp
+   */
+  viewedAtLessThan?: number | undefined;
+  /**
+   * Filter by device ID
    */
   deviceID?: number | undefined;
-  /**
-   * The key for this individual history item
-   */
-  historyKey?: string | undefined;
-  /**
-   * The metadata key for the item played
-   */
-  key?: string | undefined;
-  /**
-   * The library section id containing the item played
-   */
-  librarySectionID?: string | undefined;
-  /**
-   * The originally available at of the item played
-   */
-  originallyAvailableAt?: string | undefined;
-  /**
-   * The rating key for the item played
-   */
-  ratingKey?: string | undefined;
-  /**
-   * The thumb of the item played
-   */
-  thumb?: string | undefined;
-  /**
-   * The title of the item played
-   */
-  title?: string | undefined;
-  /**
-   * The metadata type of the item played
-   */
-  type?: string | undefined;
-  /**
-   * The time when the item was played
-   */
-  viewedAt?: number | undefined;
 };
 
 /**
@@ -182,18 +171,14 @@ export type ListPlaybackHistoryMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
-  metadata?: Array<ListPlaybackHistoryMetadatum> | undefined;
+  metadata?: Array<shared.PlaybackHistoryMetadata> | undefined;
 };
 
 /**
@@ -221,11 +206,20 @@ export type ListPlaybackHistoryRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  "X-Plex-Container-Start"?: number | undefined;
+  "X-Plex-Container-Size"?: number | undefined;
   accountID?: number | undefined;
   viewedAt?: number | undefined;
   librarySectionID?: number | undefined;
   metadataItemID?: number | undefined;
   sort?: Array<string> | undefined;
+  excludeElements?: string | undefined;
+  excludeFields?: string | undefined;
+  includeFields?: string | undefined;
+  includeElements?: string | undefined;
+  "viewedAt>"?: number | undefined;
+  "viewedAt<"?: number | undefined;
+  deviceID?: number | undefined;
 };
 
 /** @internal */
@@ -244,11 +238,20 @@ export const ListPlaybackHistoryRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  xPlexContainerStart: z.int().optional(),
+  xPlexContainerSize: z.int().optional(),
   accountID: z.int().optional(),
   viewedAt: z.int().optional(),
   librarySectionID: z.int().optional(),
   metadataItemID: z.int().optional(),
   sort: z.array(z.string()).optional(),
+  excludeElements: z.string().optional(),
+  excludeFields: z.string().optional(),
+  includeFields: z.string().optional(),
+  includeElements: z.string().optional(),
+  viewedAtGreaterThan: z.int().optional(),
+  viewedAtLessThan: z.int().optional(),
+  deviceID: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",
@@ -261,6 +264,10 @@ export const ListPlaybackHistoryRequest$outboundSchema: z.ZodType<
     deviceVendor: "Device-Vendor",
     deviceName: "Device-Name",
     marketplace: "Marketplace",
+    xPlexContainerStart: "X-Plex-Container-Start",
+    xPlexContainerSize: "X-Plex-Container-Size",
+    viewedAtGreaterThan: "viewedAt>",
+    viewedAtLessThan: "viewedAt<",
   });
 });
 
@@ -269,34 +276,6 @@ export function listPlaybackHistoryRequestToJSON(
 ): string {
   return JSON.stringify(
     ListPlaybackHistoryRequest$outboundSchema.parse(listPlaybackHistoryRequest),
-  );
-}
-
-/** @internal */
-export const ListPlaybackHistoryMetadatum$inboundSchema: z.ZodType<
-  ListPlaybackHistoryMetadatum,
-  unknown
-> = z.object({
-  accountID: types.optional(types.number()),
-  deviceID: types.optional(types.number()),
-  historyKey: types.optional(types.string()),
-  key: types.optional(types.string()),
-  librarySectionID: types.optional(types.string()),
-  originallyAvailableAt: types.optional(types.string()),
-  ratingKey: types.optional(types.string()),
-  thumb: types.optional(types.string()),
-  title: types.optional(types.string()),
-  type: types.optional(types.string()),
-  viewedAt: types.optional(types.number()),
-});
-
-export function listPlaybackHistoryMetadatumFromJSON(
-  jsonString: string,
-): SafeParseResult<ListPlaybackHistoryMetadatum, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListPlaybackHistoryMetadatum$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListPlaybackHistoryMetadatum' from JSON`,
   );
 }
 
@@ -310,7 +289,7 @@ export const ListPlaybackHistoryMediaContainer$inboundSchema: z.ZodType<
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
   Metadata: types.optional(
-    z.array(z.lazy(() => ListPlaybackHistoryMetadatum$inboundSchema)),
+    z.array(shared.PlaybackHistoryMetadata$inboundSchema),
   ),
 }).transform((v) => {
   return remap$(v, {

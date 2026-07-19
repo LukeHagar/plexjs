@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod/v4";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -27,6 +30,10 @@ export type SessionLocationOpen = OpenEnum<typeof SessionLocation>;
  */
 export type Session = {
   /**
+   * Title of the media being played.
+   */
+  title?: string | undefined;
+  /**
    * The bandwidth used by this client's playback in kbps
    */
   bandwidth?: number | undefined;
@@ -38,6 +45,19 @@ export type Session = {
    * The location of the client
    */
   location?: SessionLocationOpen | undefined;
+  /**
+   * Unique session key for this playback session.
+   */
+  sessionKey?: string | undefined;
+  /**
+   * ID of the user owning this session.
+   */
+  userID?: number | undefined;
+  /**
+   * UUID of the playback session.
+   */
+  uuid?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -47,11 +67,20 @@ export const SessionLocation$inboundSchema: z.ZodType<
 > = openEnums.inboundSchema(SessionLocation);
 
 /** @internal */
-export const Session$inboundSchema: z.ZodType<Session, unknown> = z.object({
-  bandwidth: types.optional(types.number()),
-  id: types.optional(types.string()),
-  location: types.optional(SessionLocation$inboundSchema),
-});
+export const Session$inboundSchema: z.ZodType<Session, unknown> =
+  collectExtraKeys$(
+    z.object({
+      title: types.optional(types.string()),
+      bandwidth: types.optional(types.number()),
+      id: types.optional(types.string()),
+      location: types.optional(SessionLocation$inboundSchema),
+      sessionKey: types.optional(types.string()),
+      userID: types.optional(types.number()),
+      uuid: types.optional(types.string()),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  );
 
 export function sessionFromJSON(
   jsonString: string,

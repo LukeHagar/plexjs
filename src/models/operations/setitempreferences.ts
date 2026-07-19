@@ -53,6 +53,9 @@ export type SetItemPreferencesGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The args
+ */
 export type SetItemPreferencesArgs = {};
 
 export type SetItemPreferencesRequest = {
@@ -100,7 +103,13 @@ export type SetItemPreferencesRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * The args
+   */
   args?: SetItemPreferencesArgs | undefined;
 };
 

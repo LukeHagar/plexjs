@@ -53,6 +53,9 @@ export type SetSectionPreferencesGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The preference key to retrieve or set
+ */
 export type SetSectionPreferencesPrefs = {};
 
 export type SetSectionPreferencesRequest = {
@@ -104,6 +107,9 @@ export type SetSectionPreferencesRequest = {
    * Section identifier
    */
   sectionId: number;
+  /**
+   * The preference key to retrieve or set
+   */
   prefs: SetSectionPreferencesPrefs;
 };
 

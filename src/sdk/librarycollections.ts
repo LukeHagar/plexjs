@@ -3,8 +3,8 @@
  */
 
 import { libraryCollectionsAddCollectionItems } from "../funcs/libraryCollectionsAddCollectionItems.js";
-import { libraryCollectionsDeleteCollectionItem } from "../funcs/libraryCollectionsDeleteCollectionItem.js";
 import { libraryCollectionsMoveCollectionItem } from "../funcs/libraryCollectionsMoveCollectionItem.js";
+import { libraryCollectionsUpdateCollectionItem } from "../funcs/libraryCollectionsUpdateCollectionItem.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import * as shared from "../models/shared/index.js";
@@ -29,16 +29,16 @@ export class LibraryCollections extends ClientSDK {
   }
 
   /**
-   * Delete an item from a collection
+   * Update an item in a collection
    *
    * @remarks
    * Delete an item from a collection
    */
-  async deleteCollectionItem(
-    request: operations.DeleteCollectionItemRequest,
+  async updateCollectionItem(
+    request: operations.UpdateCollectionItemRequest,
     options?: RequestOptions,
   ): Promise<shared.MediaContainerWithMetadata> {
-    return unwrapAsync(libraryCollectionsDeleteCollectionItem(
+    return unwrapAsync(libraryCollectionsUpdateCollectionItem(
       this,
       request,
       options,

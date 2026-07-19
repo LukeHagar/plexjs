@@ -7,13 +7,11 @@ import { ProcessSubscriptionsResponse } from "@parke.dev/plexjs/models/operation
 
 let value: ProcessSubscriptionsResponse = {
   headers: {
-    "key": [],
-    "key1": [
+    "key": [
       "<value 1>",
-      "<value 2>",
-      "<value 3>",
     ],
   },
+  result: new TextEncoder().encode("0xB19E8BD7Ee"),
 };
 ```
 
@@ -22,3 +20,4 @@ let value: ProcessSubscriptionsResponse = {
 | Field                      | Type                       | Required                   | Description                |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 | `headers`                  | Record<string, *string*[]> | :heavy_check_mark:         | N/A                        |
+| `result`                   | *Uint8Array*               | :heavy_check_mark:         | N/A                        |

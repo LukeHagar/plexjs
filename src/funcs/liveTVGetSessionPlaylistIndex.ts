@@ -38,7 +38,7 @@ export function liveTVGetSessionPlaylistIndex(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    void,
+    ReadableStream<Uint8Array>,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -63,7 +63,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      void,
+      ReadableStream<Uint8Array>,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -103,7 +103,7 @@ async function $do(
   )(pathParams);
 
   const headers = new Headers(compactMap({
-    Accept: "*/*",
+    Accept: "application/vnd.apple.mpegurl",
     "X-Plex-Client-Identifier": encodeSimple(
       "X-Plex-Client-Identifier",
       payload["Client-Identifier"] ?? client._options.clientIdentifier,
@@ -176,8 +176,18 @@ async function $do(
     securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
+        },
+        retryConnectionErrors: true,
+      }
       || { strategy: "none" },
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryCodes: options?.retryCodes || ["429"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -208,7 +218,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    void,
+    ReadableStream<Uint8Array>,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -218,7 +228,11 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, z.void()),
+    M.stream(
+      200,
+      z.custom<ReadableStream<Uint8Array>>(x => x instanceof ReadableStream),
+      { ctype: "application/vnd.apple.mpegurl" },
+    ),
     M.fail([404, "4XX"]),
     M.fail("5XX"),
   )(response, req);

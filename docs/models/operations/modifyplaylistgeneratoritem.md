@@ -4,26 +4,25 @@ Note: OpenAPI cannot properly render this query parameter example ([See GHI](htt
 
 Item[type]=42&Item[title]=Jack-Jack Attack&Item[target]=&Item[targetTagID]=1&Item[locationID]=-1&Item[Location][uri]=library://82503060-0d68-4603-b594-8b071d54819e/item//library/metadata/146&Item[Policy][scope]=all&Item[Policy][value]=&Item[Policy][unwatched]=0
 
-
 ## Example Usage
 
 ```typescript
 import { ModifyPlaylistGeneratorItem, ModifyPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
 
 let value: ModifyPlaylistGeneratorItem = {
+  title: "Jack-Jack Attack",
+  type: 42,
   location: {
     uri:
       "library://82503060-0d68-4603-b594-8b071d54819e/item/%2Flibrary%2Fmetadata%2F146",
   },
   locationID: -1,
   policy: {
-    value: NaN,
     scope: ModifyPlaylistGeneratorScope.All,
+    value: NaN,
   },
   target: "",
   targetTagID: 1,
-  title: "Jack-Jack Attack",
-  type: 42,
 };
 ```
 
@@ -31,10 +30,10 @@ let value: ModifyPlaylistGeneratorItem = {
 
 | Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `title`                                                                                                  | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
+| `type`                                                                                                   | *number*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
 | `location`                                                                                               | [operations.ModifyPlaylistGeneratorLocation](../../models/operations/modifyplaylistgeneratorlocation.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
 | `locationID`                                                                                             | *number*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
 | `policy`                                                                                                 | [operations.ModifyPlaylistGeneratorPolicy](../../models/operations/modifyplaylistgeneratorpolicy.md)     | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
 | `target`                                                                                                 | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
 | `targetTagID`                                                                                            | *number*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
-| `title`                                                                                                  | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
-| `type`                                                                                                   | *number*                                                                                                 | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |

@@ -23,8 +23,6 @@ export type FilterPivot = {
 
 /**
  * Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an important subset useful for top-level API.
- *
- * @remarks
  */
 export type Filter = {
   /**

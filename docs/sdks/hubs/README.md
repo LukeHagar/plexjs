@@ -8,6 +8,8 @@ The hubs within a media provider
 
 * [getAllHubs](#getallhubs) - Get global hubs
 * [getContinueWatching](#getcontinuewatching) - Get the continue watching hub
+* [getContinueWatchingItems](#getcontinuewatchingitems) - Get Continue Watching Items
+* [getHomeRecentlyAdded](#gethomerecentlyadded) - Get home hubs Recently Added
 * [getHubItems](#gethubitems) - Get a hub's items
 * [getPromotedHubs](#getpromotedhubs) - Get the hubs which are promoted
 * [getMetadataHubs](#getmetadatahubs) - Get hubs for section by metadata item
@@ -114,9 +116,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getContinueWatching
 
@@ -207,9 +210,198 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getContinueWatchingItems
+
+Get direct access to Continue Watching items.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getContinueWatchingItems" method="get" path="/hubs/continueWatching/items" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getContinueWatchingItems({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetContinueWatchingItems } from "@parke.dev/plexjs/funcs/hubsGetContinueWatchingItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await hubsGetContinueWatchingItems(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetContinueWatchingItems failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetContinueWatchingItemsRequest](../../models/operations/getcontinuewatchingitemsrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getHomeRecentlyAdded
+
+Get the recently added hub for the home screen.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getHomeRecentlyAdded" method="get" path="/hubs/home/recentlyAdded" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getHomeRecentlyAdded({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetHomeRecentlyAdded } from "@parke.dev/plexjs/funcs/hubsGetHomeRecentlyAdded.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await hubsGetHomeRecentlyAdded(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetHomeRecentlyAdded failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetHomeRecentlyAddedRequest](../../models/operations/gethomerecentlyaddedrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithHubs](../../models/shared/mediacontainerwithhubs.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getHubItems
 
@@ -405,9 +597,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getMetadataHubs
 

@@ -23,8 +23,6 @@ import { Tag, Tag$inboundSchema } from "./tag.js";
 export type ItemsGuid = {
   /**
    * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
-   *
-   * @remarks
    */
   id: string;
 };
@@ -82,6 +80,10 @@ export type Items = {
    */
   art?: string | undefined;
   /**
+   * Blur hash for background art.
+   */
+  artBlurHash?: string | undefined;
+  /**
    * Some rating systems separate reviewer ratings from audience ratings
    */
   audienceRating?: number | undefined;
@@ -113,9 +115,21 @@ export type Items = {
   country?: Array<Tag> | undefined;
   director?: Array<Tag> | undefined;
   /**
+   * Levenshtein distance for voice search results.
+   */
+  distance?: number | undefined;
+  /**
    * When present, the duration for the item, in units of milliseconds.
    */
   duration?: number | undefined;
+  /**
+   * Edition string (e.g. "Director's Cut").
+   */
+  editionTitle?: string | undefined;
+  /**
+   * Whether credits marker generation is enabled for this item.
+   */
+  enableCreditsMarkerGeneration?: boolean | undefined;
   /**
    * Typically only seen in metadata at a library's top level
    */
@@ -171,12 +185,24 @@ export type Items = {
    * The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
    */
   key: string;
+  /**
+   * Per-item language override.
+   */
+  languageOverride?: string | undefined;
+  /**
+   * Timestamp of the last user rating.
+   */
+  lastRatedAt?: number | undefined;
   lastViewedAt?: number | undefined;
   /**
    * For shows and seasons, contains the number of total episodes.
    */
   leafCount?: number | undefined;
   media?: Array<Media> | undefined;
+  /**
+   * Analysis version for music items.
+   */
+  musicAnalysisVersion?: number | undefined;
   /**
    * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
    */
@@ -213,6 +239,10 @@ export type Items = {
    * The `title` of the parent
    */
   parentTitle?: string | undefined;
+  /**
+   * Item ID within a playlist.
+   */
+  playlistItemID?: number | undefined;
   /**
    * Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
    */
@@ -252,13 +282,25 @@ export type Items = {
    */
   skipChildren?: boolean | ItemsSkipChildrenEnumOpen | undefined;
   /**
+   * Number of times this track has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
    * When present on an episode or track item, indicates parent should be skipped in favor of grandparent (show).
    */
   skipParent?: boolean | ItemsSkipParentEnumOpen | undefined;
   /**
+   * URL-friendly slug for the item.
+   */
+  slug?: string | undefined;
+  /**
    * Typically only seen in metadata at a library's top level
    */
   sort?: Array<Sort> | undefined;
+  /**
+   * Remote or shared server item URI.
+   */
+  sourceURI?: string | undefined;
   /**
    * When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
    */
@@ -284,6 +326,10 @@ export type Items = {
    */
   thumb?: string | undefined;
   /**
+   * Blur hash for thumbnail.
+   */
+  thumbBlurHash?: string | undefined;
+  /**
    * Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
    */
   titleSort?: string | undefined;
@@ -291,6 +337,10 @@ export type Items = {
    * In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
    */
   updatedAt?: number | undefined;
+  /**
+   * Whether to display the original title.
+   */
+  useOriginalTitle?: boolean | undefined;
   /**
    * When the user has rated an item, this contains the user rating
    */
@@ -383,6 +433,7 @@ export const Items$inboundSchema: z.ZodType<Items, unknown> = collectExtraKeys$(
     absoluteIndex: types.optional(types.number()),
     addedAt: types.number(),
     art: types.optional(types.string()),
+    artBlurHash: types.optional(types.string()),
     audienceRating: types.optional(types.number()),
     audienceRatingImage: types.optional(types.string()),
     Autotag: types.optional(z.array(Tag$inboundSchema)),
@@ -393,7 +444,10 @@ export const Items$inboundSchema: z.ZodType<Items, unknown> = collectExtraKeys$(
     contentRating: types.optional(types.string()),
     Country: types.optional(z.array(Tag$inboundSchema)),
     Director: types.optional(z.array(Tag$inboundSchema)),
+    distance: types.optional(types.number()),
     duration: types.optional(types.number()),
+    editionTitle: types.optional(types.string()),
+    enableCreditsMarkerGeneration: types.optional(types.boolean()),
     Filter: types.optional(z.array(Filter$inboundSchema)),
     Genre: types.optional(z.array(Tag$inboundSchema)),
     grandparentArt: types.optional(types.string()),
@@ -410,9 +464,12 @@ export const Items$inboundSchema: z.ZodType<Items, unknown> = collectExtraKeys$(
     Image: types.optional(z.array(Image$inboundSchema)),
     index: types.optional(types.number()),
     key: types.string(),
+    languageOverride: types.optional(types.string()),
+    lastRatedAt: types.optional(types.number()),
     lastViewedAt: types.optional(types.number()),
     leafCount: types.optional(types.number()),
     Media: types.optional(z.array(Media$inboundSchema)),
+    musicAnalysisVersion: types.optional(types.number()),
     originallyAvailableAt: types.optional(types.date()),
     originalTitle: types.optional(types.string()),
     parentGuid: types.optional(types.string()),
@@ -422,6 +479,7 @@ export const Items$inboundSchema: z.ZodType<Items, unknown> = collectExtraKeys$(
     parentRatingKey: types.optional(types.string()),
     parentThumb: types.optional(types.string()),
     parentTitle: types.optional(types.string()),
+    playlistItemID: types.optional(types.number()),
     primaryExtraKey: types.optional(types.string()),
     prompt: types.optional(types.string()),
     rating: types.optional(types.number()),
@@ -435,18 +493,23 @@ export const Items$inboundSchema: z.ZodType<Items, unknown> = collectExtraKeys$(
     skipChildren: types.optional(
       smartUnion([types.boolean(), ItemsSkipChildrenEnum$inboundSchema]),
     ),
+    skipCount: types.optional(types.number()),
     skipParent: types.optional(
       smartUnion([types.boolean(), ItemsSkipParentEnum$inboundSchema]),
     ),
+    slug: types.optional(types.string()),
     Sort: types.optional(z.array(Sort$inboundSchema)),
+    sourceURI: types.optional(types.string()),
     studio: types.optional(types.string()),
     subtype: types.optional(types.string()),
     summary: types.optional(types.string()),
     tagline: types.optional(types.string()),
     theme: types.optional(types.string()),
     thumb: types.optional(types.string()),
+    thumbBlurHash: types.optional(types.string()),
     titleSort: types.optional(types.string()),
     updatedAt: types.optional(types.number()),
+    useOriginalTitle: types.optional(types.boolean()),
     userRating: types.optional(types.number()),
     viewCount: types.optional(types.number()),
     viewedLeafCount: types.optional(types.number()),

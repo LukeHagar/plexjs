@@ -4,10 +4,6 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetPersonGlobals = {
@@ -108,38 +104,6 @@ export type GetPersonRequest = {
   personId: string;
 };
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type GetPersonMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  directory?: Array<shared.Tag> | undefined;
-};
-
-/**
- * OK
- */
-export type GetPersonResponse = {
-  mediaContainer?: GetPersonMediaContainer | undefined;
-};
-
 /** @internal */
 export type GetPersonRequest$Outbound = {
   accepts: string;
@@ -193,55 +157,5 @@ export function getPersonRequestToJSON(
 ): string {
   return JSON.stringify(
     GetPersonRequest$outboundSchema.parse(getPersonRequest),
-  );
-}
-
-/** @internal */
-export const GetPersonMediaContainer$inboundSchema: z.ZodType<
-  GetPersonMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  Directory: types.optional(z.array(shared.Tag$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "Directory": "directory",
-  });
-});
-
-export function getPersonMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetPersonMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetPersonMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPersonMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetPersonResponse$inboundSchema: z.ZodType<
-  GetPersonResponse,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => GetPersonMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function getPersonResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<GetPersonResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetPersonResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetPersonResponse' from JSON`,
   );
 }

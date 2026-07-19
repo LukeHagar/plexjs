@@ -108,7 +108,7 @@ export type GetPlaylistItemsRequest = {
   /**
    * The metadata types of the item to return.  Values past the first are only used in fetching items from the background processing playlist.
    */
-  type?: Array<number> | undefined;
+  mediaType?: Array<number> | undefined;
 };
 
 export type GetPlaylistItemsResponse = {
@@ -130,7 +130,7 @@ export type GetPlaylistItemsRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   playlistId: number;
-  type?: Array<number> | undefined;
+  mediaType?: Array<number> | undefined;
 };
 
 /** @internal */
@@ -150,7 +150,7 @@ export const GetPlaylistItemsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   playlistId: z.int(),
-  type: z.array(z.int()).optional(),
+  mediaType: z.array(z.int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

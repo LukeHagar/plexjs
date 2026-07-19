@@ -46,8 +46,6 @@ export type LibrarySection = {
   title?: string | undefined;
   /**
    * The type of media content in the Plex library. This can represent videos, music, or photos.
-   *
-   * @remarks
    */
   type: MediaTypeStringOpen;
   agent?: string | undefined;
@@ -55,7 +53,13 @@ export type LibrarySection = {
   art?: string | undefined;
   composite?: string | undefined;
   content?: boolean | undefined;
+  /**
+   * Unix epoch datetime in seconds
+   */
   contentChangedAt?: number | undefined;
+  /**
+   * Unix epoch datetime in seconds
+   */
   createdAt?: number | undefined;
   directory?: boolean | undefined;
   /**
@@ -65,19 +69,25 @@ export type LibrarySection = {
   hidden?: boolean | undefined;
   key?: string | undefined;
   language: string;
-  /**
-   * The universally unique identifier for the library.
-   */
-  uuid: string;
   location?: Array<LibrarySectionLocation> | undefined;
   /**
    * Indicates whether this library section is currently scanning
    */
   refreshing?: boolean | undefined;
+  /**
+   * Unix epoch datetime in seconds
+   */
   scannedAt?: number | undefined;
   scanner?: string | undefined;
   thumb?: string | undefined;
+  /**
+   * Unix epoch datetime in seconds
+   */
   updatedAt?: number | undefined;
+  /**
+   * The universally unique identifier for the library.
+   */
+  uuid: string;
 };
 
 /** @internal */
@@ -140,7 +150,6 @@ export const LibrarySection$inboundSchema: z.ZodType<LibrarySection, unknown> =
     hidden: types.optional(types.boolean()),
     key: types.optional(types.string()),
     language: types.string(),
-    uuid: types.string(),
     Location: types.optional(
       z.array(z.lazy(() => LibrarySectionLocation$inboundSchema)),
     ),
@@ -149,6 +158,7 @@ export const LibrarySection$inboundSchema: z.ZodType<LibrarySection, unknown> =
     scanner: types.optional(types.string()),
     thumb: types.optional(types.string()),
     updatedAt: types.optional(types.number()),
+    uuid: types.string(),
   }).transform((v) => {
     return remap$(v, {
       "Location": "location",

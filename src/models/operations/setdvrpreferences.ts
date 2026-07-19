@@ -6,7 +6,6 @@ import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
@@ -110,59 +109,15 @@ export type SetDVRPreferencesRequest = {
    * Set the `name` preference to the provided value
    */
   name?: string | undefined;
-};
-
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type SetDVRPreferencesMediaContainerMediaContainer = {
-  identifier?: string | undefined;
   /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
+   * Preference value to set.
    */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  /**
-   * A status indicator. If present and non-zero, indicates an error
-   */
-  status?: number | undefined;
-};
-
-export type SetDVRPreferencesDVR = {
-  device?: Array<shared.Device> | undefined;
-  key?: string | undefined;
-  language?: string | undefined;
-  lineup?: string | undefined;
-  uuid?: string | undefined;
-};
-
-export type SetDVRPreferencesMediaContainer = {
-  mediaContainer?: SetDVRPreferencesMediaContainerMediaContainer | undefined;
-  dvr?: Array<SetDVRPreferencesDVR> | undefined;
-};
-
-/**
- * OK
- */
-export type SetDVRPreferencesResponseBody = {
-  mediaContainer?: SetDVRPreferencesMediaContainer | undefined;
+  value?: string | undefined;
 };
 
 export type SetDVRPreferencesResponse = {
   headers: { [k: string]: Array<string> };
-  result: SetDVRPreferencesResponseBody;
+  result: shared.DVRResponse;
 };
 
 /** @internal */
@@ -180,6 +135,7 @@ export type SetDVRPreferencesRequest$Outbound = {
   Marketplace?: string | undefined;
   dvrId: number;
   name?: string | undefined;
+  value?: string | undefined;
 };
 
 /** @internal */
@@ -200,6 +156,7 @@ export const SetDVRPreferencesRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   dvrId: z.int(),
   name: z.string().optional(),
+  value: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",
@@ -224,116 +181,12 @@ export function setDVRPreferencesRequestToJSON(
 }
 
 /** @internal */
-export const SetDVRPreferencesMediaContainerMediaContainer$inboundSchema:
-  z.ZodType<SetDVRPreferencesMediaContainerMediaContainer, unknown> = z.object({
-    identifier: types.optional(types.string()),
-    offset: types.optional(types.number()),
-    size: types.optional(types.number()),
-    totalSize: types.optional(types.number()),
-    status: types.optional(types.number()),
-  });
-
-export function setDVRPreferencesMediaContainerMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  SetDVRPreferencesMediaContainerMediaContainer,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SetDVRPreferencesMediaContainerMediaContainer$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'SetDVRPreferencesMediaContainerMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const SetDVRPreferencesDVR$inboundSchema: z.ZodType<
-  SetDVRPreferencesDVR,
-  unknown
-> = z.object({
-  Device: types.optional(z.array(shared.Device$inboundSchema)),
-  key: types.optional(types.string()),
-  language: types.optional(types.string()),
-  lineup: types.optional(types.string()),
-  uuid: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "Device": "device",
-  });
-});
-
-export function setDVRPreferencesDVRFromJSON(
-  jsonString: string,
-): SafeParseResult<SetDVRPreferencesDVR, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SetDVRPreferencesDVR$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SetDVRPreferencesDVR' from JSON`,
-  );
-}
-
-/** @internal */
-export const SetDVRPreferencesMediaContainer$inboundSchema: z.ZodType<
-  SetDVRPreferencesMediaContainer,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => SetDVRPreferencesMediaContainerMediaContainer$inboundSchema),
-  ),
-  DVR: types.optional(
-    z.array(z.lazy(() => SetDVRPreferencesDVR$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-    "DVR": "dvr",
-  });
-});
-
-export function setDVRPreferencesMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<SetDVRPreferencesMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SetDVRPreferencesMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SetDVRPreferencesMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const SetDVRPreferencesResponseBody$inboundSchema: z.ZodType<
-  SetDVRPreferencesResponseBody,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => SetDVRPreferencesMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function setDVRPreferencesResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SetDVRPreferencesResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SetDVRPreferencesResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SetDVRPreferencesResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const SetDVRPreferencesResponse$inboundSchema: z.ZodType<
   SetDVRPreferencesResponse,
   unknown
 > = z.object({
   Headers: z.record(z.string(), z.array(z.string())).default({}),
-  Result: z.lazy(() => SetDVRPreferencesResponseBody$inboundSchema),
+  Result: shared.DVRResponse$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",

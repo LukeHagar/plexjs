@@ -4,10 +4,6 @@
 
 import * as z from "zod/v4";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import * as types from "../../types/primitives.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetAvailableSortsGlobals = {
@@ -108,38 +104,6 @@ export type GetAvailableSortsRequest = {
   sectionId: number;
 };
 
-/**
- * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
- *
- * @remarks
- * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
- * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
- */
-export type GetAvailableSortsMediaContainer = {
-  identifier?: string | undefined;
-  /**
-   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
-   */
-  offset?: number | undefined;
-  size?: number | undefined;
-  /**
-   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
-   */
-  totalSize?: number | undefined;
-  directory?: Array<shared.Sort> | undefined;
-};
-
-/**
- * OK
- */
-export type GetAvailableSortsResponse = {
-  mediaContainer?: GetAvailableSortsMediaContainer | undefined;
-};
-
 /** @internal */
 export type GetAvailableSortsRequest$Outbound = {
   accepts: string;
@@ -193,55 +157,5 @@ export function getAvailableSortsRequestToJSON(
 ): string {
   return JSON.stringify(
     GetAvailableSortsRequest$outboundSchema.parse(getAvailableSortsRequest),
-  );
-}
-
-/** @internal */
-export const GetAvailableSortsMediaContainer$inboundSchema: z.ZodType<
-  GetAvailableSortsMediaContainer,
-  unknown
-> = z.object({
-  identifier: types.optional(types.string()),
-  offset: types.optional(types.number()),
-  size: types.optional(types.number()),
-  totalSize: types.optional(types.number()),
-  Directory: types.optional(z.array(shared.Sort$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "Directory": "directory",
-  });
-});
-
-export function getAvailableSortsMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetAvailableSortsMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetAvailableSortsMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAvailableSortsMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetAvailableSortsResponse$inboundSchema: z.ZodType<
-  GetAvailableSortsResponse,
-  unknown
-> = z.object({
-  MediaContainer: types.optional(
-    z.lazy(() => GetAvailableSortsMediaContainer$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-export function getAvailableSortsResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<GetAvailableSortsResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetAvailableSortsResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAvailableSortsResponse' from JSON`,
   );
 }

@@ -4,15 +4,16 @@
 
 The EPG (Electronic Program Guide) is responsible for obtaining metadata for what is airing on each channel and when
 
-
 ### Available Operations
 
 * [computeChannelMap](#computechannelmap) - Compute the best channel map
 * [getChannels](#getchannels) - Get channels for a lineup
 * [getCountries](#getcountries) - Get all countries
+* [getEPGGuide](#getepgguide) - Get EPG Guide
 * [getAllLanguages](#getalllanguages) - Get all languages
 * [getLineup](#getlineup) - Compute the best lineup
-* [getLineupChannels](#getlineupchannels) - Get the channels for mulitple lineups
+* [getLineupChannels](#getlineupchannels) - Get the channels for multiple lineups
+* [searchEPG](#searchepg) - Search EPG
 * [getCountriesLineups](#getcountrieslineups) - Get lineups for a country via postal code
 * [getCountryRegions](#getcountryregions) - Get regions for a country
 * [listLineups](#listlineups) - Get lineups for a region
@@ -277,9 +278,79 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getEPGGuide
+
+Fetch the global electronic program guide.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getEPGGuide" method="get" path="/livetv/epg/guide" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.epg.getEPGGuide();
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetEPGGuide } from "@parke.dev/plexjs/funcs/epgGetEPGGuide.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await epgGetEPGGuide(plexAPI);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("epgGetEPGGuide failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getAllLanguages
 
@@ -345,9 +416,10 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getLineup
 
@@ -550,6 +622,100 @@ run();
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## searchEPG
+
+Search the electronic program guide for upcoming airings.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="searchEPG" method="get" path="/livetv/epg/search" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.epg.searchEPG({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgSearchEPG } from "@parke.dev/plexjs/funcs/epgSearchEPG.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await epgSearchEPG(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("epgSearchEPG failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.SearchEPGRequest](../../models/operations/searchepgrequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getCountriesLineups
 

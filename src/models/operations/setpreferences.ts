@@ -53,6 +53,9 @@ export type SetPreferencesGlobals = {
   marketplace?: string | undefined;
 };
 
+/**
+ * The preference key to retrieve or set
+ */
 export type SetPreferencesPrefs = {};
 
 export type SetPreferencesRequest = {
@@ -100,6 +103,9 @@ export type SetPreferencesRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * The preference key to retrieve or set
+   */
   prefs: SetPreferencesPrefs;
 };
 

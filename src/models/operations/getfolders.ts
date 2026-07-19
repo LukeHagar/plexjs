@@ -109,9 +109,9 @@ export type GetFoldersRequest = {
 };
 
 export type GetFoldersDirectory = {
+  title?: string | undefined;
   fastKey?: string | undefined;
   key?: string | undefined;
-  title?: string | undefined;
 };
 
 /**
@@ -125,15 +125,11 @@ export type GetFoldersMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
   directory?: Array<GetFoldersDirectory> | undefined;
@@ -207,9 +203,9 @@ export const GetFoldersDirectory$inboundSchema: z.ZodType<
   GetFoldersDirectory,
   unknown
 > = z.object({
+  title: types.optional(types.string()),
   fastKey: types.optional(types.string()),
   key: types.optional(types.string()),
-  title: types.optional(types.string()),
 });
 
 export function getFoldersDirectoryFromJSON(

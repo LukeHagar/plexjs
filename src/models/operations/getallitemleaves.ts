@@ -101,6 +101,9 @@ export type GetAllItemLeavesRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
 };
 

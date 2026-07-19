@@ -98,8 +98,17 @@ export type DetectCreditsRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
+  /**
+   * Force the operation even if conditions are not met
+   */
   force?: shared.BoolInt | undefined;
+  /**
+   * Whether to perform the operation manually
+   */
   manual?: shared.BoolInt | undefined;
 };
 

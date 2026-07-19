@@ -63,7 +63,7 @@ export type WriteMessageGlobals = {
  *   - 3: Debug
  *   - 4: Verbose
  */
-export enum WriteMessageLevel {
+export enum Level {
   Zero = 0,
   One = 1,
   Two = 2,
@@ -126,7 +126,7 @@ export type WriteMessageRequest = {
    *   - 3: Debug
    *   - 4: Verbose
    */
-  level?: WriteMessageLevel | undefined;
+  level?: Level | undefined;
   /**
    * The text of the message to write to the log.
    */
@@ -138,9 +138,7 @@ export type WriteMessageRequest = {
 };
 
 /** @internal */
-export const WriteMessageLevel$outboundSchema: z.ZodEnum<
-  typeof WriteMessageLevel
-> = z.enum(WriteMessageLevel);
+export const Level$outboundSchema: z.ZodEnum<typeof Level> = z.enum(Level);
 
 /** @internal */
 export type WriteMessageRequest$Outbound = {
@@ -176,7 +174,7 @@ export const WriteMessageRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  level: WriteMessageLevel$outboundSchema.optional(),
+  level: Level$outboundSchema.optional(),
   message: z.string().optional(),
   source: z.string().optional(),
 }).transform((v) => {

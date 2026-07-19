@@ -8,14 +8,19 @@ import { dvRsCreateDVR } from "../funcs/dvRsCreateDVR.js";
 import { dvRsDeleteDVR } from "../funcs/dvRsDeleteDVR.js";
 import { dvRsDeleteLineup } from "../funcs/dvRsDeleteLineup.js";
 import { dvRsGetDVR } from "../funcs/dvRsGetDVR.js";
+import { dvRsGetDVRChannels } from "../funcs/dvRsGetDVRChannels.js";
+import { dvRsGetDVRGuide } from "../funcs/dvRsGetDVRGuide.js";
 import { dvRsListDVRs } from "../funcs/dvRsListDVRs.js";
+import { dvRsPatchDVRSettings } from "../funcs/dvRsPatchDVRSettings.js";
 import { dvRsReloadGuide } from "../funcs/dvRsReloadGuide.js";
 import { dvRsRemoveDeviceFromDVR } from "../funcs/dvRsRemoveDeviceFromDVR.js";
 import { dvRsSetDVRPreferences } from "../funcs/dvRsSetDVRPreferences.js";
 import { dvRsStopDVRReload } from "../funcs/dvRsStopDVRReload.js";
 import { dvRsTuneChannel } from "../funcs/dvRsTuneChannel.js";
+import { dvRsUpdateDVRSettings } from "../funcs/dvRsUpdateDVRSettings.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class DVRs extends ClientSDK {
@@ -26,10 +31,14 @@ export class DVRs extends ClientSDK {
    * Get the list of all available DVRs
    */
   async listDVRs(
+    uuid?: string | undefined,
+    lineup?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.ListDVRsResponse> {
     return unwrapAsync(dvRsListDVRs(
       this,
+      uuid,
+      lineup,
       options,
     ));
   }
@@ -38,7 +47,7 @@ export class DVRs extends ClientSDK {
    * Create a DVR
    *
    * @remarks
-   * Creation of a DVR, after creation of a devcie and a lineup is selected
+   * Creation of a DVR, after creation of a device and a lineup is selected
    */
   async createDVR(
     request: operations.CreateDVRRequest,
@@ -86,6 +95,74 @@ export class DVRs extends ClientSDK {
   }
 
   /**
+   * Update DVR Settings
+   *
+   * @remarks
+   * Update DVR settings.
+   */
+  async patchDVRSettings(
+    request: operations.PatchDVRSettingsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(dvRsPatchDVRSettings(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update DVR Settings
+   *
+   * @remarks
+   * Update DVR settings.
+   */
+  async updateDVRSettings(
+    request: operations.UpdateDVRSettingsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.SuccessResponse> {
+    return unwrapAsync(dvRsUpdateDVRSettings(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get DVR Channels
+   *
+   * @remarks
+   * List channels directly associated with a DVR.
+   */
+  async getDVRChannels(
+    request: operations.GetDVRChannelsRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(dvRsGetDVRChannels(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get DVR Guide
+   *
+   * @remarks
+   * Fetch program guide/schedule for a DVR.
+   */
+  async getDVRGuide(
+    request: operations.GetDVRGuideRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(dvRsGetDVRGuide(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Delete a DVR Lineup
    *
    * @remarks
@@ -123,7 +200,7 @@ export class DVRs extends ClientSDK {
    * Set DVR preferences
    *
    * @remarks
-   * Set DVR preferences by name avd value
+   * Set DVR preferences by name and value
    */
   async setDVRPreferences(
     request: operations.SetDVRPreferencesRequest,
@@ -162,7 +239,7 @@ export class DVRs extends ClientSDK {
   async reloadGuide(
     request: operations.ReloadGuideRequest,
     options?: RequestOptions,
-  ): Promise<operations.ReloadGuideResponse | undefined> {
+  ): Promise<operations.ReloadGuideResponse> {
     return unwrapAsync(dvRsReloadGuide(
       this,
       request,

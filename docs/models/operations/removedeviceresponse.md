@@ -7,7 +7,14 @@ import { RemoveDeviceResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: RemoveDeviceResponse = {
   headers: {},
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

@@ -106,6 +106,10 @@ export type SetDevicePreferencesRequest = {
    * The preference names and values.
    */
   name?: string | undefined;
+  /**
+   * Preference value to set.
+   */
+  value?: string | undefined;
 };
 
 /** @internal */
@@ -123,6 +127,7 @@ export type SetDevicePreferencesRequest$Outbound = {
   Marketplace?: string | undefined;
   deviceId: number;
   name?: string | undefined;
+  value?: string | undefined;
 };
 
 /** @internal */
@@ -143,6 +148,7 @@ export const SetDevicePreferencesRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   deviceId: z.int(),
   name: z.string().optional(),
+  value: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

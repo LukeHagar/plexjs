@@ -19,7 +19,7 @@ export class Updater extends ClientSDK {
   async applyUpdates(
     request: operations.ApplyUpdatesRequest,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<Uint8Array> {
     return unwrapAsync(updaterApplyUpdates(
       this,
       request,

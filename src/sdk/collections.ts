@@ -18,7 +18,7 @@ export class Collections extends ClientSDK {
   async createCollection(
     request: operations.CreateCollectionRequest,
     options?: RequestOptions,
-  ): Promise<shared.MediaContainerWithMetadata> {
+  ): Promise<shared.Collection> {
     return unwrapAsync(collectionsCreateCollection(
       this,
       request,

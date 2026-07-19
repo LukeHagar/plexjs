@@ -148,6 +148,40 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/:/progress"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.getProgress({
+                key: "<key>",
+                time: 181086,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/:/rate"]["put"]
     update:
       x-codeSamples:
@@ -211,6 +245,7 @@ actions:
               await plexAPI.timeline.markPlayed({
                 identifier: "<value>",
                 key: "59398",
+                uri: "https://mad-dredger.name",
               });
 
 
@@ -291,6 +326,7 @@ actions:
             async function run() {
               await plexAPI.timeline.unscrobble({
                 identifier: "<value>",
+                uri: "https://qualified-order.org",
               });
 
 
@@ -323,6 +359,167 @@ actions:
 
             async function run() {
               const result = await plexAPI.events.connectWebSocket({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/:/websockets/notifications"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.events.getWebsocketNotifications({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/accounts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSystemAccounts({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/actions/addToWatchlist"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.provider.addToWatchlist({
+                uri: "https://frightened-duster.com/",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/actions/removeFromContinueWatching"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.removeFromContinueWatching({
+                key: "<key>",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/actions/removeFromWatchlist"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.provider.removeFromWatchlist({
+                uri: "https://miserable-scrap.net",
+              });
 
               console.log(result);
             }
@@ -377,6 +574,233 @@ actions:
               });
 
 
+            }
+
+            run();
+  - target: $["paths"]["/api/resources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getLegacyResources();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/api/users/"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getLegacyUsers();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/api/v2/user/webhooks"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getUserWebhooks();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/api/v2/user/webhooks"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.addUserWebhook({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/auth/jwk"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.registerDeviceJWK({
+                jwkRegistrationRequest: {
+                  jwk: {
+                    crv: "string value",
+                    kid: "string value",
+                    kty: "string value",
+                    x: "string value",
+                  },
+                },
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/auth/keys"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getAuthKeys({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/auth/nonce"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getAuthNonce({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/auth/token"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.exchangeJWTToken({
+                tokenExchangeRequest: {
+                  clientIdentifier: "string value",
+                  jwt: "string value",
+                  scope: "string value",
+                },
+              });
+
+              console.log(result);
             }
 
             run();
@@ -497,11 +921,228 @@ actions:
             });
 
             async function run() {
-              await plexAPI.butler.startTask({
+              const result = await plexAPI.butler.startTask({
                 butlerTask: StartTaskButlerTask.RefreshLocalMedia,
               });
 
+              console.log(result);
+            }
 
+            run();
+  - target: $["paths"]["/claim/token.json"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getClaimToken({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/clients"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getClients({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/cloud_server"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getCloudServer({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/devices"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSystemDevices({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/diagnostics"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getDiagnostics({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/diagnostics/databases"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.downloadDatabaseDiagnostics({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/diagnostics/logs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.downloadLogBundle({});
+
+              console.log(result);
             }
 
             run();
@@ -564,7 +1205,14 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@parke.dev/plexjs";
-            import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@parke.dev/plexjs/models/shared";
+            import {
+              Accepts,
+              AdvancedSubtitles,
+              BoolInt,
+              LocationParameter,
+              ProtocolParameter,
+              Subtitles,
+            } from "@parke.dev/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -583,11 +1231,6 @@ actions:
 
             async function run() {
               const result = await plexAPI.downloadQueue.addDownloadQueueItems({
-                queueId: 984925,
-                keys: [
-                  "/library/metadata/3",
-                  "/library/metadata/6",
-                ],
                 advancedSubtitles: AdvancedSubtitles.Burn,
                 audioBoost: 50,
                 audioChannelCount: 5,
@@ -610,9 +1253,15 @@ actions:
                 protocol: ProtocolParameter.Dash,
                 secondsPerSegment: 5,
                 subtitleSize: 50,
+                subtitles: Subtitles.Burn,
                 videoBitrate: 12000,
                 videoQuality: 50,
                 videoResolution: "1080x1080",
+                queueId: 984925,
+                keys: [
+                  "/library/metadata/3",
+                  "/library/metadata/6",
+                ],
               });
 
               console.log(result);
@@ -834,6 +1483,333 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/downloads/{channel}.json"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getPlexDownloads({
+                channel: "<value>",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/features"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getFeatures();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/friends"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getFriends({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/geoip"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getGeoIP({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getHome();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home/users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getHomeUsers({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home/users"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.createHomeUser({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home/users/restricted/{userId}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.updateRestrictedUser({
+                userId: 130660,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home/users/{id}/switch"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.switchHomeUser({
+                id: 135337,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home/users/{userId}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.deleteHomeUser({
+                userId: 768153,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/home/users/{userId}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.updateHomeUser({
+                userId: 187897,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/hubs"]["get"]
     update:
       x-codeSamples:
@@ -893,6 +1869,68 @@ actions:
 
             async function run() {
               const result = await plexAPI.hubs.getContinueWatching({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/hubs/continueWatching/items"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.hubs.getContinueWatchingItems({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/hubs/home/recentlyAdded"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.hubs.getHomeRecentlyAdded({});
 
               console.log(result);
             }
@@ -1128,8 +2166,8 @@ actions:
 
             async function run() {
               const result = await plexAPI.search.voiceSearchHubs({
-                query: "<value>",
                 type: MediaType.TvShow,
+                query: "<value>",
               });
 
               console.log(result);
@@ -1395,6 +2433,56 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/ip"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getIP({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getRootLibrary();
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/all"]["get"]
     update:
       x-codeSamples:
@@ -1423,8 +2511,8 @@ actions:
               const result = await plexAPI.library.getLibraryItems({
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
               });
 
@@ -1496,8 +2584,8 @@ actions:
 
             async function run() {
               const result = await plexAPI.collections.createCollection({
-                sectionId: "<id>",
                 type: MediaType.TvShow,
+                sectionId: "<id>",
               });
 
               console.log(result);
@@ -1630,9 +2718,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.libraryCollections.deleteCollectionItem({
-                collectionId: 320928,
-                itemId: 406983,
+              const result = await plexAPI.libraryCollections.updateCollectionItem({
+                collectionId: 640014,
+                itemId: 2136,
               });
 
               console.log(result);
@@ -2287,7 +3375,7 @@ actions:
             async function run() {
               const result = await plexAPI.library.createMarker({
                 ids: "<value>",
-                type: 248391,
+                mediaType: 248391,
                 startTimeOffset: 535191,
                 attributes: {},
               });
@@ -2358,7 +3446,7 @@ actions:
               const result = await plexAPI.library.editMarker({
                 ids: "<value>",
                 marker: "<value>",
-                type: 884347,
+                mediaType: 884347,
                 startTimeOffset: 517251,
                 attributes: {},
               });
@@ -2502,39 +3590,6 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/library/metadata/{ids}/nearest"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: PlexJS
-          source: |-
-            import { PlexAPI } from "@parke.dev/plexjs";
-            import { Accepts } from "@parke.dev/plexjs/models/shared";
-
-            const plexAPI = new PlexAPI({
-              accepts: Accepts.ApplicationXml,
-              clientIdentifier: "abc123",
-              product: "Plex for Roku",
-              version: "2.4.1",
-              platform: "Roku",
-              platformVersion: "4.3 build 1057",
-              device: "Roku 3",
-              model: "4200X",
-              deviceVendor: "Roku",
-              deviceName: "Living Room TV",
-              marketplace: "googlePlay",
-              token: "<YOUR_API_KEY_HERE>",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.listSonicallySimilar({
-                ids: "<value>",
-              });
-
-              console.log(result);
-            }
-
-            run();
   - target: $["paths"]["/library/metadata/{ids}/prefs"]["put"]
     update:
       x-codeSamples:
@@ -2596,6 +3651,7 @@ actions:
               await plexAPI.library.refreshItemsMetadata({
                 ids: "<value>",
                 markUpdated: BoolInt.True,
+                skipRefresh: BoolInt.True,
               });
 
 
@@ -2726,7 +3782,7 @@ actions:
             });
 
             async function run() {
-              await plexAPI.library.addSubtitles({
+              await plexAPI.library.getSubtitles({
                 ids: "<value>",
                 forced: BoolInt.True,
                 hearingImpaired: BoolInt.True,
@@ -2971,6 +4027,406 @@ actions:
                 element: GetItemArtworkElement.Poster,
                 timestamp: 999555,
               });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/arts"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+            import { openAsBlob } from "node:fs";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.uploadArt({
+                id: 996758,
+                requestBody: {
+                  file: await openAsBlob("example.file"),
+                },
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/children"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataChildren({
+                id: 240367,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/computePath"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.computeSonicPath({
+                id: 622554,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/grandchildren"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataGrandchildren({
+                id: 679910,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/grandparent"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataGrandparent({
+                id: 191152,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/nearest"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getNearestMetadata({
+                id: 62697,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/onDeck"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataOnDeck({
+                id: 883975,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/parent"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataParent({
+                id: 352555,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/posters"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+            import { openAsBlob } from "node:fs";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.uploadPoster({
+                id: 316927,
+                requestBody: {
+                  file: await openAsBlob("example.file"),
+                },
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{id}/reviews"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataReviews({
+                id: 146091,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/optimize"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.optimizeLibrary({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/optimize"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.optimizeLibraryPost({});
 
               console.log(result);
             }
@@ -3252,6 +4708,90 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/recentlyAdded"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getRecentlyAddedGlobal({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/search"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.provider.searchDiscover({
+                searchTypes: "movies,tv",
+                searchProviders: "discover,PLEXAVOD,PLEXTVOD",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getLibrarySectionsFallback();
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/all"]["get"]
     update:
       x-codeSamples:
@@ -3298,7 +4838,7 @@ actions:
             async function run() {
               const result = await plexAPI.library.addSection({
                 name: "<value>",
-                type: 39544,
+                mediaType: 39544,
                 agent: "<value>",
                 language: "<value>",
                 locations: [
@@ -3359,7 +4899,7 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getSectionsPrefs({
-                type: 460221,
+                mediaType: 460221,
               });
 
               console.log(result);
@@ -3394,6 +4934,37 @@ actions:
               await plexAPI.library.refreshSectionsMetadata({});
 
 
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/watchlist/all"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.provider.getWatchlist({});
+
+              console.log(result);
             }
 
             run();
@@ -3504,6 +5075,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/agents"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionAgents({
+                sectionId: 757906,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/albums"]["get"]
     update:
       x-codeSamples:
@@ -3565,12 +5169,38 @@ actions:
               const result = await plexAPI.content.listContent({
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
+                sectionId: 813218,
                 includeMeta: BoolInt.True,
                 includeGuids: BoolInt.True,
-                sectionId: "<id>",
+                includeCollections: BoolInt.True,
+                includeExternalMedia: BoolInt.True,
+                includeAdvanced: BoolInt.True,
+                checkFiles: BoolInt.True,
+                includeRelated: BoolInt.True,
+                includeExtras: BoolInt.True,
+                includePopularLeaves: BoolInt.True,
+                includeConcerts: BoolInt.True,
+                includeOnDeck: BoolInt.True,
+                includeChapters: BoolInt.True,
+                includePreferences: BoolInt.True,
+                includeBandwidths: BoolInt.True,
+                includeLoudnessRamps: BoolInt.True,
+                includeStations: BoolInt.True,
+                includeExternalIds: BoolInt.True,
+                includeReviews: BoolInt.True,
+                includeCredits: BoolInt.True,
+                includeArt: BoolInt.True,
+                includeThumb: BoolInt.True,
+                includeBanner: BoolInt.True,
+                includeTheme: BoolInt.True,
+                asyncAugmentMetadata: BoolInt.True,
+                asyncRefreshLocalMediaAgent: BoolInt.True,
+                nocache: BoolInt.True,
+                skipRefresh: BoolInt.True,
+                unwatched: BoolInt.True,
               });
 
               console.log(result);
@@ -3677,6 +5307,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/artists"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionArtists({
+                sectionId: 716398,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/arts"]["get"]
     update:
       x-codeSamples:
@@ -3736,12 +5399,177 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.autocomplete({
-                sectionId: 942007,
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
+                sectionId: 942007,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/byContentRating"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getByContentRating({
+                sectionId: 586837,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/byDecade"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getByDecade({
+                sectionId: 212187,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/byFolder"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getByFolder({
+                sectionId: 352088,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/byResolution"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getByResolution({
+                sectionId: 139174,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/byYear"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getByYear({
+                sectionId: 14634,
               });
 
               console.log(result);
@@ -3775,6 +5603,39 @@ actions:
             async function run() {
               const result = await plexAPI.content.getCategories({
                 sectionId: 21841,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/clips"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionClips({
+                sectionId: 407860,
               });
 
               console.log(result);
@@ -3874,12 +5735,12 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getCollections({
-                sectionId: 348838,
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
+                sectionId: 348838,
               });
 
               console.log(result);
@@ -3912,12 +5773,12 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getCommon({
-                sectionId: 298154,
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
+                sectionId: 298154,
               });
 
               console.log(result);
@@ -3950,13 +5811,13 @@ actions:
 
             async function run() {
               await plexAPI.library.getSectionImage({
-                sectionId: 925611,
-                updatedAt: 117413,
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
+                sectionId: 925611,
+                updatedAt: 117413,
               });
 
 
@@ -3998,6 +5859,138 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/edit"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionEdit({
+                sectionId: 223075,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/edit"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.editLibrarySection({
+                sectionId: 834094,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/emptyTrash"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.emptyTrash({
+                sectionId: 30052,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/emptyTrash"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.emptyTrashPost({
+                sectionId: 537157,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/emptyTrash"]["put"]
     update:
       x-codeSamples:
@@ -4023,11 +6016,44 @@ actions:
             });
 
             async function run() {
-              await plexAPI.library.emptyTrash({
-                sectionId: 30052,
+              await plexAPI.library.emptyTrashPut({
+                sectionId: 642296,
               });
 
 
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/episodes"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionEpisodes({
+                sectionId: 229495,
+              });
+
+              console.log(result);
             }
 
             run();
@@ -4090,12 +6116,45 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getFirstCharacters({
-                sectionId: 3947,
                 mediaQuery: {
                   type: MediaType.Episode,
-                  sourceType: 2,
                   sort: "duration:desc,index",
+                  sourceType: 2,
                 },
+                sectionId: 3947,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/hubs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getLibrarySectionHubs({
+                sectionId: 426468,
               });
 
               console.log(result);
@@ -4168,6 +6227,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/label"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionLabels({
+                sectionId: 705342,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/location"]["get"]
     update:
       x-codeSamples:
@@ -4195,6 +6287,39 @@ actions:
             async function run() {
               const result = await plexAPI.content.getFolders({
                 sectionId: 892532,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/match"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.matchSectionItems({
+                sectionId: 31032,
               });
 
               console.log(result);
@@ -4234,6 +6359,72 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/move"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.moveSection({
+                sectionId: 483061,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/movies"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionMovies({
+                sectionId: 530892,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/nearest"]["get"]
     update:
       x-codeSamples:
@@ -4262,6 +6453,204 @@ actions:
               const result = await plexAPI.content.getSonicallySimilar({
                 sectionId: 525956,
                 values: [],
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/newest"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getNewestForSection({
+                sectionId: 73900,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/onDeck"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getOnDeckForSection({
+                sectionId: 331089,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/optimize"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.optimizeSection({
+                sectionId: 721290,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/optimize"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.optimizeSectionPost({
+                sectionId: 876391,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/photos"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionPhotos({
+                sectionId: 622466,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/playlists"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionPlaylists({
+                sectionId: 826184,
               });
 
               console.log(result);
@@ -4335,6 +6724,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/recentlyAdded"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getRecentlyAddedForSection({
+                sectionId: 46283,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/refresh"]["delete"]
     update:
       x-codeSamples:
@@ -4368,6 +6790,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionId}/refresh"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.refreshSection({
+                sectionId: 450300,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionId}/refresh"]["post"]
     update:
       x-codeSamples:
@@ -4393,12 +6848,111 @@ actions:
             });
 
             async function run() {
-              await plexAPI.library.refreshSection({
-                sectionId: 450300,
+              await plexAPI.library.refreshSectionPost({
+                sectionId: 848668,
                 force: BoolInt.True,
               });
 
 
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/search"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.searchSection({
+                sectionId: 925380,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/settings"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionSettings({
+                sectionId: 100390,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/shows"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionShows({
+                sectionId: 9583,
+              });
+
+              console.log(result);
             }
 
             run();
@@ -4429,6 +6983,138 @@ actions:
             async function run() {
               const result = await plexAPI.library.getAvailableSorts({
                 sectionId: 212498,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/tags"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionTags({
+                sectionId: 787543,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/timeline"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionTimeline({
+                sectionId: 670370,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/unmatch"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.unmatchSectionItems({
+                sectionId: 209342,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/unwatched"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getUnwatchedForSection({
+                sectionId: 483590,
               });
 
               console.log(result);
@@ -4494,13 +7180,13 @@ actions:
             });
 
             async function run() {
-              await plexAPI.library.getStream({
+              const result = await plexAPI.library.getStream({
                 streamId: 314506,
                 ext: "<value>",
                 autoAdjustSubtitle: BoolInt.True,
               });
 
-
+              console.log(result);
             }
 
             run();
@@ -4529,12 +7215,12 @@ actions:
             });
 
             async function run() {
-              await plexAPI.library.setStreamOffset({
+              const result = await plexAPI.library.setStreamOffset({
                 streamId: 606295,
                 ext: "<value>",
               });
 
-
+              console.log(result);
             }
 
             run();
@@ -4811,6 +7497,105 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/livetv/dvrs/{dvrId}"]["patch"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.dvRs.patchDVRSettings({
+                dvrId: 537061,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/livetv/dvrs/{dvrId}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.dvRs.updateDVRSettings({
+                dvrId: 614847,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/livetv/dvrs/{dvrId}/channels"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.dvRs.getDVRChannels({
+                dvrId: 901521,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/livetv/dvrs/{dvrId}/channels/{channel}/tune"]["post"]
     update:
       x-codeSamples:
@@ -4913,6 +7698,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/livetv/dvrs/{dvrId}/guide"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.dvRs.getDVRGuide({
+                dvrId: 19054,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/livetv/dvrs/{dvrId}/lineups"]["delete"]
     update:
       x-codeSamples:
@@ -5008,6 +7826,39 @@ actions:
             async function run() {
               const result = await plexAPI.dvRs.setDVRPreferences({
                 dvrId: 116357,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/livetv/dvrs/{dvrId}/recordings"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.liveTV.getDVRRecordingsByDVR({
+                dvrId: 83756,
               });
 
               console.log(result);
@@ -5269,6 +8120,25 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/livetv/epg/guide"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.epg.getEPGGuide();
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/livetv/epg/languages"]["get"]
     update:
       x-codeSamples:
@@ -5358,6 +8228,68 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/livetv/epg/search"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.epg.searchEPG({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/livetv/recordings"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.liveTV.getDVRRecordings({});
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/livetv/sessions"]["get"]
     update:
       x-codeSamples:
@@ -5372,6 +8304,39 @@ actions:
 
             async function run() {
               const result = await plexAPI.liveTV.getSessions();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/livetv/sessions/{sessionId}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.liveTV.deleteLiveTVSession({
+                sessionId: "<id>",
+              });
 
               console.log(result);
             }
@@ -5435,12 +8400,12 @@ actions:
             });
 
             async function run() {
-              await plexAPI.liveTV.getSessionPlaylistIndex({
+              const result = await plexAPI.liveTV.getSessionPlaylistIndex({
                 sessionId: "<id>",
                 consumerId: "<id>",
               });
 
-
+              console.log(result);
             }
 
             run();
@@ -5469,13 +8434,13 @@ actions:
             });
 
             async function run() {
-              await plexAPI.liveTV.getSessionSegment({
+              const result = await plexAPI.liveTV.getSessionSegment({
                 sessionId: "<id>",
                 consumerId: "<id>",
                 segmentId: "<id>",
               });
 
-
+              console.log(result);
             }
 
             run();
@@ -5646,7 +8611,7 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/media/grabbers/devices/discover"]["post"]
+  - target: $["paths"]["/media/grabbers/devices/discover"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
@@ -5974,12 +8939,12 @@ actions:
             });
 
             async function run() {
-              await plexAPI.devices.getThumb({
+              const result = await plexAPI.devices.getThumb({
                 deviceId: 960617,
                 versionPathParameter: 1025,
               });
 
-
+              console.log(result);
             }
 
             run();
@@ -6182,7 +9147,7 @@ actions:
               const result = await plexAPI.subscriptions.createSubscription({
                 targetLibrarySectionID: 1,
                 targetSectionLocationID: 3,
-                type: 2,
+                mediaType: 2,
                 hints: {},
                 prefs: {},
                 params: {},
@@ -6398,6 +9363,106 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/music/:/transcode"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.transcoder.transcodeMusic({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/myplex/account"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getMyPlexAccount();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/myplex/claim"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.claimServer({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/myplex/refreshReachability"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.refreshReachability();
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/photo/:/transcode"]["get"]
     update:
       x-codeSamples:
@@ -6436,6 +9501,130 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/ping"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI();
+
+            async function run() {
+              const result = await plexAPI.authentication.ping();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/pins"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.createOAuthPin({
+                clientIdentifier: "<YOUR_API_KEY_HERE>",
+              }, {});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/pins.xml"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.createLegacyPin();
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/pins/link"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.linkOAuthPin({
+                authToken: "example",
+                pin: "example",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/pins/{pinId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getOAuthPin({
+                clientIdentifier: "<YOUR_API_KEY_HERE>",
+              }, {
+                pinId: 876892,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/playQueues"]["post"]
     update:
       x-codeSamples:
@@ -6463,13 +9652,44 @@ actions:
 
             async function run() {
               const result = await plexAPI.playQueue.createPlayQueue({
-                type: CreatePlayQueueType.Audio,
+                mediaType: CreatePlayQueueType.Audio,
                 shuffle: BoolInt.True,
                 repeat: BoolInt.True,
                 continuous: BoolInt.True,
                 recursive: BoolInt.True,
                 onDeck: BoolInt.True,
               });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/playQueues/1"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.timeline.getConversionQueue({});
 
               console.log(result);
             }
@@ -6739,6 +9959,783 @@ actions:
             async function run() {
               const result = await plexAPI.playQueue.unshuffle({
                 playQueueId: 484388,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/audioStream"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerAudioStream({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/mute"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerMute({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/pause"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerPause({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/play"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerPlay({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/playMedia"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerPlayMedia({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/refreshPlayQueue"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerRefreshplayqueue({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/seek"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSeek({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/setParameters"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSetParameters({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/setRating"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSetRating({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/setState"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSetState({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/setStreams"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSetStreams({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/setTextStream"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSetTextStream({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/setViewOffset"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSetViewOffset({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/skipBy"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSkipBy({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/skipTo"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSkipTo({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/stepBack"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerStepback({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/stepForward"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerStepforward({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/stop"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerStop({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/subtitleStream"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerSubtitleStream({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/unmute"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerUnmute({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/videoStream"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerVideoStream({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/playback/volume"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerVolume({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/resources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.getClientResources({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/player/timeline/poll"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playback.playerPollTimeline({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/playlists"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.deletePlaylistByRatingKey({
+                ratingKey: 499749,
               });
 
               console.log(result);
@@ -7172,6 +11169,8 @@ actions:
                 playlistId: 972007,
                 generatorId: 208334,
                 item: {
+                  title: "Jack-Jack Attack",
+                  type: 42,
                   location: {
                     uri: "library://82503060-0d68-4603-b594-8b071d54819e/item/%2Flibrary%2Fmetadata%2F146",
                   },
@@ -7181,8 +11180,6 @@ actions:
                   },
                   target: "",
                   targetTagID: 1,
-                  title: "Jack-Jack Attack",
-                  type: 42,
                 },
               });
 
@@ -7307,7 +11304,7 @@ actions:
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
-              clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+              clientIdentifier: "abc123",
               token: "<YOUR_API_KEY_HERE>",
             });
 
@@ -7363,7 +11360,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@parke.dev/plexjs";
-            import { GetTransientTokenScope, GetTransientTokenType } from "@parke.dev/plexjs/models/operations";
+            import { CreateTransientTokenScope, CreateTransientTokenType } from "@parke.dev/plexjs/models/operations";
             import { Accepts } from "@parke.dev/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
@@ -7382,9 +11379,265 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.general.getTransientToken({
-                type: GetTransientTokenType.Delegation,
-                scope: GetTransientTokenScope.All,
+              const result = await plexAPI.general.createTransientToken({
+                mediaType: CreateTransientTokenType.Delegation,
+                scope: CreateTransientTokenScope.All,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/server"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getUserServer({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/server/access_tokens"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getServerAccessTokens({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/server/users/features"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getServerUserFeatures({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/servers"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getLocalServers({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/servers/{machineId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getServerDetails({
+                machineId: "<id>",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/servers/{machineId}/shared_servers"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.shareServerLegacy({
+                machineId: "<id>",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/services/browse"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.browseFilesystem({
+                includeFiles: BoolInt.True,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/services/browse/{base64path}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.browseFilesystemPath({
+                base64path: "<value>",
               });
 
               console.log(result);
@@ -7458,6 +11711,168 @@ actions:
                 height: 1080,
                 noise: BoolInt.True,
               });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/shared_servers"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.shareServer({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sharings/{userId}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.removeShare({
+                userId: 858924,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sharings/{userId}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.updateShare({
+                userId: 139113,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/statistics/bandwidth"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getBandwidthStatistics({
+                timespan: 4,
+                lan: BoolInt.True,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/statistics/resources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getResourceStatistics({});
 
               console.log(result);
             }
@@ -7658,6 +12073,370 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/sync"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSyncStatus({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sync/items"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSyncItems({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sync/items/{syncId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSyncItem({
+                syncId: 761088,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sync/queue"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSyncQueue({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sync/refreshContent"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.refreshSyncContent({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sync/refreshSynclists"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.refreshSyncLists({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/sync/transcodeQueue"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSyncTranscodeQueue({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/system/agents"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getMetadataAgents({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/system/agents/{agentId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getMetadataAgentDetails({
+                agentId: "<id>",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/system/settings"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getSystemSettings({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/system/updates"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.checkForSystemUpdates({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/transcode/sessions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+
+            const plexAPI = new PlexAPI({
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.transcoder.getTranscodeSessions();
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/updater/apply"]["put"]
     update:
       x-codeSamples:
@@ -7683,12 +12462,12 @@ actions:
             });
 
             async function run() {
-              await plexAPI.updater.applyUpdates({
+              const result = await plexAPI.updater.applyUpdates({
                 tonight: BoolInt.True,
                 skip: BoolInt.True,
               });
 
-
+              console.log(result);
             }
 
             run();
@@ -7775,6 +12554,70 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/user/view_state_sync"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.updateViewStateSync({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/user/{uuid}/settings/opt_outs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getUserOptOuts({
+                uuid: "17dd8bb4-eb45-4878-97c7-017f7d9a2384",
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/users"]["get"]
     update:
       x-codeSamples:
@@ -7786,7 +12629,7 @@ actions:
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
-              clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+              clientIdentifier: "abc123",
               product: "Plex for Roku",
               version: "2.4.1",
               platform: "Roku",
@@ -7794,13 +12637,106 @@ actions:
               device: "Roku 3",
               model: "4200X",
               deviceVendor: "Roku",
-              deviceName: "Chrome",
+              deviceName: "Living Room TV",
               marketplace: "googlePlay",
               token: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
               const result = await plexAPI.users.getUsers({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/users/account"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getAccountXML({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/users/account.json"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.getAccountJSON({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/users/password"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.changePassword({});
 
               console.log(result);
             }
@@ -7817,7 +12753,7 @@ actions:
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
-              clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+              clientIdentifier: "abc123",
               product: "Plex for Roku",
               version: "2.4.1",
               platform: "Roku",
@@ -7834,9 +12770,103 @@ actions:
                 requestBody: {
                   login: "username@email.com",
                   password: "password123",
+                  rememberMe: true,
                   verificationCode: "123456",
                 },
               });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/users/signout"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.signOut({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/webhooks"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.getWebhooks({});
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/webhooks"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.general.addWebhook({});
 
               console.log(result);
             }
@@ -7849,7 +12879,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@parke.dev/plexjs";
-            import { MakeDecisionLocation, MakeDecisionProtocol } from "@parke.dev/plexjs/models/operations";
+            import { MakeDecisionLocation, MakeDecisionProtocol, MakeDecisionSubtitles } from "@parke.dev/plexjs/models/operations";
             import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
@@ -7892,9 +12922,11 @@ actions:
                 protocol: MakeDecisionProtocol.Dash,
                 secondsPerSegment: 5,
                 subtitleSize: 50,
+                subtitles: MakeDecisionSubtitles.Burn,
+                videoResolution: "1080x1080",
+                copyts: BoolInt.True,
                 videoBitrate: 12000,
                 videoQuality: 50,
-                videoResolution: "1080x1080",
                 xPlexClientProfileExtra: "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
                 xPlexClientProfileName: "generic",
               });
@@ -7936,6 +12968,76 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/{transcodeType}/:/transcode/universal/session/{sessionId}/{segmentId}.m4s"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.transcoder.getDASHSegment({
+                transcodeType: "<value>",
+                sessionId: "<id>",
+                segmentId: "<id>",
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/{transcodeType}/:/transcode/universal/session/{sessionId}/{segmentId}.ts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.transcoder.getHLSSegment({
+                transcodeType: "<value>",
+                sessionId: "<id>",
+                segmentId: "<id>",
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/{transcodeType}/:/transcode/universal/start.{extension}"]["get"]
     update:
       x-codeSamples:
@@ -7943,7 +13045,12 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@parke.dev/plexjs";
-            import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@parke.dev/plexjs/models/operations";
+            import {
+              Extension,
+              StartTranscodeSessionLocation,
+              StartTranscodeSessionProtocol,
+              StartTranscodeSessionSubtitles,
+            } from "@parke.dev/plexjs/models/operations";
             import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
@@ -7964,8 +13071,8 @@ actions:
             async function run() {
               const result = await plexAPI.transcoder.startTranscodeSession({
                 transcodeType: TranscodeType.Music,
-                extension: Extension.Mpd,
                 advancedSubtitles: AdvancedSubtitles.Burn,
+                extension: Extension.Mpd,
                 audioBoost: 50,
                 audioChannelCount: 5,
                 autoAdjustQuality: BoolInt.True,
@@ -7987,9 +13094,11 @@ actions:
                 protocol: StartTranscodeSessionProtocol.Dash,
                 secondsPerSegment: 5,
                 subtitleSize: 50,
+                subtitles: StartTranscodeSessionSubtitles.Burn,
+                videoResolution: "1080x1080",
+                copyts: BoolInt.True,
                 videoBitrate: 12000,
                 videoQuality: 50,
-                videoResolution: "1080x1080",
                 xPlexClientProfileExtra: "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
                 xPlexClientProfileName: "generic",
               });
@@ -8005,7 +13114,11 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@parke.dev/plexjs";
-            import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@parke.dev/plexjs/models/operations";
+            import {
+              TranscodeSubtitlesLocation,
+              TranscodeSubtitlesProtocol,
+              TranscodeSubtitlesSubtitles,
+            } from "@parke.dev/plexjs/models/operations";
             import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
@@ -8024,7 +13137,7 @@ actions:
             });
 
             async function run() {
-              await plexAPI.transcoder.transcodeSubtitles({
+              const result = await plexAPI.transcoder.transcodeSubtitles({
                 transcodeType: TranscodeType.Audio,
                 advancedSubtitles: AdvancedSubtitles.Burn,
                 audioBoost: 50,
@@ -8048,14 +13161,16 @@ actions:
                 protocol: TranscodeSubtitlesProtocol.Dash,
                 secondsPerSegment: 5,
                 subtitleSize: 50,
+                subtitles: TranscodeSubtitlesSubtitles.Burn,
+                videoResolution: "1080x1080",
+                copyts: BoolInt.True,
                 videoBitrate: 12000,
                 videoQuality: 50,
-                videoResolution: "1080x1080",
                 xPlexClientProfileExtra: "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
                 xPlexClientProfileName: "generic",
               });
 
-
+              console.log(result);
             }
 
             run();

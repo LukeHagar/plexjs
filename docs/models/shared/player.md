@@ -7,7 +7,23 @@ Information about the player being used for playback
 ```typescript
 import { Player } from "@parke.dev/plexjs/models/shared";
 
-let value: Player = {};
+let value: Player = {
+  title: "string value",
+  address: "string value",
+  local: true,
+  machineIdentifier: "string value",
+  model: "string value",
+  platform: "string value",
+  platformVersion: "string value",
+  product: "string value",
+  relayed: true,
+  remotePublicAddress: "string value",
+  secure: true,
+  state: "string value",
+  userID: 1,
+  vendor: "string value",
+  version: "string value",
+};
 ```
 
 ## Fields

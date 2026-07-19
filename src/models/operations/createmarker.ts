@@ -112,11 +112,14 @@ export type CreateMarkerRequest = {
    * The marketplace on which the client application is distributed
    */
   marketplace?: string | undefined;
+  /**
+   * Comma-separated list of IDs
+   */
   ids: string;
   /**
    * The type of marker to edit/create
    */
-  type: number;
+  mediaType: number;
   /**
    * The start time of the marker
    */
@@ -151,23 +154,19 @@ export type CreateMarkerMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
-   *
-   * @remarks
    */
   offset?: number | undefined;
   size?: number | undefined;
   /**
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-   *
-   * @remarks
    */
   totalSize?: number | undefined;
+  title?: string | undefined;
+  type?: CreateMarkerTypeOpen | undefined;
   color?: string | undefined;
   endTimeOffset?: number | undefined;
   id?: number | undefined;
   startTimeOffset?: number | undefined;
-  title?: string | undefined;
-  type?: CreateMarkerTypeOpen | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
@@ -209,7 +208,7 @@ export type CreateMarkerRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   ids: string;
-  type: number;
+  mediaType: number;
   startTimeOffset: number;
   endTimeOffset?: number | undefined;
   attributes?: CreateMarkerAttributes$Outbound | undefined;
@@ -232,7 +231,7 @@ export const CreateMarkerRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   ids: z.string(),
-  type: z.int(),
+  mediaType: z.int(),
   startTimeOffset: z.int(),
   endTimeOffset: z.int().optional(),
   attributes: z.lazy(() => CreateMarkerAttributes$outboundSchema).optional(),
@@ -275,12 +274,12 @@ export const CreateMarkerMediaContainer$inboundSchema: z.ZodType<
     offset: types.optional(types.number()),
     size: types.optional(types.number()),
     totalSize: types.optional(types.number()),
+    title: types.optional(types.string()),
+    type: types.optional(CreateMarkerType$inboundSchema),
     color: types.optional(types.string()),
     endTimeOffset: types.optional(types.number()),
     id: types.optional(types.number()),
     startTimeOffset: types.optional(types.number()),
-    title: types.optional(types.string()),
-    type: types.optional(CreateMarkerType$inboundSchema),
   }).catchall(z.any()),
   "additionalProperties",
   true,

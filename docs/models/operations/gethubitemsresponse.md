@@ -7,7 +7,14 @@ import { GetHubItemsResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetHubItemsResponse = {
   headers: {},
-  result: {},
+  result: {
+    mediaContainer: {
+      identifier: "com.plexapp.plugins.library",
+      offset: 0,
+      size: 1,
+      totalSize: 100,
+    },
+  },
 };
 ```
 

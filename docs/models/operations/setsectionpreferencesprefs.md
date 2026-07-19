@@ -1,5 +1,7 @@
 # SetSectionPreferencesPrefs
 
+The preference key to retrieve or set
+
 ## Example Usage
 
 ```typescript
