@@ -19,7 +19,6 @@ let value: ModifyPlaylistGeneratorItem = {
   locationID: -1,
   policy: {
     scope: ModifyPlaylistGeneratorScope.All,
-    value: NaN,
   },
   target: "",
   targetTagID: 1,

@@ -143,14 +143,6 @@ export type ListContentRequest = {
    */
   sectionId: number;
   /**
-   * Filter by metadata type (1=movie, 2=show, 3=season, 4=episode, 8=artist, 9=album, 10=track)
-   */
-  mediaType?: number | undefined;
-  /**
-   * Sort key and direction (e.g. addedAt:desc, titleSort)
-   */
-  sort?: string | undefined;
-  /**
    * Adds the Meta object to the response
    */
   includeMeta?: shared.BoolInt | undefined;
@@ -326,8 +318,6 @@ export type ListContentRequest$Outbound = {
   "X-Plex-Container-Size": number;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
   sectionId: number;
-  mediaType?: number | undefined;
-  sort?: string | undefined;
   includeMeta: number;
   includeGuids: number;
   includeCollections: number;
@@ -388,8 +378,6 @@ export const ListContentRequest$outboundSchema: z.ZodType<
   xPlexContainerSize: z.int().default(50),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
   sectionId: z.int(),
-  mediaType: z.int().optional(),
-  sort: z.string().optional(),
   includeMeta: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   includeGuids: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   includeCollections: shared.BoolInt$outboundSchema.default(

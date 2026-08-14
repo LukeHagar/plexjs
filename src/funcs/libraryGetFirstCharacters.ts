@@ -101,8 +101,6 @@ async function $do(
 
   const query = encodeFormQuery({
     "mediaQuery": payload.mediaQuery,
-    "sort": payload.sort,
-    "type": payload.mediaType,
   });
 
   const headers = new Headers(compactMap({

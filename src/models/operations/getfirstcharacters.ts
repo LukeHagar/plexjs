@@ -127,14 +127,6 @@ export type GetFirstCharactersRequest = {
    * Section identifier
    */
   sectionId: number;
-  /**
-   * The metadata type to filter on
-   */
-  mediaType?: number | undefined;
-  /**
-   * The metadata type to filter on
-   */
-  sort?: number | undefined;
 };
 
 export type GetFirstCharactersDirectory = {
@@ -189,8 +181,6 @@ export type GetFirstCharactersRequest$Outbound = {
   Marketplace?: string | undefined;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
   sectionId: number;
-  mediaType?: number | undefined;
-  sort?: number | undefined;
 };
 
 /** @internal */
@@ -211,8 +201,6 @@ export const GetFirstCharactersRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
   sectionId: z.int(),
-  mediaType: z.int().optional(),
-  sort: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

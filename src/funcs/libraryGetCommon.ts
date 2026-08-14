@@ -97,7 +97,6 @@ async function $do(
 
   const query = encodeFormQuery({
     "mediaQuery": payload.mediaQuery,
-    "type": payload.mediaType,
   });
 
   const headers = new Headers(compactMap({

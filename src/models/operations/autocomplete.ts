@@ -127,10 +127,6 @@ export type AutocompleteRequest = {
    */
   sectionId: number;
   /**
-   * Item type
-   */
-  mediaType?: number | undefined;
-  /**
    * The "field" stands in for any field, the value is a partial string for matching
    */
   fieldQuery?: string | undefined;
@@ -156,7 +152,6 @@ export type AutocompleteRequest$Outbound = {
   Marketplace?: string | undefined;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
   sectionId: number;
-  mediaType?: number | undefined;
   "field.query"?: string | undefined;
 };
 
@@ -178,7 +173,6 @@ export const AutocompleteRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
   sectionId: z.int(),
-  mediaType: z.int().optional(),
   fieldQuery: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

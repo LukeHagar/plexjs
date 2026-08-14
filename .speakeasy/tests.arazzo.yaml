@@ -6043,7 +6043,6 @@ workflows:
               Policy:
                 scope: all
                 unwatched: 0
-                value: null
               locationID: -1
               target: ""
               targetTagID: 1
@@ -7169,7 +7168,7 @@ workflows:
         parameters:
           - name: sectionId
             in: path
-            value: null
+            value: 813218
           - name: X-Plex-Container-Start
             in: query
             value: 0
@@ -8807,12 +8806,48 @@ workflows:
           - name: timespan
             in: query
             value: 4
+          - name: lan
+            in: query
+            value: 1
+          - name: accepts
+            in: header
+            value: application/xml
+          - name: X-Plex-Client-Identifier
+            in: header
+            value: abc123
+          - name: X-Plex-Product
+            in: header
+            value: Plex for Roku
+          - name: X-Plex-Version
+            in: header
+            value: 2.4.1
+          - name: X-Plex-Platform
+            in: header
+            value: Roku
+          - name: X-Plex-Platform-Version
+            in: header
+            value: 4.3 build 1057
+          - name: X-Plex-Device
+            in: header
+            value: Roku 3
+          - name: X-Plex-Model
+            in: header
+            value: 4200X
+          - name: X-Plex-Device-Vendor
+            in: header
+            value: Roku
+          - name: X-Plex-Device-Name
+            in: header
+            value: Living Room TV
+          - name: X-Plex-Marketplace
+            in: header
+            value: googlePlay
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - context: $response.body
             condition: |
-              {"MediaContainer": {"size": 5497, "Device": [{"id": 208, "name": "Roku Express", "platform": "Roku", "clientIdentifier": "793095d235660625108ef785cc7646e9", "createdAt": 1706470556}], "Account": [{"id": 238960586, "key": "/accounts/238960586", "name": "Diane", "defaultAudioLanguage": "en", "autoSelectAudio": true, "defaultSubtitleLanguage": "en", "subtitleMode": 1, "thumb": "https://plex.tv/users/50d83634246da1de/avatar?c=1707110967"}], "StatisticsBandwidth": [{"accountID": 238960586, "deviceID": 208, "timespan": 6, "at": 1718387650, "lan": true, "bytes": 22}]}}
+              {"MediaContainer":{"identifier":"com.plexapp.plugins.library","size":1,"Directory":[]}}
             type: simple
     x-speakeasy-test-group: General
     x-speakeasy-test-rebuild: true

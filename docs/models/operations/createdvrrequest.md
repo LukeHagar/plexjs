@@ -8,7 +8,7 @@ import { CreateDVRRequest } from "@parke.dev/plexjs/models/operations";
 let value: CreateDVRRequest = {
   lineup: "lineup://tv.plex.providers.epg.onconnect/USA-HI51418-DEFAULT",
   deviceQueryParameter: [
-    "device[]=device://tv.plex.grabbers.hdhomerun/1053C0CA",
+    "device://tv.plex.grabbers.hdhomerun/1053C0CA",
   ],
   language: "eng",
 };
@@ -30,5 +30,5 @@ let value: CreateDVRRequest = {
 | `deviceName`                                                   | *string*                                                       | :heavy_minus_sign:                                             | A friendly name for the client                                 | Living Room TV                                                 |
 | `marketplace`                                                  | *string*                                                       | :heavy_minus_sign:                                             | The marketplace on which the client application is distributed | googlePlay                                                     |
 | `lineup`                                                       | *string*                                                       | :heavy_minus_sign:                                             | The EPG lineup.                                                | lineup://tv.plex.providers.epg.onconnect/USA-HI51418-DEFAULT   |
-| `deviceQueryParameter`                                         | *string*[]                                                     | :heavy_minus_sign:                                             | The device.                                                    | device[]=device://tv.plex.grabbers.hdhomerun/1053C0CA          |
+| `deviceQueryParameter`                                         | *string*[]                                                     | :heavy_minus_sign:                                             | The device.                                                    | [<br/>"device://tv.plex.grabbers.hdhomerun/1053C0CA"<br/>]     |
 | `language`                                                     | *string*                                                       | :heavy_minus_sign:                                             | The language.                                                  | eng                                                            |

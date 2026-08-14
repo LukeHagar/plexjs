@@ -126,10 +126,6 @@ export type GetCommonRequest = {
    * Section identifier
    */
   sectionId: number;
-  /**
-   * Item type
-   */
-  mediaType?: number | undefined;
 };
 
 export type GetCommonResponse = {
@@ -152,7 +148,6 @@ export type GetCommonRequest$Outbound = {
   Marketplace?: string | undefined;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
   sectionId: number;
-  mediaType?: number | undefined;
 };
 
 /** @internal */
@@ -173,7 +168,6 @@ export const GetCommonRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
   sectionId: z.int(),
-  mediaType: z.int().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

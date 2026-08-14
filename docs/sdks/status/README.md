@@ -181,29 +181,8 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.status.listPlaybackHistory({
     sort: [
-      "v",
-      "i",
-      "e",
-      "w",
-      "e",
-      "d",
-      "A",
-      "t",
-      ":",
-      "d",
-      "e",
-      "s",
-      "c",
-      ",",
-      "a",
-      "c",
-      "c",
-      "o",
-      "u",
-      "n",
-      "t",
-      "I",
-      "D",
+      "viewedAt:desc",
+      "accountID",
     ],
   });
 
@@ -242,29 +221,8 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await statusListPlaybackHistory(plexAPI, {
     sort: [
-      "v",
-      "i",
-      "e",
-      "w",
-      "e",
-      "d",
-      "A",
-      "t",
-      ":",
-      "d",
-      "e",
-      "s",
-      "c",
-      ",",
-      "a",
-      "c",
-      "c",
-      "o",
-      "u",
-      "n",
-      "t",
-      "I",
-      "D",
+      "viewedAt:desc",
+      "accountID",
     ],
   });
   if (res.ok) {
