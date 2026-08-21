@@ -1,27 +1,27 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: ea414229037fddd5dd7769a67111aaf7
+  docChecksum: ee3f0cb3f9403deebefa4d0d5f4bac29
   docVersion: 1.1.1
-  speakeasyVersion: 1.793.1
-  generationVersion: 2.928.0
-  releaseVersion: 0.46.1
-  configChecksum: e2b40f7d08d802013a846a575de96c48
+  speakeasyVersion: 1.795.1
+  generationVersion: 2.932.9
+  releaseVersion: 0.46.2
+  configChecksum: a320064ea194dac31eaad5bfd56dcaff
   repoURL: https://github.com/LukasParke/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukasParke/plexjs
   published: true
 persistentEdits:
-  generation_id: 0f350566-3f36-45a1-b236-52dd0e920eeb
-  pristine_commit_hash: 677678ab2835d314d1fa04cf639087044950fdc2
-  pristine_tree_hash: 8443be5485de5ea882f139fca730f3b3d11e82fd
+  generation_id: 78c3d168-6209-4779-a430-e04edeafa869
+  pristine_commit_hash: 2826173f3e51c217d748b12d14ea20b46e6cb273
+  pristine_tree_hash: eb84a1030beda2fdbe211695bed9e5311ec533a5
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.4
     constsAndDefaults: 0.1.14
-    core: 3.31.4
+    core: 3.31.5
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -45,7 +45,7 @@ features:
     responseFormat: 0.3.0
     retries: 2.83.1
     sdkHooks: 0.4.0
-    unions: 2.86.4
+    unions: 2.86.5
     uploadStreams: 0.1.1
 trackedFiles:
   .gitattributes:
@@ -84,6 +84,14 @@ trackedFiles:
     id: 391e1ff1a10f
     last_write_checksum: sha1:6fc9ac408cbc75a4eb4103eec498f3d3d32928d9
     pristine_git_object: 87ef16f18c439efff70e5e3d711a012d2861c703
+  docs/models/operations/acceptinviteglobals.md:
+    id: a268d8e4c595
+    last_write_checksum: sha1:f876446fe144b11f18a7249e8ab16f4607f6baa3
+    pristine_git_object: 061813c0904ddd8057d775e868cbdea2bc526e48
+  docs/models/operations/acceptinviterequest.md:
+    id: 2a12747645d8
+    last_write_checksum: sha1:1363ccd1f78b2f7fe63276dcbe430438199c3f34
+    pristine_git_object: 69f827d4aedef8cdf3363ab43d1f3302321de787
   docs/models/operations/action.md:
     id: 4adfe415d164
     last_write_checksum: sha1:1e5d25a02a5dbd98fc278d81a6d81a68aae1a0e1
@@ -5326,8 +5334,8 @@ trackedFiles:
     pristine_git_object: eeeda9ccaf83137ccfe5f52077694059db0a6177
   docs/sdks/users/README.md:
     id: 5d80027045fe
-    last_write_checksum: sha1:e751841956e36cc3cf13452cbb3c94bf884c3500
-    pristine_git_object: bfe5d13e2c90ecf065f2e9fa2f47c86d799b822a
+    last_write_checksum: sha1:b0fe65d54072bc5b511e61ca1d84e542f94d4d2b
+    pristine_git_object: 3a67732eec1bec3f99f1f5802abd41832af748c8
   docs/types/rfcdate.md:
     id: 5f9756408fae
     last_write_checksum: sha1:57b4b3cec635cbd12767ed8672f96e257ef88845
@@ -5354,12 +5362,12 @@ trackedFiles:
     pristine_git_object: 2a9ce19cbaf7f839010b44798760bc8c78189135
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:bc67667962e305aaf269dee4973760c5f36e2e30
-    pristine_git_object: 25d57b6fed76de6cfb427a02e3c3d00079f9de2b
+    last_write_checksum: sha1:cc2925b5f5a2e64a0b82698e4a1038ebf7773b89
+    pristine_git_object: c21d46a24027c6bb5cfb9124c9f1bdf25d2d8b94
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:5090732b50fe39721964db82252afced673fbf96
-    pristine_git_object: 76158574f5155c6866dc415be8a65bb81ca3d01a
+    last_write_checksum: sha1:c455129883c134dadbde9a6747a6a6c7fe3109ad
+    pristine_git_object: 1b4299de0e70dc4b986108e0313a84f30b3f2e85
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:a544cafe8ae2bfaaabff6cc5677c8ed3d67f6b88
@@ -6892,6 +6900,10 @@ trackedFiles:
     id: eb8c4e5d6088
     last_write_checksum: sha1:7d089bc40facee4a36af6908d1bc9a8aac3d1a53
     pristine_git_object: 48a717b792e48ad65b68c80f8a893a61ea1ea272
+  src/funcs/usersAcceptInvite.ts:
+    id: 5ca6d8c4ad56
+    last_write_checksum: sha1:84c7d4d5a8c2a970a6cd974f4736cf4216ac5730
+    pristine_git_object: 3c9d6e8a0d09bf1d35defe94d561b68a6801a3d3
   src/funcs/usersCreateHomeUser.ts:
     id: 0d5838cd3f5c
     last_write_checksum: sha1:15313f169547b564506e2c8e9b2fefc256fd1250
@@ -7002,8 +7014,8 @@ trackedFiles:
     pristine_git_object: 962ea486e17eabe13bcf068493a556110c944df8
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:1b8fcb0293ac5bdadfca0c1c9f08893977c04e6e
-    pristine_git_object: 61893146ff1804e582b96190c846591732ec64ea
+    last_write_checksum: sha1:0094733742c165a8116b0818cbef43cc38f72e1d
+    pristine_git_object: fce6561b0ce8d6524669fac0ae4037eb88bed790
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -7084,6 +7096,10 @@ trackedFiles:
     id: f9d465bcd56f
     last_write_checksum: sha1:be97789206ff1aec89bbb2ce3fa72afe83c4c9df
     pristine_git_object: 5bca8c97f346c22d5c71964ab66637ea69841732
+  src/models/operations/acceptinvite.ts:
+    id: 3fb388627871
+    last_write_checksum: sha1:a44d84743d80c8396eba5b85c84d345792e76fe0
+    pristine_git_object: e8eaeb5890d95b81585daa8608a470c23e72f70d
   src/models/operations/addcollectionitems.ts:
     id: 12bbf14f66d9
     last_write_checksum: sha1:e2a25d8f8ebb471aa8348081c4b816b0ac6e3847
@@ -8106,8 +8122,8 @@ trackedFiles:
     pristine_git_object: 88f619299288a9ef90d09bf2fa056761903d18a5
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:0317519eb98fbf9d3bb02dbf34aa3cdda0487a6d
-    pristine_git_object: 5283f1e3b892ce170cb2f0a0d978a2fb6f199839
+    last_write_checksum: sha1:634aaca78c9c66717c14bcacc41102560735da49
+    pristine_git_object: 1751eb86f0b9dd6a557cd2825fd3b816e60aa4c6
   src/models/operations/ingesttransientitem.ts:
     id: ef45c37cb6a9
     last_write_checksum: sha1:c7520961c4612dfcd2e5cdbc55ed48fde4c8d779
@@ -9258,8 +9274,8 @@ trackedFiles:
     pristine_git_object: b65dbe8cc5e69670cf3edfba3350c1f6cbb8e258
   src/sdk/users.ts:
     id: 2df5828eed03
-    last_write_checksum: sha1:8839769b7237c190c5d2eb20e02391a11a9ec7da
-    pristine_git_object: 321e55060a94f73bb65c7e3c2473e6f1908e660d
+    last_write_checksum: sha1:f14f21763d189e36d99ca2dd049cf23657c6f7c9
+    pristine_git_object: 4d21097bb38f1b5e0933348999bf26cbbb70b414
   src/types/async.ts:
     id: fac8da972f86
     last_write_checksum: sha1:675d04bb4b4081dc3482f18de98674f9b446e7b4
@@ -18765,6 +18781,32 @@ examples:
       responses:
         "200":
           application/json: {"MediaContainer": {"identifier": "com.plexapp.plugins.library", "size": 1, "Metadata": []}}
+  acceptInvite:
+    speakeasy-default-accept-invite:
+      parameters:
+        path:
+          inviteId: 530502
+        query:
+          friend: 1
+          home: 1
+          server: 1
+        header:
+          accepts: "application/xml"
+          X-Plex-Client-Identifier: "abc123"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+          X-Plex-Platform-Version: "4.3 build 1057"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Model: "4200X"
+          X-Plex-Device-Vendor: "Roku"
+          X-Plex-Device-Name: "Living Room TV"
+          X-Plex-Marketplace: "googlePlay"
+      responses:
+        "200":
+          application/xml: "0xA9fA681439"
+        "401":
+          application/json: {"errors": [{"code": 1, "message": "string value", "status": 1}]}
 examplesVersion: 1.0.2
 generatedTests:
   getServerInfo: "2025-10-12T05:25:28Z"
@@ -19112,7 +19154,10 @@ generatedTests:
   getServerResources: "2026-07-19T00:27:18Z"
   applyUpdates: "2026-07-19T00:27:18Z"
   updateCollectionItem: "2026-07-19T00:27:18Z"
-releaseNotes: "## Typescript SDK Changes:\n* `plex-api.library.autocomplete()`: \n  *  `request.mediaType` **Removed** (Breaking ⚠️)\n* `plex-api.library.getCommon()`: \n  *  `request.mediaType` **Removed** (Breaking ⚠️)\n* `plex-api.library.getFirstCharacters()`:  `request` **Changed** (Breaking ⚠️)\n* `plex-api.content.listContent()`:  `request` **Changed** (Breaking ⚠️)\n"
+  acceptInvite: "2026-08-21T00:10:31Z"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `plex-api.users.acceptInvite()`: **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

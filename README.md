@@ -673,6 +673,7 @@ run();
 * [getUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
 * [getAccountXML](docs/sdks/users/README.md#getaccountxml) - Get Account (XML)
 * [getAccountJSON](docs/sdks/users/README.md#getaccountjson) - Get Account (JSON)
+* [acceptInvite](docs/sdks/users/README.md#acceptinvite) - Accept an Invite
 * [deleteHomeUser](docs/sdks/users/README.md#deletehomeuser) - Delete Home User
 * [updateHomeUser](docs/sdks/users/README.md#updatehomeuser) - Update Home User
 * [updateRestrictedUser](docs/sdks/users/README.md#updaterestricteduser) - Update Restricted User
@@ -762,9 +763,9 @@ run();
 
 
 **Inherit from [`PlexAPIError`](./src/models/errors/plexapierror.ts)**:
-* [`ErrorT`](./src/models/errors/errort.ts): Unauthorized. Status code `401`. Applicable to 276 of 404 methods.*
-* [`UnauthorizedError`](./src/models/errors/unauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 404 methods.*
-* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 404 methods.*
+* [`ErrorT`](./src/models/errors/errort.ts): Unauthorized. Status code `401`. Applicable to 277 of 405 methods.*
+* [`UnauthorizedError`](./src/models/errors/unauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 405 methods.*
+* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 405 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -1418,6 +1419,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`updaterApplyUpdates`](docs/sdks/updater/README.md#applyupdates) - Applying updates
 - [`updaterCheckUpdates`](docs/sdks/updater/README.md#checkupdates) - Checking for updates
 - [`updaterGetUpdatesStatus`](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
+- [`usersAcceptInvite`](docs/sdks/users/README.md#acceptinvite) - Accept an Invite
 - [`usersCreateHomeUser`](docs/sdks/users/README.md#createhomeuser) - Create Home User
 - [`usersDeleteHomeUser`](docs/sdks/users/README.md#deletehomeuser) - Delete Home User
 - [`usersGetAccountJSON`](docs/sdks/users/README.md#getaccountjson) - Get Account (JSON)

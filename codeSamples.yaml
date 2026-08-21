@@ -577,6 +577,42 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/api/invites/requests/{inviteId}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              clientIdentifier: "abc123",
+              product: "Plex for Roku",
+              version: "2.4.1",
+              platform: "Roku",
+              platformVersion: "4.3 build 1057",
+              device: "Roku 3",
+              model: "4200X",
+              deviceVendor: "Roku",
+              deviceName: "Living Room TV",
+              marketplace: "googlePlay",
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.users.acceptInvite({
+                inviteId: 530502,
+                friend: BoolInt.True,
+                home: BoolInt.True,
+                server: BoolInt.True,
+              });
+
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/api/resources"]["get"]
     update:
       x-codeSamples:

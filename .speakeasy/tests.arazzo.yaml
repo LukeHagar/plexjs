@@ -16562,3 +16562,62 @@ workflows:
             type: simple
     x-speakeasy-test-group: Library Collections
     x-speakeasy-test-rebuild: true
+  - workflowId: acceptInvite
+    steps:
+      - stepId: test
+        operationId: acceptInvite
+        parameters:
+          - name: inviteId
+            in: path
+            value: 530502
+          - name: friend
+            in: query
+            value: 1
+          - name: home
+            in: query
+            value: 1
+          - name: server
+            in: query
+            value: 1
+          - name: accepts
+            in: header
+            value: application/xml
+          - name: X-Plex-Client-Identifier
+            in: header
+            value: abc123
+          - name: X-Plex-Product
+            in: header
+            value: Plex for Roku
+          - name: X-Plex-Version
+            in: header
+            value: 2.4.1
+          - name: X-Plex-Platform
+            in: header
+            value: Roku
+          - name: X-Plex-Platform-Version
+            in: header
+            value: 4.3 build 1057
+          - name: X-Plex-Device
+            in: header
+            value: Roku 3
+          - name: X-Plex-Model
+            in: header
+            value: 4200X
+          - name: X-Plex-Device-Vendor
+            in: header
+            value: Roku
+          - name: X-Plex-Device-Name
+            in: header
+            value: Living Room TV
+          - name: X-Plex-Marketplace
+            in: header
+            value: googlePlay
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/xml
+          - context: $response.body
+            condition: |
+              "0xA9fA681439"
+            type: simple
+    x-speakeasy-test-group: Users
+    x-speakeasy-test-rebuild: true
