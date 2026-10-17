@@ -1,33 +1,33 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: ee3f0cb3f9403deebefa4d0d5f4bac29
+  docChecksum: 8af03503b21cc52f69a337438a295c73
   docVersion: 1.1.1
-  speakeasyVersion: 1.795.1
-  generationVersion: 2.932.9
-  releaseVersion: 0.46.2
-  configChecksum: a320064ea194dac31eaad5bfd56dcaff
+  speakeasyVersion: 1.802.0
+  generationVersion: 2.948.4
+  releaseVersion: 0.46.3
+  configChecksum: 2c42f4a9ed1dd6bb9553d670e543a9a7
   repoURL: https://github.com/LukasParke/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukasParke/plexjs
   published: true
 persistentEdits:
-  generation_id: 78c3d168-6209-4779-a430-e04edeafa869
-  pristine_commit_hash: 2826173f3e51c217d748b12d14ea20b46e6cb273
-  pristine_tree_hash: eb84a1030beda2fdbe211695bed9e5311ec533a5
+  generation_id: d2b72147-5dc8-4508-921d-c6ad5f3d2da7
+  pristine_commit_hash: 417807e507a466d867f9d34de65f9d5dc621aca7
+  pristine_tree_hash: 205196716f64e7b730147f4ab37290d34fac32d1
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.4
     constsAndDefaults: 0.1.14
-    core: 3.31.5
+    core: 3.31.6
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
-    enums: 2.83.0
+    enums: 2.83.2
     envVarSecurityUsage: 0.1.2
     errors: 2.86.3
     examples: 2.82.6
@@ -43,9 +43,9 @@ features:
     nullables: 0.1.1
     openEnums: 0.1.3
     responseFormat: 0.3.0
-    retries: 2.83.1
+    retries: 2.83.2
     sdkHooks: 0.4.0
-    unions: 2.86.5
+    unions: 2.86.8
     uploadStreams: 0.1.1
 trackedFiles:
   .gitattributes:
@@ -2758,8 +2758,8 @@ trackedFiles:
     pristine_git_object: a0831a948f9b4f536e0613e43c8661464a7ccdd9
   docs/models/operations/listcontentrequest.md:
     id: 9b34965d2c84
-    last_write_checksum: sha1:4c1c12569f509185676523d4804a267db3354652
-    pristine_git_object: f5ea645b060ec8b151e85fa6e8a82257908d39ec
+    last_write_checksum: sha1:145ec0c842c9a88947ae54fa2e4fcea8bbb37cbd
+    pristine_git_object: b8a1211f56c7d9d09efa53064428cc7b59d73157
   docs/models/operations/listcontentresponse.md:
     id: 6b4287b89c7f
     last_write_checksum: sha1:695509d0bf74e808855e4c85f21de821f00522ab
@@ -4158,8 +4158,8 @@ trackedFiles:
     pristine_git_object: 48f33a8b7edaff18fabc2dafe602433db3ad0809
   docs/models/operations/userplexaccount.md:
     id: 549dd4d2d0b0
-    last_write_checksum: sha1:ea14077045299cb7915c01affe96717ae3854448
-    pristine_git_object: ca4e6c0a8c0a4ddb3dcd9a6d41817517f14aeab8
+    last_write_checksum: sha1:2c983b0df84c063fbe2eba3a1c75f47dcb41dcf4
+    pristine_git_object: 4b2bb7f83fb700bd9ee3a00c0367451506279c40
   docs/models/operations/voicesearchhubsglobals.md:
     id: 2dc47683ba97
     last_write_checksum: sha1:64d3fc884e0e964612d73029581a0fb69747cff7
@@ -5178,8 +5178,8 @@ trackedFiles:
     pristine_git_object: d83ed4e1351438f64a75ef833d831b947302a0b3
   docs/models/shared/userplexaccount.md:
     id: 0e8016bec537
-    last_write_checksum: sha1:5660f4f026a8618d3b8a160bd39e9ed1d8e55c93
-    pristine_git_object: 376cddadfdaa3c6927cfe1122b5d14a66e49adf5
+    last_write_checksum: sha1:a962e90d6f813eed6f07a65458cc117955f01d7b
+    pristine_git_object: 0fec88edf9b1039c794f01405ab93caa8a3eacbe
   docs/models/shared/userprofile.md:
     id: 12bb550a3642
     last_write_checksum: sha1:93d5f3359554504b721b8c0d16a3733fcb4a5275
@@ -5222,8 +5222,8 @@ trackedFiles:
     pristine_git_object: efa93b14377743458c1e2f92a5206446418468c2
   docs/sdks/content/README.md:
     id: de1d68ebc2ba
-    last_write_checksum: sha1:65113a8b48aeaaa7ecbd042b46ec64cdad1478a3
-    pristine_git_object: f73783c062bea8ac1df75f6558c2e2004368c158
+    last_write_checksum: sha1:bffc62e6ec6b47853a98926cdcd3340f7b95ebd7
+    pristine_git_object: 75fc0b113af299cd691a12b82390fad24c500290
   docs/sdks/devices/README.md:
     id: 205e305f3b19
     last_write_checksum: sha1:efc59e1e4a93bfa1c4137cdb715c63fb4474d353
@@ -5362,12 +5362,12 @@ trackedFiles:
     pristine_git_object: 2a9ce19cbaf7f839010b44798760bc8c78189135
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:cc2925b5f5a2e64a0b82698e4a1038ebf7773b89
-    pristine_git_object: c21d46a24027c6bb5cfb9124c9f1bdf25d2d8b94
+    last_write_checksum: sha1:b8b7765eaa12f53020324725b58445f36187f572
+    pristine_git_object: e18d55761e0beed411a636057d269b5583e366db
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c455129883c134dadbde9a6747a6a6c7fe3109ad
-    pristine_git_object: 1b4299de0e70dc4b986108e0313a84f30b3f2e85
+    last_write_checksum: sha1:3ba8d5b8a9b0a1ee332f97ddafeb07f56061cd56
+    pristine_git_object: 0e3e8fc9dcb460dd3e2a36952b2d9340e6bad48d
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:a544cafe8ae2bfaaabff6cc5677c8ed3d67f6b88
@@ -5518,8 +5518,8 @@ trackedFiles:
     pristine_git_object: 15ec131749318e77acf40114e1feda5562b1128f
   src/funcs/contentListContent.ts:
     id: 160c8f1ced1f
-    last_write_checksum: sha1:b7fa70a40792b7e374d38423b6940f136b3429a0
-    pristine_git_object: be97fcbcc55b599c65ebdc4d10f33853dce0855b
+    last_write_checksum: sha1:44b3cf3facc5389b9ed720943fe848b33b8c9e06
+    pristine_git_object: 64ce03818a51164310050f8c8614c1367360235a
   src/funcs/contentListMoments.ts:
     id: c151692b12fe
     last_write_checksum: sha1:5bf05b2ef4394d5466ffd612ea2976f7d049c168
@@ -7014,12 +7014,12 @@ trackedFiles:
     pristine_git_object: 962ea486e17eabe13bcf068493a556110c944df8
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:0094733742c165a8116b0818cbef43cc38f72e1d
-    pristine_git_object: fce6561b0ce8d6524669fac0ae4037eb88bed790
+    last_write_checksum: sha1:9d64c37c24ef7b04e50b0a2e79ae988bb5b983d8
+    pristine_git_object: 91c1f07cc2073a694abf21466157bcaadb50b037
   src/lib/encodings.ts:
     id: 3bd8ead98afd
-    last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
-    pristine_git_object: dcab511b4b4d98f1e4b7dd94866e2b41c478b7f0
+    last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
+    pristine_git_object: d6e751fe6a9a39af519df802d05c999f6783bae8
   src/lib/files.ts:
     id: e5efa54fcb95
     last_write_checksum: sha1:795c14026405d547bfc47012f7ad9666e530fa7f
@@ -8138,8 +8138,8 @@ trackedFiles:
     pristine_git_object: d405f1e155e0740812e25395b5c6a80a7f137144
   src/models/operations/listcontent.ts:
     id: c8ee502092d2
-    last_write_checksum: sha1:5dd8d19c3c8148b1cad04fc0d8a95cfe7b59a14a
-    pristine_git_object: d0f7182edee64f1c959bba05aa58eb03bc02385b
+    last_write_checksum: sha1:79062a28a871312c0af9e473a1f7408df1bed142
+    pristine_git_object: 4e1016c611571f74a3ea91685598ba2ac6613fcb
   src/models/operations/listdevices.ts:
     id: ec14cef0acd7
     last_write_checksum: sha1:517c9ad6274a43a0a24c984fefeb9136d47e257a
@@ -9318,8 +9318,8 @@ trackedFiles:
     pristine_git_object: c79b3f53a3dd922aa2ace5a4191c8652cf9a8e89
   src/types/smartUnion.ts:
     id: b65a1bd4c0e9
-    last_write_checksum: sha1:be0bdb0348709d698e9a5c527e6b7d88c3e3efd9
-    pristine_git_object: 0e04ace25548fbaedabaf20fa2fd1b13b3c7c678
+    last_write_checksum: sha1:3c6a4d053b3623b39e94ea1ea4dd9b72838a49cb
+    pristine_git_object: 602a2f6c4150bdc8404740b940c295c45cee5598
   src/types/streams.ts:
     id: f99be9c4bf14
     last_write_checksum: sha1:cc9ced2dd34a76c3a1bd7784ccda1cc3b37ab9a9
@@ -15178,6 +15178,12 @@ examples:
           nocache: 1
           skipRefresh: 1
           unwatched: 1
+          updatedAt>>: 1792000000
+          updatedAt<<: 1792054845
+          addedAt>>: 1791200000
+          addedAt<<: 1791252847
+          includeFields: "ratingKey,updatedAt,size,totalSize,offset"
+          includeOptionalElements: "Stream"
         header:
           X-Plex-Client-Identifier: "abc123"
           X-Plex-Product: "Plex for Roku"
@@ -15190,6 +15196,7 @@ examples:
           X-Plex-Device-Name: "Living Room TV"
           X-Plex-Marketplace: "googlePlay"
           accepts: "application/xml"
+          X-Plex-Pms-Api-Version: "1.0"
       responses:
         "200":
           application/json: {"MediaContainer": {"identifier": "com.plexapp.plugins.library", "size": 1, "Metadata": []}}
@@ -19157,7 +19164,7 @@ generatedTests:
   acceptInvite: "2026-08-21T00:10:31Z"
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `plex-api.users.acceptInvite()`: **Added**
+  * `plex-api.content.listContent()`:  `request` **Changed**
 generatedFiles:
   - .gitattributes
   - .npmignore

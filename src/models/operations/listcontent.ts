@@ -102,6 +102,13 @@ export type ListContentRequest = {
    */
   marketplace?: string | undefined;
   /**
+   * The PMS API version requested by the client. If omitted, the server assumes `0.0`.
+   *
+   * @remarks
+   * Use `1.0` for the published PMS API response customization behavior.
+   */
+  pmsApiVersion?: string | undefined;
+  /**
    * The index of the first item to return. If not specified, the first item will be returned.
    *
    * @remarks
@@ -142,6 +149,46 @@ export type ListContentRequest = {
    * The id of the section
    */
   sectionId: number;
+  /**
+   * Return current items whose updatedAt is strictly greater than this Unix timestamp in seconds.
+   *
+   * @remarks
+   * The query key is updatedAt>> (URL-encoded as updatedAt%3E%3E), for example updatedAt%3E%3E=1792000000.
+   * Items updated exactly at the supplied timestamp are excluded; overlap polling windows and deduplicate ratingKey values to avoid missing same-second updates.
+   * Verified for movies, episodes, and tracks on PMS 1.43.4.10903. Support on other server versions and library types may vary.
+   * This filters current items, not a durable change log: deleted items are not returned, and it does not guarantee that every file, part, or stream change updates the parent timestamp.
+   */
+  updatedAtAfter?: number | undefined;
+  /**
+   * Return current items whose updatedAt is strictly less than this Unix timestamp in seconds.
+   *
+   * @remarks
+   * The query key is updatedAt<< (URL-encoded as updatedAt%3C%3C), for example updatedAt%3C%3C=1792054845.
+   * Items updated exactly at the supplied timestamp are excluded. Combine with updatedAt>> to request a bounded interval; both conditions must match.
+   * Verified for movies on PMS 1.43.4.10903. Support on other server versions and library types may vary.
+   * This filters current items and does not provide an atomic snapshot, a replay cursor, or deleted items.
+   */
+  updatedAtBefore?: number | undefined;
+  /**
+   * Return current items whose addedAt is strictly greater than this Unix timestamp in seconds.
+   *
+   * @remarks
+   * The query key is addedAt>> (URL-encoded as addedAt%3E%3E), for example addedAt%3E%3E=1791200000.
+   * Items added exactly at the supplied timestamp are excluded; overlap polling windows and deduplicate ratingKey values to avoid missing same-second additions.
+   * Verified for movies on PMS 1.43.4.10903. Support on other server versions and library types may vary.
+   * This filters surviving additions only; it does not identify later metadata updates or deleted items.
+   */
+  addedAtAfter?: number | undefined;
+  /**
+   * Return current items whose addedAt is strictly less than this Unix timestamp in seconds.
+   *
+   * @remarks
+   * The query key is addedAt<< (URL-encoded as addedAt%3C%3C), for example addedAt%3C%3C=1791252847.
+   * Items added exactly at the supplied timestamp are excluded. Combine with addedAt>> to request a bounded interval; both conditions must match.
+   * Support on server versions and library types may vary.
+   * This filters surviving additions only; it does not identify later metadata updates or deleted items, or provide an atomic snapshot.
+   */
+  addedAtBefore?: number | undefined;
   /**
    * Adds the Meta object to the response
    */
@@ -235,7 +282,13 @@ export type ListContentRequest = {
    */
   includeTheme?: shared.BoolInt | undefined;
   /**
-   * Whitelist of fields to return
+   * Comma-separated whitelist of fields to return.
+   *
+   * @remarks
+   * With PMS API version 1.0.0 or later, this projection also applies to container attributes.
+   * Include size,totalSize,offset alongside item fields when paging, for example ratingKey,updatedAt,size,totalSize,offset.
+   * Otherwise the response may omit the pagination attributes needed to determine whether the complete result has been retrieved.
+   * This does not necessarily remove nested elements; use excludeElements to request their exclusion.
    */
   includeFields?: string | undefined;
   /**
@@ -258,6 +311,14 @@ export type ListContentRequest = {
    * Skip synchronous refresh
    */
   skipRefresh?: shared.BoolInt | undefined;
+  /**
+   * Comma-separated list of optional elements to add to the response.
+   *
+   * @remarks
+   * Use `Stream` to request stream metadata within returned media parts.
+   * Unlike `includeElements`, this adds optional elements without excluding the normal response elements.
+   */
+  includeOptionalElements?: string | undefined;
   /**
    * Comma-separated list of elements to exclude from the response
    */
@@ -314,10 +375,15 @@ export type ListContentRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  "Pms-Api-Version"?: string | undefined;
   "X-Plex-Container-Start": number;
   "X-Plex-Container-Size": number;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
   sectionId: number;
+  updatedAtAfter?: number | undefined;
+  updatedAtBefore?: number | undefined;
+  addedAtAfter?: number | undefined;
+  addedAtBefore?: number | undefined;
   includeMeta: number;
   includeGuids: number;
   includeCollections: number;
@@ -347,6 +413,7 @@ export type ListContentRequest$Outbound = {
   asyncRefreshLocalMediaAgent: number;
   nocache: number;
   skipRefresh: number;
+  includeOptionalElements?: string | undefined;
   excludeElements?: string | undefined;
   filters?: string | undefined;
   unwatched: number;
@@ -374,10 +441,15 @@ export const ListContentRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  pmsApiVersion: z.string().optional(),
   xPlexContainerStart: z.int().default(0),
   xPlexContainerSize: z.int().default(50),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
   sectionId: z.int(),
+  updatedAtAfter: z.int().optional(),
+  updatedAtBefore: z.int().optional(),
+  addedAtAfter: z.int().optional(),
+  addedAtBefore: z.int().optional(),
   includeMeta: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   includeGuids: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   includeCollections: shared.BoolInt$outboundSchema.default(
@@ -425,6 +497,7 @@ export const ListContentRequest$outboundSchema: z.ZodType<
   ),
   nocache: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   skipRefresh: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeOptionalElements: z.string().optional(),
   excludeElements: z.string().optional(),
   filters: z.string().optional(),
   unwatched: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
@@ -446,6 +519,7 @@ export const ListContentRequest$outboundSchema: z.ZodType<
     deviceVendor: "Device-Vendor",
     deviceName: "Device-Name",
     marketplace: "Marketplace",
+    pmsApiVersion: "Pms-Api-Version",
     xPlexContainerStart: "X-Plex-Container-Start",
     xPlexContainerSize: "X-Plex-Container-Size",
   });

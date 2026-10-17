@@ -358,12 +358,17 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.content.listContent({
+    pmsApiVersion: "1.0",
     mediaQuery: {
       type: MediaType.Episode,
       sort: "duration:desc,index",
       sourceType: 2,
     },
     sectionId: 813218,
+    updatedAtAfter: 1792000000,
+    updatedAtBefore: 1792054845,
+    addedAtAfter: 1791200000,
+    addedAtBefore: 1791252847,
     includeMeta: BoolInt.True,
     includeGuids: BoolInt.True,
     includeCollections: BoolInt.True,
@@ -387,10 +392,12 @@ async function run() {
     includeThumb: BoolInt.True,
     includeBanner: BoolInt.True,
     includeTheme: BoolInt.True,
+    includeFields: "ratingKey,updatedAt,size,totalSize,offset",
     asyncAugmentMetadata: BoolInt.True,
     asyncRefreshLocalMediaAgent: BoolInt.True,
     nocache: BoolInt.True,
     skipRefresh: BoolInt.True,
+    includeOptionalElements: "Stream",
     unwatched: BoolInt.True,
   });
 
@@ -428,12 +435,17 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await contentListContent(plexAPI, {
+    pmsApiVersion: "1.0",
     mediaQuery: {
       type: MediaType.Episode,
       sort: "duration:desc,index",
       sourceType: 2,
     },
     sectionId: 813218,
+    updatedAtAfter: 1792000000,
+    updatedAtBefore: 1792054845,
+    addedAtAfter: 1791200000,
+    addedAtBefore: 1791252847,
     includeMeta: BoolInt.True,
     includeGuids: BoolInt.True,
     includeCollections: BoolInt.True,
@@ -457,10 +469,12 @@ async function run() {
     includeThumb: BoolInt.True,
     includeBanner: BoolInt.True,
     includeTheme: BoolInt.True,
+    includeFields: "ratingKey,updatedAt,size,totalSize,offset",
     asyncAugmentMetadata: BoolInt.True,
     asyncRefreshLocalMediaAgent: BoolInt.True,
     nocache: BoolInt.True,
     skipRefresh: BoolInt.True,
+    includeOptionalElements: "Stream",
     unwatched: BoolInt.True,
   });
   if (res.ok) {

@@ -29,7 +29,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.46.2
+  version: 0.46.3
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -76,6 +76,7 @@ typescript:
   modelPropertyCasing: camel
   moduleFormat: commonjs
   multipartArrayFormat: legacy
+  numericEnumMemberNames: legacy
   outputModelSuffix: output
   packageName: '@parke.dev/plexjs'
   preApplyUnionDiscriminators: true

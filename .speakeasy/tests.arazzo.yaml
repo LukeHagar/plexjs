@@ -7265,6 +7265,24 @@ workflows:
           - name: unwatched
             in: query
             value: 1
+          - name: updatedAt>>
+            in: query
+            value: 1792000000
+          - name: updatedAt<<
+            in: query
+            value: 1792054845
+          - name: addedAt>>
+            in: query
+            value: 1791200000
+          - name: addedAt<<
+            in: query
+            value: 1791252847
+          - name: includeFields
+            in: query
+            value: ratingKey,updatedAt,size,totalSize,offset
+          - name: includeOptionalElements
+            in: query
+            value: Stream
           - name: X-Plex-Client-Identifier
             in: header
             value: abc123
@@ -7298,6 +7316,9 @@ workflows:
           - name: accepts
             in: header
             value: application/xml
+          - name: X-Plex-Pms-Api-Version
+            in: header
+            value: "1.0"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json

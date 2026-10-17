@@ -101,6 +101,8 @@ async function $do(
   const path = pathToFunc("/library/sections/{sectionId}/all")(pathParams);
 
   const query = encodeFormQuery({
+    "addedAt<<": payload.addedAtBefore,
+    "addedAt>>": payload.addedAtAfter,
     "asyncAugmentMetadata": payload.asyncAugmentMetadata,
     "asyncRefreshLocalMediaAgent": payload.asyncRefreshLocalMediaAgent,
     "checkFiles": payload.checkFiles,
@@ -126,6 +128,7 @@ async function $do(
     "includeLoudnessRamps": payload.includeLoudnessRamps,
     "includeMeta": payload.includeMeta,
     "includeOnDeck": payload.includeOnDeck,
+    "includeOptionalElements": payload.includeOptionalElements,
     "includePopularLeaves": payload.includePopularLeaves,
     "includePreferences": payload.includePreferences,
     "includeRelated": payload.includeRelated,
@@ -139,6 +142,8 @@ async function $do(
     "skipRefresh": payload.skipRefresh,
     "studio": payload.studio,
     "unwatched": payload.unwatched,
+    "updatedAt<<": payload.updatedAtBefore,
+    "updatedAt>>": payload.updatedAtAfter,
     "X-Plex-Container-Size": payload["X-Plex-Container-Size"],
     "X-Plex-Container-Start": payload["X-Plex-Container-Start"],
     "year": payload.year,
@@ -184,6 +189,11 @@ async function $do(
     "X-Plex-Platform-Version": encodeSimple(
       "X-Plex-Platform-Version",
       payload["Platform-Version"] ?? client._options.platformVersion,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Pms-Api-Version": encodeSimple(
+      "X-Plex-Pms-Api-Version",
+      payload["Pms-Api-Version"],
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Product": encodeSimple(
