@@ -74,17 +74,37 @@ export type MediaContainerWithDecisionCanAutoSyncEnumOpen = OpenEnum<
   typeof MediaContainerWithDecisionCanAutoSyncEnum
 >;
 
-export type MediaContainerWithDecisionCanAutoSyncUnion1 =
-  | MediaContainerWithDecisionCanAutoSyncEnumOpen
-  | boolean;
-
 /**
  * Indicates if the stream can auto-sync.
  */
-export type MediaContainerWithDecisionCanAutoSyncUnion2 =
+export type MediaContainerWithDecisionCanAutoSyncUnion =
   | boolean
-  | MediaContainerWithDecisionCanAutoSyncEnumOpen
-  | boolean;
+  | MediaContainerWithDecisionCanAutoSyncEnumOpen;
+
+/**
+ * Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+ */
+export type MediaContainerWithDecisionLoudness = number | string;
+
+/**
+ * Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+ */
+export type MediaContainerWithDecisionPeak = number | string;
+
+export enum MediaContainerWithDecisionPerfectMatchEnum {
+  Zero = "0",
+  One = "1",
+}
+export type MediaContainerWithDecisionPerfectMatchEnumOpen = OpenEnum<
+  typeof MediaContainerWithDecisionPerfectMatchEnum
+>;
+
+/**
+ * Whether the subtitle is an exact match.
+ */
+export type MediaContainerWithDecisionPerfectMatchUnion =
+  | boolean
+  | MediaContainerWithDecisionPerfectMatchEnumOpen;
 
 /**
  * Stream type:
@@ -110,6 +130,36 @@ export enum MediaContainerWithDecisionStreamType {
 export type MediaContainerWithDecisionStreamTypeOpen = OpenEnum<
   typeof MediaContainerWithDecisionStreamType
 >;
+
+export enum MediaContainerWithDecisionTimedEnum {
+  Zero = "0",
+  One = "1",
+}
+export type MediaContainerWithDecisionTimedEnumOpen = OpenEnum<
+  typeof MediaContainerWithDecisionTimedEnum
+>;
+
+/**
+ * Whether lyrics are timestamped.
+ */
+export type MediaContainerWithDecisionTimedUnion =
+  | boolean
+  | MediaContainerWithDecisionTimedEnumOpen;
+
+export enum MediaContainerWithDecisionTransientEnum {
+  Zero = "0",
+  One = "1",
+}
+export type MediaContainerWithDecisionTransientEnumOpen = OpenEnum<
+  typeof MediaContainerWithDecisionTransientEnum
+>;
+
+/**
+ * Whether the subtitle is temporary or downloaded.
+ */
+export type MediaContainerWithDecisionTransientUnion =
+  | boolean
+  | MediaContainerWithDecisionTransientEnumOpen;
 
 export enum StreamDecision {
   Copy = "copy",
@@ -185,7 +235,6 @@ export type MediaContainerWithDecisionStream = {
   canAutoSync?:
     | boolean
     | MediaContainerWithDecisionCanAutoSyncEnumOpen
-    | boolean
     | undefined;
   /**
    * Number of audio channels (for audio streams).
@@ -328,9 +377,9 @@ export type MediaContainerWithDecisionStream = {
    */
   level?: number | undefined;
   /**
-   * Integrated loudness in LUFS.
+   * Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
    */
-  loudness?: number | undefined;
+  loudness?: number | string | undefined;
   /**
    * Loudness range in LU.
    */
@@ -344,13 +393,16 @@ export type MediaContainerWithDecisionStream = {
    */
   original?: boolean | undefined;
   /**
-   * Track peak amplitude.
+   * Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
    */
-  peak?: number | undefined;
+  peak?: number | string | undefined;
   /**
    * Whether the subtitle is an exact match.
    */
-  perfectMatch?: boolean | undefined;
+  perfectMatch?:
+    | boolean
+    | MediaContainerWithDecisionPerfectMatchEnumOpen
+    | undefined;
   /**
    * Video profile.
    */
@@ -393,11 +445,11 @@ export type MediaContainerWithDecisionStream = {
   /**
    * Whether lyrics are timestamped.
    */
-  timed?: boolean | undefined;
+  timed?: boolean | MediaContainerWithDecisionTimedEnumOpen | undefined;
   /**
    * Whether the subtitle is temporary or downloaded.
    */
-  transient?: boolean | undefined;
+  transient?: boolean | MediaContainerWithDecisionTransientEnumOpen | undefined;
   /**
    * ID of the user who added the subtitle.
    */
@@ -1003,51 +1055,86 @@ export const MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema: z.ZodType<
 > = openEnums.inboundSchema(MediaContainerWithDecisionCanAutoSyncEnum);
 
 /** @internal */
-export const MediaContainerWithDecisionCanAutoSyncUnion1$inboundSchema:
-  z.ZodType<MediaContainerWithDecisionCanAutoSyncUnion1, unknown> = smartUnion([
-    MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
+export const MediaContainerWithDecisionCanAutoSyncUnion$inboundSchema:
+  z.ZodType<MediaContainerWithDecisionCanAutoSyncUnion, unknown> = smartUnion([
     types.boolean(),
+    MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
   ]);
 
-export function mediaContainerWithDecisionCanAutoSyncUnion1FromJSON(
+export function mediaContainerWithDecisionCanAutoSyncUnionFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  MediaContainerWithDecisionCanAutoSyncUnion1,
+  MediaContainerWithDecisionCanAutoSyncUnion,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      MediaContainerWithDecisionCanAutoSyncUnion1$inboundSchema.parse(
+      MediaContainerWithDecisionCanAutoSyncUnion$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'MediaContainerWithDecisionCanAutoSyncUnion1' from JSON`,
+    `Failed to parse 'MediaContainerWithDecisionCanAutoSyncUnion' from JSON`,
   );
 }
 
 /** @internal */
-export const MediaContainerWithDecisionCanAutoSyncUnion2$inboundSchema:
-  z.ZodType<MediaContainerWithDecisionCanAutoSyncUnion2, unknown> = smartUnion([
+export const MediaContainerWithDecisionLoudness$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionLoudness,
+  unknown
+> = smartUnion([types.number(), types.string()]);
+
+export function mediaContainerWithDecisionLoudnessFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaContainerWithDecisionLoudness, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MediaContainerWithDecisionLoudness$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaContainerWithDecisionLoudness' from JSON`,
+  );
+}
+
+/** @internal */
+export const MediaContainerWithDecisionPeak$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionPeak,
+  unknown
+> = smartUnion([types.number(), types.string()]);
+
+export function mediaContainerWithDecisionPeakFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaContainerWithDecisionPeak, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MediaContainerWithDecisionPeak$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaContainerWithDecisionPeak' from JSON`,
+  );
+}
+
+/** @internal */
+export const MediaContainerWithDecisionPerfectMatchEnum$inboundSchema:
+  z.ZodType<MediaContainerWithDecisionPerfectMatchEnumOpen, unknown> = openEnums
+    .inboundSchema(MediaContainerWithDecisionPerfectMatchEnum);
+
+/** @internal */
+export const MediaContainerWithDecisionPerfectMatchUnion$inboundSchema:
+  z.ZodType<MediaContainerWithDecisionPerfectMatchUnion, unknown> = smartUnion([
     types.boolean(),
-    smartUnion([
-      MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
-      types.boolean(),
-    ]),
+    MediaContainerWithDecisionPerfectMatchEnum$inboundSchema,
   ]);
 
-export function mediaContainerWithDecisionCanAutoSyncUnion2FromJSON(
+export function mediaContainerWithDecisionPerfectMatchUnionFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  MediaContainerWithDecisionCanAutoSyncUnion2,
+  MediaContainerWithDecisionPerfectMatchUnion,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      MediaContainerWithDecisionCanAutoSyncUnion2$inboundSchema.parse(
+      MediaContainerWithDecisionPerfectMatchUnion$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'MediaContainerWithDecisionCanAutoSyncUnion2' from JSON`,
+    `Failed to parse 'MediaContainerWithDecisionPerfectMatchUnion' from JSON`,
   );
 }
 
@@ -1056,6 +1143,63 @@ export const MediaContainerWithDecisionStreamType$inboundSchema: z.ZodType<
   MediaContainerWithDecisionStreamTypeOpen,
   unknown
 > = openEnums.inboundSchemaInt(MediaContainerWithDecisionStreamType);
+
+/** @internal */
+export const MediaContainerWithDecisionTimedEnum$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionTimedEnumOpen,
+  unknown
+> = openEnums.inboundSchema(MediaContainerWithDecisionTimedEnum);
+
+/** @internal */
+export const MediaContainerWithDecisionTimedUnion$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionTimedUnion,
+  unknown
+> = smartUnion([
+  types.boolean(),
+  MediaContainerWithDecisionTimedEnum$inboundSchema,
+]);
+
+export function mediaContainerWithDecisionTimedUnionFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaContainerWithDecisionTimedUnion, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MediaContainerWithDecisionTimedUnion$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaContainerWithDecisionTimedUnion' from JSON`,
+  );
+}
+
+/** @internal */
+export const MediaContainerWithDecisionTransientEnum$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionTransientEnumOpen,
+  unknown
+> = openEnums.inboundSchema(MediaContainerWithDecisionTransientEnum);
+
+/** @internal */
+export const MediaContainerWithDecisionTransientUnion$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionTransientUnion,
+  unknown
+> = smartUnion([
+  types.boolean(),
+  MediaContainerWithDecisionTransientEnum$inboundSchema,
+]);
+
+export function mediaContainerWithDecisionTransientUnionFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  MediaContainerWithDecisionTransientUnion,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MediaContainerWithDecisionTransientUnion$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'MediaContainerWithDecisionTransientUnion' from JSON`,
+  );
+}
 
 /** @internal */
 export const StreamDecision$inboundSchema: z.ZodType<
@@ -1090,10 +1234,7 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     canAutoSync: types.optional(
       smartUnion([
         types.boolean(),
-        smartUnion([
-          MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
-          types.boolean(),
-        ]),
+        MediaContainerWithDecisionCanAutoSyncEnum$inboundSchema,
       ]),
     ),
     channels: types.optional(types.number()),
@@ -1134,12 +1275,17 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     languageCode: types.optional(types.string()),
     languageTag: types.optional(types.string()),
     level: types.optional(types.number()),
-    loudness: types.optional(types.number()),
+    loudness: types.optional(smartUnion([types.number(), types.string()])),
     lra: types.optional(types.number()),
     minLines: types.optional(types.number()),
     original: types.optional(types.boolean()),
-    peak: types.optional(types.number()),
-    perfectMatch: types.optional(types.boolean()),
+    peak: types.optional(smartUnion([types.number(), types.string()])),
+    perfectMatch: types.optional(
+      smartUnion([
+        types.boolean(),
+        MediaContainerWithDecisionPerfectMatchEnum$inboundSchema,
+      ]),
+    ),
     profile: types.optional(types.string()),
     provider: types.optional(types.string()),
     providerTitle: types.optional(types.string()),
@@ -1152,8 +1298,18 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     startRamp: types.optional(types.string()),
     streamIdentifier: types.optional(types.number()),
     streamType: MediaContainerWithDecisionStreamType$inboundSchema,
-    timed: types.optional(types.boolean()),
-    transient: types.optional(types.boolean()),
+    timed: types.optional(
+      smartUnion([
+        types.boolean(),
+        MediaContainerWithDecisionTimedEnum$inboundSchema,
+      ]),
+    ),
+    transient: types.optional(
+      smartUnion([
+        types.boolean(),
+        MediaContainerWithDecisionTransientEnum$inboundSchema,
+      ]),
+    ),
     userID: types.optional(types.number()),
     visualImpaired: types.optional(types.boolean()),
     width: types.optional(types.number()),

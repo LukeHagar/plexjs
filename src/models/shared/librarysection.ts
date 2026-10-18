@@ -45,7 +45,7 @@ export type LibrarySection = {
    */
   title?: string | undefined;
   /**
-   * The type of media content in the Plex library. This can represent videos, music, or photos.
+   * The Plex media type name, corresponding to the numeric MediaType schema.
    */
   type: MediaTypeStringOpen;
   agent?: string | undefined;

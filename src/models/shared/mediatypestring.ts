@@ -7,22 +7,27 @@ import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
 /**
- * The type of media content in the Plex library. This can represent videos, music, or photos.
+ * The Plex media type name, corresponding to the numeric MediaType schema.
  */
 export enum MediaTypeString {
   Movie = "movie",
   TvShow = "show",
   Season = "season",
   Episode = "episode",
+  Trailer = "trailer",
+  Person = "person",
   Artist = "artist",
   Album = "album",
   Track = "track",
-  PhotoAlbum = "photoalbum",
+  Clip = "clip",
   Photo = "photo",
+  PhotoAlbum = "photoalbum",
+  Playlist = "playlist",
+  PlaylistFolder = "playlistfolder",
   Collection = "collection",
 }
 /**
- * The type of media content in the Plex library. This can represent videos, music, or photos.
+ * The Plex media type name, corresponding to the numeric MediaType schema.
  */
 export type MediaTypeStringOpen = OpenEnum<typeof MediaTypeString>;
 

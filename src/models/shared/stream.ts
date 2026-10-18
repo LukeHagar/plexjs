@@ -33,12 +33,31 @@ export enum CanAutoSyncEnum {
 }
 export type CanAutoSyncEnumOpen = OpenEnum<typeof CanAutoSyncEnum>;
 
-export type CanAutoSyncUnion1 = CanAutoSyncEnumOpen | boolean;
-
 /**
  * Indicates if the stream can auto-sync.
  */
-export type CanAutoSyncUnion2 = boolean | CanAutoSyncEnumOpen | boolean;
+export type CanAutoSync = boolean | CanAutoSyncEnumOpen;
+
+/**
+ * Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+ */
+export type Loudness = number | string;
+
+/**
+ * Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+ */
+export type Peak = number | string;
+
+export enum PerfectMatchEnum {
+  Zero = "0",
+  One = "1",
+}
+export type PerfectMatchEnumOpen = OpenEnum<typeof PerfectMatchEnum>;
+
+/**
+ * Whether the subtitle is an exact match.
+ */
+export type PerfectMatch = boolean | PerfectMatchEnumOpen;
 
 /**
  * Stream type:
@@ -62,6 +81,28 @@ export enum StreamType {
  *   - SUBTITLE = 3 (Subtitle stream)
  */
 export type StreamTypeOpen = OpenEnum<typeof StreamType>;
+
+export enum TimedEnum {
+  Zero = "0",
+  One = "1",
+}
+export type TimedEnumOpen = OpenEnum<typeof TimedEnum>;
+
+/**
+ * Whether lyrics are timestamped.
+ */
+export type Timed = boolean | TimedEnumOpen;
+
+export enum TransientEnum {
+  Zero = "0",
+  One = "1",
+}
+export type TransientEnumOpen = OpenEnum<typeof TransientEnum>;
+
+/**
+ * Whether the subtitle is temporary or downloaded.
+ */
+export type Transient = boolean | TransientEnumOpen;
 
 /**
  * `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
@@ -110,7 +151,7 @@ export type Stream = {
   /**
    * Indicates if the stream can auto-sync.
    */
-  canAutoSync?: boolean | CanAutoSyncEnumOpen | boolean | undefined;
+  canAutoSync?: boolean | CanAutoSyncEnumOpen | undefined;
   /**
    * Number of audio channels (for audio streams).
    */
@@ -252,9 +293,9 @@ export type Stream = {
    */
   level?: number | undefined;
   /**
-   * Integrated loudness in LUFS.
+   * Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
    */
-  loudness?: number | undefined;
+  loudness?: number | string | undefined;
   /**
    * Loudness range in LU.
    */
@@ -268,13 +309,13 @@ export type Stream = {
    */
   original?: boolean | undefined;
   /**
-   * Track peak amplitude.
+   * Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
    */
-  peak?: number | undefined;
+  peak?: number | string | undefined;
   /**
    * Whether the subtitle is an exact match.
    */
-  perfectMatch?: boolean | undefined;
+  perfectMatch?: boolean | PerfectMatchEnumOpen | undefined;
   /**
    * Video profile.
    */
@@ -317,11 +358,11 @@ export type Stream = {
   /**
    * Whether lyrics are timestamped.
    */
-  timed?: boolean | undefined;
+  timed?: boolean | TimedEnumOpen | undefined;
   /**
    * Whether the subtitle is temporary or downloaded.
    */
-  transient?: boolean | undefined;
+  transient?: boolean | TransientEnumOpen | undefined;
   /**
    * ID of the user who added the subtitle.
    */
@@ -348,43 +389,114 @@ export const CanAutoSyncEnum$inboundSchema: z.ZodType<
 > = openEnums.inboundSchema(CanAutoSyncEnum);
 
 /** @internal */
-export const CanAutoSyncUnion1$inboundSchema: z.ZodType<
-  CanAutoSyncUnion1,
-  unknown
-> = smartUnion([CanAutoSyncEnum$inboundSchema, types.boolean()]);
+export const CanAutoSync$inboundSchema: z.ZodType<CanAutoSync, unknown> =
+  smartUnion([types.boolean(), CanAutoSyncEnum$inboundSchema]);
 
-export function canAutoSyncUnion1FromJSON(
+export function canAutoSyncFromJSON(
   jsonString: string,
-): SafeParseResult<CanAutoSyncUnion1, SDKValidationError> {
+): SafeParseResult<CanAutoSync, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CanAutoSyncUnion1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CanAutoSyncUnion1' from JSON`,
+    (x) => CanAutoSync$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CanAutoSync' from JSON`,
   );
 }
 
 /** @internal */
-export const CanAutoSyncUnion2$inboundSchema: z.ZodType<
-  CanAutoSyncUnion2,
-  unknown
-> = smartUnion([
-  types.boolean(),
-  smartUnion([CanAutoSyncEnum$inboundSchema, types.boolean()]),
+export const Loudness$inboundSchema: z.ZodType<Loudness, unknown> = smartUnion([
+  types.number(),
+  types.string(),
 ]);
 
-export function canAutoSyncUnion2FromJSON(
+export function loudnessFromJSON(
   jsonString: string,
-): SafeParseResult<CanAutoSyncUnion2, SDKValidationError> {
+): SafeParseResult<Loudness, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CanAutoSyncUnion2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CanAutoSyncUnion2' from JSON`,
+    (x) => Loudness$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Loudness' from JSON`,
+  );
+}
+
+/** @internal */
+export const Peak$inboundSchema: z.ZodType<Peak, unknown> = smartUnion([
+  types.number(),
+  types.string(),
+]);
+
+export function peakFromJSON(
+  jsonString: string,
+): SafeParseResult<Peak, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Peak$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Peak' from JSON`,
+  );
+}
+
+/** @internal */
+export const PerfectMatchEnum$inboundSchema: z.ZodType<
+  PerfectMatchEnumOpen,
+  unknown
+> = openEnums.inboundSchema(PerfectMatchEnum);
+
+/** @internal */
+export const PerfectMatch$inboundSchema: z.ZodType<PerfectMatch, unknown> =
+  smartUnion([types.boolean(), PerfectMatchEnum$inboundSchema]);
+
+export function perfectMatchFromJSON(
+  jsonString: string,
+): SafeParseResult<PerfectMatch, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerfectMatch$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerfectMatch' from JSON`,
   );
 }
 
 /** @internal */
 export const StreamType$inboundSchema: z.ZodType<StreamTypeOpen, unknown> =
   openEnums.inboundSchemaInt(StreamType);
+
+/** @internal */
+export const TimedEnum$inboundSchema: z.ZodType<TimedEnumOpen, unknown> =
+  openEnums.inboundSchema(TimedEnum);
+
+/** @internal */
+export const Timed$inboundSchema: z.ZodType<Timed, unknown> = smartUnion([
+  types.boolean(),
+  TimedEnum$inboundSchema,
+]);
+
+export function timedFromJSON(
+  jsonString: string,
+): SafeParseResult<Timed, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Timed$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Timed' from JSON`,
+  );
+}
+
+/** @internal */
+export const TransientEnum$inboundSchema: z.ZodType<
+  TransientEnumOpen,
+  unknown
+> = openEnums.inboundSchema(TransientEnum);
+
+/** @internal */
+export const Transient$inboundSchema: z.ZodType<Transient, unknown> =
+  smartUnion([types.boolean(), TransientEnum$inboundSchema]);
+
+export function transientFromJSON(
+  jsonString: string,
+): SafeParseResult<Transient, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Transient$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Transient' from JSON`,
+  );
+}
 
 /** @internal */
 export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
@@ -401,10 +513,7 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       bitrate: types.optional(types.number()),
       bitrateMode: types.optional(BitrateMode$inboundSchema),
       canAutoSync: types.optional(
-        smartUnion([
-          types.boolean(),
-          smartUnion([CanAutoSyncEnum$inboundSchema, types.boolean()]),
-        ]),
+        smartUnion([types.boolean(), CanAutoSyncEnum$inboundSchema]),
       ),
       channels: types.optional(types.number()),
       chromaLocation: types.optional(types.string()),
@@ -444,12 +553,14 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       languageCode: types.optional(types.string()),
       languageTag: types.optional(types.string()),
       level: types.optional(types.number()),
-      loudness: types.optional(types.number()),
+      loudness: types.optional(smartUnion([types.number(), types.string()])),
       lra: types.optional(types.number()),
       minLines: types.optional(types.number()),
       original: types.optional(types.boolean()),
-      peak: types.optional(types.number()),
-      perfectMatch: types.optional(types.boolean()),
+      peak: types.optional(smartUnion([types.number(), types.string()])),
+      perfectMatch: types.optional(
+        smartUnion([types.boolean(), PerfectMatchEnum$inboundSchema]),
+      ),
       profile: types.optional(types.string()),
       provider: types.optional(types.string()),
       providerTitle: types.optional(types.string()),
@@ -462,8 +573,12 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       startRamp: types.optional(types.string()),
       streamIdentifier: types.optional(types.number()),
       streamType: StreamType$inboundSchema,
-      timed: types.optional(types.boolean()),
-      transient: types.optional(types.boolean()),
+      timed: types.optional(
+        smartUnion([types.boolean(), TimedEnum$inboundSchema]),
+      ),
+      transient: types.optional(
+        smartUnion([types.boolean(), TransientEnum$inboundSchema]),
+      ),
       userID: types.optional(types.number()),
       visualImpaired: types.optional(types.boolean()),
       width: types.optional(types.number()),

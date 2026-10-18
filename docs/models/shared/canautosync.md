@@ -1,4 +1,4 @@
-# CanAutoSyncUnion2
+# CanAutoSync
 
 Indicates if the stream can auto-sync.
 
@@ -11,9 +11,9 @@ Indicates if the stream can auto-sync.
 const value: boolean = false;
 ```
 
-### `shared.CanAutoSyncUnion1`
+### `shared.CanAutoSyncEnum`
 
 ```typescript
-const value: shared.CanAutoSyncUnion1 = false;
+const value: shared.CanAutoSyncEnum = CanAutoSyncEnum.One;
 ```
 

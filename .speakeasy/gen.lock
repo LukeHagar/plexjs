@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 8af03503b21cc52f69a337438a295c73
+  docChecksum: ebfbd9cbbebaec0d97992b0bf4e40078
   docVersion: 1.1.1
   speakeasyVersion: 1.802.0
   generationVersion: 2.948.4
-  releaseVersion: 0.46.3
-  configChecksum: 2c42f4a9ed1dd6bb9553d670e543a9a7
+  releaseVersion: 0.46.4
+  configChecksum: 57192d5a1b81b34c0f882c11ba0d5694
   repoURL: https://github.com/LukasParke/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukasParke/plexjs
   published: true
 persistentEdits:
-  generation_id: d2b72147-5dc8-4508-921d-c6ad5f3d2da7
-  pristine_commit_hash: 417807e507a466d867f9d34de65f9d5dc621aca7
-  pristine_tree_hash: 205196716f64e7b730147f4ab37290d34fac32d1
+  generation_id: 04286c3b-21d7-4eb2-8236-9fa493b4d42d
+  pristine_commit_hash: 2556102f7522d5dffc1f84b58c380bce321ba24f
+  pristine_tree_hash: 4eaa1bf24fc78b120b8f4a72edb5b5ab568637a3
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -442,8 +442,8 @@ trackedFiles:
     pristine_git_object: fc97fe0478ed19165b893dda661534d7873f069e
   docs/models/operations/createcollectionrequest.md:
     id: 72692092210d
-    last_write_checksum: sha1:14fa5635b2003fc1ac3b4e422e7517d67082bb62
-    pristine_git_object: a19292c92f0d0503ff76a91bb412db50d25e3bc7
+    last_write_checksum: sha1:891a7cc80cf3d57b68ee0ecd844c84c6bf54f99b
+    pristine_git_object: d792b82a0bc66560cfb1e60a118a617cac0adcba
   docs/models/operations/createcustomhubglobals.md:
     id: 5e23494b99ac
     last_write_checksum: sha1:9bc197e23e491fb4d0ea6b8728a7dbfff6e36529
@@ -1706,8 +1706,8 @@ trackedFiles:
     pristine_git_object: e401720edbde555a5b3b48f294313a4099873016
   docs/models/operations/getlibrarymatchesrequest.md:
     id: 198ba3946f90
-    last_write_checksum: sha1:edad04753777ee66749ee54f0fa7a1baffb77aed
-    pristine_git_object: abb68ae276fa772ddff2ed220904c9e48b9642fd
+    last_write_checksum: sha1:717d281af1c3cca1cac59260152d134a2bb3b919
+    pristine_git_object: 2b05db20ae4485be6035dd3c8c84b7244bdafbb9
   docs/models/operations/getlibrarymatchesresponse.md:
     id: 57446db88f8f
     last_write_checksum: sha1:05c189a4de28a5c5dc308931f8404d08469f247d
@@ -2366,8 +2366,8 @@ trackedFiles:
     pristine_git_object: 297dca3046ccafd0f800eeb2e45c17dc18b56b9d
   docs/models/operations/getserverresourcesrequest.md:
     id: 9548fbad66d0
-    last_write_checksum: sha1:a1fecf4c7e05d4705b71ad0da2e8fbcb8e18f95b
-    pristine_git_object: e22617e0d3422e4f32b959710d3876c4457ff1ce
+    last_write_checksum: sha1:a1ced161f57574575d8979779671a01fdc2b8f02
+    pristine_git_object: ceb44e5f92da2625b0c97f62cc7b774f9c636627
   docs/models/operations/getserveruserfeaturesglobals.md:
     id: c77fa1591383
     last_write_checksum: sha1:e148fe01a9a24ea64e49a1ddc254077f1225696b
@@ -2558,8 +2558,8 @@ trackedFiles:
     pristine_git_object: db71f02f19d49c2cb21ce92d195109ab558185aa
   docs/models/operations/gettagsrequest.md:
     id: 5b368946f43f
-    last_write_checksum: sha1:6d82672d518a2fe293689c0703bfddf2a38419c6
-    pristine_git_object: e88755a11d432a5c0367397da23ec782f19e08e9
+    last_write_checksum: sha1:c2a6b43c172b0c2be216b34f74bfa48208b061c1
+    pristine_git_object: 45f81b18e9b48b1eddf266d1a9ae0a0d198f7dcd
   docs/models/operations/gettagsresponse.md:
     id: 46aa145503d3
     last_write_checksum: sha1:10478e6b2906243a9380764dbfb164f9768aec0b
@@ -2706,8 +2706,8 @@ trackedFiles:
     pristine_git_object: 4c196920a758fa4ea47fa52d8166e2224832f2f4
   docs/models/operations/includerelay.md:
     id: f53e33a17b16
-    last_write_checksum: sha1:508331934759536f028d0cb78852b9f337151272
-    pristine_git_object: 0582757da70648594bd0368f61854896d4591061
+    last_write_checksum: sha1:aa52ffb479b6b1f01f55c6e73c17783e372cccbc
+    pristine_git_object: cd34d31520d0fb8dfde61fef4c9a7bacc0425431
   docs/models/operations/ingesttransientitemglobals.md:
     id: b92e3d3c7ba9
     last_write_checksum: sha1:b5a0e79d3541cbd1d65b10cacf81b730eaf8d40a
@@ -4166,8 +4166,8 @@ trackedFiles:
     pristine_git_object: 9ab88238194c96622d4d07560ad3e9b61ee40484
   docs/models/operations/voicesearchhubsrequest.md:
     id: 9c5d33158eb0
-    last_write_checksum: sha1:9f734e0fbff0a76f76f9d09621423f739b60c386
-    pristine_git_object: c641c30edfb359bbc643a482df6b9b0be25224c0
+    last_write_checksum: sha1:43177f6ef07b594dc83131e1d29537ebc5985061
+    pristine_git_object: 9ae5876ee51e730907c86a5e4fc4639e012f8d61
   docs/models/operations/voicesearchhubsresponse.md:
     id: aa5df377baf2
     last_write_checksum: sha1:b22da621db281c7013e1273005c6d3851b342eea
@@ -4260,18 +4260,14 @@ trackedFiles:
     id: 59439e78156e
     last_write_checksum: sha1:5b8093100c43b909b8dc6103a21cc3612c1c8d28
     pristine_git_object: 52b203d048a576addff766659bfacf28b3d44590
+  docs/models/shared/canautosync.md:
+    id: 73929f14e21b
+    last_write_checksum: sha1:2f113155f711cf6bac61aaf66a76997770a9b408
+    pristine_git_object: f3d77b585890e255bb4fd2c2d6e6b84e59663ec9
   docs/models/shared/canautosyncenum.md:
     id: 57cab198a82c
     last_write_checksum: sha1:e687c851cc639e6ba88ab073e751b580931c01b0
     pristine_git_object: 40a98fba827ee9dc6756b062d26e3b6d43fd2eda
-  docs/models/shared/canautosyncunion1.md:
-    id: dc6ef470403c
-    last_write_checksum: sha1:b2a4c3f550c274d1ecabfe4ab2a7993b5acb9087
-    pristine_git_object: 49d4a2609207329e0fd3cff4049a98579ebd4ef4
-  docs/models/shared/canautosyncunion2.md:
-    id: 3eb62266eee6
-    last_write_checksum: sha1:650d038732ea4f6975a30062d4a1472498bc74a1
-    pristine_git_object: a98ea80e9b9664827bb81a0de35e1357a07f124b
   docs/models/shared/channel.md:
     id: e83c462ee534
     last_write_checksum: sha1:9a26e62b168b8de020b584cf30c7e6210775631f
@@ -4550,8 +4546,8 @@ trackedFiles:
     pristine_git_object: 4838885e3837a0df60281ed4ee3f99bd4b1a6a27
   docs/models/shared/librarysection.md:
     id: 549f35ac58b7
-    last_write_checksum: sha1:e20dabc51f330023001bb622515efad975aa21b5
-    pristine_git_object: 4f37f7720877179d201d09075fb70ce0ebb7b7d2
+    last_write_checksum: sha1:c8fe0abb27c324547ca669e1b3d9101e38e956bd
+    pristine_git_object: 76b73764781788c64286a4f285f99eec17f2b3e2
   docs/models/shared/librarysectionallowsyncenum.md:
     id: 78472e387cc8
     last_write_checksum: sha1:56e08edd99a5408e48f8f17cce67b4eb155a2dfe
@@ -4584,6 +4580,10 @@ trackedFiles:
     id: 0b4b33304bd3
     last_write_checksum: sha1:99ad11c2dc7b1bf32cccabab046d68a138cac36a
     pristine_git_object: e0afd37e3e97cddb258ec4b0fec1fe07aaa38cbf
+  docs/models/shared/loudness.md:
+    id: 51c578a35164
+    last_write_checksum: sha1:b9155769078fd5930b66dd745d3892a4a6f63e75
+    pristine_git_object: cbbc638cee8c9bfa5c2d86506602cf4da5c24d2f
   docs/models/shared/mailingliststatus.md:
     id: 954f43bb93bb
     last_write_checksum: sha1:37da79681b37eff3340c65afbe4b302230373ba0
@@ -4628,14 +4628,10 @@ trackedFiles:
     id: 17b5db5b7a12
     last_write_checksum: sha1:5a6e3d3b8783542b129bbf6486a0730624205f0f
     pristine_git_object: 5e4ff82476208c8c7c574b22bbf350c15bb7123e
-  docs/models/shared/mediacontainerwithdecisioncanautosyncunion1.md:
-    id: 5dc00bdc64db
-    last_write_checksum: sha1:f8c9fbbe01eafafff1aaace52b60098790eae716
-    pristine_git_object: ac3644d04aca9321d9f4f82cdd012106cf68a91c
-  docs/models/shared/mediacontainerwithdecisioncanautosyncunion2.md:
-    id: dc3aee095a58
-    last_write_checksum: sha1:bff1f9836d4959dc4ced4bdb4ee817d444807634
-    pristine_git_object: 0e43f0bc55f135c03b5099ee410422456d1ba64e
+  docs/models/shared/mediacontainerwithdecisioncanautosyncunion.md:
+    id: bf5a822c2a5a
+    last_write_checksum: sha1:8594721fb0e17bc0b23745f60b114d8f1468f99b
+    pristine_git_object: 78bde000f3730de0b427973556e4d9769b501374
   docs/models/shared/mediacontainerwithdecisionguid.md:
     id: 7972f5807f95
     last_write_checksum: sha1:625ce69076fb9bf56d89dec1b0dce5b0fb1dcd50
@@ -4652,6 +4648,10 @@ trackedFiles:
     id: 7ba2e475ec1d
     last_write_checksum: sha1:e7dc35a3ba2fd09d6b459768fc7494529efb8c18
     pristine_git_object: 09d6a7e4ccc40e8df5e2789a9ba7d4ae63d1b484
+  docs/models/shared/mediacontainerwithdecisionloudness.md:
+    id: 854581036a2b
+    last_write_checksum: sha1:f0609d41f0c595618861dd16e8d6c41d39476569
+    pristine_git_object: fbdee27dac336f3d673d2b9a9d120c3b887f11b7
   docs/models/shared/mediacontainerwithdecisionmedia.md:
     id: 0029bcfd1e7c
     last_write_checksum: sha1:dfc5684dd5caa47615ad87126816334f1c3d87fb
@@ -4672,6 +4672,18 @@ trackedFiles:
     id: 13ec297e41c2
     last_write_checksum: sha1:f193d792c445f67810b32abd6bc180c9a38f7de6
     pristine_git_object: db1ef8c95760fee92a24a17a8ffa2e008a1d46fc
+  docs/models/shared/mediacontainerwithdecisionpeak.md:
+    id: d56f552bbee5
+    last_write_checksum: sha1:30509dc841bc394176086b51d7f79b846fc09d5a
+    pristine_git_object: 225218c90f844194db48daab28b12a1acbf31528
+  docs/models/shared/mediacontainerwithdecisionperfectmatchenum.md:
+    id: f1ee18717fcd
+    last_write_checksum: sha1:5c5a947da0a2a94284a5e6d69a205033e322e8c4
+    pristine_git_object: f0d3f4519e0b7050160aca72113725caeb592d23
+  docs/models/shared/mediacontainerwithdecisionperfectmatchunion.md:
+    id: 63c8f7d1278f
+    last_write_checksum: sha1:50decf5c966196f1fd781bc8ca570bb68a9b6121
+    pristine_git_object: 023e1b1dff63ad8caae4de09f1fe37fcbf20bac9
   docs/models/shared/mediacontainerwithdecisionskipchildrenenum.md:
     id: 241a4fe0f4f1
     last_write_checksum: sha1:8f23ab9e4c4b53a32b935a5c7836d1f674c6e5df
@@ -4690,12 +4702,28 @@ trackedFiles:
     pristine_git_object: a625fd064ab844a766840db8c1d5d2f11f1250a9
   docs/models/shared/mediacontainerwithdecisionstream.md:
     id: 91d49fa9e38d
-    last_write_checksum: sha1:2b59170237265198305dce9d084babd20bc3f9f4
-    pristine_git_object: dcfda52622bc34e6314a7735fa3051327e498725
+    last_write_checksum: sha1:6a5d0f6774bb41c84538f22b06dff43bdbbcf1ec
+    pristine_git_object: f5da0fe63c3650d853933309e776bf39afce48a8
   docs/models/shared/mediacontainerwithdecisionstreamtype.md:
     id: 5b891c99c195
     last_write_checksum: sha1:3d97e67ff6c89c5c6df83a19ab9faf4e5eae313d
     pristine_git_object: 15336b71f04a61195905932fb7c386e4cfdafd95
+  docs/models/shared/mediacontainerwithdecisiontimedenum.md:
+    id: 5fab1f08d5e6
+    last_write_checksum: sha1:1831671f717abc1e164984956dff9bfe2272878c
+    pristine_git_object: c46c54ba919556cacf96cd3724eb540d0c37a7c6
+  docs/models/shared/mediacontainerwithdecisiontimedunion.md:
+    id: f6c9b6934b66
+    last_write_checksum: sha1:99d4b73a5946688c6ff825e0d7a66d2fdab464c0
+    pristine_git_object: dc5a0b8e9264e8094ee3db7bdaaa41ff581866d4
+  docs/models/shared/mediacontainerwithdecisiontransientenum.md:
+    id: 3c60936f2af2
+    last_write_checksum: sha1:ad97b0c30961df83c4d5276f103b703151e63fde
+    pristine_git_object: ce94729330f8d94715b54639f8bbfecd36ad34f1
+  docs/models/shared/mediacontainerwithdecisiontransientunion.md:
+    id: 3652a42cff0d
+    last_write_checksum: sha1:a042fe557dc44ac2366b94cc76ea72e50ca6d09f
+    pristine_git_object: af82605c8838099cfbe7b88ef31c99ca2fe76d28
   docs/models/shared/mediacontainerwithdevice.md:
     id: 404323f63769
     last_write_checksum: sha1:fa88c95278c0707f00fd5d33a6283f1ded8637f6
@@ -4874,8 +4902,8 @@ trackedFiles:
     pristine_git_object: 2ecb9edb6268c0cba9373b17c60c5d3924d02902
   docs/models/shared/mediaquery.md:
     id: 7abd93b9df6b
-    last_write_checksum: sha1:2f1f4bb5cccc2ed91c2de822bb514c2508ea01d4
-    pristine_git_object: 07aaf06f02cc4bdbabe33fddb4def0610e356593
+    last_write_checksum: sha1:1e2c059b1fb079015f58e90acb17c0a1ce4cbcad
+    pristine_git_object: d9d358491b2d4d1e22afc7df666bc3ff20af0982
   docs/models/shared/mediareviewsvisibility.md:
     id: 9d6404bad094
     last_write_checksum: sha1:52548b4d4a55a8c4d8fb077b7b0628b98c4d6a65
@@ -4886,12 +4914,12 @@ trackedFiles:
     pristine_git_object: 4af5c5a0c1f6ddd8c3527a6299c1897b58ea28a1
   docs/models/shared/mediatype.md:
     id: e246cf9b9f1a
-    last_write_checksum: sha1:3bbf628deb0c38c5b1dfb99ca1526a83f220a2e9
-    pristine_git_object: ffe43a64e58ae00022b46b2122526af73a4d7567
+    last_write_checksum: sha1:7f3c6f91a1c03610f5d229485ed1b70318592502
+    pristine_git_object: fe9d5a00c82a8002c1f8715f86dfa75c2158fd17
   docs/models/shared/mediatypestring.md:
     id: 31aad1614762
-    last_write_checksum: sha1:ac253b9949fefefae92d9cf7dcb833478b5fda5b
-    pristine_git_object: 5b123d1b52627202d49f5f1853c761580e41075a
+    last_write_checksum: sha1:4ec47425677192f4fa2efa4eda173fa318576c9a
+    pristine_git_object: 0f67d2273b05774223347b704f07a434648346d5
   docs/models/shared/metadata.md:
     id: c5516375ff4b
     last_write_checksum: sha1:031edac1b88849bb3be481fda9384620539b03b7
@@ -4936,6 +4964,18 @@ trackedFiles:
     id: b3dd77bb67eb
     last_write_checksum: sha1:66f9af9b945827b098caf6227687d3b79d81494b
     pristine_git_object: 6c0bbc09c45b5b290c10582e4a3ce7f4b9e3be8d
+  docs/models/shared/peak.md:
+    id: 111cc24d10d4
+    last_write_checksum: sha1:f0543f770e936e093ea9d9dc36397d09c62c3f9a
+    pristine_git_object: 9dd7b8a802ea3f2d3d136350278fa243a030bfa2
+  docs/models/shared/perfectmatch.md:
+    id: 19001f967247
+    last_write_checksum: sha1:12b8dc0aa221e0344a6c5a76d322127511354928
+    pristine_git_object: 6301992453d0165a00bb38626a22e9a554ac25a5
+  docs/models/shared/perfectmatchenum.md:
+    id: c5c4063fd5ae
+    last_write_checksum: sha1:90e4c9a7fe03cd164f496f8bffcd74ea33511393
+    pristine_git_object: c557624e8f4894160807d84567e58e5143ca0d68
   docs/models/shared/playbackhistorymetadata.md:
     id: af4fbd439015
     last_write_checksum: sha1:85eeda4d38c6d69621327739aff4cd974ca90dac
@@ -5086,8 +5126,8 @@ trackedFiles:
     pristine_git_object: 5cdd3d2250a8d3cd50d30e4bd0b4066f97d50400
   docs/models/shared/stream.md:
     id: 01ae460c947f
-    last_write_checksum: sha1:81205247d5936819db3e2ac05865cedc1b9048c3
-    pristine_git_object: bb3a7ce4d7b50eeeb435bbe4075b7b3b6bc89ea5
+    last_write_checksum: sha1:ab1aa0e2758e5f827ac63fbde55d3e7357266263
+    pristine_git_object: 0ec11568bc8a11cb2b5ed7d3967a1e9dfec816d9
   docs/models/shared/streamdecision.md:
     id: 980df2a1cfda
     last_write_checksum: sha1:9030ad1cc98da80cc00202f68c266d73eabfc119
@@ -5124,6 +5164,14 @@ trackedFiles:
     id: aa5ec5591fe3
     last_write_checksum: sha1:a4c7e49367a59533f1b6ae840fde73f2394a10e4
     pristine_git_object: 0c45b3b38be1cad885c9633ffc5e7a40a5fa7cb5
+  docs/models/shared/timed.md:
+    id: c6052097d48e
+    last_write_checksum: sha1:6a1dc893a6e297120c89156318c08c17c51089c9
+    pristine_git_object: 0094551e1cdeaf4c5b04b7656683858d5ae326e5
+  docs/models/shared/timedenum.md:
+    id: f4ae422d811b
+    last_write_checksum: sha1:c869fafd302e34bf1706bbdbece76e2607af1dcc
+    pristine_git_object: 7edafd8b5a203a074afd82f422bb70e98202a3a4
   docs/models/shared/timelineentry.md:
     id: aad2d21f561a
     last_write_checksum: sha1:5763983226139c7857f0dfacf47d61686beee66e
@@ -5156,6 +5204,14 @@ trackedFiles:
     id: 5c68b37d7c5e
     last_write_checksum: sha1:cb5c03ded455526552dc9ec3c26f68c24aea4945
     pristine_git_object: 857a3fee18fcf5a5817a3f808c4da7ee0042abd9
+  docs/models/shared/transient.md:
+    id: 1335e14eb935
+    last_write_checksum: sha1:8c355a08352165e77b5e7681bec5869880dbd6d0
+    pristine_git_object: 1709b73c224087b528c3cb8c8882e736ac6a1355
+  docs/models/shared/transientenum.md:
+    id: aa4aa33bf770
+    last_write_checksum: sha1:3c0d63e665b043e8368b5e971c7e4586ce47d803
+    pristine_git_object: 1939582fabcdbf1b6e09df64361c6ae482a13950
   docs/models/shared/typeresponse.md:
     id: bfa32f416271
     last_write_checksum: sha1:7bbaceb654e3b281a574c0174543167fe1e8825f
@@ -5286,8 +5342,8 @@ trackedFiles:
     pristine_git_object: 2522ab134b545ca4c2cb1a46a18c7eb51f341d24
   docs/sdks/playqueue/README.md:
     id: 1488a418f0ed
-    last_write_checksum: sha1:3a1c8e1d4f65aad3f025639ec8e9f2fedadcf2ae
-    pristine_git_object: b9d482691ad89bf06f41e7b5d0b6232103f2d9ab
+    last_write_checksum: sha1:7244d505eb1e6f289e2a3dcb770e07bc109a3b09
+    pristine_git_object: 7eba5d7bafc9d91903f7ad47c2231ee74796d606
   docs/sdks/plex/README.md:
     id: e38f26a59e3a
     last_write_checksum: sha1:49ffd26f6c1fe53fd9d55c596145ff621030fdff
@@ -5362,12 +5418,12 @@ trackedFiles:
     pristine_git_object: 2a9ce19cbaf7f839010b44798760bc8c78189135
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:b8b7765eaa12f53020324725b58445f36187f572
-    pristine_git_object: e18d55761e0beed411a636057d269b5583e366db
+    last_write_checksum: sha1:92165680bd5b0c97365aa89501f566a9d71b98d2
+    pristine_git_object: 37182cb70cfa1c9c14dda03acc37dfedcf66d7a5
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:3ba8d5b8a9b0a1ee332f97ddafeb07f56061cd56
-    pristine_git_object: 0e3e8fc9dcb460dd3e2a36952b2d9340e6bad48d
+    last_write_checksum: sha1:be259a707f75390d2e5487619ba1487433262187
+    pristine_git_object: 6861626b278a427e636addec1ddd5fec2c07192e
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:a544cafe8ae2bfaaabff6cc5677c8ed3d67f6b88
@@ -7014,8 +7070,8 @@ trackedFiles:
     pristine_git_object: 962ea486e17eabe13bcf068493a556110c944df8
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:9d64c37c24ef7b04e50b0a2e79ae988bb5b983d8
-    pristine_git_object: 91c1f07cc2073a694abf21466157bcaadb50b037
+    last_write_checksum: sha1:c879a6adbeb4bccfb1d2ae20c7a30af953a22c6e
+    pristine_git_object: d8bd84b15df904310d9a44839bf137d7b77ffc14
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -7222,8 +7278,8 @@ trackedFiles:
     pristine_git_object: 1bf39ce7ea8e4f5823987d1b4c2f15f492506364
   src/models/operations/createcollection.ts:
     id: 015f86c72852
-    last_write_checksum: sha1:8bb66fcb8e5de1a65f86619dc848001334c49f40
-    pristine_git_object: 950d8c49235c4b1a96e3881787406551b2377ed0
+    last_write_checksum: sha1:7a32912e6cbd0a44ac0e9181ac7ee155fd58e3f5
+    pristine_git_object: 2e725f8d247c5d57f359e77577229db140d775fd
   src/models/operations/createcustomhub.ts:
     id: 72c5a739b40a
     last_write_checksum: sha1:22569a3459941cf530e3ee91f66233480a7052b9
@@ -7726,8 +7782,8 @@ trackedFiles:
     pristine_git_object: da485286bbcfa342616a3a3f7c4b65e71f89d2ac
   src/models/operations/getlibrarymatches.ts:
     id: a6258c1e86b3
-    last_write_checksum: sha1:2fe3549bd7240810fc0f7e1e62df1ea2df099a41
-    pristine_git_object: 359a0bc25063821fd58d129c9ebfa723732517a4
+    last_write_checksum: sha1:402edc5d4c89b33f100acada7ed3aeb1f47540b6
+    pristine_git_object: aabbd4b174ec31a5dd2373c7aa98b0cf085dbdb4
   src/models/operations/getlibrarysectionhubs.ts:
     id: 52d53b72b377
     last_write_checksum: sha1:49128035f4a384acd3acd2bdaea19994da642bbc
@@ -8066,8 +8122,8 @@ trackedFiles:
     pristine_git_object: 25048d25cd757b01da2c710f63ac5a389f46baf9
   src/models/operations/gettags.ts:
     id: 087074f91783
-    last_write_checksum: sha1:f5aecb3304c5d32e9481aa9120fb168ac95ff11c
-    pristine_git_object: ee7b6413ec6d4f6a5ed23f18a270714c8947a55c
+    last_write_checksum: sha1:74e5b9a974b62f7d380dd0b60c2d65cb4fef22f0
+    pristine_git_object: 56175a61b8731d107c9130c33bc601a8e11be7e4
   src/models/operations/gettasks.ts:
     id: b9fdecc43ae1
     last_write_checksum: sha1:553d87ce3f07dbda1daddd2a17259fc94c11182d
@@ -8658,8 +8714,8 @@ trackedFiles:
     pristine_git_object: ac5afc80c92481f1b49f89f1435b534c8299ae8e
   src/models/operations/voicesearchhubs.ts:
     id: 25d5b0fe74c7
-    last_write_checksum: sha1:899651bbe03af5857017d8e394c0d15d79599bdc
-    pristine_git_object: f6c4b7ae92e9d3bc6462f88b3ebe9b61de09c330
+    last_write_checksum: sha1:f55259c45a3c72ba70d073b8377bb5cb627c7918
+    pristine_git_object: 018ab3e0c8c306213e6f716b59e45b34138bed6b
   src/models/operations/writemessage.ts:
     id: a7902369fe0e
     last_write_checksum: sha1:3a502a7cfc4f37f185ce8848586601456dd5111a
@@ -8854,8 +8910,8 @@ trackedFiles:
     pristine_git_object: 2d788187856fbbd409b579537f68d5063ecb3661
   src/models/shared/librarysection.ts:
     id: 12d563131e9f
-    last_write_checksum: sha1:2be6775d100e1d9c156636005e07678046e73c54
-    pristine_git_object: 713a686ef2ce77c5bb9adf706ba3c4fa68dae440
+    last_write_checksum: sha1:0a3e2c016c1e35e4276c7569550d39033d69ba5e
+    pristine_git_object: 6ad234745ae7e4deef421acfddbc6027323041ea
   src/models/shared/librarysections.ts:
     id: c2a7dcba50ef
     last_write_checksum: sha1:67934a7e2c879a998aad73b568e9f068d4238f11
@@ -8886,8 +8942,8 @@ trackedFiles:
     pristine_git_object: 2e281d3eed25d21175e4fbc53e7c4596a8c37414
   src/models/shared/mediacontainerwithdecision.ts:
     id: 6288db5e92b2
-    last_write_checksum: sha1:341c3c248fde8f19032a0e8710bf819c4fb4935a
-    pristine_git_object: 9d1f328091a618cd011abd7d0363d0d864e47c37
+    last_write_checksum: sha1:5781528d4279a0f6d117ab501bc83e9d250778fd
+    pristine_git_object: 9540ba1e5d016369d69debcb760d1ba951c2eae4
   src/models/shared/mediacontainerwithdevice.ts:
     id: 72ad6ef75e08
     last_write_checksum: sha1:5410981c74e047f24605a2bc4024317750761b0d
@@ -8958,20 +9014,20 @@ trackedFiles:
     pristine_git_object: f0652b538d65619e327d2a75a0d3d62bfc2c244f
   src/models/shared/mediaquery.ts:
     id: f558fe09003f
-    last_write_checksum: sha1:4681c24740e076dbf1a469e2f437992679576917
-    pristine_git_object: ab1c08527430441d7838500016b0b3db5bf4e3e5
+    last_write_checksum: sha1:a8d298d71f6a8e855988f899858db2b2b4e4396a
+    pristine_git_object: f524e4d21514db1bf00b3f38eb55431b8e4161ce
   src/models/shared/mediasubscription.ts:
     id: 84c332e53f6f
     last_write_checksum: sha1:f417b2e1b805120808da5b4ea5eafa0986977a22
     pristine_git_object: a81cfcff1a8721c03dd0aae3e2d0e8447a1b4eaf
   src/models/shared/mediatype.ts:
     id: fb8e630f557f
-    last_write_checksum: sha1:f50e7bee27dfc93cb9d970ef9bf6b26b20482e3f
-    pristine_git_object: 4a2b6eb7fcdf9795237870e823e890082eed8567
+    last_write_checksum: sha1:4bc43a99ee0d1ec28472d9a4922332e27bf9d7ec
+    pristine_git_object: aa344201da44a9c6255de3bd3a95a0d7c310676a
   src/models/shared/mediatypestring.ts:
     id: 6034cc47e0ae
-    last_write_checksum: sha1:7af1b77d4651214b36ce05eb0cdb37994e26b1ee
-    pristine_git_object: a918dc8b93bd736d10624ecc8f2bc5eed8afa31f
+    last_write_checksum: sha1:afa6251bedbe99f92bb4ddf655a0389256056b0f
+    pristine_git_object: 3de4b1fbac7981c83abd911e89413f9e5610b7b8
   src/models/shared/metadata.ts:
     id: af615fa58c88
     last_write_checksum: sha1:4988834ad5fcd5406d6cb8311cafac6644b9ac9d
@@ -9070,8 +9126,8 @@ trackedFiles:
     pristine_git_object: fb034b985670103969cbbddc319e60eb81adada3
   src/models/shared/stream.ts:
     id: 521b9ea29db3
-    last_write_checksum: sha1:289a72ed6ef7b1725ac0de8661255625652bdfaf
-    pristine_git_object: c3e8796e4399aa2fde0237d9d7ad8196c24740b5
+    last_write_checksum: sha1:e1310d09648cb425f45a0ef066995bb6c82d3b97
+    pristine_git_object: 031681bebe2f78ff350c4ae164eb5f6894a35bb3
   src/models/shared/subtitles.ts:
     id: 6a5ddabb82d3
     last_write_checksum: sha1:b13bbef35234a5dfc64166f89ae8fdc6e3ca0a8f
@@ -19162,9 +19218,7 @@ generatedTests:
   applyUpdates: "2026-07-19T00:27:18Z"
   updateCollectionItem: "2026-07-19T00:27:18Z"
   acceptInvite: "2026-08-21T00:10:31Z"
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `plex-api.content.listContent()`:  `request` **Changed**
+releaseNotes: "## Typescript SDK Changes:\n* `plex-api.playback.getProgress()`:  `response.mediaContainer.video[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.provider.searchDiscover()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.provider.getWatchlist()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.users.getHome()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.downloadQueue.getItemDecision()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getAllHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getContinueWatching()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getContinueWatchingItems()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getHomeRecentlyAdded()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getPromotedHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getMetadataHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getPostplayHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getRelatedHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.hubs.getSectionHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.search.searchHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.search.voiceSearchHubs()`: \n  *  `request.type` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getLibraryItems()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.ingestTransientItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getLibraryMatches()`: \n  *  `request.type` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getRecentlyAddedGlobal()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.addSection()`:  `response.mediaContainer.directory[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getTags()`: \n  *  `request.type` **Changed** (Breaking ⚠️)\n* `plex-api.library.getMetadataChildren()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.computeSonicPath()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getMetadataGrandchildren()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getMetadataGrandparent()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getNearestMetadata()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getMetadataOnDeck()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getMetadataParent()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getMetadataReviews()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getAllItemLeaves()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getExtras()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.listMatches()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getRelatedItems()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.listSimilar()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getItemTree()`:  `response.mediaContainer.metadataItem[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.listPersonMedia()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getLibraryDetails()`:  `response.mediaContainer.directory[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionArtists()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.autocomplete()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getByContentRating()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getByDecade()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getByFolder()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getByResolution()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getByYear()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionClips()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getCollections()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getCommon()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionEpisodes()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getFirstCharacters()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n* `plex-api.library.getLibrarySectionHubs()`:  `response.mediaContainer.hub[].metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionMovies()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getNewestForSection()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getOnDeckForSection()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionPhotos()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionPlaylists()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getRecentlyAddedForSection()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.searchSection()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionShows()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getUnwatchedForSection()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSectionImage()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n* `plex-api.collections.createCollection()`: \n  *  `request.type` **Changed** (Breaking ⚠️)\n* `plex-api.dvRs.getDvrChannels()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.dvRs.getDvrGuide()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.dvRs.tuneChannel()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.epg.getEpgGuide()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.epg.searchEpg()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.liveTv.getDvrRecordings()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.liveTv.getSessions()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.liveTv.getDvrRecordingsByDvr()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.liveTv.getLiveTvSession()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.getAllSubscriptions()`:  `response.mediaContainer.mediaSubscription[].mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.createSubscription()`:  `response.mediaContainer.mediaSubscription[].mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.getScheduledRecordings()`:  `response.mediaContainer.mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.getTemplate()`:  `response.mediaContainer.subscriptionTemplate[].mediaSubscription[].mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.getSubscription()`:  `response.mediaContainer.mediaSubscription[].mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.editSubscriptionPreferences()`:  `response.mediaContainer.mediaSubscription[].mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.subscriptions.reorderSubscription()`:  `response.mediaContainer.mediaSubscription[].mediaGrabOperation[].metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.transcoder.getTranscodeSessions()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.transcoder.makeDecision()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playlist.listPlaylists()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playlist.getPlaylist()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playlist.getPlaylistItems()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.createPlaylist()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.clearPlaylistItems()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.addPlaylistItems()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.deletePlaylistItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.modifyPlaylistGenerator()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.getPlaylistGeneratorItems()`:  `response.mediaContainer.metadata.media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryPlaylists.movePlaylistItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.addToPlayQueue()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.clearPlayQueue()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.resetPlayQueue()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.shuffle()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.unshuffle()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.deletePlayQueueItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.playQueue.movePlayQueueItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.status.listSessions()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.getCollectionItems()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.getMetadataItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.getAlbums()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.listContent()`: \n  *  `request.mediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.getAllLeaves()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.getSonicPath()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.content.getSonicallySimilar()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryCollections.addCollectionItems()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryCollections.updateCollectionItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.libraryCollections.moveCollectionItem()`:  `response.mediaContainer.metadata[].media[].part[].stream[]` **Changed** (Breaking ⚠️)\n* `plex-api.library.getSections()`:  `response.mediaContainer.directory[].type` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
