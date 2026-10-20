@@ -15,4 +15,4 @@ let value: LibrarySectionLocation = {};
 | Field                                           | Type                                            | Required                                        | Description                                     |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
 | `id`                                            | *number*                                        | :heavy_minus_sign:                              | N/A                                             |
-| `path`                                          | *any*                                           | :heavy_minus_sign:                              | The path of where this directory exists on disk |
+| `path`                                          | *string*                                        | :heavy_minus_sign:                              | The path of where this directory exists on disk |

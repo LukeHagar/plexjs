@@ -79,6 +79,7 @@ import { libraryGetSectionClips } from "../funcs/libraryGetSectionClips.js";
 import { libraryGetSectionEdit } from "../funcs/libraryGetSectionEdit.js";
 import { libraryGetSectionEpisodes } from "../funcs/libraryGetSectionEpisodes.js";
 import { libraryGetSectionFilters } from "../funcs/libraryGetSectionFilters.js";
+import { libraryGetSectionFolder } from "../funcs/libraryGetSectionFolder.js";
 import { libraryGetSectionImage } from "../funcs/libraryGetSectionImage.js";
 import { libraryGetSectionLabels } from "../funcs/libraryGetSectionLabels.js";
 import { libraryGetSectionMovies } from "../funcs/libraryGetSectionMovies.js";
@@ -337,7 +338,7 @@ export class Library extends ClientSDK {
    */
   async getLibrarySectionsFallback(
     options?: RequestOptions,
-  ): Promise<shared.MediaContainerWithDirectory1> {
+  ): Promise<operations.GetLibrarySectionsFallbackResponse> {
     return unwrapAsync(libraryGetLibrarySectionsFallback(
       this,
       options,
@@ -464,7 +465,8 @@ export class Library extends ClientSDK {
    * Get Metadata Children
    *
    * @remarks
-   * Get children of a show, season, artist, or album.
+   * Get children of a show, season, artist, or album, including a photo album.
+   * Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.
    */
   async getMetadataChildren(
     request: operations.GetMetadataChildrenRequest,
@@ -1571,6 +1573,26 @@ export class Library extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetFirstCharactersResponse> {
     return unwrapAsync(libraryGetFirstCharacters(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get library folder contents
+   *
+   * @remarks
+   * Browse the physical folders and direct media items in a library section.
+   * Omit parent to retrieve the root page. For a child folder, use the parent query value from the folder key returned by Plex.
+   * A folder token is distinct from a metadata rating key; do not substitute an album rating key.
+   * Photo libraries can return navigation directories, photos, and video clips in the same response.
+   */
+  async getSectionFolder(
+    request: operations.GetSectionFolderRequest,
+    options?: RequestOptions,
+  ): Promise<shared.MediaContainerWithMetadata> {
+    return unwrapAsync(libraryGetSectionFolder(
       this,
       request,
       options,

@@ -13043,7 +13043,7 @@ workflows:
           - condition: $response.header.Content-Type == application/json
           - context: $response.body
             condition: |
-              {"MediaContainer":{"identifier":"com.plexapp.plugins.library","size":1,"Directory":[]}}
+              {"MediaContainer":{"identifier":"com.plexapp.plugins.library","offset":0,"size":1,"totalSize":100}}
             type: simple
     x-speakeasy-test-group: Library
     x-speakeasy-test-rebuild: true
@@ -13144,6 +13144,15 @@ workflows:
           - name: id
             in: path
             value: 240367
+          - name: X-Plex-Container-Start
+            in: query
+            value: 0
+          - name: X-Plex-Container-Size
+            in: query
+            value: 50
+          - name: includeMeta
+            in: query
+            value: 1
           - name: accepts
             in: header
             value: application/xml
@@ -16641,4 +16650,36 @@ workflows:
               "0xA9fA681439"
             type: simple
     x-speakeasy-test-group: Users
+    x-speakeasy-test-rebuild: true
+  - workflowId: getSectionFolder
+    steps:
+      - stepId: test
+        operationId: getSectionFolder
+        parameters:
+          - name: sectionId
+            in: path
+            value: 924129
+          - name: X-Plex-Container-Start
+            in: query
+            value: 0
+          - name: X-Plex-Container-Size
+            in: query
+            value: 50
+          - name: parent
+            in: query
+            value: "3706"
+          - name: includeMeta
+            in: query
+            value: 1
+          - name: accepts
+            in: header
+            value: application/xml
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"MediaContainer":{"identifier":"com.plexapp.plugins.library","size":1,"Metadata":[]}}
+            type: simple
+    x-speakeasy-test-group: Library
     x-speakeasy-test-rebuild: true

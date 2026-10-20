@@ -632,7 +632,7 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * The type of the video item, such as `movie`, `episode`, or `clip`.
    */
-  type: string;
+  type?: string | undefined;
   /**
    * When present, contains the disc number for a track on multi-disc albums.
    */
@@ -640,7 +640,7 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * In units of seconds since the epoch, returns the time at which the item was added to the library.
    */
-  addedAt: number;
+  addedAt?: number | undefined;
   /**
    * When present, the URL for the background artwork for the item.
    */
@@ -764,15 +764,23 @@ export type MediaContainerWithDecisionMetadatum = {
    * For shows and seasons, contains the number of total episodes.
    */
   leafCount?: number | undefined;
+  /**
+   * The library section containing this metadata item, when reported by the server.
+   */
+  librarySectionID?: number | undefined;
   media?: Array<MediaContainerWithDecisionMedia> | undefined;
   /**
    * Analysis version for music items.
    */
   musicAnalysisVersion?: number | undefined;
   /**
-   * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
+   * The original release or capture date as reported by the server.
+   *
+   * @remarks
+   * Values can be a date (YYYY-MM-DD), a date with a time (YYYY-MM-DD HH:MM:SS), or an ISO 8601 timestamp.
+   * Preserve the string representation so higher-resolution timestamps are not reduced to a date-only value.
    */
-  originallyAvailableAt?: Date | undefined;
+  originallyAvailableAt?: string | undefined;
   /**
    * When present, used to indicate an item's original title, e.g. a movie's foreign title.
    */
@@ -1516,9 +1524,9 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
 > = collectExtraKeys$(
   z.object({
     title: types.string(),
-    type: types.string(),
+    type: types.optional(types.string()),
     absoluteIndex: types.optional(types.number()),
-    addedAt: types.number(),
+    addedAt: types.optional(types.number()),
     art: types.optional(types.string()),
     artBlurHash: types.optional(types.string()),
     audienceRating: types.optional(types.number()),
@@ -1557,11 +1565,12 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
     lastRatedAt: types.optional(types.number()),
     lastViewedAt: types.optional(types.number()),
     leafCount: types.optional(types.number()),
+    librarySectionID: types.optional(types.number()),
     Media: types.optional(
       z.array(z.lazy(() => MediaContainerWithDecisionMedia$inboundSchema)),
     ),
     musicAnalysisVersion: types.optional(types.number()),
-    originallyAvailableAt: types.optional(types.date()),
+    originallyAvailableAt: types.optional(types.string()),
     originalTitle: types.optional(types.string()),
     parentGuid: types.optional(types.string()),
     parentHero: types.optional(types.string()),

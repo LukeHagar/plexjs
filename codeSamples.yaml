@@ -4112,7 +4112,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@parke.dev/plexjs";
-            import { Accepts } from "@parke.dev/plexjs/models/shared";
+            import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4131,6 +4131,7 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getMetadataChildren({
+                includeMeta: BoolInt.True,
                 id: 240367,
               });
 
@@ -6165,6 +6166,31 @@ actions:
                   sourceType: 2,
                 },
                 sectionId: 3947,
+              });
+
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/folder"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@parke.dev/plexjs";
+            import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+            const plexAPI = new PlexAPI({
+              accepts: Accepts.ApplicationXml,
+              token: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSectionFolder({
+                sectionId: 924129,
+                parent: "3706",
+                includeMeta: BoolInt.True,
               });
 
               console.log(result);

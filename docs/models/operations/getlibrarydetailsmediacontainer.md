@@ -268,7 +268,7 @@ let value: GetLibraryDetailsMediaContainer = {
         },
       ],
       musicAnalysisVersion: 1,
-      originallyAvailableAt: new Date("string value"),
+      originallyAvailableAt: "string value",
       originalTitle: "string value",
       parentGuid: "string value",
       parentHero: "string value",

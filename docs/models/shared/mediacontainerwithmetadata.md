@@ -1,6 +1,7 @@
 # MediaContainerWithMetadata
 
-A MediaContainer that includes metadata items. When `includeCollections=1` is passed to endpoints such as `/library/sections/{sectionId}/all`, this container may also include `Collection` items.
+A MediaContainer that includes metadata items. Photo library responses can also expose items under Directory, Photo, or Video; these optional arrays retain the same item metadata and Media/Part file information.
+When includeCollections=1 is passed to endpoints such as /library/sections/{sectionId}/all, this container may also include Collection items.
 
 ## Example Usage
 

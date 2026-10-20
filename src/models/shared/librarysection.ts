@@ -36,7 +36,7 @@ export type LibrarySectionLocation = {
   /**
    * The path of where this directory exists on disk
    */
-  path?: any | undefined;
+  path?: string | undefined;
 };
 
 export type LibrarySection = {
@@ -118,7 +118,7 @@ export const LibrarySectionLocation$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: types.optional(types.number()),
-  path: types.optional(z.any()),
+  path: types.optional(types.string()),
 });
 
 export function librarySectionLocationFromJSON(

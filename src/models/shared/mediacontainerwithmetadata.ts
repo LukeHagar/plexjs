@@ -28,11 +28,26 @@ export type MediaContainerWithMetadataMediaContainer = {
    * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
    */
   totalSize?: number | undefined;
+  /**
+   * Navigation folders or metadata items returned under the Directory element.
+   */
+  directory?: Array<Metadata> | undefined;
   metadata?: Array<Metadata> | undefined;
+  /**
+   * Photo items returned under the Photo element.
+   */
+  photo?: Array<Metadata> | undefined;
+  /**
+   * Video items, including photo-library clips, returned under the Video element.
+   */
+  video?: Array<Metadata> | undefined;
 };
 
 /**
- * A MediaContainer that includes metadata items. When `includeCollections=1` is passed to endpoints such as `/library/sections/{sectionId}/all`, this container may also include `Collection` items.
+ * A MediaContainer that includes metadata items. Photo library responses can also expose items under Directory, Photo, or Video; these optional arrays retain the same item metadata and Media/Part file information.
+ *
+ * @remarks
+ * When includeCollections=1 is passed to endpoints such as /library/sections/{sectionId}/all, this container may also include Collection items.
  */
 export type MediaContainerWithMetadata = {
   mediaContainer?: MediaContainerWithMetadataMediaContainer | undefined;
@@ -47,10 +62,16 @@ export const MediaContainerWithMetadataMediaContainer$inboundSchema: z.ZodType<
   offset: types.optional(types.number()),
   size: types.optional(types.number()),
   totalSize: types.optional(types.number()),
+  Directory: types.optional(z.array(Metadata$inboundSchema)),
   Metadata: types.optional(z.array(Metadata$inboundSchema)),
+  Photo: types.optional(z.array(Metadata$inboundSchema)),
+  Video: types.optional(z.array(Metadata$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
+    "Directory": "directory",
     "Metadata": "metadata",
+    "Photo": "photo",
+    "Video": "video",
   });
 });
 

@@ -88,6 +88,7 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [getSectionEpisodes](#getsectionepisodes) - Get Section Episodes
 * [getSectionFilters](#getsectionfilters) - Get section filters
 * [getFirstCharacters](#getfirstcharacters) - Get list of first characters
+* [getSectionFolder](#getsectionfolder) - Get library folder contents
 * [getLibrarySectionHubs](#getlibrarysectionhubs) - Get Section Hubs
 * [deleteIndexes](#deleteindexes) - Delete section indexes
 * [deleteIntros](#deleteintros) - Delete section intro markers
@@ -1205,7 +1206,7 @@ run();
 
 ### Response
 
-**Promise\<[shared.MediaContainerWithDirectory1](../../models/shared/mediacontainerwithdirectory1.md)\>**
+**Promise\<[operations.GetLibrarySectionsFallbackResponse](../../models/operations/getlibrarysectionsfallbackresponse.md)\>**
 
 ### Errors
 
@@ -1866,14 +1867,15 @@ run();
 
 ## getMetadataChildren
 
-Get children of a show, season, artist, or album.
+Get children of a show, season, artist, or album, including a photo album.
+Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.
 
 ### Example Usage: include-stream
 
 <!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1892,6 +1894,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getMetadataChildren({
+    includeMeta: BoolInt.True,
     id: 240367,
   });
 
@@ -1908,7 +1911,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
 import { libraryGetMetadataChildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataChildren.js";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1929,6 +1932,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetMetadataChildren(plexAPI, {
+    includeMeta: BoolInt.True,
     id: 240367,
   });
   if (res.ok) {
@@ -1946,7 +1950,7 @@ run();
 <!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream-otheritem" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1965,6 +1969,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getMetadataChildren({
+    includeMeta: BoolInt.True,
     id: 240367,
   });
 
@@ -1981,7 +1986,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
 import { libraryGetMetadataChildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataChildren.js";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2002,6 +2007,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetMetadataChildren(plexAPI, {
+    includeMeta: BoolInt.True,
     id: 240367,
   });
   if (res.ok) {
@@ -2019,7 +2025,7 @@ run();
 <!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream-otheritem-anotheritem" -->
 ```typescript
 import { PlexAPI } from "@parke.dev/plexjs";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -2038,6 +2044,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getMetadataChildren({
+    includeMeta: BoolInt.True,
     id: 240367,
   });
 
@@ -2054,7 +2061,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@parke.dev/plexjs/core.js";
 import { libraryGetMetadataChildren } from "@parke.dev/plexjs/funcs/libraryGetMetadataChildren.js";
-import { Accepts } from "@parke.dev/plexjs/models/shared";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2075,6 +2082,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetMetadataChildren(plexAPI, {
+    includeMeta: BoolInt.True,
     id: 240367,
   });
   if (res.ok) {
@@ -8320,6 +8328,91 @@ run();
 ### Response
 
 **Promise\<[operations.GetFirstCharactersResponse](../../models/operations/getfirstcharactersresponse.md)\>**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | 401              | application/json |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+
+## getSectionFolder
+
+Browse the physical folders and direct media items in a library section.
+Omit parent to retrieve the root page. For a child folder, use the parent query value from the folder key returned by Plex.
+A folder token is distinct from a metadata rating key; do not substitute an album rating key.
+Photo libraries can return navigation directories, photos, and video clips in the same response.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionFolder" method="get" path="/library/sections/{sectionId}/folder" -->
+```typescript
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSectionFolder({
+    sectionId: 924129,
+    parent: "3706",
+    includeMeta: BoolInt.True,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryGetSectionFolder } from "@parke.dev/plexjs/funcs/libraryGetSectionFolder.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accepts: Accepts.ApplicationXml,
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetSectionFolder(plexAPI, {
+    sectionId: 924129,
+    parent: "3706",
+    includeMeta: BoolInt.True,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSectionFolder failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionFolderRequest](../../models/operations/getsectionfolderrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[shared.MediaContainerWithMetadata](../../models/shared/mediacontainerwithmetadata.md)\>**
 
 ### Errors
 

@@ -20,7 +20,7 @@ import * as errors from "../models/errors/index.js";
 import { PlexAPIError } from "../models/errors/plexapierror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as shared from "../models/shared/index.js";
+import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -37,7 +37,7 @@ export function libraryGetLibrarySectionsFallback(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    shared.MediaContainerWithDirectory1,
+    operations.GetLibrarySectionsFallbackResponse,
     | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
@@ -61,7 +61,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      shared.MediaContainerWithDirectory1,
+      operations.GetLibrarySectionsFallbackResponse,
       | errors.ErrorT
       | PlexAPIError
       | ResponseValidationError
@@ -141,7 +141,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    shared.MediaContainerWithDirectory1,
+    operations.GetLibrarySectionsFallbackResponse,
     | errors.ErrorT
     | PlexAPIError
     | ResponseValidationError
@@ -152,7 +152,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, shared.MediaContainerWithDirectory1$inboundSchema),
+    M.json(200, operations.GetLibrarySectionsFallbackResponse$inboundSchema),
     M.jsonErr(401, errors.ErrorT$inboundSchema),
     M.fail([400, "4XX"]),
     M.fail("5XX"),

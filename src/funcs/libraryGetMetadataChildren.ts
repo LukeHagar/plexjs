@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -31,7 +31,8 @@ import { Result } from "../types/fp.js";
  * Get Metadata Children
  *
  * @remarks
- * Get children of a show, season, artist, or album.
+ * Get children of a show, season, artist, or album, including a photo album.
+ * Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.
  *
  * If set, this operation will use {@link Security.token} from the global security.
  */
@@ -100,6 +101,12 @@ async function $do(
     }),
   };
   const path = pathToFunc("/library/metadata/{id}/children")(pathParams);
+
+  const query = encodeFormQuery({
+    "includeMeta": payload.includeMeta,
+    "X-Plex-Container-Size": payload["X-Plex-Container-Size"],
+    "X-Plex-Container-Start": payload["X-Plex-Container-Start"],
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -195,6 +202,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,

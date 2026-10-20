@@ -99,6 +99,26 @@ export type GetMetadataChildrenRequest = {
    */
   marketplace?: string | undefined;
   /**
+   * The index of the first item to return. If not specified, the first item will be returned.
+   *
+   * @remarks
+   * If the number of items exceeds the limit, the response will be paginated.
+   * By default this is 0
+   */
+  xPlexContainerStart?: number | undefined;
+  /**
+   * The number of items to return. If not specified, all items will be returned.
+   *
+   * @remarks
+   * If the number of items exceeds the limit, the response will be paginated.
+   * By default this is 50
+   */
+  xPlexContainerSize?: number | undefined;
+  /**
+   * Include the Meta object in the response.
+   */
+  includeMeta?: shared.BoolInt | undefined;
+  /**
    * The unique identifier of the item
    */
   id: number;
@@ -117,6 +137,9 @@ export type GetMetadataChildrenRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  "X-Plex-Container-Start": number;
+  "X-Plex-Container-Size": number;
+  includeMeta: number;
   id: number;
 };
 
@@ -136,6 +159,9 @@ export const GetMetadataChildrenRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  xPlexContainerStart: z.int().default(0),
+  xPlexContainerSize: z.int().default(50),
+  includeMeta: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   id: z.int(),
 }).transform((v) => {
   return remap$(v, {
@@ -149,6 +175,8 @@ export const GetMetadataChildrenRequest$outboundSchema: z.ZodType<
     deviceVendor: "Device-Vendor",
     deviceName: "Device-Name",
     marketplace: "Marketplace",
+    xPlexContainerStart: "X-Plex-Container-Start",
+    xPlexContainerSize: "X-Plex-Container-Size",
   });
 });
 

@@ -441,6 +441,7 @@ run();
 * [getSectionEpisodes](docs/sdks/library/README.md#getsectionepisodes) - Get Section Episodes
 * [getSectionFilters](docs/sdks/library/README.md#getsectionfilters) - Get section filters
 * [getFirstCharacters](docs/sdks/library/README.md#getfirstcharacters) - Get list of first characters
+* [getSectionFolder](docs/sdks/library/README.md#getsectionfolder) - Get library folder contents
 * [getLibrarySectionHubs](docs/sdks/library/README.md#getlibrarysectionhubs) - Get Section Hubs
 * [deleteIndexes](docs/sdks/library/README.md#deleteindexes) - Delete section indexes
 * [deleteIntros](docs/sdks/library/README.md#deleteintros) - Delete section intro markers
@@ -763,9 +764,9 @@ run();
 
 
 **Inherit from [`PlexAPIError`](./src/models/errors/plexapierror.ts)**:
-* [`ErrorT`](./src/models/errors/errort.ts): Unauthorized. Status code `401`. Applicable to 277 of 405 methods.*
-* [`UnauthorizedError`](./src/models/errors/unauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 405 methods.*
-* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 405 methods.*
+* [`ErrorT`](./src/models/errors/errort.ts): Unauthorized. Status code `401`. Applicable to 278 of 406 methods.*
+* [`UnauthorizedError`](./src/models/errors/unauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 406 methods.*
+* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 406 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -1256,6 +1257,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`libraryGetSectionEdit`](docs/sdks/library/README.md#getsectionedit) - Edit Section
 - [`libraryGetSectionEpisodes`](docs/sdks/library/README.md#getsectionepisodes) - Get Section Episodes
 - [`libraryGetSectionFilters`](docs/sdks/library/README.md#getsectionfilters) - Get section filters
+- [`libraryGetSectionFolder`](docs/sdks/library/README.md#getsectionfolder) - Get library folder contents
 - [`libraryGetSectionImage`](docs/sdks/library/README.md#getsectionimage) - Get a section composite image
 - [`libraryGetSectionLabels`](docs/sdks/library/README.md#getsectionlabels) - Get Section Labels
 - [`libraryGetSectionMovies`](docs/sdks/library/README.md#getsectionmovies) - Get Section Movies
